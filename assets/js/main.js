@@ -1,6 +1,6 @@
 /**
- * SIAM AHMED - SENIOR FULL-STACK DEVELOPER PORTFOLIO
- * High-performance vanilla JavaScript logic & interactive animations
+ * SIAM HOSSAIN - FULL STACK DEVELOPER PORTFOLIO
+ * High-performance vanilla JavaScript logic, modals, filtering & interactive animations
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const typewriterElement = document.getElementById('typewriter');
     const words = [
-        "Senior Full-Stack Developer.",
-        "Next.js & React Architect.",
-        "Creative Web Engineer.",
-        "Cloud & DevOps Specialist.",
-        "UI/UX & Interactive Designer."
+        "Full Stack Developer.",
+        "Django Developer.",
+        "React Developer.",
+        "API Engineer.",
+        "Digital Marketing Manager.",
+        "Software Developer."
     ];
     let wordIndex = 0;
     let charIndex = 0;
@@ -126,20 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        4. THEME SWITCHER (Dark & Light Mode)
        ========================================================================== */
-    const themeToggleBtn = document.getElementById('theme-toggle');
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (document.body) {
+            document.body.setAttribute('data-theme', theme);
+        }
+        const canvas = document.getElementById('siam-portfolio-wp-canvas');
+        if (canvas) {
+            canvas.setAttribute('data-theme', theme);
+        }
+        localStorage.setItem('siam_portfolio_theme', theme);
+    }
+
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn, #theme-toggle, .mobile-theme-toggle');
     const storedTheme = localStorage.getItem('siam_portfolio_theme') || 'dark';
+    applyTheme(storedTheme);
 
-    document.documentElement.setAttribute('data-theme', storedTheme);
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('siam_portfolio_theme', newTheme);
+            applyTheme(newTheme);
             showToast('Theme Updated', `Switched to ${newTheme} mode`, 'success');
         });
-    }
+    });
 
     /* ==========================================================================
        5. IMPACT COUNTERS (Animated Number Increments)
@@ -150,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function startCounters() {
         counterElements.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-target'), 10);
-            const duration = 2000;
-            const stepTime = 25;
+            const duration = 1800;
+            const stepTime = 30;
             const totalSteps = duration / stepTime;
             const increment = target / totalSteps;
             let current = 0;
@@ -162,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     counter.textContent = target;
                     clearInterval(timer);
                 } else {
-                    counter.textContent = Math.floor(current);
+                    counter.textContent = Math.ceil(current);
                 }
             }, stepTime);
         });
@@ -207,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateWidgetIndicator(index) {
         if (!slidingBg || window.innerWidth < 992) return;
-        const total = widgetItems.length;
         const percent = (index * 100);
         slidingBg.style.transform = `translateX(${percent}%)`;
     }
@@ -229,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        8. PORTFOLIO FILTERING
        ========================================================================== */
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterBtns = document.querySelectorAll('.portfolio-filter-tabs .filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card');
 
     filterBtns.forEach(btn => {
@@ -259,6 +270,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
+       8B. ACHIEVEMENTS & CERTIFICATIONS FILTERING
+       ========================================================================== */
+    const achFilterBtns = document.querySelectorAll('.achievements-filter-tabs .filter-btn');
+    const achievementCards = document.querySelectorAll('.achievement-card');
+
+    achFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            achFilterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            achievementCards.forEach(card => {
+                const category = card.getAttribute('data-category') || '';
+                if (filterValue === 'all' || category.includes(filterValue)) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    /* ==========================================================================
        9. TESTIMONIALS SLIDER
        ========================================================================== */
     const slides = document.querySelectorAll('.testimonial-slide');
@@ -269,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoSlideInterval;
 
     function goToSlide(n) {
+        if (!slides.length) return;
         slides.forEach(s => s.classList.remove('active'));
         dots.forEach(d => d.classList.remove('active'));
 
@@ -284,8 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dot.addEventListener('click', () => goToSlide(idx));
     });
 
-    // Auto Play Slides with pause on hover
     function startAutoSlide() {
+        if (!slides.length) return;
         autoSlideInterval = setInterval(() => {
             goToSlide(currentSlide + 1);
         }, 6500);
@@ -356,7 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Simulate sending message with loading state
             const originalText = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<span>Sending Dispatch...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
@@ -365,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
                 contactForm.reset();
-                showToast('Message Transmitted!', `Thank you ${name}! I've received your request and will reply within 24 hours.`, 'success');
+                showToast('Message Received!', `Thank you ${name}! Your message has been received. Siam will get back to you shortly at ${email}.`, 'success');
             }, 1200);
         });
     }
@@ -376,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const emailInput = document.getElementById('newsletter-email');
             if (emailInput.value) {
-                showToast('Subscription Confirmed', 'You are now subscribed to Siam\'s monthly architectural tech memos.', 'success');
+                showToast('Subscription Confirmed', 'You are now subscribed to Siam\'s latest technology insights.', 'success');
                 emailInput.value = '';
             }
         });
@@ -384,105 +427,160 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   12. MODAL SYSTEM FOR PROJECTS, SERVICES, & BLOG
+   12. MODAL DATA & FUNCTIONS (PROJECTS, SERVICES, CERTIFICATES, BLOG)
    ========================================================================== */
 const projectsData = {
     1: {
-        title: "DataSync Enterprise Analytics Hub",
-        tag: "Full-Stack SaaS Platform",
-        img: "assets/images/project-1.jpg",
-        client: "Apex Enterprise Global",
-        timeline: "4 Months",
-        tech: "Next.js 15, TypeScript, Node.js, PostgreSQL, Docker, Redis",
-        liveUrl: "https://github.com",
-        desc: "DataSync is an all-in-one distributed SaaS business intelligence suite. Built to process over 2.4 million real-time events daily, it aggregates subscription revenues, net retention, customer churn risk scores, and customer journey analytics into a fluid, responsive dark dashboard."
+        title: "SnapBook - Social Media Platform",
+        tag: "Django & React Full-Stack",
+        img: "assets/images/projects/snapbook.png",
+        client: "Full-Stack Project",
+        timeline: "Completed",
+        tech: "Django, React, JavaScript, PostgreSQL, REST API",
+        liveUrl: "https://snap-book-frontend.vercel.app/",
+        githubUrl: "https://github.com/siamhossain7722/SnapBook_Frontend",
+        desc: "SnapBook is a modern full-stack social media platform engineered for sharing photos, stories, and engaging with friends through a clean digital experience. Built with a scalable Django REST backend, token authentication, and a responsive React frontend."
     },
     2: {
-        title: "Synapse AI Neural Workspace",
-        tag: "Generative AI Platform",
-        img: "assets/images/project-2.jpg",
-        client: "NeuralPulse Labs",
-        timeline: "3 Months",
-        tech: "React 19, Python, FastAPI, WebSockets, TailwindCSS, Supabase",
-        liveUrl: "https://github.com",
-        desc: "Synapse AI delivers a state-of-the-art developer workspace for prompting, testing, and fine-tuning neural model weights. Features live streaming text tokens, visual neural graph network rendering, code generation previewers, and customizable temperature presets."
+        title: "Review Platform - Product Discovery & Reviews",
+        tag: "Python & FastAPI Architecture",
+        img: "assets/images/projects/review.png",
+        client: "Web Application",
+        timeline: "Completed",
+        tech: "Python, FastAPI, Next.js, PostgreSQL, Tailwind CSS",
+        liveUrl: "https://review-client-two.vercel.app/",
+        githubUrl: "https://github.com/siamhossain7722/Review_Client",
+        desc: "A high-performance product review platform designed for discovering top-rated products, comparing ratings, and sharing customer experiences through an ultra-fast web interface powered by FastAPI and Next.js."
     },
     3: {
-        title: "Astra Multi-Currency Trading Engine",
-        tag: "Fintech & Web3 Application",
-        img: "assets/images/project-3.jpg",
-        client: "Astra Finance Switzerland",
-        timeline: "5 Months",
-        tech: "Next.js, TypeScript, GraphQL, WebSockets, Tailwind, AWS",
-        liveUrl: "https://github.com",
-        desc: "Astra is a bank-grade digital asset exchange interface featuring sub-millisecond candlestick order book updates, instant cross-currency swapping, encrypted virtual card integrations, and automated portfolio rebalancing rules."
+        title: "Eventify - Event Management & Organization",
+        tag: "Django & Database Engineering",
+        img: "assets/images/projects/eventify.png",
+        client: "Event Management Platform",
+        timeline: "Completed",
+        tech: "Django, PostgreSQL, JavaScript, Bootstrap",
+        liveUrl: "https://new-event-managment.onrender.com/",
+        githubUrl: "https://github.com/siamhossain7722/New",
+        desc: "An intuitive event management platform allowing organizers and attendees to create, coordinate, and manage events with effortless scheduling, real-time database updates, and responsive mobile interfaces."
     },
     4: {
-        title: "Velo Distributed Fitness & Biometric Cloud",
-        tag: "Mobile & Cloud Architecture",
-        img: "assets/images/project-4.jpg",
-        client: "Velo Health Systems",
-        timeline: "6 Months",
-        tech: "React Native, Node.js, Apache Kafka, Redis, PostgreSQL, AWS S3",
-        liveUrl: "https://github.com",
-        desc: "Velo pairs an award-winning ergonomic mobile interface with an event-driven microservices backend. Ingests high-frequency heart rate, GPS telemetry, and workout data from over 50,000 active devices with zero packet drops."
+        title: "CPL Construction Services",
+        tag: "Enterprise Platform & Machinery Rental",
+        img: "assets/images/projects/cpl.png",
+        client: "Constructive Partners Limited",
+        timeline: "Production Deployment",
+        tech: "Next.js, TypeScript, MongoDB, Firebase, Tailwind CSS",
+        liveUrl: "https://www.constructivepartnerslimited.com/",
+        githubUrl: "https://github.com/siamhossain7722/Constructions",
+        desc: "A commercial service platform providing end-to-end building services, heavy equipment sales, machinery rentals, and building materials across Bangladesh. Features dynamic catalogs, responsive layouts, and modern Next.js frontend."
+    }
+};
+
+const certificatesData = {
+    1: {
+        title: "Dean's Awards (3x) & Vice Chancellor Award (1x)",
+        org: "University of Asia Pacific",
+        period: "2019 – 2024",
+        category: "Academic Excellence",
+        img: "assets/images/certificates/UAP.jpg",
+        desc: "Honored with academic excellence awards (3x Dean's Awards and 1x Vice Chancellor Award) for consistently maintaining high CGPA across multiple semesters in the Department of Computer Science & Engineering at University of Asia Pacific."
+    },
+    2: {
+        title: "CSE Fundamentals With Phitron",
+        org: "Phitron.io",
+        period: "Fall 2024",
+        category: "Computer Science & Algorithms",
+        img: "assets/images/certificates/Certificate_Phitron.jpg",
+        desc: "Successfully completed intensive CSE Fundamentals With Phitron: Fall 2024 with a distinction CGPA of 3.67, mastering advanced C/C++ programming, data structures, algorithms, and practical software engineering."
+    },
+    3: {
+        title: "The Science of Digital Marketing",
+        org: "Urban Academy",
+        period: "July 2026",
+        category: "Professional Certification",
+        img: "assets/images/certificates/UA.jpg",
+        desc: "Graduated from the comprehensive 16-week Science of Digital Marketing programme, mastering marketing strategy, high-conversion copywriting, Meta & Google advertising, AI chatbot integration, and client campaign execution."
+    },
+    4: {
+        title: "Pearson BTEC Level 5 Higher National Diploma (HND)",
+        org: "Global Business Studies FZ LLC, Dubai (UAE)",
+        period: "2024 – 2026",
+        category: "Academic Diploma",
+        img: "assets/images/certificates/GBS.jpg",
+        desc: "Completed Pearson BTEC Level 5 Higher National Diploma in Digital Technologies (AI Solutions and Applications), focusing on advanced programming, cloud fundamentals, digital economy practices, and AI-driven business transformation."
+    },
+    5: {
+        title: "Claude 101 Certification",
+        org: "Anthropic",
+        period: "2026",
+        category: "AI & Prompt Engineering",
+        img: "assets/images/certificates/Certificate_Claude.jpg",
+        desc: "Successfully completed the official Claude 101 certification programme from Anthropic, gaining expertise in LLM system prompts, context management, AI agent workflows, and practical generative AI implementation."
+    },
+    6: {
+        title: "Basic Food Safety – Food Service Training",
+        org: "Zigma Quality Training Center",
+        period: "September 2024",
+        category: "Professional Training",
+        img: "assets/images/certificates/food_safty.jpg",
+        desc: "Successfully completed certified Basic Food Safety – Food Service Training programme designed according to industry and international quality and hygiene standards."
     }
 };
 
 const servicesData = {
     1: {
-        title: "Full-Stack Web Architecture & Engineering",
-        tag: "Core Engineering",
-        desc: "From designing database schemas to orchestrating serverless edge functions and building reactive frontend component trees. Utilizing Next.js 15, React, Node.js, and TypeScript to create web applications that effortlessly handle millions of requests while maintaining pristine code health.",
-        deliverables: ["End-to-end full stack web architecture", "Database design & migration (SQL/NoSQL)", "Secure REST & GraphQL APIs with JWT/OAuth2", "Automated unit and integration testing suites"]
+        title: "Backend Development & Django REST APIs",
+        tag: "Backend & Systems",
+        desc: "Designing and building scalable, robust backend architectures using Django and Django REST Framework. Creating clean, secure endpoints with JWT/OAuth authentication, database query optimization, and structured ORM models.",
+        deliverables: ["Custom Django REST Framework APIs", "PostgreSQL & MySQL database design and schema migrations", "Secure token-based user authentication & permissions", "FastAPI microservices and high-throughput endpoints"]
     },
     2: {
-        title: "UI/UX & Interactive Motion Systems",
-        tag: "Creative Technology",
-        desc: "Bridging the gap between design vision and high-performance frontend execution. Transforming Figma or Adobe XD designs into pixel-perfect, accessible, and fluid web experiences that leave an unforgettable first impression on your users.",
-        deliverables: ["Design system creation with reusable tokens", "Fluid 60FPS CSS animations & micro-interactions", "Dark/Light mode architecture", "Full accessibility compliance (WCAG 2.1 AA)"]
+        title: "Full-Stack Web & React Applications",
+        tag: "Modern Frontend",
+        desc: "Developing fast, responsive, and reactive web interfaces using React, Next.js, and TypeScript. Connecting seamlessly with backend APIs to deliver seamless user experiences and modern component-driven architectures.",
+        deliverables: ["Single-Page Applications with React & Next.js", "State management with Redux / Context API", "Responsive CSS, Tailwind CSS & mobile-first UI", "Full API integration and asynchronous data flow"]
     },
     3: {
-        title: "Cloud Infrastructure, Docker & DevOps",
-        tag: "DevOps & Cloud",
-        desc: "Ensuring zero-downtime releases, scalable container orchestration, and continuous security compliance. Deploying on AWS, Vercel, and modern container runtimes with automated GitHub Actions CI/CD pipelines.",
-        deliverables: ["Docker containerization & multi-stage builds", "Automated CI/CD deployment pipelines", "Serverless edge functions & CDN caching", "Infrastructure as Code & performance monitoring"]
+        title: "Digital Marketing & Growth Strategy",
+        tag: "Digital Marketing",
+        desc: "Driving qualified traffic, client acquisition, and measurable conversion growth. Experienced in paid acquisition through Meta Ads and Google Ads, content marketing, and data-backed digital campaign management.",
+        deliverables: ["Meta Ads & Google Ads campaign strategy & management", "Conversion tracking & performance analytics", "Technical On-Page & Off-Page SEO audits", "Targeted copywriting and social media content execution"]
     },
     4: {
-        title: "Core Web Vitals & Technical SEO Optimization",
-        tag: "Performance & Growth",
-        desc: "Transforming slow, sluggish web applications into lightning-fast powerhouses that consistently score 95-100 on Google Lighthouse. Optimizing critical rendering paths, image formats, and semantic HTML for superior search engine rank.",
-        deliverables: ["Lighthouse 95+ score optimization", "Core Web Vitals audit & remediation", "Server-Side Rendering (SSR) & Static Generation", "Structured JSON-LD schema & technical SEO"]
+        title: "WordPress Management & AI Agent Implementation",
+        tag: "CMS & Automation",
+        desc: "Managing high-performance WordPress websites, custom theme integrations, plugin configurations, and exploring intelligent AI agent workflows to automate digital operations and customer interactions.",
+        deliverables: ["Custom WordPress setup, themes, and plugin tuning", "Website speed optimization and security hardening", "AI agent setup for automated workflows and chatbots", "E-commerce & content management systems"]
     }
 };
 
 const blogsData = {
     1: {
-        title: "Architecting Enterprise Next.js 15 Applications for Extreme Scale",
-        tag: "Architecture",
+        title: "Building Scalable REST APIs with Django & Django REST Framework",
+        tag: "Backend Architecture",
         date: "October 2026",
         img: "assets/images/blog-1.jpg",
-        content: `Building large-scale Next.js applications requires intentional directory structure, decoupled data fetching layers, and smart caching strategies. 
+        content: `Designing sustainable APIs requires thoughtful serializer design, query prefetching to prevent N+1 queries, and robust authentication layers.
         <br><br>
-        In this deep dive, we explore how Server Components eliminate unnecessary client-side JavaScript bundles, how to structure Server Actions with schema validation libraries like Zod, and how to utilize tag-based cache revalidation to achieve instant page transitions without serving stale data.`
+        In this article, we walk through structuring Django REST Framework viewsets, optimizing PostgreSQL queries with select_related and prefetch_related, and implementing JWT token rotation for bulletproof security.`
     },
     2: {
-        title: "Why Vanilla CSS Variables and Grid Outperform Bulky Frameworks",
-        tag: "CSS Mastery",
+        title: "Bridging Modern React & Next.js with Scalable Backend Systems",
+        tag: "Full-Stack Development",
         date: "September 2026",
         img: "assets/images/blog-2.jpg",
-        content: `While modern utility frameworks have their place, modern CSS standards have evolved tremendously. 
+        content: `Connecting modern frontend applications to robust API backends requires predictable state management, resilient caching, and clean type contracts.
         <br><br>
-        With CSS Custom Properties, CSS Grid subgrids, container queries, and native nesting, developers can achieve unparalleled layout fluidity and theme-switching performance with 0kb runtime dependencies and zero build step overhead.`
+        Discover best practices for handling asynchronous API requests, setting up optimistic UI updates, and ensuring type safety from backend database models all the way to React components.`
     },
     3: {
-        title: "Building Resilient Real-Time Websockets for High-Frequency Crypto Trades",
-        tag: "Cloud & API",
+        title: "How Developers Can Leverage AI Agents and Modern Automation",
+        tag: "AI & Innovation",
         date: "August 2026",
         img: "assets/images/blog-3.jpg",
-        content: `Financial trading systems demand guaranteed order delivery and sub-millisecond UI updates.
+        content: `AI agents are rapidly transforming how developers automate repetitive workflows, customer support, and data aggregation.
         <br><br>
-        Here we analyze our architecture using binary protocols over WebSockets, backpressure handling, heartbeat auto-reconnect algorithms, and how to synchronize optimistic frontend states when network latency spikes.`
+        We explore how integrating LLM prompts, structured outputs, and autonomous task pipelines can streamline everyday development and digital business workflows.`
     }
 };
 
@@ -515,11 +613,11 @@ function openProjectModal(id) {
         
         <div class="modal-meta-grid">
             <div class="meta-block">
-                <span class="meta-block-label">Client</span>
+                <span class="meta-block-label">Project Type</span>
                 <span class="meta-block-value">${p.client}</span>
             </div>
             <div class="meta-block">
-                <span class="meta-block-label">Timeline</span>
+                <span class="meta-block-label">Status</span>
                 <span class="meta-block-value">${p.timeline}</span>
             </div>
             <div class="meta-block">
@@ -528,9 +626,40 @@ function openProjectModal(id) {
             </div>
         </div>
 
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
             <a href="${p.liveUrl}" target="_blank" class="btn btn-primary btn-round">
                 <span>View Live Deployment</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            ${p.githubUrl ? `
+            <a href="${p.githubUrl}" target="_blank" class="btn btn-secondary btn-round">
+                <i class="fa-brands fa-github"></i>
+                <span>Source Code</span>
+            </a>` : ''}
+            <button onclick="closeModal()" class="btn btn-secondary btn-round">
+                <span>Close Window</span>
+            </button>
+        </div>
+    `;
+    openModalWithHTML(html);
+}
+
+function openCertificateModal(id) {
+    const c = certificatesData[id];
+    if (!c) return;
+
+    const html = `
+        <img src="${c.img}" alt="${c.title}" class="modal-cert-img">
+        <span class="modal-tag">${c.category} &bull; ${c.period}</span>
+        <h2 class="modal-title">${c.title}</h2>
+        <p style="font-weight: 600; color: var(--accent-light); margin-bottom: 12px; font-size: 1.05rem;">
+            <i class="fa-solid fa-building-columns"></i> ${c.org}
+        </p>
+        <p class="modal-desc">${c.desc}</p>
+        
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="${c.img}" target="_blank" class="btn btn-primary btn-round">
+                <span>View Full Size Credential</span>
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
             <button onclick="closeModal()" class="btn btn-secondary btn-round">
@@ -564,7 +693,7 @@ function openServiceModal(id) {
 
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
             <a href="#contact" onclick="closeModal()" class="btn btn-primary btn-round">
-                <span>Request Consultation</span>
+                <span>Discuss Your Project</span>
                 <i class="fa-solid fa-paper-plane"></i>
             </a>
             <button onclick="closeModal()" class="btn btn-secondary btn-round">

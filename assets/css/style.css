@@ -2787,3 +2787,406 @@ textarea.form-control {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ==========================================================================
+   19. About Me Section Styles
+   ========================================================================== */
+.about-section {
+    background: var(--bg-main);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image-wrapper {
+    position: relative;
+}
+
+.about-img-frame {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-lg);
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform var(--transition-smooth);
+}
+
+.about-img-frame:hover .about-img {
+    transform: scale(1.03);
+}
+
+.about-floating-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-hover);
+    padding: 16px 22px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 2;
+}
+
+.about-badge-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.about-badge-text h5 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.about-badge-text p {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.about-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.about-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+    padding: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+}
+
+.about-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.about-info-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.about-info-val {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.about-info-val a {
+    color: var(--accent);
+}
+
+.about-info-val a:hover {
+    text-decoration: underline;
+}
+
+.about-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   20. Achievements & Certifications Section
+   ========================================================================== */
+.achievements-section {
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+.achievements-filter-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.achievement-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg);
+}
+
+.achievement-img-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #06070a;
+    cursor: pointer;
+}
+
+.achievement-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform var(--transition-smooth);
+}
+
+.achievement-card:hover .achievement-img {
+    transform: scale(1.06);
+}
+
+.achievement-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 13, 18, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.achievement-card:hover .achievement-overlay {
+    opacity: 1;
+}
+
+.achievement-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 22px;
+    border-radius: var(--border-radius-full);
+    box-shadow: var(--shadow-accent);
+}
+
+.achievement-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.achievement-badge {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--border-radius-full);
+    margin-bottom: 12px;
+}
+
+.achievement-title {
+    font-family: var(--font-heading);
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+
+.achievement-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.achievement-org {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+.achievement-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.achievement-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.achievement-btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+    cursor: pointer;
+}
+
+.achievement-btn-link:hover {
+    color: var(--accent);
+}
+
+/* Timeline Certificate Badge & Image Preview */
+.timeline-cert-preview {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.timeline-cert-preview:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 1, 79, 0.06);
+}
+
+.timeline-cert-thumb {
+    width: 62px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.timeline-cert-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-cert-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.timeline-cert-action {
+    font-size: 0.78rem;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.timeline-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.timeline-skill-pill {
+    font-size: 0.76rem;
+    font-weight: 500;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 3px 10px;
+    border-radius: var(--border-radius-full);
+    color: var(--text-secondary);
+}
+
+.modal-cert-img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    border-radius: var(--border-radius-md);
+    background: #000;
+    margin-bottom: 20px;
+}
+
+/* Responsive Overrides for New Sections */
+@media (max-width: 991px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-floating-badge {
+        right: 10px;
+        bottom: 10px;
+    }
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .about-info-grid {
+        grid-template-columns: 1fr;
+    }
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}

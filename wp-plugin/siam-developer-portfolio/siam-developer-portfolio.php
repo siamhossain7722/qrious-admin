@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Siam Ahmed - Senior Developer Portfolio
- * Plugin URI: https://qrioustechbd.com
- * Description: Elite Next.js Reeni-inspired personal developer portfolio landing page with interactive dark/light theme, typewriter headline, animated counters, filterable project modals, and lead capture.
- * Version: 1.0.0
- * Author: Siam Ahmed & Qrious Tech
- * Author URI: https://qrioustechbd.com
+ * Plugin Name: Siam Hossain - Full Stack Developer Portfolio
+ * Plugin URI: https://github.com/siamhossain7722
+ * Description: Siam Hossain personal developer portfolio landing page with interactive dark/light theme, typewriter headline, animated counters, filterable project modals, achievements lightbox, and lead capture.
+ * Version: 1.1.0
+ * Author: Siam Hossain
+ * Author URI: https://github.com/siamhossain7722
  * License: GPL-2.0+
  * Text Domain: siam-portfolio
  */
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('SIAM_PORTFOLIO_VERSION', '1.0.0');
+define('SIAM_PORTFOLIO_VERSION', '1.1.0');
 define('SIAM_PORTFOLIO_PATH', plugin_dir_path(__FILE__));
 define('SIAM_PORTFOLIO_URL', plugin_dir_url(__FILE__));
 
@@ -52,7 +52,7 @@ class Siam_Developer_Portfolio {
 
         if (!$page || $page->post_status === 'trash') {
             $new_page_id = wp_insert_post(array(
-                'post_title'     => 'Portfolio - Siam Ahmed',
+                'post_title'     => 'Portfolio - Siam Hossain',
                 'post_name'      => 'portfolio',
                 'post_status'    => 'publish',
                 'post_type'      => 'page',
@@ -69,7 +69,6 @@ class Siam_Developer_Portfolio {
     }
 
     public function init_rewrite_rules() {
-        // Can also trigger via ?portfolio=1
         add_rewrite_endpoint('portfolio', EP_ROOT);
     }
 
@@ -112,7 +111,7 @@ class Siam_Developer_Portfolio {
     }
 
     public function add_page_templates($templates) {
-        $templates['siam-portfolio-template.php'] = 'Siam Developer Portfolio (Full Width & Responsive)';
+        $templates['siam-portfolio-template.php'] = 'Siam Hossain Developer Portfolio (Full Width & Responsive)';
         return $templates;
     }
 
@@ -145,9 +144,17 @@ class Siam_Developer_Portfolio {
             // FontAwesome 6
             wp_enqueue_style(
                 'siam-fontawesome',
-                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css',
                 array(),
-                '6.5.1'
+                '6.7.2'
+            );
+
+            // Devicon
+            wp_enqueue_style(
+                'siam-devicon',
+                'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css',
+                array(),
+                'latest'
             );
 
             // Custom Style
@@ -209,7 +216,7 @@ class Siam_Developer_Portfolio {
         $page_url = $page_id ? get_permalink($page_id) : home_url('/portfolio');
         ?>
         <div class="wrap">
-            <h1>Siam Ahmed - Senior Developer Portfolio</h1>
+            <h1>Siam Hossain - Full Stack Developer Portfolio</h1>
             <p>Welcome to your portfolio manager. Your landing page is live at: 
                 <a href="<?php echo esc_url($page_url); ?>" target="_blank" class="button button-primary">View Live Portfolio &rarr;</a>
             </p>
@@ -221,19 +228,19 @@ class Siam_Developer_Portfolio {
                 <table class="form-table">
                     <tr valign="top">
                         <th scope="row">Developer Full Name</th>
-                        <td><input type="text" name="siam_portfolio_name" value="<?php echo esc_attr(get_option('siam_portfolio_name', 'Siam Ahmed')); ?>" class="regular-text" /></td>
+                        <td><input type="text" name="siam_portfolio_name" value="<?php echo esc_attr(get_option('siam_portfolio_name', 'Siam Hossain')); ?>" class="regular-text" /></td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Professional Role / Title</th>
-                        <td><input type="text" name="siam_portfolio_role" value="<?php echo esc_attr(get_option('siam_portfolio_role', 'Senior Full-Stack Developer & Architect')); ?>" class="regular-text" /></td>
+                        <td><input type="text" name="siam_portfolio_role" value="<?php echo esc_attr(get_option('siam_portfolio_role', 'Full Stack Developer')); ?>" class="regular-text" /></td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Contact Email</th>
-                        <td><input type="email" name="siam_portfolio_email" value="<?php echo esc_attr(get_option('siam_portfolio_email', get_option('admin_email'))); ?>" class="regular-text" /></td>
+                        <td><input type="email" name="siam_portfolio_email" value="<?php echo esc_attr(get_option('siam_portfolio_email', 'mdsiamh77@gmail.com')); ?>" class="regular-text" /></td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Phone / WhatsApp</th>
-                        <td><input type="text" name="siam_portfolio_phone" value="<?php echo esc_attr(get_option('siam_portfolio_phone', '+880 1700-000000')); ?>" class="regular-text" /></td>
+                        <td><input type="text" name="siam_portfolio_phone" value="<?php echo esc_attr(get_option('siam_portfolio_phone', '+880 1xxx-xxxxxx')); ?>" class="regular-text" /></td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Profile Picture URL</th>
