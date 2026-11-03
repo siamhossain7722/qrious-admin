@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         // Set 5: Architecture & Infrastructure
         [
-            { name: "Django REST", icon: '<i class="fa-solid fa-code" style="color: #FF0066;"></i>' },
+            { name: "Django REST", icon: '<i class="fa-solid fa-code" style="color: #00B8FF;"></i>' },
             { name: "REST API", icon: '<i class="fa-solid fa-network-wired" style="color: #00B4D8;"></i>' },
             { name: "Docker", icon: '<i class="devicon-docker-plain colored"></i>' }
         ],
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [
             { name: "WordPress", icon: '<i class="fa-brands fa-wordpress" style="color: #21759B;"></i>' },
             { name: "SEO & Growth", icon: '<i class="fa-solid fa-chart-line" style="color: #10B981;"></i>' },
-            { name: "Email Marketing", icon: '<i class="fa-solid fa-envelope-open-text" style="color: #FF0066;"></i>' }
+            { name: "Email Marketing", icon: '<i class="fa-solid fa-envelope-open-text" style="color: #A855F7;"></i>' }
         ]
     ];
 
@@ -878,20 +878,38 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             try {
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name,
-                        email,
-                        phone,
-                        subject,
-                        message,
-                        _hp_security_check: hp
-                    })
+                const payload = JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    subject,
+                    message,
+                    _hp_security_check: hp
                 });
+
+                let response = null;
+                // Dual-endpoint resilience: try /api/contact (Node/Vercel) first, fallback to WordPress endpoint
+                try {
+                    response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: payload
+                    });
+                } catch (netErr) {
+                    console.warn('[Contact] /api/contact network error, trying WordPress endpoint...', netErr);
+                }
+
+                if (!response || response.status === 404) {
+                    response = await fetch('/index.php?siam_action=contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: payload
+                    });
+                }
 
                 const data = await response.json().catch(() => ({}));
 
