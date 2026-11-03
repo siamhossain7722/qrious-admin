@@ -18,30 +18,8 @@ if (empty($avatar_url)) {
     $avatar_url = SIAM_PORTFOLIO_URL . 'assets/images/Profile.png';
 }
 
-$about_img_url = SIAM_PORTFOLIO_URL . 'assets/images/Profile2.png';
-$logo_url      = SIAM_PORTFOLIO_URL . 'assets/images/logo.png';
-$favicon_url   = SIAM_PORTFOLIO_URL . 'assets/images/favicon.png';
-
-// Projects
-$p1_url = SIAM_PORTFOLIO_URL . 'assets/images/projects/snapbook.png';
-$p2_url = SIAM_PORTFOLIO_URL . 'assets/images/projects/review.png';
-$p3_url = SIAM_PORTFOLIO_URL . 'assets/images/projects/eventify.png';
-$p4_url = SIAM_PORTFOLIO_URL . 'assets/images/projects/cpl.png';
-
-// Certificates
-$c_uap     = SIAM_PORTFOLIO_URL . 'assets/images/certificates/UAP.jpg';
-$c_phitron = SIAM_PORTFOLIO_URL . 'assets/images/certificates/Certificate_Phitron.jpg';
-$c_ua      = SIAM_PORTFOLIO_URL . 'assets/images/certificates/UA.jpg';
-$c_gbs     = SIAM_PORTFOLIO_URL . 'assets/images/certificates/GBS.jpg';
-$c_claude  = SIAM_PORTFOLIO_URL . 'assets/images/certificates/Certificate_Claude.jpg';
-$c_food    = SIAM_PORTFOLIO_URL . 'assets/images/certificates/food_safty.jpg';
-
-// Blog images
-$b1_url = SIAM_PORTFOLIO_URL . 'assets/images/blog-1.jpg';
-$b2_url = SIAM_PORTFOLIO_URL . 'assets/images/blog-2.jpg';
-$b3_url = SIAM_PORTFOLIO_URL . 'assets/images/blog-3.jpg';
-
-$resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing';
+$favicon_url = SIAM_PORTFOLIO_URL . 'favicon.ico';
+$logo_url    = SIAM_PORTFOLIO_URL . 'assets/images/logo.png';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> data-theme="dark">
@@ -70,7 +48,10 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo esc_url($favicon_url); ?>">
+    <link rel="icon" type="image/x-icon" href="<?php echo esc_url($favicon_url); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/favicon-32x32.png'); ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/favicon-16x16.png'); ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'apple-touch-icon.png'); ?>">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/css/style.css?v=' . SIAM_PORTFOLIO_VERSION); ?>">
@@ -105,6 +86,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
 </head>
 <body <?php body_class('siam-portfolio-body'); ?>>
 
+
     <!-- Toast Notification Container -->
     <div id="toast-container" class="toast-container"></div>
 
@@ -113,21 +95,27 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
     <aside id="offcanvas-sidebar" class="offcanvas-sidebar">
         <div class="offcanvas-header">
             <a href="#" class="brand-logo">
-                <img src="<?php echo esc_url($logo_url); ?>" alt="Siam Logo" class="brand-logo-img">
+                <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/logo.png'); ?>" alt="Siam Logo" class="brand-logo-img">
                 <span>Siam<span class="logo-dot">.</span>dev</span>
             </a>
-            <button id="offcanvas-close" class="close-btn" aria-label="Close menu">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="theme-toggle-btn mobile-theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                </button>
+                <button id="offcanvas-close" class="close-btn" aria-label="Close menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas-profile">
                 <div class="profile-img-wrap">
-                    <img src="<?php echo esc_url($avatar_url); ?>" alt="<?php echo esc_attr($dev_name); ?>" class="sidebar-avatar">
+                    <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/Profile.png'); ?>" alt="Siam Hossain - Full Stack Developer" class="sidebar-avatar">
                     <span class="status-indicator" title="Open to work"></span>
                 </div>
-                <h4 class="profile-name"><?php echo esc_html($dev_name); ?></h4>
-                <p class="profile-role"><?php echo esc_html($dev_role); ?></p>
+                <h4 class="profile-name">Siam Hossain</h4>
+                <p class="profile-role">Full Stack Developer</p>
                 <div class="profile-badges">
                     <span class="mini-badge">Django</span>
                     <span class="mini-badge">React</span>
@@ -150,8 +138,12 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                 </ul>
             </nav>
 
-            <div style="margin: 20px 0;">
-                <a href="<?php echo esc_url($resume_url); ?>" target="_blank" class="btn btn-primary btn-round btn-full">
+            <div class="offcanvas-cta-block" style="margin: 22px 0; display: flex; flex-direction: column; gap: 12px;">
+                <a href="#contact" class="btn-hire-me" style="justify-content: center; width: 100%; padding: 12px 20px; font-size: 0.95rem;">
+                    <span>Hire Me</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="btn btn-primary btn-round btn-full" style="justify-content: center; width: 100%;">
                     <i class="fa-solid fa-file-arrow-down"></i>
                     <span>Download CV</span>
                 </a>
@@ -159,7 +151,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
 
             <div class="offcanvas-contact-info">
                 <h5>Get In Touch</h5>
-                <p><i class="fa-solid fa-envelope"></i> <?php echo esc_html($dev_email); ?></p>
+                <p><i class="fa-solid fa-envelope"></i> mdsiamh77@gmail.com</p>
                 <p><i class="fa-solid fa-location-dot"></i> Bangladesh (Global Remote)</p>
             </div>
 
@@ -176,23 +168,23 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
         <div class="header-container container">
             <!-- Brand Logo -->
             <a href="#" class="brand-logo">
-                <img src="<?php echo esc_url($logo_url); ?>" alt="Siam Logo" class="brand-logo-img">
-                <span>Siam<span class="logo-dot">.</span>dev</span>
+                <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/logo.png'); ?>" alt="Siam Logo" class="brand-logo-img">
+                <span class="brand-name">Siam<span class="logo-dot">.dev</span></span>
             </a>
 
             <!-- Desktop Menu -->
             <nav class="desktop-nav">
                 <ul class="nav-list">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#portfolio" class="nav-link">Projects</a></li>
-                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
-                    <li><a href="#testimonials" class="nav-link">Reviews</a></li>
-                    <li><a href="#blog" class="nav-link">Articles</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i> <span>Home</span></a></li>
+                    <li><a href="#about" class="nav-link"><i class="fa-regular fa-user"></i> <span>About</span></a></li>
+                    <li><a href="#services" class="nav-link"><i class="fa-solid fa-layer-group"></i> <span>Services</span></a></li>
+                    <li><a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i> <span>Skills</span></a></li>
+                    <li><a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> <span>Experience</span></a></li>
+                    <li><a href="#portfolio" class="nav-link"><i class="fa-regular fa-folder-open"></i> <span>Projects</span></a></li>
+                    <li><a href="#achievements" class="nav-link"><i class="fa-solid fa-trophy"></i> <span>Achievements</span></a></li>
+                    <li><a href="#testimonials" class="nav-link"><i class="fa-regular fa-comments"></i> <span>Reviews</span></a></li>
+                    <li><a href="#blog" class="nav-link"><i class="fa-regular fa-newspaper"></i> <span>Articles</span></a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fa-regular fa-envelope"></i> <span>Contact</span></a></li>
                 </ul>
             </nav>
 
@@ -204,14 +196,8 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <i class="fa-solid fa-moon icon-moon"></i>
                 </button>
 
-                <!-- CV Download Link -->
-                <a href="<?php echo esc_url($resume_url); ?>" target="_blank" class="btn btn-secondary btn-round d-none-mobile">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    <span>CV</span>
-                </a>
-
                 <!-- Header CTA Button -->
-                <a href="#contact" class="btn btn-primary btn-round header-cta d-none-mobile">
+                <a href="#contact" class="btn-hire-me header-cta">
                     <span>Hire Me</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -233,48 +219,74 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                 <div class="hero-grid">
                     <!-- Left Column: Content -->
                     <div class="hero-content">
-                        <div class="hero-badge">
-                            <span class="badge-dot"></span>
-                            <span>OPEN TO WORK & AVAILABLE FOR PROJECTS</span>
+                        <div class="hero-status-pill">
+                            <span class="status-pulse-dot"></span>
+                            <span class="status-text">OPEN TO WORK &amp; AVAILABLE FOR PROJECTS</span>
                         </div>
-                        <h1 class="hero-title">
-                            Hello, I'm <span class="highlight-text"><?php echo esc_html($dev_name); ?></span>
+                        <h1 class="hero-headline">
+                            <span class="hero-greeting">Hello, I'm Siam Hossain</span>
                             <br>
-                            <span class="typed-wrapper">
-                                a <span id="typewriter" class="gradient-text"></span><span class="cursor">&nbsp;</span>
-                            </span>
+                            <span class="hero-subline">a <span id="hero-typing-role" class="neon-pink-text">Full Stack Developer</span><span class="typing-cursor" aria-hidden="true"></span></span>
                         </h1>
-                        <p class="hero-description">
-                            I specialize in Django, React and JavaScript. I like building clean, fast, and scalable web applications with a strong focus on user experience, backend performance, and architectural quality.
+                        <p class="hero-summary">
+                            I build modern, scalable and user-friendly web applications using Django, React and JavaScript with a strong focus on performance and clean architecture.
                         </p>
 
                         <!-- Tech Pills Strip -->
                         <div class="hero-tech-strip">
-                            <span class="tech-tag"><i class="devicon-django-plain colored"></i> Django</span>
-                            <span class="tech-tag"><i class="devicon-react-original colored"></i> React</span>
-                            <span class="tech-tag"><i class="devicon-python-plain colored"></i> Python</span>
-                            <span class="tech-tag"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                            <span class="tech-tag"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                            <span class="tech-tag"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                            <span class="tech-pill"><i class="devicon-django-plain colored"></i> Django</span>
+                            <span class="tech-pill"><i class="devicon-react-original colored"></i> React</span>
+                            <span class="tech-pill"><i class="devicon-python-plain colored"></i> Python</span>
+                            <span class="tech-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                            <span class="tech-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                            <span class="tech-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
                         </div>
 
                         <!-- CTA Buttons -->
                         <div class="hero-buttons">
-                            <a href="#portfolio" class="btn btn-primary btn-round btn-icon-flip">
-                                <span class="btn-text">View Projects</span>
-                                <span class="icon-wrap">
-                                    <i class="fa-solid fa-arrow-right icon-main"></i>
-                                    <i class="fa-solid fa-arrow-right icon-alt"></i>
-                                </span>
+                            <a href="#portfolio" class="btn-hero-primary">
+                                <span>View Projects</span>
+                                <i class="fa-solid fa-arrow-right"></i>
                             </a>
-                            <a href="<?php echo esc_url($resume_url); ?>" target="_blank" class="btn btn-secondary btn-round">
+                            <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="btn-hero-secondary">
                                 <i class="fa-solid fa-file-pdf"></i>
                                 <span>Download CV</span>
                             </a>
-                            <a href="#contact" class="btn btn-secondary btn-round">
+                            <a href="#contact" class="btn-hero-secondary">
                                 <i class="fa-regular fa-paper-plane"></i>
                                 <span>Get In Touch</span>
                             </a>
+                        </div>
+
+                        <!-- Stats Cards Row -->
+                        <div class="hero-stats-row">
+                            <div class="hero-stat-card">
+                                <div class="stat-icon-wrap">
+                                    <i class="fa-solid fa-code-fork"></i>
+                                </div>
+                                <div class="stat-meta">
+                                    <span class="stat-value counter-val" data-target="10">10+</span>
+                                    <span class="stat-label">Projects Shipped</span>
+                                </div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="stat-icon-wrap">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <div class="stat-meta">
+                                    <span class="stat-value counter-val" data-target="2">2+</span>
+                                    <span class="stat-label">Years Experience</span>
+                                </div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="stat-icon-wrap">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <div class="stat-meta">
+                                    <span class="stat-value counter-val" data-target="50">50+</span>
+                                    <span class="stat-label">Happy Clients</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Social Links Row -->
@@ -290,31 +302,74 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
 
                     <!-- Right Column: Visual Showcase -->
                     <div class="hero-visual">
-                        <div class="kinetic-text kinetic-text-1">FULL STACK DEVELOPER</div>
-                        <div class="kinetic-text kinetic-text-2">DJANGO & REACT EXPERT</div>
+                        <div class="hero-portrait-stage">
+                            <!-- Ambient Atmospheric Glow & Tech Grid -->
+                            <div class="stage-ambient-glow"></div>
+                            <div class="stage-tech-grid"></div>
 
-                        <!-- Image Showcase Card -->
-                        <div class="hero-image-wrapper">
-                            <div class="hero-glow-effect"></div>
-                            <div class="image-frame">
-                                <img src="<?php echo esc_url($avatar_url); ?>" alt="<?php echo esc_attr($dev_name); ?>" class="hero-img">
+                            <!-- Oversized Background Typography -->
+                            <div class="stage-bg-typography" aria-hidden="true">
+                                <div class="bg-text-fullstack">FULL STACK</div>
+                                <div class="bg-text-developer">DEVELOPER</div>
                             </div>
 
-                            <!-- Floating Stat Card 1 -->
-                            <div class="floating-badge badge-exp">
-                                <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
-                                <div class="badge-details">
-                                    <span class="badge-num">2+</span>
-                                    <span class="badge-txt">Years Experience</span>
+                            <!-- Transparent Portrait Cutout of Siam Hossain -->
+                            <div class="stage-portrait-wrapper">
+                                <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/Profile-transparent-tight.png'); ?>" alt="Siam Hossain - Full Stack Developer" class="stage-portrait-img">
+                            </div>
+
+                            <!-- Dynamic Floating Technology Showcase (3 Rotating Positions) -->
+                            <!-- 1. Position 1: Left Mid-Chest (Default: Django) -->
+                            <div class="portrait-annotation annotation-pos-1 annotation-django" id="heroAnnotPos1">
+                                <div class="annotation-rotator-wrap" id="heroRotator1">
+                                    <div class="annotation-content-row">
+                                        <span class="annotation-text" id="heroAnnotText1">Django</span>
+                                        <span class="annotation-tech-icon" id="heroAnnotIcon1">
+                                            <i class="devicon-django-plain" style="color: #2BA977;"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="annotation-sub-row">
+                                    <svg class="annotation-arrow arrow-django arrow-pos-1" viewBox="0 0 45 35" width="40" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5,6 C16,4 28,12 34,24"></path>
+                                        <path d="M26,22 L35,26 L36,17"></path>
+                                    </svg>
                                 </div>
                             </div>
 
-                            <!-- Floating Stat Card 2 -->
-                            <div class="floating-badge badge-completed">
-                                <div class="badge-icon"><i class="fa-solid fa-code-merge"></i></div>
-                                <div class="badge-details">
-                                    <span class="badge-num">10+</span>
-                                    <span class="badge-txt">Projects Shipped</span>
+                            <!-- 2. Position 2: Right Shoulder (Default: Javascript) -->
+                            <div class="portrait-annotation annotation-pos-2 annotation-js" id="heroAnnotPos2">
+                                <div class="annotation-rotator-wrap" id="heroRotator2">
+                                    <div class="annotation-content-row">
+                                        <span class="annotation-text" id="heroAnnotText2">Javascript</span>
+                                        <span class="annotation-tech-icon" id="heroAnnotIcon2">
+                                            <span class="annotation-badge-mini" style="background:#F7DF1E; color:#000;">JS</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="annotation-sub-row">
+                                    <svg class="annotation-arrow arrow-js arrow-pos-2" viewBox="0 0 45 35" width="40" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M38,5 C28,4 16,14 10,24"></path>
+                                        <path d="M8,16 L9,26 L18,22"></path>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- 3. Position 3: Lower Left Waist (Default: React) -->
+                            <div class="portrait-annotation annotation-pos-3 annotation-react" id="heroAnnotPos3">
+                                <div class="annotation-rotator-wrap" id="heroRotator3">
+                                    <div class="annotation-content-row">
+                                        <span class="annotation-text" id="heroAnnotText3">React</span>
+                                        <span class="annotation-tech-icon" id="heroAnnotIcon3">
+                                            <i class="devicon-react-original colored"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="annotation-sub-row">
+                                    <svg class="annotation-arrow arrow-react arrow-pos-3" viewBox="0 0 55 35" width="48" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M6,6 C16,22 34,22 46,12"></path>
+                                        <path d="M38,12 L47,12 L45,19"></path>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -324,535 +379,1128 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="about-section section-gap">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">GET TO KNOW ME</span>
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">Bridging robust backend engineering with intuitive, responsive modern frontends and digital growth strategy.</p>
-                </div>
-
+        <section id="about" class="about-section">
+            <div class="container about-container">
                 <div class="about-grid">
-                    <!-- Left Column: Photo Showcase -->
-                    <div class="about-image-wrapper">
-                        <div class="about-img-frame">
-                            <img src="<?php echo esc_url($about_img_url); ?>" alt="<?php echo esc_attr($dev_name); ?> Full Stack Developer" class="about-img">
-                        </div>
+                    <!-- Left Column: Profile Visual (42%) -->
+                    <div class="about-visual-col scroll-reveal-init">
+                        <div class="about-portrait-card">
+                            <!-- Inner Frame with clipping for portrait & tech background -->
+                            <div class="about-portrait-frame">
+                                <div class="portrait-card-bg" aria-hidden="true">
+                                    <div class="portrait-card-glow"></div>
+                                    <div class="portrait-card-grid"></div>
+                                    <div class="portrait-tech-ring"></div>
+                                    <span class="portrait-tech-dot dot-1"></span>
+                                    <span class="portrait-tech-dot dot-2"></span>
+                                </div>
 
-                        <div class="about-floating-badge">
-                            <div class="about-badge-icon">
-                                <i class="fa-solid fa-laptop-code"></i>
+                                <!-- Siam Hossain Transparent Portrait Image -->
+                                <div class="about-portrait-img-wrap">
+                                    <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/Profile-transparent.png'); ?>" alt="Siam Hossain - Full Stack Developer" class="about-portrait-img">
+                                </div>
                             </div>
-                            <div class="about-badge-text">
-                                <h5>Software Developer</h5>
-                                <p>Digital Marketing & Growth</p>
+
+                            <!-- Floating Card 1 (Top-Left): 5+ Projects Completed -->
+                            <div class="about-float-card float-card-projects">
+                                <div class="float-card-icon">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <div class="float-card-content">
+                                    <span class="float-card-val">5+</span>
+                                    <span class="float-card-lbl">Projects<br>Completed</span>
+                                </div>
+                            </div>
+
+                            <!-- Floating Card 2 (Mid-Right): 2+ Years Experience -->
+                            <div class="about-float-card float-card-experience">
+                                <div class="float-card-icon">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <div class="float-card-content">
+                                    <span class="float-card-val">2+</span>
+                                    <span class="float-card-lbl">Years<br>Experience</span>
+                                </div>
+                            </div>
+
+                            <!-- Handwritten Signature on portrait -->
+                            <div class="about-portrait-signature" aria-hidden="true">
+                                Siam Hossain
+                            </div>
+
+                            <!-- Bottom Identity Card: Software Developer -->
+                            <div class="about-identity-card">
+                                <div class="identity-card-icon">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                                <div class="identity-card-info">
+                                    <h5 class="identity-title">Software Developer</h5>
+                                    <p class="identity-subtitle">Building Scalable Web Solutions</p>
+                                </div>
+                                <span class="identity-pulse-dot" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Biography & Details -->
-                    <div class="about-content">
-                        <div class="about-paragraphs">
-                            <p>
-                                I am a web developer specializing in building scalable backend systems with Django and creating clean, responsive user interfaces. I enjoy turning complex requirements into reliable, maintainable, and user-friendly web applications.
-                            </p>
-                            <p>
-                                My development experience includes Django, Django REST Framework, React, Next.js, JavaScript, TypeScript, Python, FastAPI, PostgreSQL, and modern frontend technologies. I focus on building secure APIs, database-driven applications, responsive interfaces, and practical solutions that perform well in real-world environments.
-                            </p>
-                            <p>
-                                Alongside software development, I have experience in digital marketing, including Google Ads, Meta Ads, product marketing, social media content, content writing, and website management with WordPress. I also explore AI agent development and implementation to create smarter and more efficient digital solutions.
-                            </p>
+                    <!-- Right Column: Content & Details (58%) -->
+                    <div class="about-content-col scroll-reveal-init">
+                        <!-- Header Block (Eyebrow + Heading + Subtitle) -->
+                        <div class="about-header-block">
+                            <div class="about-eyebrow">
+                                <span class="eyebrow-line"></span>
+                                <span class="eyebrow-text">GET TO KNOW ME</span>
+                            </div>
+                            <h2 class="about-main-heading">About <span class="about-accent-text">Me</span></h2>
+                            <p class="about-subheading">Bridging robust backend engineering with intuitive, responsive modern frontends and digital growth strategy.</p>
                         </div>
 
-                        <div class="about-info-grid">
-                            <div class="about-info-item">
-                                <span class="about-info-label">Name</span>
-                                <span class="about-info-val"><?php echo esc_html($dev_name); ?></span>
+                        <!-- Body Block: Paragraphs, Personal Info, Tech Stack, CTAs -->
+                        <div class="about-body-block">
+                            <div class="about-paragraphs">
+                                <p>
+                                    I'm a web developer specializing in building scalable backend systems with Django and creating clean, responsive user interfaces. I enjoy turning complex requirements into reliable, maintainable, and user-friendly web applications.
+                                </p>
+                                <p>
+                                    Beyond development, I have experience in digital marketing (Google Ads, Meta Ads), content writing, and website management with WordPress. I also explore AI agent development to create smarter and more efficient digital solutions.
+                                </p>
                             </div>
-                            <div class="about-info-item">
-                                <span class="about-info-label">Location</span>
-                                <span class="about-info-val">Bangladesh (Global Remote)</span>
+
+                            <!-- Personal Information Card (2-column grid in glassmorphism card) -->
+                            <div class="about-info-card">
+                                <div class="about-info-grid">
+                                    <!-- 1. Name -->
+                                    <div class="about-info-cell">
+                                        <div class="info-cell-icon">
+                                            <i class="fa-regular fa-user"></i>
+                                        </div>
+                                        <div class="info-cell-body">
+                                            <span class="info-cell-label">Name</span>
+                                            <span class="info-cell-val">Siam Hossain</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2. Location -->
+                                    <div class="about-info-cell">
+                                        <div class="info-cell-icon">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div class="info-cell-body">
+                                            <span class="info-cell-label">Location</span>
+                                            <span class="info-cell-val">Bangladesh (Global Remote)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. Education -->
+                                    <div class="about-info-cell">
+                                        <div class="info-cell-icon">
+                                            <i class="fa-solid fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="info-cell-body">
+                                            <span class="info-cell-label">Education</span>
+                                            <span class="info-cell-val">B.Sc. in Computer Science (UAP)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. Availability -->
+                                    <div class="about-info-cell">
+                                        <div class="info-cell-icon">
+                                            <i class="fa-solid fa-briefcase"></i>
+                                        </div>
+                                        <div class="info-cell-body">
+                                            <span class="info-cell-label">Availability</span>
+                                            <span class="info-cell-val avail-status">
+                                                <span class="avail-status-dot"></span> Open to Work
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 5. Email -->
+                                    <div class="about-info-cell">
+                                        <div class="info-cell-icon">
+                                            <i class="fa-regular fa-envelope"></i>
+                                        </div>
+                                        <div class="info-cell-body">
+                                            <span class="info-cell-label">Email</span>
+                                            <span class="info-cell-val">
+                                                <a href="mailto:mdsiamh77@gmail.com">mdsiamh77@gmail.com</a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 6. Specialization -->
+                                    <div class="about-info-cell">
+                                        <div class="info-cell-icon">
+                                            <i class="fa-solid fa-bullseye"></i>
+                                        </div>
+                                        <div class="info-cell-body">
+                                            <span class="info-cell-label">Specialization</span>
+                                            <span class="info-cell-val">Django, React, APIs & AI Agents</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="about-info-item">
-                                <span class="about-info-label">Availability</span>
-                                <span class="about-info-val" style="color: #10b981;"><i class="fa-solid fa-circle" style="font-size: 0.65rem;"></i> Open to Work</span>
+
+                            <!-- Technology Stack Row -->
+                            <div class="about-tech-stack-row">
+                                <div class="tech-stack-label">
+                                    <i class="fa-solid fa-code"></i>
+                                    <span>Tech Stack</span>
+                                </div>
+                                <div class="tech-stack-pills">
+                                    <span class="about-tech-pill"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                    <span class="about-tech-pill"><i class="fa-brands fa-react" style="color: #61DAFB;"></i> React</span>
+                                    <span class="about-tech-pill"><i class="fa-brands fa-python" style="color: #F7D046;"></i> Python</span>
+                                    <span class="about-tech-pill"><i class="devicon-postgresql-plain" style="color: #4169E1;"></i> PostgreSQL</span>
+                                    <span class="about-tech-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                    <span class="about-tech-pill"><i class="devicon-fastapi-plain" style="color: #05998B;"></i> FastAPI</span>
+                                </div>
                             </div>
-                            <div class="about-info-item">
-                                <span class="about-info-label">Email</span>
-                                <span class="about-info-val"><a href="mailto:<?php echo esc_attr($dev_email); ?>"><?php echo esc_html($dev_email); ?></a></span>
+
+                            <!-- CTA Buttons -->
+                            <div class="about-cta-row">
+                                <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="about-btn-primary">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>Download Full CV</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                                <a href="#contact" class="about-btn-secondary">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Get In Touch</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
                             </div>
-                            <div class="about-info-item">
-                                <span class="about-info-label">Education</span>
-                                <span class="about-info-val">B.Sc. in Computer Science (UAP)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Capabilities / Services Redesign Section -->
+        <section id="services" class="services-area">
+            <!-- Background Cyber Atmosphere -->
+            <div class="services-bg-decor" aria-hidden="true">
+                <div class="services-cyber-arc"></div>
+                <div class="services-cyber-grid"></div>
+                <div class="services-glow-dot dot-1"></div>
+                <div class="services-glow-dot dot-2"></div>
+                <div class="services-constellation">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <div class="container services-container">
+                <!-- Section Header (Centered) -->
+                <div class="section-header services-header text-center scroll-reveal-init">
+                    <div class="services-eyebrow">
+                        <span class="eyebrow-line"></span>
+                        <span class="eyebrow-text">SPECIALIZED EXPERTISE</span>
+                    </div>
+                    <h2 class="services-main-heading">What I Bring To <span class="services-accent-text">The Table</span></h2>
+                    <p class="services-subheading">Delivering high-performance backend architecture, clean frontend engineering, and digital growth results.</p>
+                </div>
+
+                <!-- Main Services 2-Column Layout -->
+                <div class="services-main-layout">
+                    <!-- Left Column: Services Overview (~31%) -->
+                    <div class="services-overview-col scroll-reveal-init">
+                        <div class="overview-eyebrow">
+                            <span class="eyebrow-line"></span>
+                            <span class="eyebrow-text">SERVICES OVERVIEW</span>
+                        </div>
+                        <h3 class="overview-heading">
+                            Solutions That<br>
+                            <span class="services-accent-text">Create Real Impact</span>
+                        </h3>
+                        <p class="overview-para">
+                            I help businesses and individuals build scalable web applications, powerful backend systems, and data-driven digital strategies that drive growth and deliver results.
+                        </p>
+
+                        <!-- Value Propositions -->
+                        <div class="services-value-list">
+                            <!-- Value 1 -->
+                            <div class="service-value-item">
+                                <div class="value-item-icon">
+                                    <i class="fa-solid fa-rocket"></i>
+                                </div>
+                                <div class="value-item-text">
+                                    <h4 class="value-title">Problem Solving</h4>
+                                    <p class="value-desc">Turning ideas into real solutions</p>
+                                </div>
                             </div>
-                            <div class="about-info-item">
-                                <span class="about-info-label">Specialization</span>
-                                <span class="about-info-val">Django, React, APIs & AI Agents</span>
+
+                            <!-- Value 2 -->
+                            <div class="service-value-item">
+                                <div class="value-item-icon">
+                                    <i class="fa-solid fa-gear"></i>
+                                </div>
+                                <div class="value-item-text">
+                                    <h4 class="value-title">Modern Technologies</h4>
+                                    <p class="value-desc">Best tools for better results</p>
+                                </div>
+                            </div>
+
+                            <!-- Value 3 -->
+                            <div class="service-value-item">
+                                <div class="value-item-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <div class="value-item-text">
+                                    <h4 class="value-title">Client Focused</h4>
+                                    <p class="value-desc">Your goals, my priority</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="about-actions">
-                            <a href="<?php echo esc_url($resume_url); ?>" target="_blank" class="btn btn-primary btn-round btn-icon-flip">
-                                <span class="btn-text">Download Full CV</span>
-                                <span class="icon-wrap">
-                                    <i class="fa-solid fa-file-arrow-down icon-main"></i>
-                                    <i class="fa-solid fa-file-arrow-down icon-alt"></i>
-                                </span>
-                            </a>
-                            <a href="#contact" class="btn btn-secondary btn-round">
-                                <span>Get In Touch</span>
+                        <!-- CTA Button -->
+                        <div class="overview-cta-wrap">
+                            <a href="#contact" class="btn-services-cta">
+                                <span>Let's Work Together</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
+
+                    <!-- Right Column: 4 Service Cards (2x2 Grid) (~69%) -->
+                    <div class="services-cards-grid scroll-reveal-init">
+                        <!-- Service Card 01: Backend & REST APIs -->
+                        <div class="service-card-premium" onclick="openServiceModal(1)">
+                            <div class="card-header-row">
+                                <div class="service-icon-wrap">
+                                    <i class="fa-solid fa-server"></i>
+                                </div>
+                                <div class="service-header-meta">
+                                    <span class="service-number">01</span>
+                                    <h3 class="service-card-title">Backend & REST APIs</h3>
+                                </div>
+                                <button class="service-arrow-btn" aria-label="Explore Backend & REST APIs">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <p class="service-card-desc">
+                                Scalable, secure backend development using Django, Django REST Framework, Python, and FastAPI with robust database design and token authentication.
+                            </p>
+
+                            <div class="service-badges-row">
+                                <span class="service-badge"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                <span class="service-badge"><i class="devicon-fastapi-plain" style="color: #05998B;"></i> FastAPI</span>
+                                <span class="service-badge"><i class="devicon-postgresql-plain" style="color: #4169E1;"></i> PostgreSQL</span>
+                            </div>
+
+                            <div class="service-footer-row">
+                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(1)">
+                                    <span>Learn More</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 02: Full-Stack Web Apps -->
+                        <div class="service-card-premium" onclick="openServiceModal(2)">
+                            <div class="card-header-row">
+                                <div class="service-icon-wrap">
+                                    <i class="fa-brands fa-react"></i>
+                                </div>
+                                <div class="service-header-meta">
+                                    <span class="service-number">02</span>
+                                    <h3 class="service-card-title">Full-Stack Web Apps</h3>
+                                </div>
+                                <button class="service-arrow-btn" aria-label="Explore Full-Stack Web Apps">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <p class="service-card-desc">
+                                End-to-end interactive web applications built with React, Next.js, TypeScript, and modern state architectures delivering smooth, responsive user experiences.
+                            </p>
+
+                            <div class="service-badges-row">
+                                <span class="service-badge"><i class="fa-brands fa-react" style="color: #61DAFB;"></i> React</span>
+                                <span class="service-badge"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                <span class="service-badge"><i class="devicon-typescript-plain" style="color: #3178C6;"></i> TypeScript</span>
+                            </div>
+
+                            <div class="service-footer-row">
+                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(2)">
+                                    <span>Learn More</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 03: Digital Marketing & Growth -->
+                        <div class="service-card-premium" onclick="openServiceModal(3)">
+                            <div class="card-header-row">
+                                <div class="service-icon-wrap">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <div class="service-header-meta">
+                                    <span class="service-number">03</span>
+                                    <h3 class="service-card-title">Digital Marketing & Growth</h3>
+                                </div>
+                                <button class="service-arrow-btn" aria-label="Explore Digital Marketing & Growth">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <p class="service-card-desc">
+                                Strategic digital campaigns across Meta Ads, Google Ads, targeted product marketing, copywriting, and analytics to drive user acquisition and sales.
+                            </p>
+
+                            <div class="service-badges-row">
+                                <span class="service-badge"><i class="fa-brands fa-google" style="color: #EA4335;"></i> Google Ads</span>
+                                <span class="service-badge"><i class="fa-brands fa-meta" style="color: #0081FB;"></i> Meta Ads</span>
+                                <span class="service-badge"><i class="fa-solid fa-chart-pie" style="color: #FFA500;"></i> Analytics</span>
+                            </div>
+
+                            <div class="service-footer-row">
+                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(3)">
+                                    <span>Learn More</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 04: CMS & AI Agent Workflows -->
+                        <div class="service-card-premium" onclick="openServiceModal(4)">
+                            <div class="card-header-row">
+                                <div class="service-icon-wrap">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="service-header-meta">
+                                    <span class="service-number">04</span>
+                                    <h3 class="service-card-title">CMS & AI Agent Workflows</h3>
+                                </div>
+                                <button class="service-arrow-btn" aria-label="Explore CMS & AI Agent Workflows">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <p class="service-card-desc">
+                                Comprehensive WordPress website administration, speed optimization, and AI agent integrations to automate workflows and elevate engagement.
+                            </p>
+
+                            <div class="service-badges-row">
+                                <span class="service-badge"><i class="fa-brands fa-wordpress" style="color: #21759B;"></i> WordPress</span>
+                                <span class="service-badge"><i class="fa-solid fa-brain" style="color: #FF0066;"></i> AI Agents</span>
+                                <span class="service-badge"><i class="fa-solid fa-bolt" style="color: #FFD700;"></i> Automation</span>
+                            </div>
+
+                            <div class="service-footer-row">
+                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(4)">
+                                    <span>Learn More</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Statistics Bar -->
+                <div class="services-stats-bar scroll-reveal-init">
+                    <!-- Stat 1: Completed Projects -->
+                    <div class="services-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="10">10</span>
+                                <span class="stat-plus">+</span>
+                            </div>
+                            <span class="stat-label">Completed Projects</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-divider" aria-hidden="true"></div>
+
+                    <!-- Stat 2: Years Experience -->
+                    <div class="services-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="2">2</span>
+                                <span class="stat-plus">+</span>
+                            </div>
+                            <span class="stat-label">Years of Practical Development</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-divider" aria-hidden="true"></div>
+
+                    <!-- Stat 3: Core Tech Stacks -->
+                    <div class="services-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="5">5</span>
+                                <span class="stat-plus">+</span>
+                            </div>
+                            <span class="stat-label">Core Tech Stacks</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Core Capabilities / Services 4-Column Section -->
-        <section id="services" class="services-area section-gap">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">SPECIALIZED EXPERTISE</span>
-                    <h2 class="section-title">What I Bring To The Table</h2>
-                    <p class="section-subtitle">Delivering high-performance backend architecture, clean frontend engineering, and digital growth results.</p>
-                </div>
-
-                <div class="services-grid">
-                    <!-- Service 1 -->
-                    <div class="service-card" data-service-id="1">
-                        <div class="service-card-top">
-                            <div class="service-icon-box">
-                                <i class="fa-solid fa-server"></i>
-                            </div>
-                            <span class="project-count">Django & DRF</span>
-                        </div>
-                        <h3 class="service-title">Backend & REST APIs</h3>
-                        <p class="service-desc">Scalable, secure backend development using Django, Django REST Framework, Python, and FastAPI with robust database design and token authentication.</p>
-                        <a href="javascript:void(0)" class="service-more-link" onclick="openServiceModal(1)">
-                            <span>Explore Details</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="service-card" data-service-id="2">
-                        <div class="service-card-top">
-                            <div class="service-icon-box">
-                                <i class="fa-brands fa-react"></i>
-                            </div>
-                            <span class="project-count">React & Next.js</span>
-                        </div>
-                        <h3 class="service-title">Full-Stack Web Apps</h3>
-                        <p class="service-desc">End-to-end interactive web applications built with React, Next.js, TypeScript, and modern state architectures delivering smooth, responsive user experiences.</p>
-                        <a href="javascript:void(0)" class="service-more-link" onclick="openServiceModal(2)">
-                            <span>Explore Details</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="service-card" data-service-id="3">
-                        <div class="service-card-top">
-                            <div class="service-icon-box">
-                                <i class="fa-solid fa-chart-line"></i>
-                            </div>
-                            <span class="project-count">Meta & Google Ads</span>
-                        </div>
-                        <h3 class="service-title">Digital Marketing & Growth</h3>
-                        <p class="service-desc">Strategic digital campaigns across Meta Ads, Google Ads, targeted product marketing, copywriting, and analytics to drive user acquisition and sales.</p>
-                        <a href="javascript:void(0)" class="service-more-link" onclick="openServiceModal(3)">
-                            <span>Explore Details</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Service 4 -->
-                    <div class="service-card" data-service-id="4">
-                        <div class="service-card-top">
-                            <div class="service-icon-box">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <span class="project-count">WordPress & AI</span>
-                        </div>
-                        <h3 class="service-title">CMS & AI Agent Workflows</h3>
-                        <p class="service-desc">Comprehensive WordPress website administration, speed optimization, and cutting-edge AI agent integrations to automate workflows and elevate engagement.</p>
-                        <a href="javascript:void(0)" class="service-more-link" onclick="openServiceModal(4)">
-                            <span>Explore Details</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
+        <!-- Technical Mastery & Skills Dashboard Section -->
+        <section id="skills" class="skills-section">
+            <!-- Background Cyber Atmosphere -->
+            <div class="skills-bg-decor" aria-hidden="true">
+                <div class="skills-cyber-arc"></div>
+                <div class="skills-cyber-grid"></div>
+                <div class="skills-glow-dot dot-1"></div>
+                <div class="skills-glow-dot dot-2"></div>
+                <div class="skills-constellation">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-        </section>
 
-        <!-- Stats & Impact Counters Section -->
-        <section class="counter-section">
-            <div class="container">
-                <div class="counter-wrapper glass-panel">
-                    <div class="counter-left">
-                        <div class="counter-highlight-box">
-                            <div class="highlight-number-wrap">
-                                <span class="counter-val highlight-num" data-target="2">0</span>
-                                <span class="highlight-plus">+</span>
-                            </div>
-                            <h3 class="highlight-title">Years of Practical <br>Development</h3>
-                        </div>
-                        <p class="highlight-para">Building scalable web applications, secure APIs, and responsive digital products for businesses and startups globally.</p>
+            <div class="container skills-container">
+                <!-- Section Header (Centered with Handwritten Annotation) -->
+                <div class="section-header skills-header text-center scroll-reveal-init">
+                    <div class="skills-eyebrow">
+                        <span class="eyebrow-line"></span>
+                        <span class="eyebrow-text">PROFICIENCY & STACK</span>
                     </div>
-
-                    <div class="counter-right-grid">
-                        <div class="metric-card">
-                            <div class="metric-number-wrap">
-                                <span class="counter-val" data-target="10">0</span>
-                                <span class="metric-suffix">+</span>
-                            </div>
-                            <p class="metric-label">Completed Projects</p>
-                        </div>
-
-                        <div class="metric-card">
-                            <div class="metric-number-wrap">
-                                <span class="counter-val" data-target="5">0</span>
-                                <span class="metric-suffix">+</span>
-                            </div>
-                            <p class="metric-label">Core Tech Stacks</p>
-                        </div>
-
-                        <div class="metric-card">
-                            <div class="metric-number-wrap">
-                                <span class="counter-val" data-target="6">0</span>
-                                <span class="metric-suffix">+</span>
-                            </div>
-                            <p class="metric-label">Honors & Certifications</p>
-                        </div>
-
-                        <div class="metric-card">
-                            <div class="metric-number-wrap">
-                                <span class="counter-val" data-target="100">0</span>
-                                <span class="metric-suffix">%</span>
-                            </div>
-                            <p class="metric-label">Commitment to Quality</p>
+                    <div class="skills-title-wrap">
+                        <h2 class="skills-main-heading">Technical <span class="skills-accent-text">Mastery</span></h2>
+                        <!-- Handwritten Annotation -->
+                        <div class="skills-annotation" aria-hidden="true">
+                            <span class="annotation-text">Always Learning</span>
+                            <svg class="annotation-arrow" viewBox="0 0 35 35" width="28" height="28" fill="none" stroke="#FF0066" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6,6 C16,4 26,14 24,26"></path>
+                                <path d="M18,22 L24,27 L28,19"></path>
+                            </svg>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technical Mastery & Skills Section -->
-        <section id="skills" class="skills-section section-gap">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">PROFICIENCY & STACK</span>
-                    <h2 class="section-title">Technical Mastery</h2>
-                    <p class="section-subtitle">A balanced fusion of backend database architectures, modern frontend frameworks, and digital marketing tools.</p>
+                    <p class="skills-subheading">A balanced fusion of backend database architectures, modern frontend frameworks, and digital marketing tools.</p>
                 </div>
 
-                <div class="skills-grid">
-                    <!-- Column 1: Backend, APIs & Databases -->
-                    <div class="skill-category-card">
-                        <div class="category-header">
-                            <div class="cat-icon"><i class="fa-solid fa-server"></i></div>
-                            <div>
-                                <h3 class="cat-title">Backend & Database Engineering</h3>
-                                <p class="cat-desc">APIs, data models & scalable server architecture</p>
-                            </div>
+                <!-- Top Statistics Dashboard Panel (4 Metrics) -->
+                <div class="skills-stats-panel scroll-reveal-init">
+                    <!-- Metric 01: Technologies -->
+                    <div class="skills-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-code"></i>
                         </div>
-
-                        <div class="skill-bars">
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Django & Django REST Framework (DRF)</span>
-                                    <span class="skill-percent">95%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="95"></div>
-                                </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="15">15</span>
+                                <span class="stat-plus">+</span>
                             </div>
-
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Python & FastAPI</span>
-                                    <span class="skill-percent">90%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="90"></div>
-                                </div>
-                            </div>
-
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">PostgreSQL, MySQL & SQLite</span>
-                                    <span class="skill-percent">92%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="92"></div>
-                                </div>
-                            </div>
-
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Node.js & Express.js</span>
-                                    <span class="skill-percent">82%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="82"></div>
-                                </div>
-                            </div>
-
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Supabase & RESTful API Architecture</span>
-                                    <span class="skill-percent">90%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="90"></div>
-                                </div>
-                            </div>
+                            <span class="stat-label">Technologies</span>
                         </div>
                     </div>
 
-                    <!-- Column 2: Frontend Engineering & UI -->
-                    <div class="skill-category-card">
-                        <div class="category-header">
-                            <div class="cat-icon"><i class="fa-solid fa-code"></i></div>
-                            <div>
-                                <h3 class="cat-title">Frontend Engineering & UI</h3>
-                                <p class="cat-desc">Reactive web interfaces & responsive design</p>
-                            </div>
+                    <div class="stats-divider" aria-hidden="true"></div>
+
+                    <!-- Metric 02: Years of Experience -->
+                    <div class="skills-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-trophy"></i>
                         </div>
-
-                        <div class="skill-bars">
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">React & Next.js</span>
-                                    <span class="skill-percent">92%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="92"></div>
-                                </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="2">2</span>
+                                <span class="stat-plus">+</span>
                             </div>
+                            <span class="stat-label">Years of Experience</span>
+                        </div>
+                    </div>
 
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">JavaScript & TypeScript</span>
-                                    <span class="skill-percent">90%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="90"></div>
-                                </div>
-                            </div>
+                    <div class="stats-divider" aria-hidden="true"></div>
 
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">HTML5 & CSS3 Responsive Layouts</span>
-                                    <span class="skill-percent">96%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="96"></div>
-                                </div>
+                    <!-- Metric 03: Core Skill Areas -->
+                    <div class="skills-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="4">4</span>
                             </div>
+                            <span class="stat-label">Core Skill Areas</span>
+                        </div>
+                    </div>
 
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Tailwind CSS & Bootstrap</span>
-                                    <span class="skill-percent">92%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="92"></div>
-                                </div>
-                            </div>
+                    <div class="stats-divider" aria-hidden="true"></div>
 
-                            <div class="skill-bar-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Digital Marketing, SEO & WordPress</span>
-                                    <span class="skill-percent">88%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-progress="88"></div>
-                                </div>
+                    <!-- Metric 04: Completed Projects -->
+                    <div class="skills-stat-item">
+                        <div class="stat-icon-wrap">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-content-wrap">
+                            <div class="stat-number-wrap">
+                                <span class="counter-val stat-val" data-target="10">10</span>
+                                <span class="stat-plus">+</span>
                             </div>
+                            <span class="stat-label">Completed Projects</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Complete Tech Stack Cloud with Real Devicon Badges -->
-                <div class="tech-badge-cloud">
-                    <span class="cloud-pill"><i class="devicon-python-plain colored"></i> Python</span>
-                    <span class="cloud-pill"><i class="devicon-django-plain colored"></i> Django</span>
-                    <span class="cloud-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
-                    <span class="cloud-pill"><i class="devicon-react-original colored"></i> React</span>
-                    <span class="cloud-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                    <span class="cloud-pill"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
-                    <span class="cloud-pill"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                    <span class="cloud-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                    <span class="cloud-pill"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                    <span class="cloud-pill"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
-                    <span class="cloud-pill"><i class="devicon-supabase-plain colored"></i> Supabase</span>
-                    <span class="cloud-pill"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-                    <span class="cloud-pill"><i class="devicon-express-original colored"></i> Express.js</span>
-                    <span class="cloud-pill"><i class="devicon-html5-plain colored"></i> HTML5</span>
-                    <span class="cloud-pill"><i class="devicon-css3-plain colored"></i> CSS3</span>
-                    <span class="cloud-pill"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
-                    <span class="cloud-pill"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
-                    <span class="cloud-pill"><i class="devicon-git-plain colored"></i> Git</span>
-                    <span class="cloud-pill"><i class="devicon-linux-plain colored"></i> Linux</span>
-                    <span class="cloud-pill"><i class="devicon-docker-plain colored"></i> Docker</span>
-                    <span class="cloud-pill"><i class="devicon-vercel-original colored"></i> Vercel</span>
-                    <span class="cloud-pill"><i class="fa-brands fa-wordpress text-blue"></i> WordPress</span>
+                <!-- Main Dashboard (Two-Column Layout: Left 52% / Right 48%) -->
+                <div class="skills-dashboard-grid">
+                    <!-- Left Panel: Core Proficiencies (52%) -->
+                    <div class="skills-dashboard-panel left-panel scroll-reveal-init">
+                        <div class="panel-header-row">
+                            <div class="panel-title-group">
+                                <div class="panel-icon-wrap">
+                                    <i class="fa-solid fa-chart-simple"></i>
+                                </div>
+                                <div>
+                                    <h3 class="panel-title">Core Proficiencies</h3>
+                                    <p class="panel-desc">Deep expertise in modern technologies and frameworks.</p>
+                                </div>
+                            </div>
+                            <span class="skills-status-badge">
+                                <span class="status-dot"></span> Updated
+                            </span>
+                        </div>
+
+                        <div class="skills-bars-list">
+                            <!-- Skill 1 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-django-plain" style="color: #2BA977;"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">Django & Django REST Framework (DRF)</span>
+                                        <span class="skill-row-percent">95%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="95"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 2 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-python-plain colored"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">Python & FastAPI</span>
+                                        <span class="skill-row-percent">90%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="90"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 3 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-postgresql-plain colored"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">PostgreSQL, MySQL & SQLite</span>
+                                        <span class="skill-row-percent">92%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="92"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 4 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-react-original colored"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">React & Next.js</span>
+                                        <span class="skill-row-percent">92%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="92"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 5 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-javascript-plain colored"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">JavaScript & TypeScript</span>
+                                        <span class="skill-row-percent">90%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="90"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 6 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-html5-plain colored"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">HTML5 & CSS3 (Tailwind, Bootstrap)</span>
+                                        <span class="skill-row-percent">96%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="96"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 7 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="devicon-nodejs-plain colored"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">Node.js & Express.js</span>
+                                        <span class="skill-row-percent">82%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="82"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 8 -->
+                            <div class="skill-bar-row">
+                                <div class="skill-row-icon">
+                                    <i class="fa-brands fa-wordpress" style="color: #21759B;"></i>
+                                </div>
+                                <div class="skill-row-body">
+                                    <div class="skill-row-meta">
+                                        <span class="skill-row-name">Digital Marketing, SEO & WordPress</span>
+                                        <span class="skill-row-percent">88%</span>
+                                    </div>
+                                    <div class="skill-progress-track">
+                                        <div class="progress-fill" data-progress="88"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: Tech Stack (48%) -->
+                    <div class="skills-dashboard-panel right-panel scroll-reveal-init">
+                        <div class="panel-header-row">
+                            <div class="panel-title-group">
+                                <div class="panel-icon-wrap">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <div>
+                                    <h3 class="panel-title">Tech Stack</h3>
+                                    <p class="panel-desc">Tools & technologies I use to build modern web solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tech-stack-groups-list">
+                            <!-- Group 01: Backend -->
+                            <div class="tech-group-item">
+                                <div class="tech-group-label">
+                                    <span class="group-dot"></span>
+                                    <span>Backend</span>
+                                </div>
+                                <div class="tech-group-badges">
+                                    <span class="tech-stack-badge"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                    <span class="tech-stack-badge"><i class="devicon-fastapi-plain" style="color: #05998B;"></i> FastAPI</span>
+                                    <span class="tech-stack-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                    <span class="tech-stack-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                                </div>
+                            </div>
+
+                            <!-- Group 02: Frontend -->
+                            <div class="tech-group-item">
+                                <div class="tech-group-label">
+                                    <span class="group-dot"></span>
+                                    <span>Frontend</span>
+                                </div>
+                                <div class="tech-group-badges">
+                                    <span class="tech-stack-badge"><i class="devicon-react-original colored"></i> React</span>
+                                    <span class="tech-stack-badge"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                    <span class="tech-stack-badge"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+                                    <span class="tech-stack-badge"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                                </div>
+                            </div>
+
+                            <!-- Group 03: Styling -->
+                            <div class="tech-group-item">
+                                <div class="tech-group-label">
+                                    <span class="group-dot"></span>
+                                    <span>Styling</span>
+                                </div>
+                                <div class="tech-group-badges">
+                                    <span class="tech-stack-badge"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
+                                    <span class="tech-stack-badge"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+                                    <span class="tech-stack-badge"><i class="devicon-html5-plain colored"></i> HTML5</span>
+                                    <span class="tech-stack-badge"><i class="devicon-css3-plain colored"></i> CSS3</span>
+                                </div>
+                            </div>
+
+                            <!-- Group 04: Database -->
+                            <div class="tech-group-item">
+                                <div class="tech-group-label">
+                                    <span class="group-dot"></span>
+                                    <span>Database</span>
+                                </div>
+                                <div class="tech-group-badges">
+                                    <span class="tech-stack-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                    <span class="tech-stack-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                                    <span class="tech-stack-badge"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
+                                    <span class="tech-stack-badge"><i class="devicon-supabase-plain colored"></i> Supabase</span>
+                                </div>
+                            </div>
+
+                            <!-- Group 05: Tools -->
+                            <div class="tech-group-item">
+                                <div class="tech-group-label">
+                                    <span class="group-dot"></span>
+                                    <span>Tools</span>
+                                </div>
+                                <div class="tech-group-badges">
+                                    <span class="tech-stack-badge"><i class="devicon-git-plain colored"></i> Git</span>
+                                    <span class="tech-stack-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
+                                    <span class="tech-stack-badge"><i class="devicon-vercel-original"></i> Vercel</span>
+                                    <span class="tech-stack-badge"><i class="devicon-linux-plain colored"></i> Linux</span>
+                                </div>
+                            </div>
+
+                            <!-- Group 06: CMS & Marketing -->
+                            <div class="tech-group-item">
+                                <div class="tech-group-label">
+                                    <span class="group-dot"></span>
+                                    <span>CMS & Marketing</span>
+                                </div>
+                                <div class="tech-group-badges">
+                                    <span class="tech-stack-badge"><i class="fa-brands fa-wordpress" style="color: #21759B;"></i> WordPress</span>
+                                    <span class="tech-stack-badge"><i class="fa-brands fa-meta" style="color: #0081FB;"></i> Meta Ads</span>
+                                    <span class="tech-stack-badge"><i class="fa-brands fa-google" style="color: #EA4335;"></i> Google Ads</span>
+                                    <span class="tech-stack-badge"><i class="fa-solid fa-chart-pie" style="color: #FFA500;"></i> Analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Value Proposition Cards (3 Cards) -->
+                <div class="skills-values-grid scroll-reveal-init">
+                    <!-- Value Card 1 -->
+                    <div class="skills-value-card">
+                        <div class="value-card-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div class="value-card-content">
+                            <h4 class="value-card-title">Continuous Learning</h4>
+                            <p class="value-card-desc">Always exploring new technologies to stay ahead.</p>
+                        </div>
+                    </div>
+
+                    <!-- Value Card 2 -->
+                    <div class="skills-value-card">
+                        <div class="value-card-icon">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <div class="value-card-content">
+                            <h4 class="value-card-title">Problem Solving</h4>
+                            <p class="value-card-desc">Turning complex challenges into effective solutions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Value Card 3 -->
+                    <div class="skills-value-card">
+                        <div class="value-card-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="value-card-content">
+                            <h4 class="value-card-title">Real-World Experience</h4>
+                            <p class="value-card-desc">Building scalable applications with modern best practices.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Career & Education Experience Timeline -->
-        <section id="experience" class="experience-section section-gap">
+        <section id="experience" class="experience-section">
+            <!-- Background Cyber Atmosphere -->
+            <div class="experience-bg-decor" aria-hidden="true">
+                <div class="exp-glow exp-glow-1"></div>
+                <div class="exp-glow exp-glow-2"></div>
+                <div class="exp-grid-pattern"></div>
+            </div>
+
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">TRACK RECORD</span>
-                    <h2 class="section-title">Experience & Education</h2>
-                    <p class="section-subtitle">Hands-on software development roles alongside rigorous academic degrees and training.</p>
+                <!-- Section Header -->
+                <div class="experience-header text-center scroll-reveal-init">
+                    <div class="exp-eyebrow">
+                        <span class="eyebrow-dash"></span>
+                        <span class="eyebrow-text">TRACK RECORD</span>
+                    </div>
+                    <h2 class="exp-main-title">Experience & <span class="gradient-text-pink">Education</span></h2>
+                    <p class="exp-subtitle">A journey of building, learning, and growing through real-world projects and academic milestones.</p>
                 </div>
 
-                <div class="journey-grid">
-                    <!-- Column 1: Professional Experience -->
-                    <div class="journey-column">
-                        <div class="journey-heading">
-                            <i class="fa-solid fa-briefcase"></i>
-                            <h3>Professional Experience</h3>
+                <!-- Two-Column Career Timeline (50/50 Desktop) -->
+                <div class="experience-columns-grid">
+                    <!-- Left Column: Professional Journey -->
+                    <div class="exp-timeline-col scroll-reveal-init">
+                        <div class="timeline-col-header">
+                            <div class="col-header-left">
+                                <div class="col-header-icon">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </div>
+                                <h3 class="col-header-title">Professional Journey</h3>
+                            </div>
+                            <div class="col-header-counter">
+                                <span class="counter-dash"></span>
+                                <span class="counter-text">04 RECORDS</span>
+                            </div>
                         </div>
 
-                        <div class="timeline-items">
-                            <!-- Exp 1: BooleanForce -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">2026 – Present</div>
-                                <h4 class="role-title">Full Stack Developer</h4>
-                                <h5 class="company-name">BooleanForce &bull; Full-Stack Role</h5>
-                                <p class="role-desc">Working on full-stack web applications, fixing bugs, developing new features, and refactoring existing Django projects for performance and scalability.</p>
-                                <div class="timeline-skills-list">
-                                    <span class="timeline-skill-pill">Python</span>
-                                    <span class="timeline-skill-pill">Django</span>
-                                    <span class="timeline-skill-pill">Next.js</span>
-                                    <span class="timeline-skill-pill">TypeScript</span>
-                                    <span class="timeline-skill-pill">React</span>
-                                    <span class="timeline-skill-pill">REST API</span>
-                                    <span class="timeline-skill-pill">PostgreSQL</span>
-                                    <span class="timeline-skill-pill">Deployment</span>
+                        <div class="timeline-track">
+                            <!-- Record 1: BooleanForce -->
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">2026 – Present</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Full Stack Developer</h4>
+                                            <h5 class="timeline-org-name">BooleanForce &bull; Full-Stack Role</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Working on full-stack web applications, fixing bugs, developing new features, and refactoring existing Django projects for performance and scalability.</p>
+                                    <div class="timeline-tech-tags">
+                                        <span class="tech-tag"><i class="devicon-python-plain colored"></i> Python</span>
+                                        <span class="tech-tag"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                        <span class="tech-tag"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                        <span class="tech-tag"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+                                        <span class="tech-tag"><i class="devicon-react-original colored"></i> React</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-network-wired" style="color: #00B4D8;"></i> REST API</span>
+                                        <span class="tech-tag"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-cloud-arrow-up" style="color: #38BDF8;"></i> Deployment</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Exp 2: FlyRank AI -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">2026 – Present</div>
-                                <h4 class="role-title">Backend Developer Intern</h4>
-                                <h5 class="company-name">FlyRank AI &bull; Backend Engineering</h5>
-                                <p class="role-desc">Building custom Django and Express.js web applications, REST APIs, interactive dashboards, and business-focused solutions.</p>
-                                <div class="timeline-skills-list">
-                                    <span class="timeline-skill-pill">Django</span>
-                                    <span class="timeline-skill-pill">Express.js</span>
-                                    <span class="timeline-skill-pill">DRF</span>
-                                    <span class="timeline-skill-pill">REST API</span>
-                                    <span class="timeline-skill-pill">PostgreSQL</span>
+                            <!-- Record 2: FlyRank AI -->
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">2026 – Present</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Backend Developer Intern</h4>
+                                            <h5 class="timeline-org-name">FlyRank AI &bull; Backend Engineering</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Building custom Django and Express.js web applications, REST APIs, interactive dashboards, and business-focused solutions.</p>
+                                    <div class="timeline-tech-tags">
+                                        <span class="tech-tag"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                        <span class="tech-tag"><i class="devicon-express-original" style="color: #D6D8E1;"></i> Express.js</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-code" style="color: #4CAF50;"></i> DRF</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-network-wired" style="color: #00B4D8;"></i> REST API</span>
+                                        <span class="tech-tag"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Exp 3: MB "Global Altajir Business & IT Services" -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">Jan 2026 – Aug 2026</div>
-                                <h4 class="role-title">Full Stack Developer & Digital Marketing Manager</h4>
-                                <h5 class="company-name">MB "Global Altajir Business & IT Services" &bull; Vilnius, Lithuania (Remote)</h5>
-                                <p class="role-desc">Developed and maintained scalable web applications using Django, MERN Stack, React, and Node.js. Built responsive, user-friendly websites following modern UI/UX practices while driving digital marketing campaigns and online business growth.</p>
-                                <div class="timeline-skills-list">
-                                    <span class="timeline-skill-pill">Django</span>
-                                    <span class="timeline-skill-pill">MERN Stack</span>
-                                    <span class="timeline-skill-pill">React</span>
-                                    <span class="timeline-skill-pill">Node.js</span>
-                                    <span class="timeline-skill-pill">Digital Marketing</span>
-                                    <span class="timeline-skill-pill">UI/UX</span>
+                            <!-- Record 3: MB "Global Altajir Business & IT Services" -->
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">Jan 2026 – Aug 2026</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Full Stack Developer & Digital Marketing Manager</h4>
+                                            <h5 class="timeline-org-name">MB "Global Altajir Business & IT Services" &bull; Vilnius, Lithuania (Remote)</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Developed and maintained scalable web applications using Django, MERN Stack, React, and Node.js. Built responsive, user-friendly websites following modern UI/UX practices while driving digital marketing campaigns and online business growth.</p>
+                                    <div class="timeline-tech-tags">
+                                        <span class="tech-tag"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-layer-group" style="color: #FF5722;"></i> MERN Stack</span>
+                                        <span class="tech-tag"><i class="devicon-react-original colored"></i> React</span>
+                                        <span class="tech-tag"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-chart-line" style="color: #FFA500;"></i> Digital Marketing</span>
+                                        <span class="tech-tag"><i class="fa-solid fa-pen-nib" style="color: #A855F7;"></i> UI/UX</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Exp 4: Professional Internship -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">2022 – 2023</div>
-                                <h4 class="role-title">Web Developer Intern</h4>
-                                <h5 class="company-name">Professional Internship</h5>
-                                <p class="role-desc">Gained practical experience in web development, frontend implementation, backend concepts, and real-world development workflows.</p>
-                                <div class="timeline-skills-list">
-                                    <span class="timeline-skill-pill">HTML5</span>
-                                    <span class="timeline-skill-pill">CSS3</span>
-                                    <span class="timeline-skill-pill">JavaScript</span>
+                            <!-- Record 4: Web Developer Intern -->
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">2022 – 2023</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Web Developer Intern</h4>
+                                            <h5 class="timeline-org-name">Professional Internship</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Gained practical experience in web development, frontend implementation, backend concepts, and real-world development workflows.</p>
+                                    <div class="timeline-tech-tags">
+                                        <span class="tech-tag"><i class="devicon-html5-plain colored"></i> HTML5</span>
+                                        <span class="tech-tag"><i class="devicon-css3-plain colored"></i> CSS3</span>
+                                        <span class="tech-tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Column 2: Education & Academic Journey (WITH credentials & image previews) -->
-                    <div class="journey-column">
-                        <div class="journey-heading">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <h3>Education & Academic Credentials</h3>
+                    <!-- Right Column: Education & Certifications -->
+                    <div class="exp-timeline-col scroll-reveal-init">
+                        <div class="timeline-col-header">
+                            <div class="col-header-left">
+                                <div class="col-header-icon">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <h3 class="col-header-title">Education & Certifications</h3>
+                            </div>
+                            <div class="col-header-counter">
+                                <span class="counter-dash"></span>
+                                <span class="counter-text">04 RECORDS</span>
+                            </div>
                         </div>
 
-                        <div class="timeline-items">
+                        <div class="timeline-track">
                             <!-- Edu 1: University of Asia Pacific -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">2019 – 2023</div>
-                                <h4 class="role-title">Bachelor's in Computer Science</h4>
-                                <h5 class="company-name">University of Asia Pacific &bull; Academic Degree</h5>
-                                <p class="role-desc">Academic studies focused on computer science, software engineering, databases, programming, algorithms, and web development.</p>
-                                
-                                <div class="timeline-cert-preview" onclick="openCertificateModal(1)">
-                                    <img src="<?php echo esc_url($c_uap); ?>" alt="UAP Award" class="timeline-cert-thumb">
-                                    <div class="timeline-cert-info">
-                                        <span class="timeline-cert-title">Dean's (3x) & VC Award Distinction</span>
-                                        <span class="timeline-cert-action"><i class="fa-solid fa-expand"></i> Click to view award certificate</span>
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">2019 – 2023</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Bachelor's in Computer Science</h4>
+                                            <h5 class="timeline-org-name">University of Asia Pacific &bull; Academic Degree</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Academic studies focused on computer science, software engineering, databases, programming, algorithms, and web development.</p>
+                                    
+                                    <!-- Certificate Preview Bar -->
+                                    <div class="timeline-cert-preview" onclick="openCertificateModal(1)" role="button" tabindex="0" title="Click to view Dean's (3x) & VC Award Distinction certificate">
+                                        <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/UAP.jpg'); ?>" alt="Dean's (3x) & VC Award Distinction" class="timeline-cert-thumb" loading="lazy">
+                                        <div class="timeline-cert-info">
+                                            <span class="timeline-cert-title">Dean's (3x) & VC Award Distinction</span>
+                                            <span class="timeline-cert-action">View award certificate <i class="fa-solid fa-arrow-right"></i></span>
+                                        </div>
+                                        <div class="timeline-cert-external">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Edu 2: Pearson BTEC HND -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">2024 – 2026</div>
-                                <h4 class="role-title">Pearson BTEC Level 5 Higher National Diploma (HND) in Digital Technologies</h4>
-                                <h5 class="company-name">Global Business Studies FZ LLC &bull; Dubai, United Arab Emirates</h5>
-                                <p class="role-desc">Specialized in AI Solutions and Applications, academic studies in programming, cloud fundamentals, professional practice in the digital economy, and innovation.</p>
-                                
-                                <div class="timeline-cert-preview" onclick="openCertificateModal(4)">
-                                    <img src="<?php echo esc_url($c_gbs); ?>" alt="GBS BTEC HND Certificate" class="timeline-cert-thumb">
-                                    <div class="timeline-cert-info">
-                                        <span class="timeline-cert-title">Pearson BTEC Level 5 HND Certificate</span>
-                                        <span class="timeline-cert-action"><i class="fa-solid fa-expand"></i> Click to view diploma credential</span>
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">2024 – 2026</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Pearson BTEC Level 5 Higher National Diploma (HND) in Digital Technologies</h4>
+                                            <h5 class="timeline-org-name">Global Business Studies FZ LLC &bull; Dubai, United Arab Emirates</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Specialized in AI Solutions and Applications, academic studies in programming, cloud fundamentals, professional practice in the digital economy, and innovation.</p>
+                                    
+                                    <!-- Certificate Preview Bar -->
+                                    <div class="timeline-cert-preview" onclick="openCertificateModal(4)" role="button" tabindex="0" title="Click to view Pearson BTEC Level 5 HND Certificate">
+                                        <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/GBS.jpg'); ?>" alt="Pearson BTEC Level 5 HND Certificate" class="timeline-cert-thumb" loading="lazy">
+                                        <div class="timeline-cert-info">
+                                            <span class="timeline-cert-title">Pearson BTEC Level 5 HND Certificate</span>
+                                            <span class="timeline-cert-action">View diploma credential <i class="fa-solid fa-arrow-right"></i></span>
+                                        </div>
+                                        <div class="timeline-cert-external">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Edu 3: Phitron -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">Completed (Fall 2024)</div>
-                                <h4 class="role-title">Fundamentals of Computer Science Engineering</h4>
-                                <h5 class="company-name">Phitron.io &bull; Distinction CGPA 3.67</h5>
-                                <p class="role-desc">Intensive practical training in programming, problem solving, data structures, algorithms, and core software engineering concepts.</p>
-                                
-                                <div class="timeline-cert-preview" onclick="openCertificateModal(2)">
-                                    <img src="<?php echo esc_url($c_phitron); ?>" alt="Phitron Certificate" class="timeline-cert-thumb">
-                                    <div class="timeline-cert-info">
-                                        <span class="timeline-cert-title">CSE Fundamentals Certificate (CGPA 3.67)</span>
-                                        <span class="timeline-cert-action"><i class="fa-solid fa-expand"></i> Click to view verified certificate</span>
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">Completed &bull; Fall 2024</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">Fundamentals of Computer Science Engineering</h4>
+                                            <h5 class="timeline-org-name">Phitron.io &bull; Distinction CGPA 3.67</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Intensive practical training in programming, problem solving, data structures, algorithms, and core software engineering concepts.</p>
+                                    
+                                    <!-- Certificate Preview Bar -->
+                                    <div class="timeline-cert-preview" onclick="openCertificateModal(2)" role="button" tabindex="0" title="Click to view CSE Fundamentals Certificate">
+                                        <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/Certificate_Phitron.jpg'); ?>" alt="CSE Fundamentals Certificate" class="timeline-cert-thumb" loading="lazy">
+                                        <div class="timeline-cert-info">
+                                            <span class="timeline-cert-title">CSE Fundamentals Certificate (CGPA 3.67)</span>
+                                            <span class="timeline-cert-action">View verified certificate <i class="fa-solid fa-arrow-right"></i></span>
+                                        </div>
+                                        <div class="timeline-cert-external">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Edu 4: AI & Modern Web Self Learning -->
-                            <div class="timeline-card">
-                                <div class="timeline-badge">Ongoing</div>
-                                <h4 class="role-title">AI / ML & Modern Web Technologies</h4>
-                                <h5 class="company-name">Self-Directed Learning & Research</h5>
-                                <p class="role-desc">Continuously exploring AI/ML, AI agent architectures, automation pipelines, RESTful APIs, and modern web application patterns.</p>
-                                
-                                <div class="timeline-cert-preview" onclick="openCertificateModal(5)">
-                                    <img src="<?php echo esc_url($c_claude); ?>" alt="Claude 101 Certificate" class="timeline-cert-thumb">
-                                    <div class="timeline-cert-info">
-                                        <span class="timeline-cert-title">Anthropic Claude 101 AI Certification</span>
-                                        <span class="timeline-cert-action"><i class="fa-solid fa-expand"></i> Click to view official certificate</span>
+                            <div class="timeline-item">
+                                <div class="timeline-node">
+                                    <span class="timeline-dot"></span>
+                                </div>
+                                <div class="timeline-card">
+                                    <div class="timeline-card-header">
+                                        <div class="timeline-date-pill">Ongoing</div>
+                                        <div class="timeline-title-group">
+                                            <h4 class="timeline-role-title">AI / ML & Modern Web Technologies</h4>
+                                            <h5 class="timeline-org-name">Self-Directed Learning & Research</h5>
+                                        </div>
+                                    </div>
+                                    <p class="timeline-card-desc">Continuously exploring AI/ML, AI agent architectures, automation pipelines, RESTful APIs, and modern web application patterns.</p>
+                                    
+                                    <!-- Certificate Preview Bar -->
+                                    <div class="timeline-cert-preview" onclick="openCertificateModal(5)" role="button" tabindex="0" title="Click to view Anthropic Claude 101 AI Certification">
+                                        <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/Certificate_Claude.jpg'); ?>" alt="Anthropic Claude 101 AI Certification" class="timeline-cert-thumb" loading="lazy">
+                                        <div class="timeline-cert-info">
+                                            <span class="timeline-cert-title">Anthropic Claude 101 AI Certification</span>
+                                            <span class="timeline-cert-action">View official certificate <i class="fa-solid fa-arrow-right"></i></span>
+                                        </div>
+                                        <div class="timeline-cert-external">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -880,6 +1528,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <span class="marquee-item"><i class="devicon-docker-plain colored"></i> DOCKER</span>
                     <span class="marquee-item"><i class="fa-brands fa-wordpress"></i> WORDPRESS</span>
                 </div>
+                <!-- Duplicate for seamless infinite loop -->
                 <div class="marquee-content" aria-hidden="true">
                     <span class="marquee-item"><i class="devicon-python-plain colored"></i> PYTHON</span>
                     <span class="marquee-item"><i class="devicon-django-plain colored"></i> DJANGO</span>
@@ -896,115 +1545,395 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
         </section>
 
         <!-- Latest Portfolio / Projects Showcase Section -->
-        <section id="portfolio" class="portfolio-section section-gap">
+        <section id="portfolio" class="portfolio-section">
+            <!-- Background Cyber Atmosphere -->
+            <div class="portfolio-bg-decor" aria-hidden="true">
+                <div class="port-glow port-glow-1"></div>
+                <div class="port-glow port-glow-2"></div>
+                <div class="port-grid-pattern"></div>
+            </div>
+
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">FEATURED CREATIONS</span>
-                    <h2 class="section-title">Recent Selected Projects</h2>
-                    <p class="section-subtitle">Real-world production applications built with clean architecture, scalability, and modern UI design.</p>
+                <!-- Section Header -->
+                <div class="section-header text-center scroll-reveal-init">
+                    <div class="projects-eyebrow">
+                        <span class="eyebrow-dash"></span>
+                        <span class="eyebrow-text">FEATURED CREATIONS</span>
+                    </div>
+                    <h2 class="projects-main-title">Recent Selected <span class="gradient-text-pink">Projects</span></h2>
+                    <p class="projects-subtitle">Real-world production applications built with clean architecture, scalability, and modern UI design.</p>
                 </div>
 
-                <!-- Portfolio Filter Tabs -->
-                <div class="portfolio-filter-tabs">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="django">Django & Backend</button>
-                    <button class="filter-btn" data-filter="react">React & Next.js</button>
-                    <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                <!-- Category Filters Strip -->
+                <div class="portfolio-filter-tabs scroll-reveal-init">
+                    <button type="button" class="filter-btn active" data-filter="all">
+                        <i class="fa-solid fa-table-cells-large"></i>
+                        <span>All Projects</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="django">
+                        <i class="devicon-django-plain"></i>
+                        <span>Django & Backend</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="react">
+                        <i class="devicon-react-original"></i>
+                        <span>React & Next.js</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="fullstack">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Full-Stack</span>
+                    </button>
                 </div>
 
-                <!-- Projects Grid -->
-                <div class="portfolio-grid">
-                    <!-- Project 1: SnapBook -->
-                    <div class="portfolio-card" data-category="django react fullstack" onclick="openProjectModal(1)">
-                        <div class="project-img-box">
-                            <img src="<?php echo esc_url($p1_url); ?>" alt="SnapBook Social Media Platform" class="project-img">
-                            <div class="project-overlay">
-                                <span class="view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Case Study</span>
-                            </div>
+                <!-- Search and Sorting Toolbar -->
+                <div class="projects-toolbar scroll-reveal-init">
+                    <div class="project-search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="projectSearchInput" class="project-search-input" placeholder="Search projects..." aria-label="Search projects by name, description, or technology">
+                        <button type="button" id="projectSearchClear" class="search-clear-btn" aria-label="Clear search" style="display: none;">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="project-sort-box">
+                        <i class="fa-solid fa-arrow-down-wide-short sort-icon"></i>
+                        <select id="projectSortSelect" class="project-sort-select" aria-label="Sort projects">
+                            <option value="latest">Latest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="featured">Featured First</option>
+                            <option value="alpha">Alphabetical</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Project Statistics Strip (4 Horizontal Cards) -->
+                <div class="projects-stats-strip scroll-reveal-init">
+                    <div class="project-stat-card">
+                        <div class="stat-icon-wrap stat-icon-gold">
+                            <i class="fa-solid fa-star"></i>
                         </div>
-                        <div class="project-info">
-                            <div class="info-meta">
-                                <span class="project-cat">Django & React Full-Stack</span>
-                                <h3 class="project-title">SnapBook - Social Platform</h3>
-                                <p class="project-desc">A modern social media platform for sharing photos, stories, and connecting with friends through a clean digital experience.</p>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-label">Total Projects</span>
+                        </div>
+                    </div>
+                    <div class="project-stat-card">
+                        <div class="stat-icon-wrap stat-icon-purple">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">5K+</span>
+                            <span class="stat-label">Total Users</span>
+                        </div>
+                    </div>
+                    <div class="project-stat-card">
+                        <div class="stat-icon-wrap stat-icon-cyan">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime (Best)</span>
+                        </div>
+                    </div>
+                    <div class="project-stat-card">
+                        <div class="stat-icon-wrap stat-icon-pink">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Open to Collaborate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid (3 Columns Desktop) -->
+                <div class="portfolio-grid" id="portfolioProjectsGrid">
+                    <!-- Project 1: SnapBook -->
+                    <div class="portfolio-card scroll-reveal-init" data-category="django react fullstack" data-id="1" data-featured="1" data-date="2026-03" data-name="SnapBook – Social Platform" data-views="12000">
+                        <div class="project-img-box">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/projects/snapbook.png'); ?>" alt="SnapBook - Social Platform" class="project-img" loading="lazy">
+                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(1)" title="Open project preview" aria-label="Open SnapBook project preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                            <div class="project-img-overlay" onclick="openProjectModal(1)"></div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-header-row">
+                                <div class="project-icon-box" style="background: rgba(33, 150, 243, 0.15); color: #2196F3;">
+                                    <i class="fa-solid fa-book-bookmark"></i>
+                                </div>
+                                <h3 class="project-title-text" onclick="openProjectModal(1)">SnapBook – Social Platform</h3>
+                                <button type="button" class="project-card-arrow" onclick="openProjectModal(1)" aria-label="View SnapBook details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
-                            <div class="arrow-btn-wrap">
-                                <div class="arrow-btn-inner">
-                                    <i class="fa-solid fa-arrow-up-right arrow-1"></i>
-                                    <i class="fa-solid fa-arrow-up-right arrow-2"></i>
+                            <p class="project-desc-text">A modern social media platform for sharing photos, stories, and connecting with friends through a clean digital experience.</p>
+                            <div class="project-tech-chips">
+                                <span class="tech-chip"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                <span class="tech-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                <span class="tech-chip"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                                <span class="tech-chip"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+                            </div>
+                            <div class="project-actions-row">
+                                <div class="project-links-group">
+                                    <a href="https://snap-book-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
+                                        <span>Live Demo</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <a href="https://github.com/siamhossain7722/SnapBook_Frontend" target="_blank" rel="noopener noreferrer" class="btn-project-code">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="project-views-count">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>12K+</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Project 2: Review Platform -->
-                    <div class="portfolio-card" data-category="fastapi react fullstack" onclick="openProjectModal(2)">
+                    <div class="portfolio-card scroll-reveal-init" data-category="react fullstack" data-id="2" data-featured="1" data-date="2026-02" data-name="Product Review Platform" data-views="8400">
                         <div class="project-img-box">
-                            <img src="<?php echo esc_url($p2_url); ?>" alt="Review Platform" class="project-img">
-                            <div class="project-overlay">
-                                <span class="view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Case Study</span>
-                            </div>
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/projects/review.png'); ?>" alt="Product Review Platform" class="project-img" loading="lazy">
+                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(2)" title="Open project preview" aria-label="Open Product Review Platform preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                            <div class="project-img-overlay" onclick="openProjectModal(2)"></div>
                         </div>
-                        <div class="project-info">
-                            <div class="info-meta">
-                                <span class="project-cat">FastAPI & Next.js</span>
-                                <h3 class="project-title">Product Review Platform</h3>
-                                <p class="project-desc">A platform for discovering products, comparing ratings, and sharing verified customer experiences with sub-second response times.</p>
+                        <div class="project-card-body">
+                            <div class="project-header-row">
+                                <div class="project-icon-box" style="background: rgba(168, 85, 247, 0.15); color: #A855F7;">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h3 class="project-title-text" onclick="openProjectModal(2)">Product Review Platform</h3>
+                                <button type="button" class="project-card-arrow" onclick="openProjectModal(2)" aria-label="View Product Review Platform details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
-                            <div class="arrow-btn-wrap">
-                                <div class="arrow-btn-inner">
-                                    <i class="fa-solid fa-arrow-up-right arrow-1"></i>
-                                    <i class="fa-solid fa-arrow-up-right arrow-2"></i>
+                            <p class="project-desc-text">A platform for discovering products, comparing ratings, and sharing verified customer experiences with sub-second response times.</p>
+                            <div class="project-tech-chips">
+                                <span class="tech-chip"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                <span class="tech-chip"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+                                <span class="tech-chip"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
+                                <span class="tech-chip"><i class="devicon-supabase-plain colored"></i> Supabase</span>
+                            </div>
+                            <div class="project-actions-row">
+                                <div class="project-links-group">
+                                    <a href="https://review-client-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
+                                        <span>Live Demo</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <a href="https://github.com/siamhossain7722/Review_Client" target="_blank" rel="noopener noreferrer" class="btn-project-code">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="project-views-count">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>8.4K+</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Project 3: Eventify -->
-                    <div class="portfolio-card" data-category="django fullstack" onclick="openProjectModal(3)">
+                    <div class="portfolio-card scroll-reveal-init" data-category="django fullstack" data-id="3" data-featured="1" data-date="2026-01" data-name="Eventify – Event Hub" data-views="6100">
                         <div class="project-img-box">
-                            <img src="<?php echo esc_url($p3_url); ?>" alt="Eventify Management Platform" class="project-img">
-                            <div class="project-overlay">
-                                <span class="view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Case Study</span>
-                            </div>
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/projects/eventify.png'); ?>" alt="Eventify - Event Hub" class="project-img" loading="lazy">
+                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(3)" title="Open project preview" aria-label="Open Eventify project preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                            <div class="project-img-overlay" onclick="openProjectModal(3)"></div>
                         </div>
-                        <div class="project-info">
-                            <div class="info-meta">
-                                <span class="project-cat">Django & PostgreSQL</span>
-                                <h3 class="project-title">Eventify - Event Hub</h3>
-                                <p class="project-desc">An event management platform for creating, organizing, and managing events with streamlined attendee experiences.</p>
+                        <div class="project-card-body">
+                            <div class="project-header-row">
+                                <div class="project-icon-box" style="background: rgba(255, 0, 102, 0.15); color: #FF0066;">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <h3 class="project-title-text" onclick="openProjectModal(3)">Eventify – Event Hub</h3>
+                                <button type="button" class="project-card-arrow" onclick="openProjectModal(3)" aria-label="View Eventify details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
-                            <div class="arrow-btn-wrap">
-                                <div class="arrow-btn-inner">
-                                    <i class="fa-solid fa-arrow-up-right arrow-1"></i>
-                                    <i class="fa-solid fa-arrow-up-right arrow-2"></i>
+                            <p class="project-desc-text">An event management platform for creating, organizing, and managing events with streamlined attendee experiences.</p>
+                            <div class="project-tech-chips">
+                                <span class="tech-chip"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                <span class="tech-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                <span class="tech-chip"><i class="fa-brands fa-stripe" style="color: #635BFF;"></i> Stripe</span>
+                                <span class="tech-chip"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
+                            </div>
+                            <div class="project-actions-row">
+                                <div class="project-links-group">
+                                    <a href="https://new-event-managment.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
+                                        <span>Live Demo</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <a href="https://github.com/siamhossain7722/New" target="_blank" rel="noopener noreferrer" class="btn-project-code">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="project-views-count">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>6.1K+</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 4: CPL Construction Services -->
-                    <div class="portfolio-card" data-category="react fullstack" onclick="openProjectModal(4)">
+                    <!-- Project 4: CPL Construction Platform -->
+                    <div class="portfolio-card scroll-reveal-init" data-category="react fullstack" data-id="4" data-featured="1" data-date="2025-11" data-name="CPL Construction Platform" data-views="5200">
                         <div class="project-img-box">
-                            <img src="<?php echo esc_url($p4_url); ?>" alt="CPL Construction Services" class="project-img">
-                            <div class="project-overlay">
-                                <span class="view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Case Study</span>
-                            </div>
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/projects/cpl.png'); ?>" alt="CPL Construction Platform" class="project-img" loading="lazy">
+                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(4)" title="Open project preview" aria-label="Open CPL Construction Platform preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                            <div class="project-img-overlay" onclick="openProjectModal(4)"></div>
                         </div>
-                        <div class="project-info">
-                            <div class="info-meta">
-                                <span class="project-cat">Next.js & TypeScript</span>
-                                <h3 class="project-title">CPL Construction Platform</h3>
-                                <p class="project-desc">A construction service platform providing building services, machinery sales & rentals, and quality materials across Bangladesh.</p>
+                        <div class="project-card-body">
+                            <div class="project-header-row">
+                                <div class="project-icon-box" style="background: rgba(255, 152, 0, 0.15); color: #FF9800;">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <h3 class="project-title-text" onclick="openProjectModal(4)">CPL Construction Platform</h3>
+                                <button type="button" class="project-card-arrow" onclick="openProjectModal(4)" aria-label="View CPL details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
-                            <div class="arrow-btn-wrap">
-                                <div class="arrow-btn-inner">
-                                    <i class="fa-solid fa-arrow-up-right arrow-1"></i>
-                                    <i class="fa-solid fa-arrow-up-right arrow-2"></i>
+                            <p class="project-desc-text">A construction service platform providing building services, machinery sales & rentals, and quality materials across Bangladesh.</p>
+                            <div class="project-tech-chips">
+                                <span class="tech-chip"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                <span class="tech-chip"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+                                <span class="tech-chip"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
+                                <span class="tech-chip"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
+                            </div>
+                            <div class="project-actions-row">
+                                <div class="project-links-group">
+                                    <a href="https://www.constructivepartnerslimited.com/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
+                                        <span>Live Demo</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <a href="https://github.com/siamhossain7722/Constructions" target="_blank" rel="noopener noreferrer" class="btn-project-code">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="project-views-count">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>5.2K+</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Project 5: TaskFlow -->
+                    <div class="portfolio-card scroll-reveal-init" data-category="django react fullstack" data-id="5" data-featured="1" data-date="2025-08" data-name="TaskFlow – Task Management" data-views="4700">
+                        <div class="project-img-box">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/project-1.jpg'); ?>" alt="TaskFlow - Task Management" class="project-img" loading="lazy">
+                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(5)" title="Open project preview" aria-label="Open TaskFlow project preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                            <div class="project-img-overlay" onclick="openProjectModal(5)"></div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-header-row">
+                                <div class="project-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <h3 class="project-title-text" onclick="openProjectModal(5)">TaskFlow – Task Management</h3>
+                                <button type="button" class="project-card-arrow" onclick="openProjectModal(5)" aria-label="View TaskFlow details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            <p class="project-desc-text">A productivity platform for managing tasks, teams, and projects with real-time collaboration and analytics.</p>
+                            <div class="project-tech-chips">
+                                <span class="tech-chip"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
+                                <span class="tech-chip"><i class="devicon-react-original colored"></i> React</span>
+                                <span class="tech-chip"><i class="fa-solid fa-network-wired" style="color: #00B4D8;"></i> REST API</span>
+                                <span class="tech-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                            </div>
+                            <div class="project-actions-row">
+                                <div class="project-links-group">
+                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-live">
+                                        <span>Live Demo</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-code">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="project-views-count">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>4.7K+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Portfolio API -->
+                    <div class="portfolio-card scroll-reveal-init" data-category="django" data-id="6" data-featured="1" data-date="2025-05" data-name="Portfolio API" data-views="3900">
+                        <div class="project-img-box">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/project-4.jpg'); ?>" alt="Portfolio API" class="project-img" loading="lazy">
+                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(6)" title="Open project preview" aria-label="Open Portfolio API preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                            <div class="project-img-overlay" onclick="openProjectModal(6)"></div>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-header-row">
+                                <div class="project-icon-box" style="background: rgba(6, 182, 212, 0.15); color: #06B6D4;">
+                                    <i class="fa-solid fa-cloud"></i>
+                                </div>
+                                <h3 class="project-title-text" onclick="openProjectModal(6)">Portfolio API</h3>
+                                <button type="button" class="project-card-arrow" onclick="openProjectModal(6)" aria-label="View Portfolio API details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            <p class="project-desc-text">A RESTful API for portfolio data with modern authentication, rate limiting, and clean documentation.</p>
+                            <div class="project-tech-chips">
+                                <span class="tech-chip"><i class="devicon-python-plain colored"></i> Python</span>
+                                <span class="tech-chip"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                                <span class="tech-chip"><i class="fa-solid fa-code" style="color: #4CAF50;"></i> DRF</span>
+                                <span class="tech-chip"><i class="fa-solid fa-key" style="color: #FFA500;"></i> JWT Auth</span>
+                            </div>
+                            <div class="project-actions-row">
+                                <div class="project-links-group">
+                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-live">
+                                        <span>Live Demo</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-code">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="project-views-count">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>3.9K+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State Message -->
+                <div id="projectsEmptyState" class="projects-empty-state" style="display: none;">
+                    <div class="empty-state-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h4 class="empty-state-title">No matching projects found</h4>
+                    <p class="empty-state-desc">We couldn't find any projects matching your search criteria. Try a different keyword or reset filters.</p>
+                    <button type="button" class="btn-project-live" id="btnResetProjectFilters">
+                        <span>Reset Filters</span>
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -1031,7 +1960,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Cert 1: UAP Dean's & VC Awards -->
                     <div class="achievement-card" data-category="academic">
                         <div class="achievement-img-box" onclick="openCertificateModal(1)">
-                            <img src="<?php echo esc_url($c_uap); ?>" alt="University of Asia Pacific Dean's & VC Award" class="achievement-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/UAP.jpg'); ?>" alt="University of Asia Pacific Dean's & VC Award" class="achievement-img">
                             <div class="achievement-overlay">
                                 <span class="achievement-view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Certificate</span>
                             </div>
@@ -1056,7 +1985,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Cert 2: Phitron -->
                     <div class="achievement-card" data-category="academic ai">
                         <div class="achievement-img-box" onclick="openCertificateModal(2)">
-                            <img src="<?php echo esc_url($c_phitron); ?>" alt="Phitron CSE Fundamentals Certificate" class="achievement-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/Certificate_Phitron.jpg'); ?>" alt="Phitron CSE Fundamentals Certificate" class="achievement-img">
                             <div class="achievement-overlay">
                                 <span class="achievement-view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Certificate</span>
                             </div>
@@ -1081,7 +2010,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Cert 3: Urban Academy -->
                     <div class="achievement-card" data-category="professional">
                         <div class="achievement-img-box" onclick="openCertificateModal(3)">
-                            <img src="<?php echo esc_url($c_ua); ?>" alt="Urban Academy Digital Marketing Certificate" class="achievement-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/UA.jpg'); ?>" alt="Urban Academy Digital Marketing Certificate" class="achievement-img">
                             <div class="achievement-overlay">
                                 <span class="achievement-view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Certificate</span>
                             </div>
@@ -1106,7 +2035,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Cert 4: GBS Pearson BTEC HND -->
                     <div class="achievement-card" data-category="academic professional">
                         <div class="achievement-img-box" onclick="openCertificateModal(4)">
-                            <img src="<?php echo esc_url($c_gbs); ?>" alt="Pearson BTEC Level 5 HND Certificate" class="achievement-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/GBS.jpg'); ?>" alt="Pearson BTEC Level 5 HND Certificate" class="achievement-img">
                             <div class="achievement-overlay">
                                 <span class="achievement-view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Certificate</span>
                             </div>
@@ -1131,7 +2060,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Cert 5: Anthropic Claude 101 -->
                     <div class="achievement-card" data-category="ai professional">
                         <div class="achievement-img-box" onclick="openCertificateModal(5)">
-                            <img src="<?php echo esc_url($c_claude); ?>" alt="Anthropic Claude 101 Certificate" class="achievement-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/Certificate_Claude.jpg'); ?>" alt="Anthropic Claude 101 Certificate" class="achievement-img">
                             <div class="achievement-overlay">
                                 <span class="achievement-view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Certificate</span>
                             </div>
@@ -1156,7 +2085,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Cert 6: Food Safety -->
                     <div class="achievement-card" data-category="professional ai">
                         <div class="achievement-img-box" onclick="openCertificateModal(6)">
-                            <img src="<?php echo esc_url($c_food); ?>" alt="Basic Food Safety Training Certificate" class="achievement-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/certificates/food_safty.jpg'); ?>" alt="Basic Food Safety Training Certificate" class="achievement-img">
                             <div class="achievement-overlay">
                                 <span class="achievement-view-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> View Certificate</span>
                             </div>
@@ -1181,7 +2110,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
             </div>
         </section>
 
-        <!-- Dynamic Interactive Services Widget -->
+        <!-- Dynamic Interactive Services Widget (Sliding active background) -->
         <section class="interactive-widget-section section-gap">
             <div class="container">
                 <div class="section-header text-center">
@@ -1236,98 +2165,259 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
             </div>
         </section>
 
-        <!-- Client Testimonials Slider Section -->
-        <section id="testimonials" class="testimonials-section section-gap">
+        <!-- Client Testimonials / Reviews Showcase Section -->
+        <section id="testimonials" class="testimonials-section">
+            <!-- Background Cyber Atmosphere -->
+            <div class="testimonials-bg-decor" aria-hidden="true">
+                <div class="testi-glow testi-glow-1"></div>
+                <div class="testi-glow testi-glow-2"></div>
+                <div class="testi-grid-pattern"></div>
+            </div>
+
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-tag">ENDORSEMENTS</span>
-                    <h2 class="section-title">What Collaborators & Clients Say</h2>
-                    <p class="section-subtitle">Real feedback from founders, product directors, and engineering peers.</p>
+                <!-- Section Header -->
+                <div class="section-header text-center scroll-reveal-init">
+                    <div class="testimonials-eyebrow">
+                        <span class="eyebrow-dash"></span>
+                        <span class="eyebrow-text">ENDORSEMENTS &amp; TESTIMONIALS</span>
+                    </div>
+                    <h2 class="testimonials-main-title">What People Say About <span class="gradient-text-pink">Working With Me</span></h2>
+                    <p class="testimonials-subtitle">Real feedback and professional experiences from people I've worked with, collaborated with, and learned from.</p>
                 </div>
 
-                <div class="testimonials-carousel-wrapper">
-                    <div class="testimonials-slider" id="testimonial-slider">
-                        <!-- Slide 1 -->
-                        <div class="testimonial-slide active">
-                            <div class="testimonial-card glass-panel">
-                                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="testimonial-quote">
-                                    "Siam is a skilled full-stack developer who understands both backend stability with Django and responsive UI with React. His dedication to clean code, punctual delivery, and thoughtful problem-solving makes him a true asset to any project."
-                                </p>
-                                <div class="client-meta">
-                                    <div class="client-info">
-                                        <h4 class="client-name">Engineering Lead</h4>
-                                        <p class="client-role">Software & Solutions Team</p>
+                <!-- Professional Feedback Statistics (4 Compact Glass Cards) -->
+                <div class="testimonials-stats-strip scroll-reveal-init">
+                    <div class="testi-stat-card">
+                        <div class="stat-icon-wrap stat-icon-pink">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Verified Reviews</span>
+                        </div>
+                    </div>
+                    <div class="testi-stat-card">
+                        <div class="stat-icon-wrap stat-icon-gold">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">5.0</span>
+                            <span class="stat-label">Average Rating</span>
+                        </div>
+                    </div>
+                    <div class="testi-stat-card">
+                        <div class="stat-icon-wrap stat-icon-cyan">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Positive Feedback</span>
+                        </div>
+                    </div>
+                    <div class="testi-stat-card">
+                        <div class="stat-icon-wrap stat-icon-purple">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <div class="stat-info-wrap">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Partner Teams</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Reviewer Avatar Selector Bar (Reference Design) -->
+                <div class="testimonials-avatar-bar scroll-reveal-init" id="testiAvatarBar">
+                    <button type="button" class="testi-avatar-btn active" data-slide="0" aria-label="Select testimonial from Engineering Lead">
+                        <div class="avatar-ring">
+                            <span class="avatar-initials avatar-gradient-pink">EL</span>
+                        </div>
+                        <span class="avatar-role-label">Engineering Lead</span>
+                    </button>
+                    <button type="button" class="testi-avatar-btn" data-slide="1" aria-label="Select testimonial from Digital Growth Director">
+                        <div class="avatar-ring">
+                            <span class="avatar-initials avatar-gradient-cyan">DG</span>
+                        </div>
+                        <span class="avatar-role-label">Digital Growth</span>
+                    </button>
+                    <button type="button" class="testi-avatar-btn" data-slide="2" aria-label="Select testimonial from Project Manager">
+                        <div class="avatar-ring">
+                            <span class="avatar-initials avatar-gradient-purple">PM</span>
+                        </div>
+                        <span class="avatar-role-label">Project Manager</span>
+                    </button>
+                </div>
+
+                <!-- 3D / Coverflow Testimonial Stage -->
+                <div class="testimonials-stage-wrapper scroll-reveal-init">
+                    <div class="testimonials-stage" id="testimonialsStage">
+                        <!-- Card 1: Featured Engineering Lead -->
+                        <div class="testimonial-card-item active" data-index="0" onclick="goToTestimonial(0)">
+                            <div class="testi-card-inner">
+                                <div class="testi-card-top">
+                                    <div class="testi-category-pill">
+                                        <i class="fa-solid fa-asterisk"></i>
+                                        <span>Full-Stack Engineering</span>
                                     </div>
+                                    <div class="testi-rating-badge">
+                                        <div class="testi-stars">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="testi-rating-score">5.0</span>
+                                    </div>
+                                </div>
+
+                                <div class="testi-reviewer-header">
+                                    <div class="reviewer-avatar-wrap">
+                                        <span class="avatar-initials avatar-gradient-pink">EL</span>
+                                    </div>
+                                    <div class="reviewer-details">
+                                        <h3 class="reviewer-name">Engineering Lead</h3>
+                                        <p class="reviewer-org">Software &amp; Solutions Team</p>
+                                    </div>
+                                </div>
+
+                                <div class="testi-quote-block">
+                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
+                                    <p class="testi-quote-text">
+                                        "Siam is a skilled full-stack developer who understands both backend stability with Django and responsive UI with React. His dedication to clean code, punctual delivery, and thoughtful problem-solving makes him a true asset to any project."
+                                    </p>
+                                </div>
+
+                                <div class="testi-tags-row">
+                                    <span class="testi-tag-chip">Django REST</span>
+                                    <span class="testi-tag-chip">React UI</span>
+                                    <span class="testi-tag-chip">Clean Code</span>
+                                    <span class="testi-tag-chip">Problem Solving</span>
+                                </div>
+
+                                <div class="testi-card-bottom">
+                                    <span class="testi-verified-badge">
+                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card glass-panel">
-                                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="testimonial-quote">
-                                    "Working with Siam was fantastic. He combines technical development with practical digital marketing acumen. He communicated clearly, resolved complex bugs quickly, and delivered our web application ahead of schedule."
-                                </p>
-                                <div class="client-meta">
-                                    <div class="client-info">
-                                        <h4 class="client-name">Digital Growth Director</h4>
-                                        <p class="client-role">International Business Partner</p>
+                        <!-- Card 2: Digital Growth Director -->
+                        <div class="testimonial-card-item" data-index="1" onclick="goToTestimonial(1)">
+                            <div class="testi-card-inner">
+                                <div class="testi-card-top">
+                                    <div class="testi-category-pill">
+                                        <i class="fa-solid fa-asterisk"></i>
+                                        <span>Digital Growth &amp; Web</span>
                                     </div>
+                                    <div class="testi-rating-badge">
+                                        <div class="testi-stars">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="testi-rating-score">5.0</span>
+                                    </div>
+                                </div>
+
+                                <div class="testi-reviewer-header">
+                                    <div class="reviewer-avatar-wrap">
+                                        <span class="avatar-initials avatar-gradient-cyan">DG</span>
+                                    </div>
+                                    <div class="reviewer-details">
+                                        <h3 class="reviewer-name">Digital Growth Director</h3>
+                                        <p class="reviewer-org">International Business Partner</p>
+                                    </div>
+                                </div>
+
+                                <div class="testi-quote-block">
+                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
+                                    <p class="testi-quote-text">
+                                        "Working with Siam was fantastic. He combines technical development with practical digital marketing acumen. He communicated clearly, resolved complex bugs quickly, and delivered our web application ahead of schedule."
+                                    </p>
+                                </div>
+
+                                <div class="testi-tags-row">
+                                    <span class="testi-tag-chip">Web Applications</span>
+                                    <span class="testi-tag-chip">Digital Growth</span>
+                                    <span class="testi-tag-chip">Agile Delivery</span>
+                                    <span class="testi-tag-chip">Bug Resolution</span>
+                                </div>
+
+                                <div class="testi-card-bottom">
+                                    <span class="testi-verified-badge">
+                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 3 -->
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card glass-panel">
-                                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="testimonial-quote">
-                                    "Siam's approach to API structure and database relations is exemplary. He is enthusiastic, continuously learning the latest in AI and web frameworks, and always delivers polished, maintainable code."
-                                </p>
-                                <div class="client-meta">
-                                    <div class="client-info">
-                                        <h4 class="client-name">Project Manager</h4>
-                                        <p class="client-role">Web & Tech Agency</p>
+                        <!-- Card 3: Project Manager -->
+                        <div class="testimonial-card-item" data-index="2" onclick="goToTestimonial(2)">
+                            <div class="testi-card-inner">
+                                <div class="testi-card-top">
+                                    <div class="testi-category-pill">
+                                        <i class="fa-solid fa-asterisk"></i>
+                                        <span>API &amp; System Design</span>
                                     </div>
+                                    <div class="testi-rating-badge">
+                                        <div class="testi-stars">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="testi-rating-score">5.0</span>
+                                    </div>
+                                </div>
+
+                                <div class="testi-reviewer-header">
+                                    <div class="reviewer-avatar-wrap">
+                                        <span class="avatar-initials avatar-gradient-purple">PM</span>
+                                    </div>
+                                    <div class="reviewer-details">
+                                        <h3 class="reviewer-name">Project Manager</h3>
+                                        <p class="reviewer-org">Web &amp; Tech Agency</p>
+                                    </div>
+                                </div>
+
+                                <div class="testi-quote-block">
+                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
+                                    <p class="testi-quote-text">
+                                        "Siam's approach to API structure and database relations is exemplary. He is enthusiastic, continuously learning the latest in AI and web frameworks, and always delivers polished, maintainable code."
+                                    </p>
+                                </div>
+
+                                <div class="testi-tags-row">
+                                    <span class="testi-tag-chip">API Architecture</span>
+                                    <span class="testi-tag-chip">Database Relations</span>
+                                    <span class="testi-tag-chip">AI Workflows</span>
+                                    <span class="testi-tag-chip">Code Quality</span>
+                                </div>
+
+                                <div class="testi-card-bottom">
+                                    <span class="testi-verified-badge">
+                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Carousel Controls -->
-                    <div class="carousel-controls">
-                        <button id="slider-prev" class="slider-arrow-btn" aria-label="Previous testimonial">
+                    <!-- Carousel Controls (Arrows and Pagination Dots) -->
+                    <div class="testimonials-carousel-controls">
+                        <button type="button" id="slider-prev" class="testi-arrow-btn" aria-label="Previous testimonial">
                             <i class="fa-solid fa-arrow-left"></i>
                         </button>
-                        <div class="slider-dots" id="slider-dots">
-                            <span class="dot active" data-slide="0"></span>
-                            <span class="dot" data-slide="1"></span>
-                            <span class="dot" data-slide="2"></span>
+                        <div class="testi-dots-wrap" id="slider-dots">
+                            <button type="button" class="testi-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                            <button type="button" class="testi-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                            <button type="button" class="testi-dot" data-slide="2" aria-label="Go to slide 3"></button>
                         </div>
-                        <button id="slider-next" class="slider-arrow-btn" aria-label="Next testimonial">
+                        <button type="button" id="slider-next" class="testi-arrow-btn" aria-label="Next testimonial">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -1348,12 +2438,12 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Post 1 -->
                     <article class="blog-card" onclick="openBlogModal(1)">
                         <div class="blog-img-box">
-                            <img src="<?php echo esc_url($b1_url); ?>" alt="Django REST Framework Best Practices" class="blog-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/blog-1.jpg'); ?>" alt="Django REST Framework Best Practices" class="blog-img">
                             <div class="blog-tag">Backend Architecture</div>
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
-                                <span><i class="fa-regular fa-user"></i> <?php echo esc_html($dev_name); ?></span>
+                                <span><i class="fa-regular fa-user"></i> Siam Hossain</span>
                                 <span><i class="fa-regular fa-clock"></i> 6 min read</span>
                                 <span><i class="fa-regular fa-calendar"></i> Oct 2026</span>
                             </div>
@@ -1369,12 +2459,12 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Post 2 -->
                     <article class="blog-card" onclick="openBlogModal(2)">
                         <div class="blog-img-box">
-                            <img src="<?php echo esc_url($b2_url); ?>" alt="React and Next.js" class="blog-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/blog-2.jpg'); ?>" alt="React and Next.js" class="blog-img">
                             <div class="blog-tag">Full-Stack</div>
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
-                                <span><i class="fa-regular fa-user"></i> <?php echo esc_html($dev_name); ?></span>
+                                <span><i class="fa-regular fa-user"></i> Siam Hossain</span>
                                 <span><i class="fa-regular fa-clock"></i> 7 min read</span>
                                 <span><i class="fa-regular fa-calendar"></i> Sep 2026</span>
                             </div>
@@ -1390,12 +2480,12 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                     <!-- Post 3 -->
                     <article class="blog-card" onclick="openBlogModal(3)">
                         <div class="blog-img-box">
-                            <img src="<?php echo esc_url($b3_url); ?>" alt="AI Agents and Automation" class="blog-img">
+                            <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/blog-3.jpg'); ?>" alt="AI Agents and Automation" class="blog-img">
                             <div class="blog-tag">AI & Innovation</div>
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
-                                <span><i class="fa-regular fa-user"></i> <?php echo esc_html($dev_name); ?></span>
+                                <span><i class="fa-regular fa-user"></i> Siam Hossain</span>
                                 <span><i class="fa-regular fa-clock"></i> 5 min read</span>
                                 <span><i class="fa-regular fa-calendar"></i> Aug 2026</span>
                             </div>
@@ -1429,7 +2519,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                                     <div class="detail-icon"><i class="fa-solid fa-envelope"></i></div>
                                     <div class="detail-texts">
                                         <span class="detail-label">Direct Email</span>
-                                        <a href="mailto:<?php echo esc_attr($dev_email); ?>" class="detail-value"><?php echo esc_html($dev_email); ?></a>
+                                        <a href="mailto:mdsiamh77@gmail.com" class="detail-value">mdsiamh77@gmail.com</a>
                                     </div>
                                 </div>
 
@@ -1445,7 +2535,7 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                                     <div class="detail-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                     <div class="detail-texts">
                                         <span class="detail-label">Curriculum Vitae</span>
-                                        <a href="<?php echo esc_url($resume_url); ?>" target="_blank" class="detail-value">View & Download Resume</a>
+                                        <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="detail-value">View & Download Resume</a>
                                     </div>
                                 </div>
                             </div>
@@ -1459,21 +2549,28 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                         <!-- Contact Right Form -->
                         <div class="contact-form-col">
                             <form id="contact-form" class="styled-form" novalidate>
+                                <!-- Anti-Spam Honeypot (Hidden) -->
+                                <div style="display: none;" aria-hidden="true">
+                                    <input type="text" name="_hp_security_check" id="contact-hp" tabindex="-1" autocomplete="off">
+                                </div>
+
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="contact-name">Your Full Name *</label>
-                                        <input type="text" id="contact-name" name="name" class="form-control" placeholder="e.g. John Doe" required>
+                                        <input type="text" id="contact-name" name="name" class="form-control" placeholder="e.g. John Doe" required autocomplete="name">
+                                        <span class="form-error-msg" id="name-error"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="contact-email">Email Address *</label>
-                                        <input type="email" id="contact-email" name="email" class="form-control" placeholder="john@company.com" required>
+                                        <input type="email" id="contact-email" name="email" class="form-control" placeholder="john@company.com" required autocomplete="email">
+                                        <span class="form-error-msg" id="email-error"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="contact-phone">Phone / WhatsApp</label>
-                                        <input type="tel" id="contact-phone" name="phone" class="form-control" placeholder="+880 1xxx-xxxxxx">
+                                        <input type="tel" id="contact-phone" name="phone" class="form-control" placeholder="+880 1xxx-xxxxxx" autocomplete="tel">
                                     </div>
                                     <div class="form-group">
                                         <label for="contact-subject">Project Category</label>
@@ -1491,7 +2588,11 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
                                 <div class="form-group">
                                     <label for="contact-message">Project Vision & Message *</label>
                                     <textarea id="contact-message" name="message" rows="5" class="form-control" placeholder="Tell me about your project goals, tech stack, and timeline..." required></textarea>
+                                    <span class="form-error-msg" id="message-error"></span>
                                 </div>
+
+                                <!-- In-Form Status Alert -->
+                                <div id="contact-status-alert" class="form-status-alert" style="display: none;" role="alert"></div>
 
                                 <button type="submit" id="submit-btn" class="btn btn-primary btn-round btn-full btn-icon-flip">
                                     <span class="btn-text">Send Message Now</span>
@@ -1508,65 +2609,126 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Redesigned Premium Site Footer -->
     <footer class="site-footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand-col">
-                    <a href="#" class="brand-logo">
-                        <img src="<?php echo esc_url($logo_url); ?>" alt="Siam Logo" class="brand-logo-img">
-                        <span>Siam<span class="logo-dot">.</span>dev</span>
+        <div class="footer-bg-decor" aria-hidden="true">
+            <div class="footer-glow-1"></div>
+            <div class="footer-glow-2"></div>
+            <div class="footer-grid-pattern"></div>
+        </div>
+
+        <div class="container footer-container">
+            <!-- Area A: Top CTA Banner -->
+            <div class="footer-cta-banner scroll-reveal-init">
+                <div class="footer-cta-decor" aria-hidden="true">
+                    <div class="cta-glow-pink"></div>
+                </div>
+                <div class="footer-cta-badge">
+                    <i class="fa-solid fa-star"></i>
+                    <span>GET IN TOUCH</span>
+                </div>
+                <h2 class="footer-cta-headline">
+                    Let's Build <span class="gradient-text-pink">Something Great</span> Together.
+                </h2>
+                <p class="footer-cta-subtext">
+                    Have an idea, a project, or an exciting opportunity? Let's turn it into something meaningful.
+                </p>
+                <div class="footer-cta-actions">
+                    <a href="#contact" class="btn-footer-primary">
+                        <span>Hire Me</span>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <p class="footer-bio">
-                        Engineering scalable web applications, secure Django backends, and responsive React interfaces with modern technologies and clean architecture.
-                    </p>
-                    <div class="footer-socials">
-                        <a href="https://github.com/siamhossain7722" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/siamhossain7722/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://www.facebook.com/siamhossain7722/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-links-col">
-                    <h4 class="footer-heading">Navigation</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#skills">Skills & Stack</a></li>
-                        <li><a href="#experience">Experience & Education</a></li>
-                        <li><a href="#portfolio">Projects</a></li>
-                        <li><a href="#achievements">Achievements</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-links-col">
-                    <h4 class="footer-heading">Core Skills</h4>
-                    <ul>
-                        <li><a href="#skills">Django & DRF APIs</a></li>
-                        <li><a href="#skills">React & Next.js</a></li>
-                        <li><a href="#skills">Python & FastAPI</a></li>
-                        <li><a href="#skills">PostgreSQL & Databases</a></li>
-                        <li><a href="#skills">Digital Marketing & WordPress</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-newsletter-col">
-                    <h4 class="footer-heading">Curriculum Vitae</h4>
-                    <p class="newsletter-desc">Download my full professional resume for detailed background, education, and project portfolio.</p>
-                    <a href="<?php echo esc_url($resume_url); ?>" target="_blank" class="btn btn-secondary btn-round btn-full" style="margin-top: 10px;">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        <span>Download Resume (PDF)</span>
+                    <a href="#contact" class="btn-footer-secondary">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>Contact Me</span>
                     </a>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2026 <?php echo esc_html($dev_name); ?>. Crafted with HTML5, CSS3 & JavaScript. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
+            <!-- Area B: Four-Column Footer Grid -->
+            <div class="footer-grid scroll-reveal-init">
+                <!-- Column 1: Brand Identity -->
+                <div class="footer-col footer-brand-col">
+                    <a href="#home" class="brand-logo footer-logo">
+                        <img src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/images/logo.png'); ?>" alt="Siam Logo" class="brand-logo-img">
+                        <span>Siam<span class="logo-dot">.</span>dev</span>
+                    </a>
+                    <p class="footer-brand-desc">
+                        Engineering scalable web applications, secure Django backends, and responsive React interfaces with modern technologies and clean architecture.
+                    </p>
+                    <div class="footer-avail-pill">
+                        <span class="avail-pulse-dot"></span>
+                        <span>Available for Opportunities</span>
+                    </div>
+                    <div class="footer-socials">
+                        <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/siamhossain7722/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.facebook.com/siamhossain7722/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Navigation -->
+                <div class="footer-col footer-nav-col">
+                    <h4 class="footer-col-heading">Explore</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> About Me</a></li>
+                        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#skills"><i class="fa-solid fa-chevron-right"></i> Skills &amp; Stack</a></li>
+                        <li><a href="#experience"><i class="fa-solid fa-chevron-right"></i> Experience &amp; Education</a></li>
+                        <li><a href="#portfolio"><i class="fa-solid fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#achievements"><i class="fa-solid fa-chevron-right"></i> Achievements</a></li>
+                        <li><a href="#testimonials"><i class="fa-solid fa-chevron-right"></i> Reviews</a></li>
+                        <li><a href="#blog"><i class="fa-solid fa-chevron-right"></i> Articles</a></li>
+                        <li><a href="#contact"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Core Expertise -->
+                <div class="footer-col footer-skills-col">
+                    <h4 class="footer-col-heading">Core Expertise</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#skills"><i class="fa-solid fa-code"></i> Django &amp; DRF APIs</a></li>
+                        <li><a href="#skills"><i class="fa-brands fa-react"></i> React &amp; Next.js</a></li>
+                        <li><a href="#skills"><i class="fa-brands fa-python"></i> Python &amp; FastAPI</a></li>
+                        <li><a href="#skills"><i class="fa-solid fa-database"></i> PostgreSQL &amp; Databases</a></li>
+                        <li><a href="#skills"><i class="fa-brands fa-wordpress"></i> Digital Marketing &amp; WordPress</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Resources & Contact -->
+                <div class="footer-col footer-resources-col">
+                    <h4 class="footer-col-heading">Resources</h4>
+                    <ul class="footer-links-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="footer-resume-btn">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>Download Resume (PDF)</span>
+                            </a>
+                        </li>
+                        <li><a href="#portfolio"><i class="fa-solid fa-layer-group"></i> View Projects</a></li>
+                        <li><a href="#contact"><i class="fa-regular fa-envelope"></i> Contact Me</a></li>
+                        <li><a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Profile</a></li>
+                        <li><a href="https://www.linkedin.com/in/siamhossain7722/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Area C: Bottom Copyright Bar -->
+            <div class="footer-bottom-bar">
+                <p class="footer-copyright">
+                    &copy; 2026 Siam Hossain. Crafted with HTML5, CSS3 &amp; JavaScript. All rights reserved.
+                </p>
+                <div class="footer-legal-links">
+                    <a href="javascript:void(0)" onclick="openPrivacyModal()">Privacy Policy</a>
+                    <span class="legal-separator">•</span>
+                    <a href="javascript:void(0)" onclick="openTermsModal()">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -1591,6 +2753,11 @@ $resume_url = 'https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr
         </div>
     </div>
 
+    <!-- JavaScript -->
+    
+
     <?php wp_footer(); ?>
+    <!-- Custom JavaScript -->
+    <script src="<?php echo esc_url(SIAM_PORTFOLIO_URL . 'assets/js/main.js?v=' . SIAM_PORTFOLIO_VERSION); ?>"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
  * Plugin Name: Siam Hossain - Full Stack Developer Portfolio
  * Plugin URI: https://github.com/siamhossain7722
  * Description: Siam Hossain personal developer portfolio landing page with interactive dark/light theme, typewriter headline, animated counters, filterable project modals, achievements lightbox, and lead capture.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Siam Hossain
  * Author URI: https://github.com/siamhossain7722
  * License: GPL-2.0+
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('SIAM_PORTFOLIO_VERSION', '1.1.0');
+define('SIAM_PORTFOLIO_VERSION', '1.2.0');
 define('SIAM_PORTFOLIO_PATH', plugin_dir_path(__FILE__));
 define('SIAM_PORTFOLIO_URL', plugin_dir_url(__FILE__));
 

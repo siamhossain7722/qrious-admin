@@ -6,49 +6,232 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================================================
-       1. TYPEWRITER EFFECT
+       1. DYNAMIC HERO ROLE TYPING EFFECT
        ========================================================================== */
-    const typewriterElement = document.getElementById('typewriter');
-    const words = [
-        "Full Stack Developer.",
-        "Django Developer.",
-        "React Developer.",
-        "API Engineer.",
-        "Digital Marketing Manager.",
-        "Software Developer."
+    const typingRoleElement = document.getElementById('hero-typing-role') || document.getElementById('typewriter');
+    const roles = [
+        "Full Stack Developer",
+        "Django & React Developer",
+        "Backend Developer",
+        "Web Application Developer"
     ];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 90;
+    let roleIndex = 0;
+    let charIndex = roles[0].length; // Start with full initial text
+    let isDeleting = true;
+    let typingSpeed = 85;
+    let typingTimeoutId = null;
 
-    function typeWriterEffect() {
-        if (!typewriterElement) return;
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const currentWord = words[wordIndex];
-        
+    function dynamicTypeEffect() {
+        if (!typingRoleElement || prefersReducedMotion) return;
+
+        const currentPhrase = roles[roleIndex];
+
         if (isDeleting) {
-            typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
-            typingSpeed = 45;
+            typingRoleElement.textContent = currentPhrase.substring(0, charIndex);
+            typingSpeed = 42; // Fast deleting
         } else {
-            typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
             charIndex++;
-            typingSpeed = 90;
+            typingRoleElement.textContent = currentPhrase.substring(0, charIndex);
+            typingSpeed = 85; // Natural typing speed
         }
 
-        if (!isDeleting && charIndex === currentWord.length) {
-            typingSpeed = 2200; // Pause at full word
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typingSpeed = 1800; // Pause at complete phrase
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typingSpeed = 400; // Short pause before typing next
+            roleIndex = (roleIndex + 1) % roles.length;
+            typingSpeed = 400; // Short pause before typing next phrase
         }
 
-        setTimeout(typeWriterEffect, typingSpeed);
+        typingTimeoutId = setTimeout(dynamicTypeEffect, typingSpeed);
     }
-    typeWriterEffect();
+
+    // Give user time to see initial "Full Stack Developer" after entrance animation settles
+    if (typingRoleElement && !prefersReducedMotion) {
+        typingTimeoutId = setTimeout(dynamicTypeEffect, 2000);
+    }
+
+    /* ==========================================================================
+       1B. DYNAMIC FLOATING TECHNOLOGY SHOWCASE (Hero Section)
+       Continuous 3-second animated rotation across predefined tech & marketing stacks
+       ========================================================================== */
+    const heroFloatingSets = [
+        // Set 1: Core Foundation (Initial)
+        [
+            { name: "Django", icon: '<i class="devicon-django-plain" style="color: #2BA977;"></i>' },
+            { name: "Javascript", icon: '<span class="annotation-badge-mini" style="background:#F7DF1E; color:#000;">JS</span>' },
+            { name: "React", icon: '<i class="devicon-react-original colored"></i>' }
+        ],
+        // Set 2: Modern Backend & Databases
+        [
+            { name: "Python", icon: '<i class="devicon-python-plain colored"></i>' },
+            { name: "FastAPI", icon: '<i class="devicon-fastapi-plain" style="color: #05998B;"></i>' },
+            { name: "PostgreSQL", icon: '<i class="devicon-postgresql-plain colored"></i>' }
+        ],
+        // Set 3: Modern Full-Stack & SSR
+        [
+            { name: "Next.js", icon: '<i class="devicon-nextjs-plain"></i>' },
+            { name: "Node.js", icon: '<i class="devicon-nodejs-plain colored"></i>' },
+            { name: "Express.js", icon: '<i class="devicon-express-original"></i>' }
+        ],
+        // Set 4: Modern Frontend & Typing
+        [
+            { name: "Tailwind CSS", icon: '<i class="devicon-tailwindcss-original colored"></i>' },
+            { name: "TypeScript", icon: '<i class="devicon-typescript-plain colored"></i>' },
+            { name: "HTML5 & CSS3", icon: '<i class="devicon-html5-plain colored"></i>' }
+        ],
+        // Set 5: Architecture & Infrastructure
+        [
+            { name: "Django REST", icon: '<i class="fa-solid fa-code" style="color: #FF0066;"></i>' },
+            { name: "REST API", icon: '<i class="fa-solid fa-network-wired" style="color: #00B4D8;"></i>' },
+            { name: "Docker", icon: '<i class="devicon-docker-plain colored"></i>' }
+        ],
+        // Set 6: Modern Databases & Cloud
+        [
+            { name: "Supabase", icon: '<i class="devicon-supabase-plain colored"></i>' },
+            { name: "GitHub & Git", icon: '<i class="fa-brands fa-github"></i>' },
+            { name: "MySQL & SQLite", icon: '<i class="devicon-mysql-plain colored"></i>' }
+        ],
+        // Set 7: Digital Marketing & Analytics
+        [
+            { name: "Meta Ads", icon: '<i class="fa-brands fa-meta" style="color: #0081FB;"></i>' },
+            { name: "Google Analytics", icon: '<i class="fa-solid fa-chart-simple" style="color: #FFA500;"></i>' },
+            { name: "Google Ads", icon: '<i class="fa-brands fa-google" style="color: #4285F4;"></i>' }
+        ],
+        // Set 8: CMS, SEO & Growth
+        [
+            { name: "WordPress", icon: '<i class="fa-brands fa-wordpress" style="color: #21759B;"></i>' },
+            { name: "SEO & Growth", icon: '<i class="fa-solid fa-chart-line" style="color: #10B981;"></i>' },
+            { name: "Email Marketing", icon: '<i class="fa-solid fa-envelope-open-text" style="color: #FF0066;"></i>' }
+        ]
+    ];
+
+    const rotators = [
+        {
+            pos: document.getElementById('heroAnnotPos1'),
+            wrap: document.getElementById('heroRotator1'),
+            text: document.getElementById('heroAnnotText1'),
+            icon: document.getElementById('heroAnnotIcon1')
+        },
+        {
+            pos: document.getElementById('heroAnnotPos2'),
+            wrap: document.getElementById('heroRotator2'),
+            text: document.getElementById('heroAnnotText2'),
+            icon: document.getElementById('heroAnnotIcon2')
+        },
+        {
+            pos: document.getElementById('heroAnnotPos3'),
+            wrap: document.getElementById('heroRotator3'),
+            text: document.getElementById('heroAnnotText3'),
+            icon: document.getElementById('heroAnnotIcon3')
+        }
+    ];
+
+    let currentHeroTechIndex = 0;
+    let heroTechInterval = null;
+    let isHeroTechTransitioning = false;
+
+    function rotateHeroTechShowcase() {
+        if (!rotators[0].wrap || !rotators[1].wrap || !rotators[2].wrap) return;
+
+        const nextIndex = (currentHeroTechIndex + 1) % heroFloatingSets.length;
+        const nextSet = heroFloatingSets[nextIndex];
+
+        if (prefersReducedMotion) {
+            currentHeroTechIndex = nextIndex;
+            rotators.forEach((item, idx) => {
+                if (item.text) item.text.textContent = nextSet[idx].name;
+                if (item.icon) item.icon.innerHTML = nextSet[idx].icon;
+            });
+            return;
+        }
+
+        if (isHeroTechTransitioning) return;
+        isHeroTechTransitioning = true;
+
+        // Step 1: Staggered exit animation (fade + scale down + move slightly)
+        rotators.forEach((item, idx) => {
+            if (item.pos) item.pos.classList.add('is-animating');
+            setTimeout(() => {
+                if (item.wrap) {
+                    item.wrap.classList.remove('anim-active', 'anim-enter');
+                    item.wrap.classList.add('anim-exit');
+                }
+            }, idx * 70);
+        });
+
+        // Step 2: Swap content at opacity 0
+        setTimeout(() => {
+            currentHeroTechIndex = nextIndex;
+            rotators.forEach((item, idx) => {
+                if (item.text) item.text.textContent = nextSet[idx].name;
+                if (item.icon) item.icon.innerHTML = nextSet[idx].icon;
+                if (item.wrap) {
+                    item.wrap.classList.remove('anim-exit');
+                    item.wrap.classList.add('anim-enter');
+                    void item.wrap.offsetWidth; // Force CSS reflow
+                }
+            });
+
+            // Step 3: Staggered entry animation (scale up 0.78 -> 1, fade in, restore glow)
+            rotators.forEach((item, idx) => {
+                setTimeout(() => {
+                    if (item.wrap) {
+                        item.wrap.classList.remove('anim-enter');
+                        item.wrap.classList.add('anim-active');
+                    }
+                }, idx * 70);
+            });
+
+            // Step 4: Finalize transition & re-enable gentle float
+            setTimeout(() => {
+                rotators.forEach((item) => {
+                    if (item.pos) item.pos.classList.remove('is-animating');
+                    if (item.wrap) item.wrap.classList.remove('anim-active');
+                });
+                isHeroTechTransitioning = false;
+            }, 600);
+        }, 400);
+    }
+
+    // Start 3-second continuous rotation timer
+    if (rotators[0].wrap && rotators[1].wrap && rotators[2].wrap) {
+        heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
+
+        // Pause when tab is inactive to optimize memory & performance
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (heroTechInterval) {
+                    clearInterval(heroTechInterval);
+                    heroTechInterval = null;
+                }
+            } else {
+                if (!heroTechInterval) {
+                    heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
+                }
+            }
+        });
+
+        // Pause on portrait hover so user can read / inspect
+        const heroStageWrap = document.querySelector('.stage-portrait-wrapper') || document.querySelector('.hero-visual');
+        if (heroStageWrap) {
+            heroStageWrap.addEventListener('mouseenter', () => {
+                if (heroTechInterval) {
+                    clearInterval(heroTechInterval);
+                    heroTechInterval = null;
+                }
+            });
+            heroStageWrap.addEventListener('mouseleave', () => {
+                if (!heroTechInterval && !document.hidden) {
+                    heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
+                }
+            });
+        }
+    }
 
     /* ==========================================================================
        2. STICKY HEADER & ACTIVE SECTION NAVIGATION
@@ -88,6 +271,25 @@ document.addEventListener('DOMContentLoaded', () => {
         updateBackToTop(scrollPos);
     });
 
+    // Smooth Scroll Navigation with sticky header offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = document.querySelector('.main-header')?.offsetHeight || 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 15;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
     /* ==========================================================================
        3. OFFCANVAS SIDEBAR LOGIC
        ========================================================================== */
@@ -95,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const offcanvasSidebar = document.getElementById('offcanvas-sidebar');
     const offcanvasOverlay = document.getElementById('offcanvas-overlay');
     const offcanvasClose = document.getElementById('offcanvas-close');
-    const offcanvasLinks = document.querySelectorAll('.offcanvas-nav a');
+    const offcanvasLinks = document.querySelectorAll('.offcanvas-sidebar a');
 
     function openOffcanvas() {
         offcanvasSidebar.classList.add('active');
@@ -127,7 +329,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        4. THEME SWITCHER (Dark & Light Mode)
        ========================================================================== */
-    function applyTheme(theme) {
+    function applyTheme(theme, isUserAction = false) {
+        if (isUserAction) {
+            document.documentElement.classList.add('theme-transitioning');
+            setTimeout(() => {
+                document.documentElement.classList.remove('theme-transitioning');
+            }, 300);
+        }
         document.documentElement.setAttribute('data-theme', theme);
         if (document.body) {
             document.body.setAttribute('data-theme', theme);
@@ -141,58 +349,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn, #theme-toggle, .mobile-theme-toggle');
     const storedTheme = localStorage.getItem('siam_portfolio_theme') || 'dark';
-    applyTheme(storedTheme);
+    applyTheme(storedTheme, false);
 
     themeToggleBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(newTheme);
+            applyTheme(newTheme, true);
             showToast('Theme Updated', `Switched to ${newTheme} mode`, 'success');
         });
     });
 
     /* ==========================================================================
-       5. IMPACT COUNTERS (Animated Number Increments)
+       5. IMPACT & DASHBOARD COUNTERS (Animated Number Increments)
        ========================================================================== */
-    const counterElements = document.querySelectorAll('.counter-val');
-    let countersStarted = false;
+    const counterContainers = document.querySelectorAll('.counter-section, .services-stats-bar, .skills-stats-panel');
+    if (counterContainers.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter-val');
+                    counters.forEach(counter => {
+                        if (counter.getAttribute('data-counted')) return;
+                        counter.setAttribute('data-counted', 'true');
+                        const target = parseInt(counter.getAttribute('data-target'), 10);
+                        const duration = 1600;
+                        const stepTime = 30;
+                        const totalSteps = duration / stepTime;
+                        const increment = target / totalSteps;
+                        let current = 0;
 
-    function startCounters() {
-        counterElements.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'), 10);
-            const duration = 1800;
-            const stepTime = 30;
-            const totalSteps = duration / stepTime;
-            const increment = target / totalSteps;
-            let current = 0;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    counter.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    counter.textContent = Math.ceil(current);
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.ceil(current);
+                            }
+                        }, stepTime);
+                    });
                 }
-            }, stepTime);
+            });
+        }, { threshold: 0.2 });
+
+        counterContainers.forEach(container => {
+            counterObserver.observe(container);
         });
     }
 
-    const counterSection = document.querySelector('.counter-section');
-    if (counterSection) {
-        const counterObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !countersStarted) {
-                countersStarted = true;
-                startCounters();
-            }
-        }, { threshold: 0.3 });
-        counterObserver.observe(counterSection);
-    }
-
     /* ==========================================================================
-       6. SKILL BARS VIEWPORT ANIMATION
+       6. SKILL BARS VIEWPORT ANIMATION (Staggered Fill)
        ========================================================================== */
     const skillSection = document.getElementById('skills');
     const progressFills = document.querySelectorAll('.progress-fill');
@@ -202,12 +410,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const skillObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !skillsAnimated) {
                 skillsAnimated = true;
-                progressFills.forEach(fill => {
-                    const targetWidth = fill.getAttribute('data-progress');
-                    fill.style.width = `${targetWidth}%`;
+                progressFills.forEach((fill, idx) => {
+                    setTimeout(() => {
+                        const targetWidth = fill.getAttribute('data-progress');
+                        fill.style.width = `${targetWidth}%`;
+                    }, idx * 75);
                 });
             }
-        }, { threshold: 0.25 });
+        }, { threshold: 0.15 });
         skillObserver.observe(skillSection);
     }
 
@@ -238,36 +448,141 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       8. PORTFOLIO FILTERING
+       8. ADVANCED PORTFOLIO FILTERING, REAL-TIME SEARCH & SORTING
        ========================================================================== */
     const filterBtns = document.querySelectorAll('.portfolio-filter-tabs .filter-btn');
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const portfolioGrid = document.getElementById('portfolioProjectsGrid');
+    const portfolioCards = Array.from(document.querySelectorAll('.portfolio-grid .portfolio-card'));
+    const searchInput = document.getElementById('projectSearchInput');
+    const searchClearBtn = document.getElementById('projectSearchClear');
+    const sortSelect = document.getElementById('projectSortSelect');
+    const emptyState = document.getElementById('projectsEmptyState');
+    const resetFiltersBtn = document.getElementById('btnResetProjectFilters');
 
+    let currentFilter = 'all';
+    let currentSearch = '';
+    let currentSort = 'latest';
+
+    function updateProjectsDisplay() {
+        if (!portfolioCards.length) return;
+
+        let visibleCount = 0;
+
+        // 1. Filter & Search
+        portfolioCards.forEach(card => {
+            const categories = (card.getAttribute('data-category') || '').toLowerCase();
+            const title = (card.querySelector('.project-title-text')?.innerText || '').toLowerCase();
+            const desc = (card.querySelector('.project-desc-text')?.innerText || '').toLowerCase();
+            const techChips = Array.from(card.querySelectorAll('.tech-chip')).map(c => c.innerText.toLowerCase()).join(' ');
+            const cardSearchBlob = `${title} ${desc} ${techChips} ${categories}`;
+
+            const matchesCategory = (currentFilter === 'all') || categories.includes(currentFilter);
+            const matchesSearch = !currentSearch || cardSearchBlob.includes(currentSearch);
+
+            if (matchesCategory && matchesSearch) {
+                card.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                });
+                visibleCount++;
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    if (card.style.opacity === '0') {
+                        card.style.display = 'none';
+                    }
+                }, 200);
+            }
+        });
+
+        // 2. Sort cards in DOM
+        if (portfolioGrid) {
+            const sortedCards = [...portfolioCards].sort((a, b) => {
+                if (currentSort === 'latest') {
+                    return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
+                } else if (currentSort === 'oldest') {
+                    return (a.getAttribute('data-date') || '').localeCompare(b.getAttribute('data-date') || '');
+                } else if (currentSort === 'featured') {
+                    const featA = parseInt(a.getAttribute('data-featured') || '0', 10);
+                    const featB = parseInt(b.getAttribute('data-featured') || '0', 10);
+                    return featB - featA;
+                } else if (currentSort === 'alpha') {
+                    const nameA = (a.getAttribute('data-name') || '').toLowerCase();
+                    const nameB = (b.getAttribute('data-name') || '').toLowerCase();
+                    return nameA.localeCompare(nameB);
+                }
+                return 0;
+            });
+
+            sortedCards.forEach(c => portfolioGrid.appendChild(c));
+        }
+
+        // 3. Show/hide empty state
+        if (emptyState) {
+            emptyState.style.display = (visibleCount === 0) ? 'block' : 'none';
+        }
+
+        // 4. Show/hide search clear button
+        if (searchClearBtn) {
+            searchClearBtn.style.display = currentSearch ? 'inline-flex' : 'none';
+        }
+    }
+
+    // Category button click
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            portfolioCards.forEach(card => {
-                const categories = card.getAttribute('data-category') || '';
-                if (filterValue === 'all' || categories.includes(filterValue)) {
-                    card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 50);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
+            currentFilter = btn.getAttribute('data-filter') || 'all';
+            updateProjectsDisplay();
         });
     });
+
+    // Search input live typing
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim().toLowerCase();
+            updateProjectsDisplay();
+        });
+    }
+
+    // Search clear button
+    if (searchClearBtn) {
+        searchClearBtn.addEventListener('click', () => {
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+            }
+            currentSearch = '';
+            updateProjectsDisplay();
+        });
+    }
+
+    // Sort dropdown change
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            updateProjectsDisplay();
+        });
+    }
+
+    // Reset filters button
+    if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', () => {
+            currentFilter = 'all';
+            currentSearch = '';
+            currentSort = 'latest';
+            filterBtns.forEach(b => {
+                if (b.getAttribute('data-filter') === 'all') b.classList.add('active');
+                else b.classList.remove('active');
+            });
+            if (searchInput) searchInput.value = '';
+            if (sortSelect) sortSelect.value = 'latest';
+            updateProjectsDisplay();
+        });
+    }
 
     /* ==========================================================================
        8B. ACHIEVEMENTS & CERTIFICATIONS FILTERING
@@ -302,49 +617,117 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       9. TESTIMONIALS SLIDER
+       9. TESTIMONIALS COVERFLOW CAROUSEL & AVATAR SELECTOR
        ========================================================================== */
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.slider-dots .dot');
-    const prevBtn = document.getElementById('slider-prev');
-    const nextBtn = document.getElementById('slider-next');
-    let currentSlide = 0;
-    let autoSlideInterval;
+    const testiCards = document.querySelectorAll('.testimonial-card-item');
+    const testiAvatarBtns = document.querySelectorAll('.testi-avatar-btn');
+    const testiDots = document.querySelectorAll('.testi-dot');
+    const testiPrevBtn = document.getElementById('slider-prev');
+    const testiNextBtn = document.getElementById('slider-next');
+    const testiStageWrapper = document.querySelector('.testimonials-stage-wrapper');
+    let currentTestiSlide = 0;
+    let testiAutoSlideTimer = null;
 
-    function goToSlide(n) {
-        if (!slides.length) return;
-        slides.forEach(s => s.classList.remove('active'));
-        dots.forEach(d => d.classList.remove('active'));
+    function updateTestimonialStage(index) {
+        if (!testiCards.length) return;
+        currentTestiSlide = (index + testiCards.length) % testiCards.length;
 
-        currentSlide = (n + slides.length) % slides.length;
-        slides[currentSlide].classList.add('active');
-        if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+        testiCards.forEach((card, idx) => {
+            card.classList.remove('active', 'is-prev', 'is-next');
+            if (idx === currentTestiSlide) {
+                card.classList.add('active');
+            } else if (idx === (currentTestiSlide - 1 + testiCards.length) % testiCards.length) {
+                card.classList.add('is-prev');
+            } else {
+                card.classList.add('is-next');
+            }
+        });
+
+        testiAvatarBtns.forEach((btn, idx) => {
+            btn.classList.toggle('active', idx === currentTestiSlide);
+        });
+
+        testiDots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentTestiSlide);
+        });
     }
 
-    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+    window.goToTestimonial = function(index) {
+        updateTestimonialStage(index);
+    };
 
-    dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => goToSlide(idx));
+    if (testiPrevBtn) {
+        testiPrevBtn.addEventListener('click', () => {
+            updateTestimonialStage(currentTestiSlide - 1);
+        });
+    }
+
+    if (testiNextBtn) {
+        testiNextBtn.addEventListener('click', () => {
+            updateTestimonialStage(currentTestiSlide + 1);
+        });
+    }
+
+    testiAvatarBtns.forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+            updateTestimonialStage(idx);
+        });
     });
 
-    function startAutoSlide() {
-        if (!slides.length) return;
-        autoSlideInterval = setInterval(() => {
-            goToSlide(currentSlide + 1);
-        }, 6500);
+    testiDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            updateTestimonialStage(idx);
+        });
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (testiStageWrapper) {
+        testiStageWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        testiStageWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleTestiSwipe();
+        }, { passive: true });
     }
 
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
+    function handleTestiSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            updateTestimonialStage(currentTestiSlide + 1);
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            updateTestimonialStage(currentTestiSlide - 1);
+        }
     }
 
-    const sliderWrapper = document.querySelector('.testimonials-carousel-wrapper');
-    if (sliderWrapper) {
-        startAutoSlide();
-        sliderWrapper.addEventListener('mouseenter', stopAutoSlide);
-        sliderWrapper.addEventListener('mouseleave', startAutoSlide);
+    // Auto-advance carousel unless user prefers reduced motion
+    function startTestiAutoSlide() {
+        if (!testiCards.length || prefersReducedMotion) return;
+        stopTestiAutoSlide();
+        testiAutoSlideTimer = setInterval(() => {
+            updateTestimonialStage(currentTestiSlide + 1);
+        }, 7000);
     }
+
+    function stopTestiAutoSlide() {
+        if (testiAutoSlideTimer) {
+            clearInterval(testiAutoSlideTimer);
+            testiAutoSlideTimer = null;
+        }
+    }
+
+    if (testiStageWrapper && !prefersReducedMotion) {
+        startTestiAutoSlide();
+        testiStageWrapper.addEventListener('mouseenter', stopTestiAutoSlide);
+        testiStageWrapper.addEventListener('mouseleave', startTestiAutoSlide);
+    }
+
+    // Initialize first state
+    updateTestimonialStage(0);
 
     /* ==========================================================================
        10. BACK TO TOP BUTTON WITH CIRCULAR SCROLL PROGRESS
@@ -383,33 +766,176 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       11. INTERACTIVE CONTACT & NEWSLETTER FORM SUBMISSION
+       11. SECURE CONTACT FORM SUBMISSION WITH REAL EMAIL DELIVERY (RESEND API)
        ========================================================================== */
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const phoneInput = document.getElementById('contact-phone');
+        const subjectSelect = document.getElementById('contact-subject');
+        const messageInput = document.getElementById('contact-message');
+        const hpInput = document.getElementById('contact-hp');
+        const submitBtn = document.getElementById('submit-btn');
+        const statusAlert = document.getElementById('contact-status-alert');
+
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const messageError = document.getElementById('message-error');
+
+        function clearErrors() {
+            [nameInput, emailInput, messageInput].forEach(inp => {
+                if (inp) inp.classList.remove('input-error');
+            });
+            [nameError, emailError, messageError].forEach(err => {
+                if (err) {
+                    err.textContent = '';
+                    err.classList.remove('visible');
+                }
+            });
+        }
+
+        function showFieldError(inputEl, errorEl, message) {
+            if (inputEl) inputEl.classList.add('input-error');
+            if (errorEl) {
+                errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
+                errorEl.classList.add('visible');
+            }
+        }
+
+        function validateEmailFormat(val) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(val).toLowerCase());
+        }
+
+        // Clear error as user types
+        [nameInput, emailInput, messageInput].forEach(inp => {
+            if (inp) {
+                inp.addEventListener('input', () => {
+                    inp.classList.remove('input-error');
+                    const errId = `${inp.name}-error`;
+                    const errEl = document.getElementById(errId);
+                    if (errEl) {
+                        errEl.textContent = '';
+                        errEl.classList.remove('visible');
+                    }
+                });
+            }
+        });
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            clearErrors();
+            if (statusAlert) {
+                statusAlert.style.display = 'none';
+                statusAlert.innerHTML = '';
+            }
 
-            const name = document.getElementById('contact-name').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const message = document.getElementById('contact-message').value.trim();
-            const submitBtn = document.getElementById('submit-btn');
+            const name = (nameInput ? nameInput.value : '').trim();
+            const email = (emailInput ? emailInput.value : '').trim();
+            const phone = (phoneInput ? phoneInput.value : '').trim();
+            const subject = subjectSelect ? subjectSelect.value : 'General Inquiry';
+            const message = (messageInput ? messageInput.value : '').trim();
+            const hp = hpInput ? hpInput.value.trim() : '';
 
-            if (!name || !email || !message) {
-                showToast('Validation Error', 'Please complete all required fields.', 'error');
+            let hasError = false;
+
+            if (!name) {
+                showFieldError(nameInput, nameError, 'Please provide your full name.');
+                hasError = true;
+            }
+
+            if (!email) {
+                showFieldError(emailInput, emailError, 'Please provide your email address.');
+                hasError = true;
+            } else if (!validateEmailFormat(email)) {
+                showFieldError(emailInput, emailError, 'Please enter a valid email address (e.g. name@domain.com).');
+                hasError = true;
+            }
+
+            if (!message) {
+                showFieldError(messageInput, messageError, 'Please provide your project vision or message.');
+                hasError = true;
+            } else if (message.length < 10) {
+                showFieldError(messageInput, messageError, 'Message must be at least 10 characters long.');
+                hasError = true;
+            }
+
+            if (hasError) {
+                const firstInvalid = contactForm.querySelector('.input-error');
+                if (firstInvalid) firstInvalid.focus();
                 return;
             }
 
-            const originalText = submitBtn.innerHTML;
+            // Loading state: Disable submit button & show sending animation
+            const originalBtnHtml = submitBtn.innerHTML;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span>Sending Dispatch...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+            submitBtn.classList.add('is-loading');
+            submitBtn.innerHTML = `
+                <span class="btn-text">Sending your message...</span>
+                <span class="icon-wrap">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                </span>
+            `;
 
-            setTimeout(() => {
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        phone,
+                        subject,
+                        message,
+                        _hp_security_check: hp
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && data.success) {
+                    // Success State: Clear form & show single professional toast
+                    contactForm.reset();
+                    showToast(
+                        'Message Sent Successfully!',
+                        "Thank you for reaching out. Your message has been delivered successfully. I'll get back to you as soon as possible.",
+                        'success',
+                        6000
+                    );
+                } else {
+                    // Error State: Log server info quietly, show clean non-technical single error toast
+                    console.error('[Contact Dispatch Error]', data);
+                    if (response.status === 429) {
+                        showToast(
+                            'Please Slow Down',
+                            'You have sent multiple messages recently. Please wait a few moments before trying again.',
+                            'error',
+                            7000
+                        );
+                    } else {
+                        showToast(
+                            'Message Could Not Be Delivered',
+                            'Something went wrong while sending your message. Please try again or contact me directly through email.',
+                            'error',
+                            7000
+                        );
+                    }
+                }
+            } catch (err) {
+                console.error('[Contact Network Error]', err);
+                showToast(
+                    'Message Could Not Be Delivered',
+                    'Something went wrong while sending your message. Please try again or contact me directly through email.',
+                    'error',
+                    7000
+                );
+            } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                contactForm.reset();
-                showToast('Message Received!', `Thank you ${name}! Your message has been received. Siam will get back to you shortly at ${email}.`, 'success');
-            }, 1200);
+                submitBtn.classList.remove('is-loading');
+                submitBtn.innerHTML = originalBtnHtml;
+            }
         });
     }
 
@@ -422,6 +948,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToast('Subscription Confirmed', 'You are now subscribed to Siam\'s latest technology insights.', 'success');
                 emailInput.value = '';
             }
+        });
+    }
+
+    /* ==========================================================================
+       12. SCROLL-TRIGGERED ENTRANCE ANIMATIONS (IntersectionObserver)
+       ========================================================================== */
+    if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        const revealTargets = document.querySelectorAll(
+            'section:not(#home), .scroll-reveal-init, .service-card, .service-card-premium, .portfolio-card, .timeline-item, .blog-card, .achievement-card'
+        );
+
+        const scrollRevealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.1
+        });
+
+        revealTargets.forEach(el => {
+            el.classList.add('scroll-reveal-init');
+            scrollRevealObserver.observe(el);
         });
     }
 });
@@ -473,6 +1026,28 @@ const projectsData = {
         liveUrl: "https://www.constructivepartnerslimited.com/",
         githubUrl: "https://github.com/siamhossain7722/Constructions",
         desc: "A commercial service platform providing end-to-end building services, heavy equipment sales, machinery rentals, and building materials across Bangladesh. Features dynamic catalogs, responsive layouts, and modern Next.js frontend."
+    },
+    5: {
+        title: "TaskFlow - Task & Team Management",
+        tag: "Django & React Full-Stack",
+        img: "assets/images/project-1.jpg",
+        client: "Productivity Platform",
+        timeline: "Completed",
+        tech: "Django, React, REST API, PostgreSQL, Tailwind CSS",
+        liveUrl: "https://github.com/siamhossain7722",
+        githubUrl: "https://github.com/siamhossain7722",
+        desc: "A scalable project and task management platform featuring real-time task tracking, board view, team collaboration, progress analytics, and modern RESTful API integrations."
+    },
+    6: {
+        title: "Portfolio API - High-Performance Backend",
+        tag: "Python & FastAPI Architecture",
+        img: "assets/images/project-4.jpg",
+        client: "Backend Infrastructure",
+        timeline: "Production Deployment",
+        tech: "Python, FastAPI, DRF, PostgreSQL, JWT Auth",
+        liveUrl: "https://github.com/siamhossain7722",
+        githubUrl: "https://github.com/siamhossain7722",
+        desc: "A robust, high-performance RESTful API powering personal portfolio applications and client services with rate limiting, token-based authentication, structured caching, and auto-generated OpenAPI documentation."
     }
 };
 
@@ -726,9 +1301,12 @@ function openBlogModal(id) {
 /* ==========================================================================
    13. TOAST NOTIFICATION UTILITY
    ========================================================================== */
-function showToast(title, message, type = 'success') {
+function showToast(title, message, type = 'success', duration = 5000) {
     const container = document.getElementById('toast-container');
     if (!container) return;
+
+    // Remove any active toast so only one notification is shown at a time
+    container.innerHTML = '';
 
     const toast = document.createElement('div');
     toast.className = `custom-toast ${type}`;
@@ -752,5 +1330,54 @@ function showToast(title, message, type = 'success') {
         setTimeout(() => {
             if (toast.parentNode) toast.parentNode.removeChild(toast);
         }, 350);
-    }, 4500);
+    }, duration);
 }
+
+/* ==========================================================================
+   14. LEGAL MODALS (Privacy Policy & Terms of Service)
+   ========================================================================== */
+window.openPrivacyModal = function() {
+    const html = `
+        <div class="modal-article-view">
+            <span class="modal-tag">LEGAL NOTICE</span>
+            <h2 class="modal-main-title">Privacy Policy</h2>
+            <div class="modal-description-full">
+                <p><strong>Effective Date:</strong> January 2026</p>
+                <p>Welcome to Siam.dev. Your privacy is critically important to us. This portfolio website operates as an informational platform representing Siam Hossain's software development portfolio, professional credentials, and technical services.</p>
+                <h4>Information Collected</h4>
+                <p>We do not collect any personal data automatically other than standard web telemetry and information you voluntarily provide through the contact form (name, email, subject, and message).</p>
+                <h4>Use of Information</h4>
+                <p>Any information submitted via the contact form is used solely to respond to your inquiry, collaboration proposition, or project discussion. We never sell, rent, or share your contact details with third parties.</p>
+                <h4>Security</h4>
+                <p>All communication sent through this platform is transmitted over secure SSL encryption (HTTPS).</p>
+            </div>
+            <div class="modal-actions-footer">
+                <button type="button" class="btn btn-secondary btn-round" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    `;
+    openModalWithHTML(html);
+};
+
+window.openTermsModal = function() {
+    const html = `
+        <div class="modal-article-view">
+            <span class="modal-tag">LEGAL NOTICE</span>
+            <h2 class="modal-main-title">Terms of Service</h2>
+            <div class="modal-description-full">
+                <p><strong>Effective Date:</strong> January 2026</p>
+                <p>By accessing and exploring this portfolio website (Siam.dev), you agree to comply with and be bound by the following terms and conditions:</p>
+                <h4>Intellectual Property</h4>
+                <p>All project case studies, custom design systems, branding, and original source implementations presented on this website are the intellectual property of Siam Hossain and respective client partners where applicable.</p>
+                <h4>Permitted Use</h4>
+                <p>You may view, inspect, and evaluate the work for recruitment, hiring, and collaboration purposes. Reproduction or redistribution of original code or assets without written consent is prohibited.</p>
+                <h4>Disclaimer</h4>
+                <p>The code samples, demonstrations, and case studies are provided "as is" to illustrate technical competencies and architectural design principles.</p>
+            </div>
+            <div class="modal-actions-footer">
+                <button type="button" class="btn btn-secondary btn-round" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    `;
+    openModalWithHTML(html);
+};

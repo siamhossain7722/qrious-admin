@@ -13,5 +13,12 @@ ehthumbs_vista.db
 *.swp
 *.swo
 
-# Local logs
+# Local logs & scratch testing
 *.log
+scratch/
+test-results/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
