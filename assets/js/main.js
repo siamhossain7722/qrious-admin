@@ -502,35 +502,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==========================================================================
+        /* ==========================================================================
        8B. ACHIEVEMENTS & CERTIFICATIONS FILTERING
        ========================================================================== */
-    const achFilterBtns = document.querySelectorAll('.achievements-filter-tabs .filter-btn');
-    const achievementCards = document.querySelectorAll('.achievement-card');
+    const achFilterBtns = document.querySelectorAll('.achievements-filter-bar .filter-pill-btn');
+    const achCards = document.querySelectorAll('.achievement-card-box');
+
+    window.filterAchievements = function(filterValue, activeBtn) {
+        if (!filterValue) filterValue = 'all';
+
+        achFilterBtns.forEach(b => {
+            if (b.getAttribute('data-filter') === filterValue || b === activeBtn) {
+                b.classList.add('active');
+            } else {
+                b.classList.remove('active');
+            }
+        });
+
+        achCards.forEach(card => {
+            const category = (card.getAttribute('data-category') || '').toLowerCase();
+            if (filterValue === 'all' || category.includes(filterValue)) {
+                card.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(15px)';
+                setTimeout(() => {
+                    if (card.style.opacity === '0') {
+                        card.style.display = 'none';
+                    }
+                }, 200);
+            }
+        });
+    };
 
     achFilterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            achFilterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            achievementCards.forEach(card => {
-                const category = card.getAttribute('data-category') || '';
-                if (filterValue === 'all' || category.includes(filterValue)) {
-                    card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 50);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
+            const filterValue = btn.getAttribute('data-filter') || 'all';
+            window.filterAchievements(filterValue, btn);
         });
     });
 
@@ -992,52 +1004,52 @@ const projectsData = {
 
 const certificatesData = {
     1: {
-        title: "Dean's Awards (3x) & Vice Chancellor Award (1x)",
-        org: "University of Asia Pacific",
-        period: "2019 – 2024",
-        category: "Academic Excellence",
-        img: "assets/images/certificates/UAP.jpg",
-        desc: "Honored with academic excellence awards (3x Dean's Awards and 1x Vice Chancellor Award) for consistently maintaining high CGPA across multiple semesters in the Department of Computer Science & Engineering at University of Asia Pacific."
-    },
-    2: {
-        title: "CSE Fundamentals With Phitron",
-        org: "Phitron.io",
-        period: "Fall 2024",
-        category: "Computer Science & Algorithms",
-        img: "assets/images/certificates/Certificate_Phitron.jpg",
-        desc: "Successfully completed intensive CSE Fundamentals With Phitron: Fall 2024 with a distinction CGPA of 3.67, mastering advanced C/C++ programming, data structures, algorithms, and practical software engineering."
-    },
-    3: {
-        title: "The Science of Digital Marketing",
-        org: "Urban Academy",
-        period: "July 2026",
+        title: "Digital Marketing Certification",
+        org: "Urban Academy & Google",
+        period: "Aug 28, 2025",
         category: "Professional Certification",
         img: "assets/images/certificates/UA.jpg",
         desc: "Graduated from the comprehensive 16-week Science of Digital Marketing programme, mastering marketing strategy, high-conversion copywriting, Meta & Google advertising, AI chatbot integration, and client campaign execution."
     },
+    2: {
+        title: "Dean's Awards (5x) & Vice Chancellor Award",
+        org: "University of Asia Pacific",
+        period: "2019 – 2024",
+        category: "Academic Excellence",
+        img: "assets/images/certificates/UAP.jpg",
+        desc: "Honored with academic excellence awards (multiple Dean's Awards and Vice Chancellor Award) for consistently maintaining high CGPA across multiple semesters in the Department of Computer Science & Engineering at University of Asia Pacific."
+    },
+    3: {
+        title: "CSE Fundamentals",
+        org: "Python.io & Phitron.io",
+        period: "2019 – 2023",
+        category: "Computer Science & Algorithms",
+        img: "assets/images/certificates/Certificate_Phitron.jpg",
+        desc: "Successfully completed intensive CSE Fundamentals With Phitron with a distinction CGPA of 3.67, mastering advanced C/C++ programming, data structures, algorithms, and practical software engineering."
+    },
     4: {
-        title: "Pearson BTEC Level 5 Higher National Diploma (HND)",
-        org: "Global Business Studies FZ LLC, Dubai (UAE)",
-        period: "2024 – 2026",
-        category: "Academic Diploma",
+        title: "Intra University Hackathon – 1st Runner Up",
+        org: "University Hackathon Division",
+        period: "Oct 15, 2022",
+        category: "Hackathon Competition",
         img: "assets/images/certificates/GBS.jpg",
-        desc: "Completed Pearson BTEC Level 5 Higher National Diploma in Digital Technologies (AI Solutions and Applications), focusing on advanced programming, cloud fundamentals, digital economy practices, and AI-driven business transformation."
+        desc: "Awarded 1st Runner Up in the Intra University Hackathon for engineering a full-stack automated solution under strict time constraints with modern architecture."
     },
     5: {
-        title: "Claude 101 Certification",
-        org: "Anthropic",
-        period: "2026",
-        category: "AI & Prompt Engineering",
+        title: "Python for Everybody & Claude 101 AI",
+        org: "University of Michigan (Coursera) & Anthropic",
+        period: "Jun 10, 2021 – 2026",
+        category: "Programming & AI Certification",
         img: "assets/images/certificates/Certificate_Claude.jpg",
-        desc: "Successfully completed the official Claude 101 certification programme from Anthropic, gaining expertise in LLM system prompts, context management, AI agent workflows, and practical generative AI implementation."
+        desc: "Certified in Python programming specialization (University of Michigan / Coursera) and Anthropic Claude 101 AI Agent development, prompt engineering, and LLM orchestration."
     },
     6: {
-        title: "Basic Food Safety – Food Service Training",
-        org: "Zigma Quality Training Center",
-        period: "September 2024",
-        category: "Professional Training",
+        title: "Inter University Coding Contest – Honorable Mention",
+        org: "Competitive Programming Committee",
+        period: "May 20, 2021",
+        category: "Competitive Programming",
         img: "assets/images/certificates/food_safty.jpg",
-        desc: "Successfully completed certified Basic Food Safety – Food Service Training programme designed according to industry and international quality and hygiene standards."
+        desc: "Received Honorable Mention in the Inter University Coding Contest for algorithmic problem-solving in data structures, graph theory, and dynamic programming."
     }
 };
 
