@@ -5,6 +5,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Global user accessibility preference
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     /* ==========================================================================
        1. PROFESSIONAL DEVELOPER TERMINAL TYPEWRITER COMPONENT
        Infinitely rotates through 10 designations with smooth typing & deleting
@@ -992,7 +995,7 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     if ('IntersectionObserver' in window && !prefersReducedMotion) {
         const revealTargets = document.querySelectorAll(
-            'section:not(#home), .scroll-reveal-init, .service-card, .service-card-premium, .portfolio-card, .timeline-item, .blog-card, .achievement-card'
+            '.scroll-reveal-init, .service-card, .service-card-premium, .portfolio-card, .timeline-item, .blog-card, .achievement-card'
         );
 
         const scrollRevealObserver = new IntersectionObserver((entries, observer) => {
@@ -1004,13 +1007,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, {
             root: null,
-            rootMargin: '0px 0px -40px 0px',
-            threshold: 0.1
+            rootMargin: '50px 0px 50px 0px',
+            threshold: 0.05
         });
 
         revealTargets.forEach(el => {
-            el.classList.add('scroll-reveal-init');
             scrollRevealObserver.observe(el);
+        });
+    } else {
+        document.querySelectorAll('.scroll-reveal-init').forEach(el => {
+            el.classList.add('scroll-reveal-visible');
         });
     }
 });
