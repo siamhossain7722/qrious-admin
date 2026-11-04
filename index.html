@@ -2352,6 +2352,9 @@
 
         <!-- Client Testimonials / Reviews Showcase Section -->
         <section id="testimonials" class="testimonials-section">
+            <!-- Nav anchor for #reviews compatibility -->
+            <div id="reviews" class="nav-target-anchor" aria-hidden="true"></div>
+
             <!-- Background Cyber Atmosphere -->
             <div class="testimonials-bg-decor" aria-hidden="true">
                 <div class="testi-glow testi-glow-1"></div>
@@ -2359,254 +2362,205 @@
                 <div class="testi-grid-pattern"></div>
             </div>
 
-            <div class="container">
-                <!-- Section Header -->
-                <div class="section-header text-center scroll-reveal-init">
-                    <div class="testimonials-eyebrow">
-                        <span class="eyebrow-dash"></span>
-                        <span class="eyebrow-text">ENDORSEMENTS &amp; TESTIMONIALS</span>
+            <div class="container testimonials-container">
+                <!-- Two-Column Top Header: Left Title & Info, Right 4 Stats -->
+                <div class="reviews-top-row scroll-reveal-init">
+                    <!-- Left: Eyebrow, Main Heading, Subtitle -->
+                    <div class="reviews-header-left">
+                        <div class="reviews-eyebrow">
+                            <span class="reviews-eyebrow-text">REVIEWS &amp; TESTIMONIALS</span>
+                            <span class="reviews-eyebrow-line"></span>
+                        </div>
+                        <h2 class="reviews-main-title">What People Say <span class="reviews-gradient-text">About Me</span></h2>
+                        <p class="reviews-subtitle">Real feedback from clients, collaborators and team members I've worked with on various projects.</p>
                     </div>
-                    <h2 class="testimonials-main-title">What People Say About <span class="gradient-text">Working With Me</span></h2>
-                    <p class="testimonials-subtitle">Real feedback and professional experiences from people I've worked with, collaborated with, and learned from.</p>
+
+                    <!-- Right: 4 Compact Stat Cards in a Single Horizontal Row -->
+                    <div class="reviews-stats-row">
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <div class="reviews-stat-number">20+</div>
+                            <div class="reviews-stat-label">Happy Clients</div>
+                        </div>
+
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <div class="reviews-stat-number">4.9/5</div>
+                            <div class="reviews-stat-label">Average Rating</div>
+                        </div>
+
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-regular fa-comment-dots"></i>
+                            </div>
+                            <div class="reviews-stat-number">15+</div>
+                            <div class="reviews-stat-label">Reviews</div>
+                        </div>
+
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="reviews-stat-number">100%</div>
+                            <div class="reviews-stat-label">Project Success</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Professional Feedback Statistics (4 Compact Glass Cards) -->
-                <div class="testimonials-stats-strip scroll-reveal-init">
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-gradient">
-                            <i class="fa-solid fa-comments"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Verified Reviews</span>
-                        </div>
-                    </div>
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-gold">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">5.0</span>
-                            <span class="stat-label">Average Rating</span>
-                        </div>
-                    </div>
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-cyan">
-                            <i class="fa-solid fa-thumbs-up"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Positive Feedback</span>
-                        </div>
-                    </div>
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-purple">
-                            <i class="fa-solid fa-building"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Partner Teams</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- Carousel Stage with Prev/Next Circular Buttons -->
+                <div class="reviews-stage-wrapper scroll-reveal-init">
+                    <button type="button" id="reviewsPrev" class="reviews-nav-btn reviews-prev-btn" aria-label="Previous Testimonial">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
 
-                <!-- Interactive Reviewer Avatar Selector Bar (Reference Design) -->
-                <div class="testimonials-avatar-bar scroll-reveal-init" id="testiAvatarBar">
-                    <button type="button" class="testi-avatar-btn active" data-slide="0" aria-label="Select testimonial from Engineering Lead">
-                        <div class="avatar-ring">
-                            <span class="avatar-initials avatar-gradient-purple">EL</span>
-                        </div>
-                        <span class="avatar-role-label">Engineering Lead</span>
-                    </button>
-                    <button type="button" class="testi-avatar-btn" data-slide="1" aria-label="Select testimonial from Digital Growth Director">
-                        <div class="avatar-ring">
-                            <span class="avatar-initials avatar-gradient-cyan">DG</span>
-                        </div>
-                        <span class="avatar-role-label">Digital Growth</span>
-                    </button>
-                    <button type="button" class="testi-avatar-btn" data-slide="2" aria-label="Select testimonial from Project Manager">
-                        <div class="avatar-ring">
-                            <span class="avatar-initials avatar-gradient-purple">PM</span>
-                        </div>
-                        <span class="avatar-role-label">Project Manager</span>
-                    </button>
-                </div>
-
-                <!-- 3D / Coverflow Testimonial Stage -->
-                <div class="testimonials-stage-wrapper scroll-reveal-init">
-                    <div class="testimonials-stage" id="testimonialsStage">
-                        <!-- Card 1: Featured Engineering Lead -->
-                        <div class="testimonial-card-item active" data-index="0" onclick="goToTestimonial(0)">
-                            <div class="testi-card-inner">
-                                <div class="testi-card-top">
-                                    <div class="testi-category-pill">
-                                        <i class="fa-solid fa-asterisk"></i>
-                                        <span>Full-Stack Engineering</span>
+                    <div class="reviews-carousel-stage" id="reviewsCarouselStage">
+                        <div class="reviews-carousel-track" id="reviewsTrack">
+                            <!-- Card 1: John Mathew -->
+                            <div class="reviews-card-item" data-index="0">
+                                <div class="reviews-card-quote-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                    </svg>
+                                </div>
+                                <p class="reviews-card-text">"Siam is a highly skilled developer. He delivered our project on time with excellent code quality and clear communication throughout the process."</p>
+                                <div class="reviews-card-author-row">
+                                    <div class="reviews-author-avatar-wrap">
+                                        <img src="assets/images/clients/john-mathew.png" alt="John Mathew" class="reviews-author-avatar" loading="lazy">
                                     </div>
-                                    <div class="testi-rating-badge">
-                                        <div class="testi-stars">
+                                    <div class="reviews-author-info">
+                                        <h4 class="reviews-author-name">John Mathew</h4>
+                                        <span class="reviews-author-role">Project Manager</span>
+                                    </div>
+                                    <div class="reviews-author-rating">
+                                        <div class="reviews-stars" aria-label="5 out of 5 stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="testi-rating-score">5.0</span>
+                                        <span class="reviews-rating-num">5.0</span>
                                     </div>
-                                </div>
-
-                                <div class="testi-reviewer-header">
-                                    <div class="reviewer-avatar-wrap">
-                                        <span class="avatar-initials avatar-gradient-purple">EL</span>
-                                    </div>
-                                    <div class="reviewer-details">
-                                        <h3 class="reviewer-name">Engineering Lead</h3>
-                                        <p class="reviewer-org">Software &amp; Solutions Team</p>
-                                    </div>
-                                </div>
-
-                                <div class="testi-quote-block">
-                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
-                                    <p class="testi-quote-text">
-                                        "Siam is a skilled full-stack developer who understands both backend stability with Django and responsive UI with React. His dedication to clean code, punctual delivery, and thoughtful problem-solving makes him a true asset to any project."
-                                    </p>
-                                </div>
-
-                                <div class="testi-tags-row">
-                                    <span class="testi-tag-chip">Django REST</span>
-                                    <span class="testi-tag-chip">React UI</span>
-                                    <span class="testi-tag-chip">Clean Code</span>
-                                    <span class="testi-tag-chip">Problem Solving</span>
-                                </div>
-
-                                <div class="testi-card-bottom">
-                                    <span class="testi-verified-badge">
-                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
-                                    </span>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Card 2: Digital Growth Director -->
-                        <div class="testimonial-card-item" data-index="1" onclick="goToTestimonial(1)">
-                            <div class="testi-card-inner">
-                                <div class="testi-card-top">
-                                    <div class="testi-category-pill">
-                                        <i class="fa-solid fa-asterisk"></i>
-                                        <span>Digital Growth &amp; Web</span>
+                            <!-- Card 2: Nusrat Jahan (Center Active in Reference Image) -->
+                            <div class="reviews-card-item active" data-index="1">
+                                <div class="reviews-card-quote-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                    </svg>
+                                </div>
+                                <p class="reviews-card-text">"Working with Siam was a great experience. He quickly understood our requirements, proposed smart solutions and built a scalable and user-friendly product."</p>
+                                <div class="reviews-card-author-row">
+                                    <div class="reviews-author-avatar-wrap">
+                                        <img src="assets/images/clients/nusrat-jahan.png" alt="Nusrat Jahan" class="reviews-author-avatar" loading="lazy">
                                     </div>
-                                    <div class="testi-rating-badge">
-                                        <div class="testi-stars">
+                                    <div class="reviews-author-info">
+                                        <h4 class="reviews-author-name">Nusrat Jahan</h4>
+                                        <span class="reviews-author-role">Product Owner</span>
+                                    </div>
+                                    <div class="reviews-author-rating">
+                                        <div class="reviews-stars" aria-label="5 out of 5 stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="testi-rating-score">5.0</span>
+                                        <span class="reviews-rating-num">5.0</span>
                                     </div>
-                                </div>
-
-                                <div class="testi-reviewer-header">
-                                    <div class="reviewer-avatar-wrap">
-                                        <span class="avatar-initials avatar-gradient-cyan">DG</span>
-                                    </div>
-                                    <div class="reviewer-details">
-                                        <h3 class="reviewer-name">Digital Growth Director</h3>
-                                        <p class="reviewer-org">International Business Partner</p>
-                                    </div>
-                                </div>
-
-                                <div class="testi-quote-block">
-                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
-                                    <p class="testi-quote-text">
-                                        "Working with Siam was fantastic. He combines technical development with practical digital marketing acumen. He communicated clearly, resolved complex bugs quickly, and delivered our web application ahead of schedule."
-                                    </p>
-                                </div>
-
-                                <div class="testi-tags-row">
-                                    <span class="testi-tag-chip">Web Applications</span>
-                                    <span class="testi-tag-chip">Digital Growth</span>
-                                    <span class="testi-tag-chip">Agile Delivery</span>
-                                    <span class="testi-tag-chip">Bug Resolution</span>
-                                </div>
-
-                                <div class="testi-card-bottom">
-                                    <span class="testi-verified-badge">
-                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
-                                    </span>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Card 3: Project Manager -->
-                        <div class="testimonial-card-item" data-index="2" onclick="goToTestimonial(2)">
-                            <div class="testi-card-inner">
-                                <div class="testi-card-top">
-                                    <div class="testi-category-pill">
-                                        <i class="fa-solid fa-asterisk"></i>
-                                        <span>API &amp; System Design</span>
+                            <!-- Card 3: Rafiul Hasan -->
+                            <div class="reviews-card-item" data-index="2">
+                                <div class="reviews-card-quote-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                    </svg>
+                                </div>
+                                <p class="reviews-card-text">"A reliable and creative developer. Siam not only wrote clean code but also suggested improvements that made our product more efficient."</p>
+                                <div class="reviews-card-author-row">
+                                    <div class="reviews-author-avatar-wrap">
+                                        <img src="assets/images/clients/rafiul-hasan.png" alt="Rafiul Hasan" class="reviews-author-avatar" loading="lazy">
                                     </div>
-                                    <div class="testi-rating-badge">
-                                        <div class="testi-stars">
+                                    <div class="reviews-author-info">
+                                        <h4 class="reviews-author-name">Rafiul Hasan</h4>
+                                        <span class="reviews-author-role">CEO, TechTribe</span>
+                                    </div>
+                                    <div class="reviews-author-rating">
+                                        <div class="reviews-stars" aria-label="5 out of 5 stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="testi-rating-score">5.0</span>
+                                        <span class="reviews-rating-num">5.0</span>
                                     </div>
-                                </div>
-
-                                <div class="testi-reviewer-header">
-                                    <div class="reviewer-avatar-wrap">
-                                        <span class="avatar-initials avatar-gradient-purple">PM</span>
-                                    </div>
-                                    <div class="reviewer-details">
-                                        <h3 class="reviewer-name">Project Manager</h3>
-                                        <p class="reviewer-org">Web &amp; Tech Agency</p>
-                                    </div>
-                                </div>
-
-                                <div class="testi-quote-block">
-                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
-                                    <p class="testi-quote-text">
-                                        "Siam's approach to API structure and database relations is exemplary. He is enthusiastic, continuously learning the latest in AI and web frameworks, and always delivers polished, maintainable code."
-                                    </p>
-                                </div>
-
-                                <div class="testi-tags-row">
-                                    <span class="testi-tag-chip">API Architecture</span>
-                                    <span class="testi-tag-chip">Database Relations</span>
-                                    <span class="testi-tag-chip">AI Workflows</span>
-                                    <span class="testi-tag-chip">Code Quality</span>
-                                </div>
-
-                                <div class="testi-card-bottom">
-                                    <span class="testi-verified-badge">
-                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Carousel Controls (Arrows and Pagination Dots) -->
-                    <div class="testimonials-carousel-controls">
-                        <button type="button" id="slider-prev" class="testi-arrow-btn" aria-label="Previous testimonial">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <div class="testi-dots-wrap" id="slider-dots">
-                            <button type="button" class="testi-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                            <button type="button" class="testi-dot" data-slide="1" aria-label="Go to slide 2"></button>
-                            <button type="button" class="testi-dot" data-slide="2" aria-label="Go to slide 3"></button>
-                        </div>
-                        <button type="button" id="slider-next" class="testi-arrow-btn" aria-label="Next testimonial">
+                    <button type="button" id="reviewsNext" class="reviews-nav-btn reviews-next-btn" aria-label="Next Testimonial">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Pagination Dots (Center Dot Active by default) -->
+                <div class="reviews-dots-wrap scroll-reveal-init" id="reviewsDots">
+                    <button type="button" class="reviews-dot" data-slide="0" aria-label="Go to testimonial 1"></button>
+                    <button type="button" class="reviews-dot active" data-slide="1" aria-label="Go to testimonial 2"></button>
+                    <button type="button" class="reviews-dot" data-slide="2" aria-label="Go to testimonial 3"></button>
+                </div>
+
+                <!-- Bottom Call-To-Action Glass Banner -->
+                <div class="reviews-cta-banner scroll-reveal-init">
+                    <div class="reviews-cta-icon-wrap">
+                        <i class="fa-regular fa-comment-dots"></i>
+                    </div>
+                    <div class="reviews-cta-divider"></div>
+                    <div class="reviews-cta-content">
+                        <h3 class="reviews-cta-title">Let's Create Another <span class="reviews-gradient-text">Success Story</span></h3>
+                        <p class="reviews-cta-desc">Have a project in mind? Let's work together and make it happen.</p>
+                    </div>
+                    <div class="reviews-cta-action">
+                        <a href="#contact" class="reviews-cta-btn">
+                            <span>Hire Me Now</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Animated Bottom Wave (Dual Glowing Strokes) -->
+            <div class="reviews-bottom-wave" aria-hidden="true">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="reviewsWaveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF1018" stop-opacity="0.85"/>
+                            <stop offset="50%" stop-color="#FF3B16" stop-opacity="0.95"/>
+                            <stop offset="100%" stop-color="#FF8A00" stop-opacity="0.85"/>
+                        </linearGradient>
+                        <linearGradient id="reviewsWaveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF3B16" stop-opacity="0.4"/>
+                            <stop offset="50%" stop-color="#FF8A00" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#FF1018" stop-opacity="0.4"/>
+                        </linearGradient>
+                        <filter id="reviewsWaveGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="glow"/>
+                            <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+                        </filter>
+                    </defs>
+                    <path class="reviews-wave-path-1" d="M0,60 C320,120 420,10 720,60 C1020,110 1140,20 1440,60" stroke="url(#reviewsWaveGrad1)" stroke-width="2.5" filter="url(#reviewsWaveGlow)"/>
+                    <path class="reviews-wave-path-2" d="M0,70 C360,20 540,110 900,50 C1200,0 1320,90 1440,70" stroke="url(#reviewsWaveGrad2)" stroke-width="1.5"/>
+                </svg>
             </div>
         </section>
 

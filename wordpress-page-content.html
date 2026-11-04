@@ -4664,14 +4664,22 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   15. Client Testimonials Section — Premium Endorsements Showcase
+   15. Client Testimonials & Reviews Section — Premium Neon Red Showcase
    -------------------------------------------------------------------------- */
 .testimonials-section {
     position: relative;
-    padding: 120px 0 100px;
-    background: var(--bg-main);
+    background-color: #050303 !important;
+    padding: 100px 0 150px 0 !important;
     overflow: hidden;
     scroll-margin-top: 90px;
+}
+
+.testimonials-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
 /* Background Atmosphere */
@@ -4683,545 +4691,615 @@ button {
     overflow: hidden;
 }
 
-.testi-glow-1 {
+.testimonials-section .testi-glow {
     position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.testimonials-section .testi-glow-1 {
     top: 15%;
-    right: -6%;
+    left: -10%;
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle, rgba(255, 37, 37, 0.07) 0%, transparent 70%);
-    filter: blur(90px);
+    background: radial-gradient(circle, rgba(255, 16, 24, 0.12) 0%, rgba(255, 121, 0, 0.04) 50%, transparent 70%);
 }
 
-.testi-glow-2 {
-    position: absolute;
+.testimonials-section .testi-glow-2 {
     bottom: 10%;
-    left: -6%;
-    width: 540px;
-    height: 540px;
-    background: radial-gradient(circle, rgba(184, 0, 22, 0.06) 0%, transparent 70%);
-    filter: blur(95px);
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 59, 22, 0.12) 0%, rgba(255, 16, 24, 0.03) 50%, transparent 70%);
 }
 
-.testi-grid-pattern {
+.testimonials-section .testi-grid-pattern {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 32px 32px;
     opacity: 0.6;
 }
 
-/* Section Header Typography */
-.testimonials-eyebrow {
+/* Top Row: Two-Column Layout (Left Heading, Right 4 Stats) */
+.reviews-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 36px;
+    margin-bottom: 48px;
+}
+
+.reviews-header-left {
+    max-width: 540px;
+    flex-shrink: 0;
+}
+
+.reviews-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
     margin-bottom: 12px;
 }
 
-.testimonials-eyebrow .eyebrow-dash {
-    width: 20px;
-    height: 2px;
-    background: #FF2525;
-    border-radius: 2px;
-}
-
-.testimonials-eyebrow .eyebrow-text {
+.reviews-eyebrow-text {
     font-family: var(--font-heading);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2.2px;
     text-transform: uppercase;
-    color: #FF2525;
+    color: #FF1018;
 }
 
-.testimonials-main-title {
+.reviews-eyebrow-line {
+    width: 55px;
+    height: 2px;
+    background: linear-gradient(90deg, #FF1018, #FF8A00, transparent);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 16, 24, 0.7);
+}
+
+.reviews-main-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-size: clamp(2.1rem, 3.4vw, 2.85rem);
     font-weight: 800;
-    color: #F8F8FC;
-    margin-bottom: 14px;
+    color: #FFFFFF;
+    line-height: 1.18;
+    margin-bottom: 12px;
     letter-spacing: -0.5px;
-    line-height: 1.2;
 }
 
-.testimonials-subtitle {
-    font-size: 1.02rem;
-    color: #9B9EAE;
-    max-width: 660px;
-    margin: 0 auto 36px;
+.reviews-gradient-text {
+    background: linear-gradient(135deg, #FF1018 0%, #FF3B16 50%, #FF8A00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 16, 24, 0.35);
+}
+
+.reviews-subtitle {
+    font-size: 0.98rem;
+    color: #C7C7C7;
     line-height: 1.6;
+    margin: 0;
 }
 
-/* Professional Feedback Statistics Strip */
-.testimonials-stats-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    max-width: 1000px;
-    margin: 0 auto 38px;
-    position: relative;
-    z-index: 2;
-}
-
-.testi-stat-card {
+/* Right: 4 Compact Stat Cards in a Single Row */
+.reviews-stats-row {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 18px;
-    background: #12141F;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    flex-wrap: nowrap;
 }
 
-.testi-stat-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-.testi-stat-card .stat-icon-wrap {
-    width: 44px;
-    height: 44px;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    flex-shrink: 0;
-}
-
-.testi-stat-card .stat-number {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #F8F8FC;
-    line-height: 1.15;
-    display: block;
-}
-
-.testi-stat-card .stat-label {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: #8F93A5;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: block;
-    margin-top: 3px;
-}
-
-/* Interactive Reviewer Avatar Selector Bar */
-.testimonials-avatar-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 34px;
-    position: relative;
-    z-index: 2;
-    flex-wrap: wrap;
-}
-
-.testi-avatar-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 16px 6px 6px;
-    background: #12141F;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.avatar-ring {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    padding: 2px;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.25s ease;
-}
-
-.avatar-initials {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.avatar-gradient-pink {
-    background: linear-gradient(105deg, #FF1010 0%, #2455FF 35%, #B80016 70%, #FF3B3B 100%);
-}
-
-.avatar-gradient-cyan {
-    background: linear-gradient(135deg, #FF2525 0%, #3B82F6 100%);
-}
-
-.avatar-gradient-purple {
-    background: linear-gradient(135deg, #FF3B3B 0%, #6366F1 100%);
-}
-
-.avatar-role-label {
-    font-family: var(--font-heading);
-    font-size: 0.86rem;
-    font-weight: 600;
-    color: #9B9EAE;
-    transition: color 0.25s ease;
-}
-
-.testi-avatar-btn:hover {
-    border-color: rgba(255, 255, 255, 0.22);
-    transform: translateY(-2px);
-}
-
-.testi-avatar-btn:hover .avatar-role-label {
-    color: #F8F8FC;
-}
-
-.testi-avatar-btn.active {
-    background: #181B28;
-    border-color: rgba(255, 37, 37, 0.6);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 18px rgba(255, 37, 37, 0.25);
-}
-
-.testi-avatar-btn.active .avatar-ring {
-    border-color: #FF2525;
-}
-
-.testi-avatar-btn.active .avatar-role-label {
-    color: #FFFFFF;
-}
-
-/* 3D / Coverflow Testimonial Stage */
-.testimonials-stage-wrapper {
-    max-width: 1240px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-    padding: 10px 10px 20px;
-}
-
-.testimonials-stage {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    align-items: stretch;
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.testimonial-card-item {
-    background: #131520;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 22px;
-    padding: 28px;
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+.reviews-stat-card {
+    width: 110px;
+    height: 110px;
+    background: #140808;
+    border: 1px solid rgba(255, 16, 24, 0.2);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    opacity: 0.45;
-    transform: scale(0.94);
-    position: relative;
-}
-
-.testimonial-card-item:hover {
-    opacity: 0.75;
-    transform: scale(0.96);
-    border-color: rgba(255, 255, 255, 0.18);
-}
-
-.testimonial-card-item.active {
-    opacity: 1;
-    transform: scale(1.02) translateY(-4px);
-    border-color: rgba(255, 37, 37, 0.75);
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 37, 37, 0.16);
-    z-index: 3;
-    background: #151826;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 8px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    flex-shrink: 0;
     cursor: default;
 }
 
-.testi-card-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.reviews-stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 59, 22, 0.6);
+    box-shadow: 0 10px 30px rgba(255, 16, 24, 0.22);
 }
 
-.testi-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.testi-category-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 9999px;
-    font-family: var(--font-heading);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #B5B9CB;
-    transition: all 0.25s ease;
-}
-
-.testimonial-card-item.active .testi-category-pill {
-    background: rgba(255, 37, 37, 0.12);
-    border-color: rgba(255, 37, 37, 0.35);
-    color: #FF3B3B;
-}
-
-.testi-rating-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.testi-stars {
-    display: flex;
-    gap: 3px;
-    color: #FACC15;
-    font-size: 0.88rem;
-}
-
-.testi-rating-score {
-    font-family: var(--font-heading);
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #F8F8FC;
-}
-
-/* Reviewer Header */
-.testi-reviewer-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-}
-
-.reviewer-avatar-wrap {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
+.reviews-stat-icon {
+    font-size: 1.35rem;
+    color: #FF3B16;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.reviewer-name {
+.reviews-stat-number {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #F8F8FC;
-    margin: 0 0 2px;
-    line-height: 1.3;
-}
-
-.reviewer-org {
-    font-size: 0.85rem;
-    color: #FF3B3B;
-    font-weight: 500;
-    margin: 0;
-}
-
-/* Quote Block */
-.testi-quote-block {
-    position: relative;
-    margin-bottom: 22px;
-    flex: 1;
-}
-
-.quote-mark-icon {
-    font-size: 1.6rem;
-    color: rgba(255, 37, 37, 0.2);
-    margin-bottom: 8px;
-    display: block;
-}
-
-.testi-quote-text {
-    font-size: 0.95rem;
-    color: #D1D4E2;
-    line-height: 1.65;
-    font-style: italic;
-    margin: 0;
-}
-
-/* Capability Chips */
-.testi-tags-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 20px;
-    margin-top: auto;
-}
-
-.testi-tag-chip {
-    padding: 4px 10px;
-    background: #100D0D;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 6px;
-    font-size: 0.74rem;
-    font-weight: 500;
-    color: #9FA3B8;
-    transition: all 0.2s ease;
-}
-
-.testimonial-card-item.active .testi-tag-chip:hover {
-    border-color: rgba(255, 37, 37, 0.35);
-    background: #161926;
+    font-size: 1.3rem;
+    font-weight: 800;
     color: #FFFFFF;
+    line-height: 1.1;
+    margin-bottom: 3px;
+    letter-spacing: -0.3px;
 }
 
-/* Bottom Card Details */
-.testi-card-bottom {
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.reviews-stat-label {
+    font-size: 0.72rem;
+    color: #929292;
+    font-weight: 500;
+    line-height: 1.25;
 }
 
-.testi-verified-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #2BA977;
-}
-
-/* Carousel Controls */
-.testimonials-carousel-controls {
+/* Carousel Stage with Side Buttons */
+.reviews-stage-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin-top: 28px;
+    margin-bottom: 28px;
+    width: 100%;
 }
 
-.testi-arrow-btn {
-    width: 44px;
-    height: 44px;
+.reviews-nav-btn {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: #12141F;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #F8F8FC;
-    display: inline-flex;
+    background: #140808;
+    border: 1.5px solid rgba(255, 16, 24, 0.28);
+    color: #FFFFFF;
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     cursor: pointer;
-    transition: all 0.22s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+    z-index: 5;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    outline: none;
 }
 
-.testi-arrow-btn:hover {
-    background: #FF2525;
-    border-color: #FF2525;
+.reviews-nav-btn:hover {
+    background: linear-gradient(135deg, #FF1018, #FF7900);
+    border-color: transparent;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 16, 24, 0.55);
+}
+
+.reviews-nav-btn:active {
+    transform: scale(0.96);
+}
+
+.reviews-carousel-stage {
+    flex-grow: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.reviews-carousel-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    align-items: stretch;
+    transition: all 0.4s ease;
+}
+
+/* Individual Review Card */
+.reviews-card-item {
+    background: #140808;
+    border: 1px solid rgba(255, 16, 24, 0.18);
+    border-radius: 20px;
+    padding: 34px 30px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    opacity: 0.88;
+    transform: scale(0.97);
+    cursor: pointer;
+}
+
+.reviews-card-item:hover {
+    opacity: 1;
+    border-color: rgba(255, 59, 22, 0.5);
+    transform: scale(0.99);
+}
+
+/* Active Highlighted Center Card */
+.reviews-card-item.active {
+    opacity: 1;
+    border: 1.5px solid #FF2525;
+    transform: scale(1.03);
+    z-index: 3;
+    box-shadow: 0 14px 45px rgba(255, 16, 24, 0.28), inset 0 0 25px rgba(255, 16, 24, 0.08);
+}
+
+.reviews-card-quote-icon {
+    color: #FF3B16;
+    margin-bottom: 18px;
+    opacity: 0.95;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.reviews-card-text {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: #D6D6D6;
+    font-style: italic;
+    margin-bottom: 26px;
+    flex-grow: 1;
+}
+
+.reviews-card-author-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 18px;
+    margin-top: auto;
+}
+
+.reviews-author-avatar-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid #FF3B16;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(255, 59, 22, 0.35);
+}
+
+.reviews-author-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.reviews-author-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.reviews-author-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
     color: #FFFFFF;
-    box-shadow: 0 0 16px rgba(255, 37, 37, 0.5);
-    transform: scale(1.08);
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.testi-dots-wrap {
+.reviews-author-role {
+    font-size: 0.8rem;
+    color: #929292;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.reviews-author-rating {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0;
 }
 
-.testi-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.16);
-    border: none;
+.reviews-stars {
+    color: #FFB323;
+    font-size: 0.82rem;
+    display: flex;
+    gap: 2.5px;
+}
+
+.reviews-rating-num {
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+/* Pagination Dots */
+.reviews-dots-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 45px;
+}
+
+.reviews-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
     padding: 0;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
 }
 
-.testi-dot.active {
+.reviews-dot:hover {
+    border-color: #FF3B16;
+    transform: scale(1.2);
+}
+
+.reviews-dot.active {
     width: 28px;
-    background: #FF2525;
-    box-shadow: 0 0 10px rgba(255, 37, 37, 0.5);
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #FF1018, #FF8A00);
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(255, 16, 24, 0.65);
 }
 
-/* Responsive Media Queries for Testimonials */
-@media (max-width: 1024px) {
-    .testimonials-stats-strip {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 600px;
+/* Bottom Call-To-Action Banner */
+.reviews-cta-banner {
+    background: #140808;
+    border: 1px solid rgba(255, 16, 24, 0.22);
+    border-radius: 20px;
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.reviews-cta-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 16, 24, 0.15), rgba(255, 121, 0, 0.1));
+    border: 1.5px solid rgba(255, 16, 24, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #FF3B16;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(255, 16, 24, 0.2);
+}
+
+.reviews-cta-divider {
+    width: 1px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.reviews-cta-content {
+    flex-grow: 1;
+}
+
+.reviews-cta-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+}
+
+.reviews-cta-desc {
+    font-size: 0.92rem;
+    color: #C7C7C7;
+    margin: 0;
+}
+
+.reviews-cta-action {
+    flex-shrink: 0;
+}
+
+.reviews-cta-btn {
+    background: linear-gradient(135deg, #FF1018 0%, #FF7900 100%) !important;
+    color: #FFFFFF !important;
+    padding: 13px 30px !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 0.94rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-decoration: none !important;
+    box-shadow: 0 6px 22px rgba(255, 16, 24, 0.42) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.reviews-cta-btn:hover {
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 32px rgba(255, 16, 24, 0.65) !important;
+}
+
+/* Bottom Animated Wave */
+.reviews-bottom-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 95px;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.reviews-bottom-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.reviews-wave-path-1 {
+    animation: reviewsWaveFloat1 8s ease-in-out infinite alternate;
+}
+
+.reviews-wave-path-2 {
+    animation: reviewsWaveFloat2 10s ease-in-out infinite alternate;
+}
+
+@keyframes reviewsWaveFloat1 {
+    0% {
+        transform: translateX(0) scaleY(1);
+    }
+    100% {
+        transform: translateX(-40px) scaleY(1.15);
+    }
+}
+
+@keyframes reviewsWaveFloat2 {
+    0% {
+        transform: translateX(0) scaleY(1);
+    }
+    100% {
+        transform: translateX(40px) scaleY(1.1);
+    }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .reviews-top-row {
+        gap: 24px;
+    }
+    .reviews-stat-card {
+        width: 100px;
+        height: 100px;
+        padding: 8px 6px;
+    }
+    .reviews-carousel-track {
+        gap: 16px;
+    }
+    .reviews-card-item {
+        padding: 28px 22px 22px 22px;
+    }
+}
+
+@media (max-width: 991px) {
+    .reviews-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+    }
+    .reviews-header-left {
+        max-width: 100%;
+    }
+    .reviews-stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
         gap: 12px;
     }
-
-    .testimonials-stage {
-        grid-template-columns: 1fr;
-        max-width: 580px;
-        margin: 0 auto;
+    .reviews-stat-card {
+        width: auto;
+        height: 96px;
     }
+    .reviews-stage-wrapper {
+        position: relative;
+        padding: 0 48px;
+    }
+    .reviews-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .reviews-prev-btn {
+        left: 0;
+    }
+    .reviews-next-btn {
+        right: 0;
+    }
+    .reviews-carousel-stage {
+        overflow: hidden;
+    }
+    .reviews-carousel-track {
+        display: flex;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        gap: 0;
+    }
+    .reviews-card-item {
+        min-width: 100%;
+        max-width: 100%;
+        transform: none !important;
+        opacity: 1 !important;
+        box-sizing: border-box;
+    }
+}
 
-    .testimonial-card-item {
+@media (max-width: 768px) {
+    .testimonials-section {
+        padding: 80px 0 120px 0 !important;
+    }
+    .reviews-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .reviews-cta-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+        padding: 24px 20px;
+    }
+    .reviews-cta-divider {
         display: none;
     }
-
-    .testimonial-card-item.active {
-        display: flex;
-        opacity: 1;
-        transform: none;
+    .reviews-cta-icon-wrap {
+        margin: 0 auto;
+    }
+    .reviews-cta-action {
+        width: 100%;
+    }
+    .reviews-cta-btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 
-@media (max-width: 767px) {
-    .testimonials-section {
-        padding: 80px 0 60px;
+@media (max-width: 480px) {
+    .reviews-stage-wrapper {
+        padding: 0;
     }
-
-    .testimonials-stats-strip {
-        grid-template-columns: repeat(2, 1fr);
+    .reviews-nav-btn {
+        display: none;
+    }
+    .reviews-card-item {
+        padding: 24px 18px 20px 18px;
+    }
+    .reviews-card-text {
+        font-size: 0.92rem;
+        line-height: 1.6;
+    }
+    .reviews-card-author-row {
+        flex-wrap: wrap;
         gap: 10px;
     }
-
-    .testimonials-avatar-bar {
-        gap: 8px;
-    }
-
-    .testi-avatar-btn {
-        padding: 4px 10px 4px 4px;
-    }
-
-    .avatar-ring {
-        width: 32px;
-        height: 32px;
-    }
-
-    .avatar-role-label {
-        font-size: 0.78rem;
-    }
-
-    .testimonial-card-item.active {
-        padding: 22px 18px;
-    }
-
-    .testi-quote-text {
-        font-size: 0.9rem;
+    .reviews-author-rating {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 2px;
     }
 }
+
 
 /* --------------------------------------------------------------------------
    16. Tech Insights / Blog Section
@@ -8915,108 +8993,83 @@ textarea.form-control {
     color: #64748B !important;
 }
 
-/* --- 10. Reviews & Testimonials --- */
+/* --- 10. Reviews & Testimonials Light Theme --- */
 [data-theme="light"] .testimonials-section {
-    background: var(--bg-main);
+    background: #F8FAFC !important;
 }
 
-[data-theme="light"] .testimonials-main-title {
-    color: #100D0D;
+[data-theme="light"] .reviews-main-title {
+    color: #0F172A !important;
 }
 
-[data-theme="light"] .testimonials-subtitle {
-    color: #475569;
+[data-theme="light"] .reviews-subtitle {
+    color: #475569 !important;
 }
 
-[data-theme="light"] .testi-stat-card {
-    background: #FFFFFF;
-    border-color: #E2E8F0;
-    box-shadow: 0 6px 20px rgba(16, 13, 13, 0.04);
+[data-theme="light"] .reviews-stat-card {
+    background: #FFFFFF !important;
+    border-color: rgba(255, 16, 24, 0.15) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
 }
 
-[data-theme="light"] .testi-stat-card .stat-number {
-    color: #100D0D;
+[data-theme="light"] .reviews-stat-number {
+    color: #0F172A !important;
 }
 
-[data-theme="light"] .testi-stat-card .stat-label {
-    color: #64748B;
+[data-theme="light"] .reviews-stat-label {
+    color: #64748B !important;
 }
 
-[data-theme="light"] .testi-avatar-btn {
-    background: #FFFFFF;
-    border-color: #CBD5E1;
-    box-shadow: 0 4px 12px rgba(16, 13, 13, 0.05);
+[data-theme="light"] .reviews-card-item {
+    background: #FFFFFF !important;
+    border-color: rgba(255, 16, 24, 0.15) !important;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06) !important;
 }
 
-[data-theme="light"] .testi-avatar-btn.active {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(255, 37, 37, 0.25);
+[data-theme="light"] .reviews-card-item.active {
+    border-color: #FF1018 !important;
+    box-shadow: 0 12px 35px rgba(255, 16, 24, 0.18) !important;
 }
 
-[data-theme="light"] .avatar-role-label {
-    color: #64748B;
+[data-theme="light"] .reviews-card-text {
+    color: #334155 !important;
 }
 
-[data-theme="light"] .testi-avatar-btn.active .avatar-role-label {
-    color: #100D0D;
-    font-weight: 600;
+[data-theme="light"] .reviews-author-name {
+    color: #0F172A !important;
 }
 
-[data-theme="light"] .testimonial-card-item {
-    background: #FFFFFF;
-    border-color: #E2E8F0;
-    box-shadow: 0 10px 30px rgba(16, 13, 13, 0.06);
+[data-theme="light"] .reviews-author-role {
+    color: #64748B !important;
 }
 
-[data-theme="light"] .testimonial-card-item.active {
-    background: #FFFFFF;
-    border-color: rgba(255, 37, 37, 0.4);
-    box-shadow: 0 18px 45px rgba(255, 37, 37, 0.12);
+[data-theme="light"] .reviews-rating-num {
+    color: #0F172A !important;
 }
 
-[data-theme="light"] .reviewer-name {
-    color: #100D0D;
+[data-theme="light"] .reviews-nav-btn {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
 }
 
-[data-theme="light"] .reviewer-org {
-    color: #64748B;
+[data-theme="light"] .reviews-dot {
+    border-color: rgba(0, 0, 0, 0.25) !important;
 }
 
-[data-theme="light"] .testi-quote-text {
-    color: #334155;
+[data-theme="light"] .reviews-cta-banner {
+    background: #FFFFFF !important;
+    border-color: rgba(255, 16, 24, 0.2) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
 }
 
-[data-theme="light"] .quote-mark-icon {
-    color: rgba(255, 37, 37, 0.18);
+[data-theme="light"] .reviews-cta-title {
+    color: #0F172A !important;
 }
 
-[data-theme="light"] .testi-category-pill {
-    background: #F1F4F9;
-    border: 1px solid #E2E8F0;
-    color: #475569;
-}
-
-[data-theme="light"] .testi-tag-chip {
-    background: #F1F4F9;
-    border-color: #E2E8F0;
-    color: #475569;
-}
-
-[data-theme="light"] .testi-tag-chip:hover {
-    background: #E2E8F0;
-    color: #100D0D;
-}
-
-[data-theme="light"] .testi-arrow-btn {
-    background: #FFFFFF;
-    border-color: #CBD5E1;
-    color: #100D0D;
-    box-shadow: 0 4px 12px rgba(16, 13, 13, 0.05);
-}
-
-[data-theme="light"] .testi-arrow-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+[data-theme="light"] .reviews-cta-desc {
+    color: #475569 !important;
 }
 
 /* --- 11. Tech Insights / Blog Section --- */
@@ -13390,6 +13443,9 @@ body,
 
         <!-- Client Testimonials / Reviews Showcase Section -->
         <section id="testimonials" class="testimonials-section">
+            <!-- Nav anchor for #reviews compatibility -->
+            <div id="reviews" class="nav-target-anchor" aria-hidden="true"></div>
+
             <!-- Background Cyber Atmosphere -->
             <div class="testimonials-bg-decor" aria-hidden="true">
                 <div class="testi-glow testi-glow-1"></div>
@@ -13397,254 +13453,205 @@ body,
                 <div class="testi-grid-pattern"></div>
             </div>
 
-            <div class="container">
-                <!-- Section Header -->
-                <div class="section-header text-center scroll-reveal-init">
-                    <div class="testimonials-eyebrow">
-                        <span class="eyebrow-dash"></span>
-                        <span class="eyebrow-text">ENDORSEMENTS &amp; TESTIMONIALS</span>
+            <div class="container testimonials-container">
+                <!-- Two-Column Top Header: Left Title & Info, Right 4 Stats -->
+                <div class="reviews-top-row scroll-reveal-init">
+                    <!-- Left: Eyebrow, Main Heading, Subtitle -->
+                    <div class="reviews-header-left">
+                        <div class="reviews-eyebrow">
+                            <span class="reviews-eyebrow-text">REVIEWS &amp; TESTIMONIALS</span>
+                            <span class="reviews-eyebrow-line"></span>
+                        </div>
+                        <h2 class="reviews-main-title">What People Say <span class="reviews-gradient-text">About Me</span></h2>
+                        <p class="reviews-subtitle">Real feedback from clients, collaborators and team members I've worked with on various projects.</p>
                     </div>
-                    <h2 class="testimonials-main-title">What People Say About <span class="gradient-text">Working With Me</span></h2>
-                    <p class="testimonials-subtitle">Real feedback and professional experiences from people I've worked with, collaborated with, and learned from.</p>
+
+                    <!-- Right: 4 Compact Stat Cards in a Single Horizontal Row -->
+                    <div class="reviews-stats-row">
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <div class="reviews-stat-number">20+</div>
+                            <div class="reviews-stat-label">Happy Clients</div>
+                        </div>
+
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <div class="reviews-stat-number">4.9/5</div>
+                            <div class="reviews-stat-label">Average Rating</div>
+                        </div>
+
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-regular fa-comment-dots"></i>
+                            </div>
+                            <div class="reviews-stat-number">15+</div>
+                            <div class="reviews-stat-label">Reviews</div>
+                        </div>
+
+                        <div class="reviews-stat-card">
+                            <div class="reviews-stat-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="reviews-stat-number">100%</div>
+                            <div class="reviews-stat-label">Project Success</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Professional Feedback Statistics (4 Compact Glass Cards) -->
-                <div class="testimonials-stats-strip scroll-reveal-init">
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-gradient">
-                            <i class="fa-solid fa-comments"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Verified Reviews</span>
-                        </div>
-                    </div>
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-gold">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">5.0</span>
-                            <span class="stat-label">Average Rating</span>
-                        </div>
-                    </div>
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-cyan">
-                            <i class="fa-solid fa-thumbs-up"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Positive Feedback</span>
-                        </div>
-                    </div>
-                    <div class="testi-stat-card">
-                        <div class="stat-icon-wrap stat-icon-purple">
-                            <i class="fa-solid fa-building"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Partner Teams</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- Carousel Stage with Prev/Next Circular Buttons -->
+                <div class="reviews-stage-wrapper scroll-reveal-init">
+                    <button type="button" id="reviewsPrev" class="reviews-nav-btn reviews-prev-btn" aria-label="Previous Testimonial">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
 
-                <!-- Interactive Reviewer Avatar Selector Bar (Reference Design) -->
-                <div class="testimonials-avatar-bar scroll-reveal-init" id="testiAvatarBar">
-                    <button type="button" class="testi-avatar-btn active" data-slide="0" aria-label="Select testimonial from Engineering Lead">
-                        <div class="avatar-ring">
-                            <span class="avatar-initials avatar-gradient-purple">EL</span>
-                        </div>
-                        <span class="avatar-role-label">Engineering Lead</span>
-                    </button>
-                    <button type="button" class="testi-avatar-btn" data-slide="1" aria-label="Select testimonial from Digital Growth Director">
-                        <div class="avatar-ring">
-                            <span class="avatar-initials avatar-gradient-cyan">DG</span>
-                        </div>
-                        <span class="avatar-role-label">Digital Growth</span>
-                    </button>
-                    <button type="button" class="testi-avatar-btn" data-slide="2" aria-label="Select testimonial from Project Manager">
-                        <div class="avatar-ring">
-                            <span class="avatar-initials avatar-gradient-purple">PM</span>
-                        </div>
-                        <span class="avatar-role-label">Project Manager</span>
-                    </button>
-                </div>
-
-                <!-- 3D / Coverflow Testimonial Stage -->
-                <div class="testimonials-stage-wrapper scroll-reveal-init">
-                    <div class="testimonials-stage" id="testimonialsStage">
-                        <!-- Card 1: Featured Engineering Lead -->
-                        <div class="testimonial-card-item active" data-index="0" onclick="goToTestimonial(0)">
-                            <div class="testi-card-inner">
-                                <div class="testi-card-top">
-                                    <div class="testi-category-pill">
-                                        <i class="fa-solid fa-asterisk"></i>
-                                        <span>Full-Stack Engineering</span>
+                    <div class="reviews-carousel-stage" id="reviewsCarouselStage">
+                        <div class="reviews-carousel-track" id="reviewsTrack">
+                            <!-- Card 1: John Mathew -->
+                            <div class="reviews-card-item" data-index="0">
+                                <div class="reviews-card-quote-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                    </svg>
+                                </div>
+                                <p class="reviews-card-text">"Siam is a highly skilled developer. He delivered our project on time with excellent code quality and clear communication throughout the process."</p>
+                                <div class="reviews-card-author-row">
+                                    <div class="reviews-author-avatar-wrap">
+                                        <img src="data:image/jpeg;base64,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" alt="John Mathew" class="reviews-author-avatar" loading="lazy">
                                     </div>
-                                    <div class="testi-rating-badge">
-                                        <div class="testi-stars">
+                                    <div class="reviews-author-info">
+                                        <h4 class="reviews-author-name">John Mathew</h4>
+                                        <span class="reviews-author-role">Project Manager</span>
+                                    </div>
+                                    <div class="reviews-author-rating">
+                                        <div class="reviews-stars" aria-label="5 out of 5 stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="testi-rating-score">5.0</span>
+                                        <span class="reviews-rating-num">5.0</span>
                                     </div>
-                                </div>
-
-                                <div class="testi-reviewer-header">
-                                    <div class="reviewer-avatar-wrap">
-                                        <span class="avatar-initials avatar-gradient-purple">EL</span>
-                                    </div>
-                                    <div class="reviewer-details">
-                                        <h3 class="reviewer-name">Engineering Lead</h3>
-                                        <p class="reviewer-org">Software &amp; Solutions Team</p>
-                                    </div>
-                                </div>
-
-                                <div class="testi-quote-block">
-                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
-                                    <p class="testi-quote-text">
-                                        "Siam is a skilled full-stack developer who understands both backend stability with Django and responsive UI with React. His dedication to clean code, punctual delivery, and thoughtful problem-solving makes him a true asset to any project."
-                                    </p>
-                                </div>
-
-                                <div class="testi-tags-row">
-                                    <span class="testi-tag-chip">Django REST</span>
-                                    <span class="testi-tag-chip">React UI</span>
-                                    <span class="testi-tag-chip">Clean Code</span>
-                                    <span class="testi-tag-chip">Problem Solving</span>
-                                </div>
-
-                                <div class="testi-card-bottom">
-                                    <span class="testi-verified-badge">
-                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
-                                    </span>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Card 2: Digital Growth Director -->
-                        <div class="testimonial-card-item" data-index="1" onclick="goToTestimonial(1)">
-                            <div class="testi-card-inner">
-                                <div class="testi-card-top">
-                                    <div class="testi-category-pill">
-                                        <i class="fa-solid fa-asterisk"></i>
-                                        <span>Digital Growth &amp; Web</span>
+                            <!-- Card 2: Nusrat Jahan (Center Active in Reference Image) -->
+                            <div class="reviews-card-item active" data-index="1">
+                                <div class="reviews-card-quote-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                    </svg>
+                                </div>
+                                <p class="reviews-card-text">"Working with Siam was a great experience. He quickly understood our requirements, proposed smart solutions and built a scalable and user-friendly product."</p>
+                                <div class="reviews-card-author-row">
+                                    <div class="reviews-author-avatar-wrap">
+                                        <img src="data:image/jpeg;base64,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" alt="Nusrat Jahan" class="reviews-author-avatar" loading="lazy">
                                     </div>
-                                    <div class="testi-rating-badge">
-                                        <div class="testi-stars">
+                                    <div class="reviews-author-info">
+                                        <h4 class="reviews-author-name">Nusrat Jahan</h4>
+                                        <span class="reviews-author-role">Product Owner</span>
+                                    </div>
+                                    <div class="reviews-author-rating">
+                                        <div class="reviews-stars" aria-label="5 out of 5 stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="testi-rating-score">5.0</span>
+                                        <span class="reviews-rating-num">5.0</span>
                                     </div>
-                                </div>
-
-                                <div class="testi-reviewer-header">
-                                    <div class="reviewer-avatar-wrap">
-                                        <span class="avatar-initials avatar-gradient-cyan">DG</span>
-                                    </div>
-                                    <div class="reviewer-details">
-                                        <h3 class="reviewer-name">Digital Growth Director</h3>
-                                        <p class="reviewer-org">International Business Partner</p>
-                                    </div>
-                                </div>
-
-                                <div class="testi-quote-block">
-                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
-                                    <p class="testi-quote-text">
-                                        "Working with Siam was fantastic. He combines technical development with practical digital marketing acumen. He communicated clearly, resolved complex bugs quickly, and delivered our web application ahead of schedule."
-                                    </p>
-                                </div>
-
-                                <div class="testi-tags-row">
-                                    <span class="testi-tag-chip">Web Applications</span>
-                                    <span class="testi-tag-chip">Digital Growth</span>
-                                    <span class="testi-tag-chip">Agile Delivery</span>
-                                    <span class="testi-tag-chip">Bug Resolution</span>
-                                </div>
-
-                                <div class="testi-card-bottom">
-                                    <span class="testi-verified-badge">
-                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
-                                    </span>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Card 3: Project Manager -->
-                        <div class="testimonial-card-item" data-index="2" onclick="goToTestimonial(2)">
-                            <div class="testi-card-inner">
-                                <div class="testi-card-top">
-                                    <div class="testi-category-pill">
-                                        <i class="fa-solid fa-asterisk"></i>
-                                        <span>API &amp; System Design</span>
+                            <!-- Card 3: Rafiul Hasan -->
+                            <div class="reviews-card-item" data-index="2">
+                                <div class="reviews-card-quote-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="38" height="38">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                    </svg>
+                                </div>
+                                <p class="reviews-card-text">"A reliable and creative developer. Siam not only wrote clean code but also suggested improvements that made our product more efficient."</p>
+                                <div class="reviews-card-author-row">
+                                    <div class="reviews-author-avatar-wrap">
+                                        <img src="data:image/jpeg;base64,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" alt="Rafiul Hasan" class="reviews-author-avatar" loading="lazy">
                                     </div>
-                                    <div class="testi-rating-badge">
-                                        <div class="testi-stars">
+                                    <div class="reviews-author-info">
+                                        <h4 class="reviews-author-name">Rafiul Hasan</h4>
+                                        <span class="reviews-author-role">CEO, TechTribe</span>
+                                    </div>
+                                    <div class="reviews-author-rating">
+                                        <div class="reviews-stars" aria-label="5 out of 5 stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                         </div>
-                                        <span class="testi-rating-score">5.0</span>
+                                        <span class="reviews-rating-num">5.0</span>
                                     </div>
-                                </div>
-
-                                <div class="testi-reviewer-header">
-                                    <div class="reviewer-avatar-wrap">
-                                        <span class="avatar-initials avatar-gradient-purple">PM</span>
-                                    </div>
-                                    <div class="reviewer-details">
-                                        <h3 class="reviewer-name">Project Manager</h3>
-                                        <p class="reviewer-org">Web &amp; Tech Agency</p>
-                                    </div>
-                                </div>
-
-                                <div class="testi-quote-block">
-                                    <i class="fa-solid fa-quote-left quote-mark-icon" aria-hidden="true"></i>
-                                    <p class="testi-quote-text">
-                                        "Siam's approach to API structure and database relations is exemplary. He is enthusiastic, continuously learning the latest in AI and web frameworks, and always delivers polished, maintainable code."
-                                    </p>
-                                </div>
-
-                                <div class="testi-tags-row">
-                                    <span class="testi-tag-chip">API Architecture</span>
-                                    <span class="testi-tag-chip">Database Relations</span>
-                                    <span class="testi-tag-chip">AI Workflows</span>
-                                    <span class="testi-tag-chip">Code Quality</span>
-                                </div>
-
-                                <div class="testi-card-bottom">
-                                    <span class="testi-verified-badge">
-                                        <i class="fa-solid fa-circle-check"></i> Verified Professional Endorsement
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Carousel Controls (Arrows and Pagination Dots) -->
-                    <div class="testimonials-carousel-controls">
-                        <button type="button" id="slider-prev" class="testi-arrow-btn" aria-label="Previous testimonial">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <div class="testi-dots-wrap" id="slider-dots">
-                            <button type="button" class="testi-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                            <button type="button" class="testi-dot" data-slide="1" aria-label="Go to slide 2"></button>
-                            <button type="button" class="testi-dot" data-slide="2" aria-label="Go to slide 3"></button>
-                        </div>
-                        <button type="button" id="slider-next" class="testi-arrow-btn" aria-label="Next testimonial">
+                    <button type="button" id="reviewsNext" class="reviews-nav-btn reviews-next-btn" aria-label="Next Testimonial">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Pagination Dots (Center Dot Active by default) -->
+                <div class="reviews-dots-wrap scroll-reveal-init" id="reviewsDots">
+                    <button type="button" class="reviews-dot" data-slide="0" aria-label="Go to testimonial 1"></button>
+                    <button type="button" class="reviews-dot active" data-slide="1" aria-label="Go to testimonial 2"></button>
+                    <button type="button" class="reviews-dot" data-slide="2" aria-label="Go to testimonial 3"></button>
+                </div>
+
+                <!-- Bottom Call-To-Action Glass Banner -->
+                <div class="reviews-cta-banner scroll-reveal-init">
+                    <div class="reviews-cta-icon-wrap">
+                        <i class="fa-regular fa-comment-dots"></i>
+                    </div>
+                    <div class="reviews-cta-divider"></div>
+                    <div class="reviews-cta-content">
+                        <h3 class="reviews-cta-title">Let's Create Another <span class="reviews-gradient-text">Success Story</span></h3>
+                        <p class="reviews-cta-desc">Have a project in mind? Let's work together and make it happen.</p>
+                    </div>
+                    <div class="reviews-cta-action">
+                        <a href="#contact" class="reviews-cta-btn">
+                            <span>Hire Me Now</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Animated Bottom Wave (Dual Glowing Strokes) -->
+            <div class="reviews-bottom-wave" aria-hidden="true">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="reviewsWaveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF1018" stop-opacity="0.85"/>
+                            <stop offset="50%" stop-color="#FF3B16" stop-opacity="0.95"/>
+                            <stop offset="100%" stop-color="#FF8A00" stop-opacity="0.85"/>
+                        </linearGradient>
+                        <linearGradient id="reviewsWaveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF3B16" stop-opacity="0.4"/>
+                            <stop offset="50%" stop-color="#FF8A00" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#FF1018" stop-opacity="0.4"/>
+                        </linearGradient>
+                        <filter id="reviewsWaveGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="glow"/>
+                            <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+                        </filter>
+                    </defs>
+                    <path class="reviews-wave-path-1" d="M0,60 C320,120 420,10 720,60 C1020,110 1140,20 1440,60" stroke="url(#reviewsWaveGrad1)" stroke-width="2.5" filter="url(#reviewsWaveGlow)"/>
+                    <path class="reviews-wave-path-2" d="M0,70 C360,20 540,110 900,50 C1200,0 1320,90 1440,70" stroke="url(#reviewsWaveGrad2)" stroke-width="1.5"/>
+                </svg>
             </div>
         </section>
 
@@ -14551,118 +14558,143 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==========================================================================
-       9. TESTIMONIALS COVERFLOW CAROUSEL & AVATAR SELECTOR
+        /* ==========================================================================
+       9. REVIEWS & TESTIMONIALS CAROUSEL
        ========================================================================== */
-    const testiCards = document.querySelectorAll('.testimonial-card-item');
-    const testiAvatarBtns = document.querySelectorAll('.testi-avatar-btn');
-    const testiDots = document.querySelectorAll('.testi-dot');
-    const testiPrevBtn = document.getElementById('slider-prev');
-    const testiNextBtn = document.getElementById('slider-next');
-    const testiStageWrapper = document.querySelector('.testimonials-stage-wrapper');
-    let currentTestiSlide = 0;
-    let testiAutoSlideTimer = null;
+    const reviewsSection = document.getElementById('testimonials');
+    const reviewsCards = document.querySelectorAll('.reviews-card-item');
+    const reviewsDots = document.querySelectorAll('.reviews-dot');
+    const reviewsPrevBtn = document.getElementById('reviewsPrev');
+    const reviewsNextBtn = document.getElementById('reviewsNext');
+    const reviewsTrack = document.getElementById('reviewsTrack');
+    const reviewsStageWrapper = document.querySelector('.reviews-stage-wrapper');
+    
+    // Initial active slide is 1 (Nusrat Jahan, center card matching reference image)
+    let currentReviewSlide = 1;
+    let reviewsAutoSlideTimer = null;
+    const isMobileReviews = () => window.innerWidth <= 991;
 
-    function updateTestimonialStage(index) {
-        if (!testiCards.length) return;
-        currentTestiSlide = (index + testiCards.length) % testiCards.length;
+    function updateReviewsStage(index) {
+        if (!reviewsCards.length) return;
+        currentReviewSlide = (index + reviewsCards.length) % reviewsCards.length;
 
-        testiCards.forEach((card, idx) => {
-            card.classList.remove('active', 'is-prev', 'is-next');
-            if (idx === currentTestiSlide) {
-                card.classList.add('active');
-            } else if (idx === (currentTestiSlide - 1 + testiCards.length) % testiCards.length) {
-                card.classList.add('is-prev');
+        // Update cards active state
+        reviewsCards.forEach((card, idx) => {
+            const isActive = idx === currentReviewSlide;
+            card.classList.toggle('active', isActive);
+            card.setAttribute('aria-hidden', (!isActive && isMobileReviews()) ? 'true' : 'false');
+        });
+
+        // Update dots
+        reviewsDots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentReviewSlide);
+            dot.setAttribute('aria-selected', idx === currentReviewSlide ? 'true' : 'false');
+        });
+
+        // On mobile/tablet (<= 991px), slide the track
+        if (reviewsTrack) {
+            if (isMobileReviews()) {
+                reviewsTrack.style.transform = `translateX(-${currentReviewSlide * 100}%)`;
             } else {
-                card.classList.add('is-next');
+                reviewsTrack.style.transform = 'none';
             }
-        });
-
-        testiAvatarBtns.forEach((btn, idx) => {
-            btn.classList.toggle('active', idx === currentTestiSlide);
-        });
-
-        testiDots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentTestiSlide);
-        });
+        }
     }
 
-    window.goToTestimonial = function(index) {
-        updateTestimonialStage(index);
+    window.goToReview = function(index) {
+        updateReviewsStage(index);
     };
 
-    if (testiPrevBtn) {
-        testiPrevBtn.addEventListener('click', () => {
-            updateTestimonialStage(currentTestiSlide - 1);
+    if (reviewsPrevBtn) {
+        reviewsPrevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateReviewsStage(currentReviewSlide - 1);
         });
     }
 
-    if (testiNextBtn) {
-        testiNextBtn.addEventListener('click', () => {
-            updateTestimonialStage(currentTestiSlide + 1);
+    if (reviewsNextBtn) {
+        reviewsNextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateReviewsStage(currentReviewSlide + 1);
         });
     }
 
-    testiAvatarBtns.forEach((btn, idx) => {
-        btn.addEventListener('click', () => {
-            updateTestimonialStage(idx);
+    // Direct card click to select
+    reviewsCards.forEach((card, idx) => {
+        card.addEventListener('click', () => {
+            updateReviewsStage(idx);
         });
     });
 
-    testiDots.forEach((dot, idx) => {
+    // Dot navigation click
+    reviewsDots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
-            updateTestimonialStage(idx);
+            updateReviewsStage(idx);
         });
     });
 
-    // Touch swipe support
+    // Touch swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
 
-    if (testiStageWrapper) {
-        testiStageWrapper.addEventListener('touchstart', (e) => {
+    if (reviewsStageWrapper) {
+        reviewsStageWrapper.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        testiStageWrapper.addEventListener('touchend', (e) => {
+        reviewsStageWrapper.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            handleTestiSwipe();
+            handleReviewsSwipe();
         }, { passive: true });
     }
 
-    function handleTestiSwipe() {
-        const swipeThreshold = 50;
+    function handleReviewsSwipe() {
+        const swipeThreshold = 40;
         if (touchEndX < touchStartX - swipeThreshold) {
-            updateTestimonialStage(currentTestiSlide + 1);
+            updateReviewsStage(currentReviewSlide + 1);
         } else if (touchEndX > touchStartX + swipeThreshold) {
-            updateTestimonialStage(currentTestiSlide - 1);
+            updateReviewsStage(currentReviewSlide - 1);
         }
     }
 
-    // Auto-advance carousel unless user prefers reduced motion
-    function startTestiAutoSlide() {
-        if (!testiCards.length || prefersReducedMotion) return;
-        stopTestiAutoSlide();
-        testiAutoSlideTimer = setInterval(() => {
-            updateTestimonialStage(currentTestiSlide + 1);
-        }, 7000);
+    // Window resize handler to maintain track alignment
+    window.addEventListener('resize', () => {
+        updateReviewsStage(currentReviewSlide);
+    }, { passive: true });
+
+    // Auto-advance carousel
+    function startReviewsAutoSlide() {
+        if (!reviewsCards.length || (typeof prefersReducedMotion !== 'undefined' && prefersReducedMotion)) return;
+        stopReviewsAutoSlide();
+        reviewsAutoSlideTimer = setInterval(() => {
+            updateReviewsStage(currentReviewSlide + 1);
+        }, 5500);
     }
 
-    function stopTestiAutoSlide() {
-        if (testiAutoSlideTimer) {
-            clearInterval(testiAutoSlideTimer);
-            testiAutoSlideTimer = null;
+    function stopReviewsAutoSlide() {
+        if (reviewsAutoSlideTimer) {
+            clearInterval(reviewsAutoSlideTimer);
+            reviewsAutoSlideTimer = null;
         }
     }
 
-    if (testiStageWrapper && !prefersReducedMotion) {
-        startTestiAutoSlide();
-        testiStageWrapper.addEventListener('mouseenter', stopTestiAutoSlide);
-        testiStageWrapper.addEventListener('mouseleave', startTestiAutoSlide);
+    if (reviewsStageWrapper && (typeof prefersReducedMotion === 'undefined' || !prefersReducedMotion)) {
+        startReviewsAutoSlide();
+        reviewsStageWrapper.addEventListener('mouseenter', stopReviewsAutoSlide);
+        reviewsStageWrapper.addEventListener('mouseleave', startReviewsAutoSlide);
     }
 
-    // Initialize first state
-    updateTestimonialStage(0);
+    // Pause auto slide if document tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopReviewsAutoSlide();
+        } else if (typeof prefersReducedMotion === 'undefined' || !prefersReducedMotion) {
+            startReviewsAutoSlide();
+        }
+    });
+
+    // Initial state: slide 1 (matches reference screenshot with center card active)
+    updateReviewsStage(1);
 
     /* ==========================================================================
        10. BACK TO TOP BUTTON WITH CIRCULAR SCROLL PROGRESS

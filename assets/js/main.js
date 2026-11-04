@@ -546,118 +546,143 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==========================================================================
-       9. TESTIMONIALS COVERFLOW CAROUSEL & AVATAR SELECTOR
+        /* ==========================================================================
+       9. REVIEWS & TESTIMONIALS CAROUSEL
        ========================================================================== */
-    const testiCards = document.querySelectorAll('.testimonial-card-item');
-    const testiAvatarBtns = document.querySelectorAll('.testi-avatar-btn');
-    const testiDots = document.querySelectorAll('.testi-dot');
-    const testiPrevBtn = document.getElementById('slider-prev');
-    const testiNextBtn = document.getElementById('slider-next');
-    const testiStageWrapper = document.querySelector('.testimonials-stage-wrapper');
-    let currentTestiSlide = 0;
-    let testiAutoSlideTimer = null;
+    const reviewsSection = document.getElementById('testimonials');
+    const reviewsCards = document.querySelectorAll('.reviews-card-item');
+    const reviewsDots = document.querySelectorAll('.reviews-dot');
+    const reviewsPrevBtn = document.getElementById('reviewsPrev');
+    const reviewsNextBtn = document.getElementById('reviewsNext');
+    const reviewsTrack = document.getElementById('reviewsTrack');
+    const reviewsStageWrapper = document.querySelector('.reviews-stage-wrapper');
+    
+    // Initial active slide is 1 (Nusrat Jahan, center card matching reference image)
+    let currentReviewSlide = 1;
+    let reviewsAutoSlideTimer = null;
+    const isMobileReviews = () => window.innerWidth <= 991;
 
-    function updateTestimonialStage(index) {
-        if (!testiCards.length) return;
-        currentTestiSlide = (index + testiCards.length) % testiCards.length;
+    function updateReviewsStage(index) {
+        if (!reviewsCards.length) return;
+        currentReviewSlide = (index + reviewsCards.length) % reviewsCards.length;
 
-        testiCards.forEach((card, idx) => {
-            card.classList.remove('active', 'is-prev', 'is-next');
-            if (idx === currentTestiSlide) {
-                card.classList.add('active');
-            } else if (idx === (currentTestiSlide - 1 + testiCards.length) % testiCards.length) {
-                card.classList.add('is-prev');
+        // Update cards active state
+        reviewsCards.forEach((card, idx) => {
+            const isActive = idx === currentReviewSlide;
+            card.classList.toggle('active', isActive);
+            card.setAttribute('aria-hidden', (!isActive && isMobileReviews()) ? 'true' : 'false');
+        });
+
+        // Update dots
+        reviewsDots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentReviewSlide);
+            dot.setAttribute('aria-selected', idx === currentReviewSlide ? 'true' : 'false');
+        });
+
+        // On mobile/tablet (<= 991px), slide the track
+        if (reviewsTrack) {
+            if (isMobileReviews()) {
+                reviewsTrack.style.transform = `translateX(-${currentReviewSlide * 100}%)`;
             } else {
-                card.classList.add('is-next');
+                reviewsTrack.style.transform = 'none';
             }
-        });
-
-        testiAvatarBtns.forEach((btn, idx) => {
-            btn.classList.toggle('active', idx === currentTestiSlide);
-        });
-
-        testiDots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentTestiSlide);
-        });
+        }
     }
 
-    window.goToTestimonial = function(index) {
-        updateTestimonialStage(index);
+    window.goToReview = function(index) {
+        updateReviewsStage(index);
     };
 
-    if (testiPrevBtn) {
-        testiPrevBtn.addEventListener('click', () => {
-            updateTestimonialStage(currentTestiSlide - 1);
+    if (reviewsPrevBtn) {
+        reviewsPrevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateReviewsStage(currentReviewSlide - 1);
         });
     }
 
-    if (testiNextBtn) {
-        testiNextBtn.addEventListener('click', () => {
-            updateTestimonialStage(currentTestiSlide + 1);
+    if (reviewsNextBtn) {
+        reviewsNextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateReviewsStage(currentReviewSlide + 1);
         });
     }
 
-    testiAvatarBtns.forEach((btn, idx) => {
-        btn.addEventListener('click', () => {
-            updateTestimonialStage(idx);
+    // Direct card click to select
+    reviewsCards.forEach((card, idx) => {
+        card.addEventListener('click', () => {
+            updateReviewsStage(idx);
         });
     });
 
-    testiDots.forEach((dot, idx) => {
+    // Dot navigation click
+    reviewsDots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
-            updateTestimonialStage(idx);
+            updateReviewsStage(idx);
         });
     });
 
-    // Touch swipe support
+    // Touch swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
 
-    if (testiStageWrapper) {
-        testiStageWrapper.addEventListener('touchstart', (e) => {
+    if (reviewsStageWrapper) {
+        reviewsStageWrapper.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        testiStageWrapper.addEventListener('touchend', (e) => {
+        reviewsStageWrapper.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            handleTestiSwipe();
+            handleReviewsSwipe();
         }, { passive: true });
     }
 
-    function handleTestiSwipe() {
-        const swipeThreshold = 50;
+    function handleReviewsSwipe() {
+        const swipeThreshold = 40;
         if (touchEndX < touchStartX - swipeThreshold) {
-            updateTestimonialStage(currentTestiSlide + 1);
+            updateReviewsStage(currentReviewSlide + 1);
         } else if (touchEndX > touchStartX + swipeThreshold) {
-            updateTestimonialStage(currentTestiSlide - 1);
+            updateReviewsStage(currentReviewSlide - 1);
         }
     }
 
-    // Auto-advance carousel unless user prefers reduced motion
-    function startTestiAutoSlide() {
-        if (!testiCards.length || prefersReducedMotion) return;
-        stopTestiAutoSlide();
-        testiAutoSlideTimer = setInterval(() => {
-            updateTestimonialStage(currentTestiSlide + 1);
-        }, 7000);
+    // Window resize handler to maintain track alignment
+    window.addEventListener('resize', () => {
+        updateReviewsStage(currentReviewSlide);
+    }, { passive: true });
+
+    // Auto-advance carousel
+    function startReviewsAutoSlide() {
+        if (!reviewsCards.length || (typeof prefersReducedMotion !== 'undefined' && prefersReducedMotion)) return;
+        stopReviewsAutoSlide();
+        reviewsAutoSlideTimer = setInterval(() => {
+            updateReviewsStage(currentReviewSlide + 1);
+        }, 5500);
     }
 
-    function stopTestiAutoSlide() {
-        if (testiAutoSlideTimer) {
-            clearInterval(testiAutoSlideTimer);
-            testiAutoSlideTimer = null;
+    function stopReviewsAutoSlide() {
+        if (reviewsAutoSlideTimer) {
+            clearInterval(reviewsAutoSlideTimer);
+            reviewsAutoSlideTimer = null;
         }
     }
 
-    if (testiStageWrapper && !prefersReducedMotion) {
-        startTestiAutoSlide();
-        testiStageWrapper.addEventListener('mouseenter', stopTestiAutoSlide);
-        testiStageWrapper.addEventListener('mouseleave', startTestiAutoSlide);
+    if (reviewsStageWrapper && (typeof prefersReducedMotion === 'undefined' || !prefersReducedMotion)) {
+        startReviewsAutoSlide();
+        reviewsStageWrapper.addEventListener('mouseenter', stopReviewsAutoSlide);
+        reviewsStageWrapper.addEventListener('mouseleave', startReviewsAutoSlide);
     }
 
-    // Initialize first state
-    updateTestimonialStage(0);
+    // Pause auto slide if document tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopReviewsAutoSlide();
+        } else if (typeof prefersReducedMotion === 'undefined' || !prefersReducedMotion) {
+            startReviewsAutoSlide();
+        }
+    });
+
+    // Initial state: slide 1 (matches reference screenshot with center card active)
+    updateReviewsStage(1);
 
     /* ==========================================================================
        10. BACK TO TOP BUTTON WITH CIRCULAR SCROLL PROGRESS
