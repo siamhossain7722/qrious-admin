@@ -167,139 +167,231 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero-section">
+            <!-- Background Ambient Glows & Cyber Atmosphere -->
+            <div class="hero-atmosphere-backdrop" aria-hidden="true">
+                <div class="hero-ambient-glow glow-top-left"></div>
+                <div class="hero-ambient-glow glow-portrait-blue"></div>
+                <div class="hero-ambient-glow glow-frame-purple"></div>
+                <div class="hero-dot-matrix"></div>
+            </div>
+
             <div class="container hero-container">
                 <div class="hero-grid">
-                    <!-- Left Column: Content -->
+                    <!-- Left Column: Introduction (~45%) -->
                     <div class="hero-content">
-                        <div class="hero-status-pill">
-                            <span class="status-code-tag">&lt;/&gt;</span>
-                            <span class="status-pulse-dot"></span>
-                            <span class="status-text">OPEN TO WORK &amp; AVAILABLE FOR PROJECTS</span>
+                        <!-- Small Professional Label with Glowing Horizontal Line -->
+                        <div class="hero-eyebrow-row">
+                            <span class="hero-eyebrow-text">FULL STACK DEVELOPER</span>
+                            <span class="hero-eyebrow-line"></span>
                         </div>
+
+                        <!-- Main Heading -->
                         <h1 class="hero-headline">
                             <span class="hero-greeting">Hello, I'm</span>
-                            <span class="hero-name-highlight">Siam Hossain</span>
-                            <div class="hero-subline-badge">
-                                <i class="fa-solid fa-laptop-code"></i>
-                                <span id="hero-typing-role" class="neon-gradient-text">Full Stack Web Developer</span><span class="typing-cursor" aria-hidden="true"></span>
-                            </div>
+                            <span class="hero-name-gradient">Siam Hossain</span><span class="hero-neon-cursor" aria-hidden="true">|</span>
                         </h1>
+
+                        <!-- Professional Role Badge -->
+                        <div class="hero-role-pill">
+                            <span class="role-icon-code">&lt;/&gt;</span>
+                            <span class="role-text-label">Full Stack Web Developer</span>
+                        </div>
+
+                        <!-- Description with Subtle Purple Highlights -->
                         <p class="hero-summary">
-                            I build modern, scalable and user-friendly web applications using Django, React and JavaScript with a strong focus on performance, security and clean architecture.
+                            I build modern, scalable and user-friendly web applications using <span class="tech-highlight">Django</span>, <span class="tech-highlight">React</span> and <span class="tech-highlight">JavaScript</span> with a strong focus on performance, security and clean architecture.
                         </p>
 
-                        <!-- CTA Buttons -->
-                        <div class="hero-buttons">
-                            <a href="#portfolio" class="btn-hero-primary">
+                        <!-- CTA Action Row: Primary, Secondary & Social Circles -->
+                        <div class="hero-actions-row">
+                            <a href="#portfolio" class="btn-hero-view-projects">
+                                <i class="fa-solid fa-rocket"></i>
                                 <span>View Projects</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
-                            <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="btn-hero-secondary">
-                                <i class="fa-solid fa-file-arrow-down"></i>
+                            <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="btn-hero-download-cv">
+                                <i class="fa-solid fa-arrow-down"></i>
                                 <span>Download CV</span>
                             </a>
-                            <a href="#contact" class="btn-hero-secondary">
-                                <i class="fa-regular fa-paper-plane"></i>
-                                <span>Get In Touch</span>
-                            </a>
+                            <div class="hero-social-circles">
+                                <a href="https://github.com/siamhossain7722" target="_blank" class="social-circle-btn" aria-label="GitHub">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/siamhossain7722/" target="_blank" class="social-circle-btn" aria-label="LinkedIn">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@siamhossain" target="_blank" class="social-circle-btn" aria-label="YouTube">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                                <a href="https://t.me/siamhossain" target="_blank" class="social-circle-btn" aria-label="Telegram">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </a>
+                            </div>
                         </div>
 
-                        <!-- Stats Cards Row -->
-                        <div class="hero-stats-row">
-                            <div class="hero-stat-card">
-                                <div class="stat-icon-wrap">
-                                    <i class="fa-solid fa-code-fork"></i>
+                        <!-- 3 Statistics Cards -->
+                        <div class="hero-stats-cards-grid">
+                            <!-- Card 1 -->
+                            <div class="hero-stat-card-v2">
+                                <div class="stat-icon-circle icon-purple">
+                                    <i class="fa-solid fa-code"></i>
                                 </div>
-                                <div class="stat-meta">
-                                    <span class="stat-value counter-val" data-target="10">10+</span>
-                                    <span class="stat-label">Projects Shipped</span>
+                                <div class="stat-content-wrap">
+                                    <span class="stat-number-val">10+</span>
+                                    <span class="stat-label-text">Projects Completed</span>
                                 </div>
                             </div>
-                            <div class="hero-stat-card">
-                                <div class="stat-icon-wrap">
+
+                            <!-- Card 2 -->
+                            <div class="hero-stat-card-v2">
+                                <div class="stat-icon-circle icon-cyan">
                                     <i class="fa-solid fa-trophy"></i>
                                 </div>
-                                <div class="stat-meta">
-                                    <span class="stat-value counter-val" data-target="2">2+</span>
-                                    <span class="stat-label">Years Experience</span>
+                                <div class="stat-content-wrap">
+                                    <span class="stat-number-val">2+</span>
+                                    <span class="stat-label-text">Years Experience</span>
                                 </div>
                             </div>
-                            <div class="hero-stat-card">
-                                <div class="stat-icon-wrap">
+
+                            <!-- Card 3 -->
+                            <div class="hero-stat-card-v2">
+                                <div class="stat-icon-circle icon-blue">
                                     <i class="fa-solid fa-users"></i>
                                 </div>
-                                <div class="stat-meta">
-                                    <span class="stat-value counter-val" data-target="50">50+</span>
-                                    <span class="stat-label">Happy Clients</span>
+                                <div class="stat-content-wrap">
+                                    <span class="stat-number-val">50+</span>
+                                    <span class="stat-label-text">Happy Clients</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Social Links Row -->
-                        <div class="hero-social-row">
-                            <span class="social-label">Find Me On:</span>
-                            <div class="social-links">
-                                <a href="https://github.com/siamhossain7722" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                                <a href="https://www.linkedin.com/in/siamhossain7722/" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="https://www.facebook.com/siamhossain7722/" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Visual Showcase (Panel 01 Reference Design) -->
+                    <!-- Right Column: Profile Visual Composition (~55%) -->
                     <div class="hero-visual">
-                        <div class="hero-portrait-stage">
-                            <!-- Ambient Atmospheric Glow & Tech Grid -->
-                            <div class="stage-ambient-glow"></div>
-                            <div class="stage-tech-grid"></div>
-
-                            <!-- Oversized Background Typography -->
-                            <div class="stage-bg-typography" aria-hidden="true">
-                                <div class="bg-text-fullstack">FULL STACK</div>
-                                <div class="bg-text-developer">DEVELOPER</div>
+                        <div class="hero-composition-stage">
+                            <!-- Layered Tilted Geometric Glass Frame -->
+                            <div class="hero-tilted-frame" aria-hidden="true">
+                                <div class="frame-glass-surface"></div>
+                                <div class="frame-neon-glow-cyan"></div>
+                                <div class="frame-neon-glow-purple"></div>
                             </div>
 
-                            <!-- Circular / Elliptical Neon Portal Halo Ring behind Siam -->
-                            <div class="hero-neon-portal-ring" aria-hidden="true"></div>
+                            <!-- Layered Polygon Plate Depth Elements -->
+                            <div class="hero-polygon-plate" aria-hidden="true"></div>
 
                             <!-- Transparent Portrait Cutout of Siam Hossain -->
-                            <div class="stage-portrait-wrapper">
-                                <img src="assets/images/Profile-transparent-tight.png" alt="Siam Hossain - Full Stack Developer" class="stage-portrait-img">
+                            <div class="hero-portrait-wrap">
+                                <img src="assets/images/Profile-transparent-tight.png" alt="Siam Hossain - Full Stack Developer" class="hero-portrait-photo">
                             </div>
 
-                            <!-- 6 Floating Technology Badges (Panel 01 Reference Design) -->
-                            <div class="hero-floating-badges" aria-label="Core Technologies">
-                                <!-- Left Stack Badges -->
-                                <div class="floating-tech-badge badge-left badge-django">
-                                    <span class="badge-icon"><i class="devicon-django-plain" style="color: #2BA977;"></i></span>
-                                    <span class="badge-label">Django</span>
-                                </div>
-                                <div class="floating-tech-badge badge-left badge-react">
-                                    <span class="badge-icon"><i class="devicon-react-original colored"></i></span>
-                                    <span class="badge-label">React</span>
-                                </div>
-                                <div class="floating-tech-badge badge-left badge-python">
-                                    <span class="badge-icon"><i class="devicon-python-plain colored"></i></span>
-                                    <span class="badge-label">Python</span>
+                            <!-- Curved Orbit Line with Connection Nodes & 5 Floating Badges -->
+                            <div class="hero-orbit-container" aria-label="Core Technologies">
+                                <svg class="hero-orbit-svg" viewBox="0 0 100 480" fill="none" aria-hidden="true">
+                                    <path d="M 82 20 Q 15 240 82 460" stroke="url(#orbitGradientStroke)" stroke-width="2.5" stroke-linecap="round" />
+                                    <!-- Orbit Glowing Connection Nodes -->
+                                    <circle cx="75" cy="48" r="4.5" fill="#00D9FF" class="orbit-node node-1" />
+                                    <circle cx="41" cy="142" r="4.5" fill="#00D9FF" class="orbit-node node-2" />
+                                    <circle cx="28" cy="240" r="4.5" fill="#315BFF" class="orbit-node node-3" />
+                                    <circle cx="41" cy="338" r="4.5" fill="#8125FF" class="orbit-node node-4" />
+                                    <circle cx="75" cy="432" r="4.5" fill="#D000FF" class="orbit-node node-5" />
+                                    <defs>
+                                        <linearGradient id="orbitGradientStroke" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#00D9FF" />
+                                            <stop offset="50%" stop-color="#315BFF" />
+                                            <stop offset="100%" stop-color="#D000FF" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+
+                                <!-- 5 Floating Badges placed along orbit -->
+                                <div class="hero-orbit-badge badge-pos-django">
+                                    <span class="badge-icon-dj">dj</span>
+                                    <span class="badge-tech-name">Django</span>
                                 </div>
 
-                                <!-- Right Stack Badges -->
-                                <div class="floating-tech-badge badge-right badge-javascript">
-                                    <span class="badge-icon badge-icon-mini-js">JS</span>
-                                    <span class="badge-label">JavaScript</span>
+                                <div class="hero-orbit-badge badge-pos-react">
+                                    <span class="badge-tech-icon"><i class="devicon-react-original colored"></i></span>
+                                    <span class="badge-tech-name">React</span>
                                 </div>
-                                <div class="floating-tech-badge badge-right badge-nextjs">
-                                    <span class="badge-icon"><i class="devicon-nextjs-plain" style="color: #ffffff;"></i></span>
-                                    <span class="badge-label">Next.js</span>
+
+                                <div class="hero-orbit-badge badge-pos-python">
+                                    <span class="badge-tech-icon"><i class="devicon-python-plain colored"></i></span>
+                                    <span class="badge-tech-name">Python</span>
                                 </div>
-                                <div class="floating-tech-badge badge-right badge-postgresql">
-                                    <span class="badge-icon"><i class="devicon-postgresql-plain colored"></i></span>
-                                    <span class="badge-label">PostgreSQL</span>
+
+                                <div class="hero-orbit-badge badge-pos-postgres">
+                                    <span class="badge-tech-icon"><i class="devicon-postgresql-plain colored"></i></span>
+                                    <span class="badge-tech-name">PostgreSQL</span>
+                                </div>
+
+                                <div class="hero-orbit-badge badge-pos-fastapi">
+                                    <span class="badge-tech-icon"><i class="devicon-fastapi-plain colored"></i></span>
+                                    <span class="badge-tech-name">FastAPI</span>
+                                </div>
+                            </div>
+
+                            <!-- Futuristic Floating Code Window -->
+                            <div class="hero-code-window" aria-hidden="true">
+                                <div class="code-window-topbar">
+                                    <span class="win-dot dot-red"></span>
+                                    <span class="win-dot dot-yellow"></span>
+                                    <span class="win-dot dot-green"></span>
+                                </div>
+                                <div class="code-window-body">
+                                    <span class="code-symbol-brackets">&lt;/&gt;</span>
+                                    <div class="code-syntax-bars">
+                                        <span class="syntax-bar bar-cyan"></span>
+                                        <span class="syntax-bar bar-blue"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Bottom Animated Digital Wave (Particle / Mesh Wave) -->
+            <div class="hero-bottom-wave" aria-hidden="true">
+                <svg class="digital-wave-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+                    <defs>
+                        <!-- Wave Gradients -->
+                        <linearGradient id="waveGradientPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#D000FF" stop-opacity="0.9" />
+                            <stop offset="35%" stop-color="#8125FF" stop-opacity="0.8" />
+                            <stop offset="70%" stop-color="#315BFF" stop-opacity="0.55" />
+                            <stop offset="100%" stop-color="#00D9FF" stop-opacity="0.9" />
+                        </linearGradient>
+                        <linearGradient id="waveGradientCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#8125FF" stop-opacity="0.45" />
+                            <stop offset="45%" stop-color="#315BFF" stop-opacity="0.7" />
+                            <stop offset="100%" stop-color="#00D9FF" stop-opacity="0.95" />
+                        </linearGradient>
+                        <linearGradient id="waveFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="rgba(3, 8, 23, 0)" />
+                            <stop offset="100%" stop-color="rgba(3, 8, 23, 0.95)" />
+                        </linearGradient>
+                        <filter id="neonGlowWave" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="5" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Background Filled Wave Curve -->
+                    <path d="M0,90 C320,160 480,20 800,100 C1120,180 1280,40 1440,90 L1440,180 L0,180 Z" fill="url(#waveFill)" />
+
+                    <!-- Primary Luminous Particle Wave Crest Line -->
+                    <path class="wave-crest-1" d="M0,95 C320,165 480,25 800,105 C1120,185 1280,45 1440,95" stroke="url(#waveGradientPurple)" stroke-width="2.5" filter="url(#neonGlowWave)" />
+
+                    <!-- Secondary Layered Crest Line -->
+                    <path class="wave-crest-2" d="M0,120 C280,50 560,160 880,80 C1200,0 1360,130 1440,110" stroke="url(#waveGradientCyan)" stroke-width="2" filter="url(#neonGlowWave)" />
+
+                    <!-- Digital Particle Dots Pattern Overlay -->
+                    <path class="wave-dots-trail" d="M0,105 C320,175 480,35 800,115 C1120,195 1280,55 1440,105" stroke="url(#waveGradientPurple)" stroke-width="3" stroke-dasharray="1 12" stroke-linecap="round" filter="url(#neonGlowWave)" />
+                    <path class="wave-dots-trail-2" d="M0,130 C280,60 560,170 880,90 C1200,10 1360,140 1440,120" stroke="url(#waveGradientCyan)" stroke-width="2.5" stroke-dasharray="1 16" stroke-linecap="round" filter="url(#neonGlowWave)" />
+                </svg>
             </div>
         </section>
 
