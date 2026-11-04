@@ -172,27 +172,21 @@
                     <!-- Left Column: Content -->
                     <div class="hero-content">
                         <div class="hero-status-pill">
+                            <span class="status-code-tag">&lt;/&gt;</span>
                             <span class="status-pulse-dot"></span>
                             <span class="status-text">OPEN TO WORK &amp; AVAILABLE FOR PROJECTS</span>
                         </div>
                         <h1 class="hero-headline">
-                            <span class="hero-greeting">Hello, I'm Siam Hossain</span>
-                            <br>
-                            <span class="hero-subline">a <span id="hero-typing-role" class="neon-gradient-text">Full Stack Developer</span><span class="typing-cursor" aria-hidden="true"></span></span>
+                            <span class="hero-greeting">Hello, I'm</span>
+                            <span class="hero-name-highlight">Siam Hossain</span>
+                            <div class="hero-subline-badge">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span id="hero-typing-role" class="neon-gradient-text">Full Stack Web Developer</span><span class="typing-cursor" aria-hidden="true"></span>
+                            </div>
                         </h1>
                         <p class="hero-summary">
-                            I build modern, scalable and user-friendly web applications using Django, React and JavaScript with a strong focus on performance and clean architecture.
+                            I build modern, scalable and user-friendly web applications using Django, React and JavaScript with a strong focus on performance, security and clean architecture.
                         </p>
-
-                        <!-- Tech Pills Strip -->
-                        <div class="hero-tech-strip">
-                            <span class="tech-pill"><i class="devicon-django-plain colored"></i> Django</span>
-                            <span class="tech-pill"><i class="devicon-react-original colored"></i> React</span>
-                            <span class="tech-pill"><i class="devicon-python-plain colored"></i> Python</span>
-                            <span class="tech-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                            <span class="tech-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                            <span class="tech-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
-                        </div>
 
                         <!-- CTA Buttons -->
                         <div class="hero-buttons">
@@ -201,7 +195,7 @@
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                             <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="btn-hero-secondary">
-                                <i class="fa-solid fa-file-pdf"></i>
+                                <i class="fa-solid fa-file-arrow-down"></i>
                                 <span>Download CV</span>
                             </a>
                             <a href="#contact" class="btn-hero-secondary">
@@ -252,7 +246,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Visual Showcase -->
+                    <!-- Right Column: Visual Showcase (Panel 01 Reference Design) -->
                     <div class="hero-visual">
                         <div class="hero-portrait-stage">
                             <!-- Ambient Atmospheric Glow & Tech Grid -->
@@ -265,63 +259,42 @@
                                 <div class="bg-text-developer">DEVELOPER</div>
                             </div>
 
+                            <!-- Circular / Elliptical Neon Portal Halo Ring behind Siam -->
+                            <div class="hero-neon-portal-ring" aria-hidden="true"></div>
+
                             <!-- Transparent Portrait Cutout of Siam Hossain -->
                             <div class="stage-portrait-wrapper">
                                 <img src="assets/images/Profile-transparent-tight.png" alt="Siam Hossain - Full Stack Developer" class="stage-portrait-img">
                             </div>
 
-                            <!-- Dynamic Floating Technology Showcase (3 Rotating Positions) -->
-                            <!-- 1. Position 1: Left Mid-Chest (Default: Django) -->
-                            <div class="portrait-annotation annotation-pos-1 annotation-django" id="heroAnnotPos1">
-                                <div class="annotation-rotator-wrap" id="heroRotator1">
-                                    <div class="annotation-content-row">
-                                        <span class="annotation-text" id="heroAnnotText1">Django</span>
-                                        <span class="annotation-tech-icon" id="heroAnnotIcon1">
-                                            <i class="devicon-django-plain" style="color: #2BA977;"></i>
-                                        </span>
-                                    </div>
+                            <!-- 6 Floating Technology Badges (Panel 01 Reference Design) -->
+                            <div class="hero-floating-badges" aria-label="Core Technologies">
+                                <!-- Left Stack Badges -->
+                                <div class="floating-tech-badge badge-left badge-django">
+                                    <span class="badge-icon"><i class="devicon-django-plain" style="color: #2BA977;"></i></span>
+                                    <span class="badge-label">Django</span>
                                 </div>
-                                <div class="annotation-sub-row">
-                                    <svg class="annotation-arrow arrow-django arrow-pos-1" viewBox="0 0 45 35" width="40" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M5,6 C16,4 28,12 34,24"></path>
-                                        <path d="M26,22 L35,26 L36,17"></path>
-                                    </svg>
+                                <div class="floating-tech-badge badge-left badge-react">
+                                    <span class="badge-icon"><i class="devicon-react-original colored"></i></span>
+                                    <span class="badge-label">React</span>
                                 </div>
-                            </div>
+                                <div class="floating-tech-badge badge-left badge-python">
+                                    <span class="badge-icon"><i class="devicon-python-plain colored"></i></span>
+                                    <span class="badge-label">Python</span>
+                                </div>
 
-                            <!-- 2. Position 2: Right Shoulder (Default: Javascript) -->
-                            <div class="portrait-annotation annotation-pos-2 annotation-js" id="heroAnnotPos2">
-                                <div class="annotation-rotator-wrap" id="heroRotator2">
-                                    <div class="annotation-content-row">
-                                        <span class="annotation-text" id="heroAnnotText2">Javascript</span>
-                                        <span class="annotation-tech-icon" id="heroAnnotIcon2">
-                                            <span class="annotation-badge-mini" style="background:#F7DF1E; color:#000;">JS</span>
-                                        </span>
-                                    </div>
+                                <!-- Right Stack Badges -->
+                                <div class="floating-tech-badge badge-right badge-javascript">
+                                    <span class="badge-icon badge-icon-mini-js">JS</span>
+                                    <span class="badge-label">JavaScript</span>
                                 </div>
-                                <div class="annotation-sub-row">
-                                    <svg class="annotation-arrow arrow-js arrow-pos-2" viewBox="0 0 45 35" width="40" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M38,5 C28,4 16,14 10,24"></path>
-                                        <path d="M8,16 L9,26 L18,22"></path>
-                                    </svg>
+                                <div class="floating-tech-badge badge-right badge-nextjs">
+                                    <span class="badge-icon"><i class="devicon-nextjs-plain" style="color: #ffffff;"></i></span>
+                                    <span class="badge-label">Next.js</span>
                                 </div>
-                            </div>
-
-                            <!-- 3. Position 3: Lower Left Waist (Default: React) -->
-                            <div class="portrait-annotation annotation-pos-3 annotation-react" id="heroAnnotPos3">
-                                <div class="annotation-rotator-wrap" id="heroRotator3">
-                                    <div class="annotation-content-row">
-                                        <span class="annotation-text" id="heroAnnotText3">React</span>
-                                        <span class="annotation-tech-icon" id="heroAnnotIcon3">
-                                            <i class="devicon-react-original colored"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="annotation-sub-row">
-                                    <svg class="annotation-arrow arrow-react arrow-pos-3" viewBox="0 0 55 35" width="48" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M6,6 C16,22 34,22 46,12"></path>
-                                        <path d="M38,12 L47,12 L45,19"></path>
-                                    </svg>
+                                <div class="floating-tech-badge badge-right badge-postgresql">
+                                    <span class="badge-icon"><i class="devicon-postgresql-plain colored"></i></span>
+                                    <span class="badge-label">PostgreSQL</span>
                                 </div>
                             </div>
                         </div>
@@ -375,11 +348,6 @@
                                 </div>
                             </div>
 
-                            <!-- Handwritten Signature on portrait -->
-                            <div class="about-portrait-signature" aria-hidden="true">
-                                Siam Hossain
-                            </div>
-
                             <!-- Bottom Identity Card: Software Developer -->
                             <div class="about-identity-card">
                                 <div class="identity-card-icon">
@@ -402,19 +370,31 @@
                                 <span class="eyebrow-line"></span>
                                 <span class="eyebrow-text">GET TO KNOW ME</span>
                             </div>
-                            <h2 class="about-main-heading">About <span class="about-accent-text">Me</span></h2>
-                            <p class="about-subheading">Bridging robust backend engineering with intuitive, responsive modern frontends and digital growth strategy.</p>
+                            <h2 class="about-main-heading">About <span class="about-accent-text gradient-text">Me</span></h2>
                         </div>
 
                         <!-- Body Block: Paragraphs, Personal Info, Tech Stack, CTAs -->
                         <div class="about-body-block">
                             <div class="about-paragraphs">
                                 <p>
-                                    I'm a web developer specializing in building scalable backend systems with Django and creating clean, responsive user interfaces. I enjoy turning complex requirements into reliable, maintainable, and user-friendly web applications.
+                                    I'm a passionate Full Stack Developer who loves building impactful web solutions, focusing on clean architecture, great user experience, and real business value.
                                 </p>
-                                <p>
-                                    Beyond development, I have experience in digital marketing (Google Ads, Meta Ads), content writing, and website management with WordPress. I also explore AI agent development to create smarter and more efficient digital solutions.
-                                </p>
+                            </div>
+
+                            <!-- 3 Feature Checkmark Badges (Panel 02 Reference Design) -->
+                            <div class="about-feature-checks">
+                                <div class="about-check-badge">
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Problem Solver</span>
+                                </div>
+                                <div class="about-check-badge">
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Tech Enthusiast</span>
+                                </div>
+                                <div class="about-check-badge">
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Continuous Learner</span>
+                                </div>
                             </div>
 
                             <!-- Personal Information Card (2-column grid in glassmorphism card) -->
@@ -438,7 +418,7 @@
                                         </div>
                                         <div class="info-cell-body">
                                             <span class="info-cell-label">Location</span>
-                                            <span class="info-cell-val">Bangladesh (Global Remote)</span>
+                                            <span class="info-cell-val">Bangladesh (Remote)</span>
                                         </div>
                                     </div>
 
@@ -449,20 +429,18 @@
                                         </div>
                                         <div class="info-cell-body">
                                             <span class="info-cell-label">Education</span>
-                                            <span class="info-cell-val">B.Sc. in Computer Science (UAP)</span>
+                                            <span class="info-cell-val">B.Sc. in CSE (UAP)</span>
                                         </div>
                                     </div>
 
-                                    <!-- 4. Availability -->
+                                    <!-- 4. Experience -->
                                     <div class="about-info-cell">
                                         <div class="info-cell-icon">
-                                            <i class="fa-solid fa-briefcase"></i>
+                                            <i class="fa-solid fa-trophy"></i>
                                         </div>
                                         <div class="info-cell-body">
-                                            <span class="info-cell-label">Availability</span>
-                                            <span class="info-cell-val avail-status">
-                                                <span class="avail-status-dot"></span> Open to Work
-                                            </span>
+                                            <span class="info-cell-label">Experience</span>
+                                            <span class="info-cell-val">2+ Years</span>
                                         </div>
                                     </div>
 
@@ -479,14 +457,16 @@
                                         </div>
                                     </div>
 
-                                    <!-- 6. Specialization -->
+                                    <!-- 6. Availability -->
                                     <div class="about-info-cell">
                                         <div class="info-cell-icon">
-                                            <i class="fa-solid fa-bullseye"></i>
+                                            <i class="fa-solid fa-briefcase"></i>
                                         </div>
                                         <div class="info-cell-body">
-                                            <span class="info-cell-label">Specialization</span>
-                                            <span class="info-cell-val">Django, React, APIs & AI Agents</span>
+                                            <span class="info-cell-label">Availability</span>
+                                            <span class="info-cell-val avail-status">
+                                                <span class="avail-status-dot"></span> Open to Work
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -535,9 +515,6 @@
                 <div class="services-cyber-grid"></div>
                 <div class="services-glow-dot dot-1"></div>
                 <div class="services-glow-dot dot-2"></div>
-                <div class="services-constellation">
-                    <span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
             </div>
 
             <div class="container services-container">
@@ -547,203 +524,65 @@
                         <span class="eyebrow-line"></span>
                         <span class="eyebrow-text">SPECIALIZED EXPERTISE</span>
                     </div>
-                    <h2 class="services-main-heading">What I Bring To <span class="services-accent-text">The Table</span></h2>
-                    <p class="services-subheading">Delivering high-performance backend architecture, clean frontend engineering, and digital growth results.</p>
+                    <h2 class="services-main-heading">What I Bring To <span class="services-accent-text gradient-text">The Table</span></h2>
+                    <p class="services-subheading">Delivering high-performance solutions from development to growth.</p>
                 </div>
 
-                <!-- Main Services 2-Column Layout -->
-                <div class="services-main-layout">
-                    <!-- Left Column: Services Overview (~31%) -->
-                    <div class="services-overview-col scroll-reveal-init">
-                        <div class="overview-eyebrow">
-                            <span class="eyebrow-line"></span>
-                            <span class="eyebrow-text">SERVICES OVERVIEW</span>
+                <!-- 4 Modular Service Cards in Horizontal Grid (Panel 03 Reference Design) -->
+                <div class="services-grid-4col scroll-reveal-init">
+                    <!-- Service 1: Backend Development -->
+                    <div class="service-card-modular" onclick="openServiceModal(1)">
+                        <div class="service-icon-box icon-purple">
+                            <i class="fa-solid fa-code"></i>
                         </div>
-                        <h3 class="overview-heading">
-                            Solutions That<br>
-                            <span class="services-accent-text">Create Real Impact</span>
-                        </h3>
-                        <p class="overview-para">
-                            I help businesses and individuals build scalable web applications, powerful backend systems, and data-driven digital strategies that drive growth and deliver results.
+                        <h3 class="service-mod-title">Backend Development</h3>
+                        <p class="service-mod-desc">
+                            Scalable &amp; secure backend with Django, REST APIs and clean architecture.
                         </p>
-
-                        <!-- Value Propositions -->
-                        <div class="services-value-list">
-                            <!-- Value 1 -->
-                            <div class="service-value-item">
-                                <div class="value-item-icon">
-                                    <i class="fa-solid fa-rocket"></i>
-                                </div>
-                                <div class="value-item-text">
-                                    <h4 class="value-title">Problem Solving</h4>
-                                    <p class="value-desc">Turning ideas into real solutions</p>
-                                </div>
-                            </div>
-
-                            <!-- Value 2 -->
-                            <div class="service-value-item">
-                                <div class="value-item-icon">
-                                    <i class="fa-solid fa-gear"></i>
-                                </div>
-                                <div class="value-item-text">
-                                    <h4 class="value-title">Modern Technologies</h4>
-                                    <p class="value-desc">Best tools for better results</p>
-                                </div>
-                            </div>
-
-                            <!-- Value 3 -->
-                            <div class="service-value-item">
-                                <div class="value-item-icon">
-                                    <i class="fa-solid fa-users"></i>
-                                </div>
-                                <div class="value-item-text">
-                                    <h4 class="value-title">Client Focused</h4>
-                                    <p class="value-desc">Your goals, my priority</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CTA Button -->
-                        <div class="overview-cta-wrap">
-                            <a href="#contact" class="btn-services-cta">
-                                <span>Let's Work Together</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
+                        <div class="service-mod-footer">
+                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
                         </div>
                     </div>
 
-                    <!-- Right Column: 4 Service Cards (2x2 Grid) (~69%) -->
-                    <div class="services-cards-grid scroll-reveal-init">
-                        <!-- Service Card 01: Backend & REST APIs -->
-                        <div class="service-card-premium" onclick="openServiceModal(1)">
-                            <div class="card-header-row">
-                                <div class="service-icon-wrap">
-                                    <i class="fa-solid fa-server"></i>
-                                </div>
-                                <div class="service-header-meta">
-                                    <span class="service-number">01</span>
-                                    <h3 class="service-card-title">Backend & REST APIs</h3>
-                                </div>
-                                <button class="service-arrow-btn" aria-label="Explore Backend & REST APIs">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                            <p class="service-card-desc">
-                                Scalable, secure backend development using Django, Django REST Framework, Python, and FastAPI with robust database design and token authentication.
-                            </p>
-
-                            <div class="service-badges-row">
-                                <span class="service-badge"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
-                                <span class="service-badge"><i class="devicon-fastapi-plain" style="color: #05998B;"></i> FastAPI</span>
-                                <span class="service-badge"><i class="devicon-postgresql-plain" style="color: #4169E1;"></i> PostgreSQL</span>
-                            </div>
-
-                            <div class="service-footer-row">
-                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(1)">
-                                    <span>Learn More</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
+                    <!-- Service 2: Full-Stack Web Apps -->
+                    <div class="service-card-modular" onclick="openServiceModal(2)">
+                        <div class="service-icon-box icon-blue">
+                            <i class="fa-solid fa-layer-group"></i>
                         </div>
-
-                        <!-- Service Card 02: Full-Stack Web Apps -->
-                        <div class="service-card-premium" onclick="openServiceModal(2)">
-                            <div class="card-header-row">
-                                <div class="service-icon-wrap">
-                                    <i class="fa-brands fa-react"></i>
-                                </div>
-                                <div class="service-header-meta">
-                                    <span class="service-number">02</span>
-                                    <h3 class="service-card-title">Full-Stack Web Apps</h3>
-                                </div>
-                                <button class="service-arrow-btn" aria-label="Explore Full-Stack Web Apps">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                            <p class="service-card-desc">
-                                End-to-end interactive web applications built with React, Next.js, TypeScript, and modern state architectures delivering smooth, responsive user experiences.
-                            </p>
-
-                            <div class="service-badges-row">
-                                <span class="service-badge"><i class="fa-brands fa-react" style="color: #61DAFB;"></i> React</span>
-                                <span class="service-badge"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                                <span class="service-badge"><i class="devicon-typescript-plain" style="color: #3178C6;"></i> TypeScript</span>
-                            </div>
-
-                            <div class="service-footer-row">
-                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(2)">
-                                    <span>Learn More</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
+                        <h3 class="service-mod-title">Full-Stack Web Apps</h3>
+                        <p class="service-mod-desc">
+                            End-to-end web applications with React, Next.js and modern tools.
+                        </p>
+                        <div class="service-mod-footer">
+                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
                         </div>
+                    </div>
 
-                        <!-- Service Card 03: Digital Marketing & Growth -->
-                        <div class="service-card-premium" onclick="openServiceModal(3)">
-                            <div class="card-header-row">
-                                <div class="service-icon-wrap">
-                                    <i class="fa-solid fa-chart-line"></i>
-                                </div>
-                                <div class="service-header-meta">
-                                    <span class="service-number">03</span>
-                                    <h3 class="service-card-title">Digital Marketing & Growth</h3>
-                                </div>
-                                <button class="service-arrow-btn" aria-label="Explore Digital Marketing & Growth">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                            <p class="service-card-desc">
-                                Strategic digital campaigns across Meta Ads, Google Ads, targeted product marketing, copywriting, and analytics to drive user acquisition and sales.
-                            </p>
-
-                            <div class="service-badges-row">
-                                <span class="service-badge"><i class="fa-brands fa-google" style="color: #EA4335;"></i> Google Ads</span>
-                                <span class="service-badge"><i class="fa-brands fa-meta" style="color: #0081FB;"></i> Meta Ads</span>
-                                <span class="service-badge"><i class="fa-solid fa-chart-pie" style="color: #FFA500;"></i> Analytics</span>
-                            </div>
-
-                            <div class="service-footer-row">
-                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(3)">
-                                    <span>Learn More</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
+                    <!-- Service 3: Digital Marketing -->
+                    <div class="service-card-modular" onclick="openServiceModal(3)">
+                        <div class="service-icon-box icon-purple">
+                            <i class="fa-solid fa-paper-plane"></i>
                         </div>
+                        <h3 class="service-mod-title">Digital Marketing</h3>
+                        <p class="service-mod-desc">
+                            Data-driven campaigns, Google Ads, Meta Ads and conversion optimization.
+                        </p>
+                        <div class="service-mod-footer">
+                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
 
-                        <!-- Service Card 04: CMS & AI Agent Workflows -->
-                        <div class="service-card-premium" onclick="openServiceModal(4)">
-                            <div class="card-header-row">
-                                <div class="service-icon-wrap">
-                                    <i class="fa-solid fa-robot"></i>
-                                </div>
-                                <div class="service-header-meta">
-                                    <span class="service-number">04</span>
-                                    <h3 class="service-card-title">CMS & AI Agent Workflows</h3>
-                                </div>
-                                <button class="service-arrow-btn" aria-label="Explore CMS & AI Agent Workflows">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                            <p class="service-card-desc">
-                                Comprehensive WordPress website administration, speed optimization, and AI agent integrations to automate workflows and elevate engagement.
-                            </p>
-
-                            <div class="service-badges-row">
-                                <span class="service-badge"><i class="fa-brands fa-wordpress" style="color: #21759B;"></i> WordPress</span>
-                                <span class="service-badge"><i class="fa-solid fa-brain" style="color: var(--accent-cyan);"></i> AI Agents</span>
-                                <span class="service-badge"><i class="fa-solid fa-bolt" style="color: #FFD700;"></i> Automation</span>
-                            </div>
-
-                            <div class="service-footer-row">
-                                <a href="javascript:void(0)" class="service-learn-more" onclick="event.stopPropagation(); openServiceModal(4)">
-                                    <span>Learn More</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
+                    <!-- Service 4: AI Agent Solutions -->
+                    <div class="service-card-modular" onclick="openServiceModal(4)">
+                        <div class="service-icon-box icon-cyan">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="service-mod-title">AI Agent Solutions</h3>
+                        <p class="service-mod-desc">
+                            Build and integrate AI agents for automation and real-world tasks.
+                        </p>
+                        <div class="service-mod-footer">
+                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
                         </div>
                     </div>
                 </div>
@@ -820,7 +659,7 @@
                         <span class="eyebrow-text">PROFICIENCY & STACK</span>
                     </div>
                     <div class="skills-title-wrap">
-                        <h2 class="skills-main-heading">Technical <span class="skills-accent-text">Mastery</span></h2>
+                        <h2 class="skills-main-heading">Technologies I <span class="skills-accent-text gradient-text">Work With</span></h2>
                         <!-- Handwritten Annotation -->
                         <div class="skills-annotation" aria-hidden="true">
                             <span class="annotation-text">Always Learning</span>
@@ -2463,7 +2302,7 @@
                             <span class="section-tag">LET'S CONNECT</span>
                             <h2 class="contact-title">Let's Build Something <br><span class="gradient-text">Exceptional</span></h2>
                             <p class="contact-desc">
-                                Have an upcoming project in mind, need a Django backend or React full-stack developer, or looking to scale your business with modern web solutions? I'm always open to discussing new high-impact opportunities.
+                                Have an idea, project or collaboration in mind? I'm always open to discussing new opportunities.
                             </p>
 
                             <div class="contact-details-list">
@@ -2479,7 +2318,7 @@
                                     <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
                                     <div class="detail-texts">
                                         <span class="detail-label">Current Base</span>
-                                        <span class="detail-value">Bangladesh &bull; Global Remote (UTC+6)</span>
+                                        <span class="detail-value">Dhaka, Bangladesh (Remote)</span>
                                     </div>
                                 </div>
 
@@ -2487,18 +2326,18 @@
                                     <div class="detail-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                     <div class="detail-texts">
                                         <span class="detail-label">Curriculum Vitae</span>
-                                        <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="detail-value">View & Download Resume</a>
+                                        <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="detail-value">View &amp; Download Resume</a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="availability-badge">
                                 <span class="pulse-dot"></span>
-                                <span>Available for Remote Roles & High-Impact Projects</span>
+                                <span>Open to Work &bull; Available for Remote Roles &amp; Projects</span>
                             </div>
                         </div>
 
-                        <!-- Contact Right Form -->
+                        <!-- Contact Right Form (with Neon Origami Paper Plane) -->
                         <div class="contact-form-col">
                             <form id="contact-form" class="styled-form" novalidate>
                                 <!-- Anti-Spam Honeypot (Hidden) -->
@@ -2508,60 +2347,75 @@
 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="contact-name">Your Full Name *</label>
-                                        <input type="text" id="contact-name" name="name" class="form-control" placeholder="e.g. John Doe" required autocomplete="name">
+                                        <label for="contact-name">Your Name *</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-regular fa-user input-icon"></i>
+                                            <input type="text" id="contact-name" name="name" class="form-control" placeholder="e.g. John Mathew" required autocomplete="name">
+                                        </div>
                                         <span class="form-error-msg" id="name-error"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="contact-email">Email Address *</label>
-                                        <input type="email" id="contact-email" name="email" class="form-control" placeholder="john@company.com" required autocomplete="email">
+                                        <label for="contact-email">Your Email *</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-regular fa-envelope input-icon"></i>
+                                            <input type="email" id="contact-email" name="email" class="form-control" placeholder="john@company.com" required autocomplete="email">
+                                        </div>
                                         <span class="form-error-msg" id="email-error"></span>
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="contact-phone">Phone / WhatsApp</label>
-                                        <input type="tel" id="contact-phone" name="phone" class="form-control" placeholder="+880 1xxx-xxxxxx" autocomplete="tel">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contact-subject">Project Category</label>
+                                <div class="form-group">
+                                    <label for="contact-subject">Project Category</label>
+                                    <div class="input-with-icon">
+                                        <i class="fa-solid fa-layer-group input-icon"></i>
                                         <select id="contact-subject" name="subject" class="form-control">
-                                            <option value="Django Backend Development">Django Backend Development</option>
                                             <option value="Full-Stack Web App">Full-Stack Web Application (Django + React)</option>
-                                            <option value="Next.js & Frontend Project">Next.js & Modern Frontend</option>
-                                            <option value="Digital Marketing & WordPress">Digital Marketing & WordPress Growth</option>
-                                            <option value="AI Agent & Automation">AI Agent & Automation Integration</option>
+                                            <option value="Django Backend Development">Django Backend &amp; REST APIs</option>
+                                            <option value="Next.js & Frontend Project">Next.js &amp; Modern Frontend</option>
+                                            <option value="Digital Marketing & WordPress">Digital Marketing &amp; Growth</option>
+                                            <option value="AI Agent & Automation">AI Agent &amp; Automation Integration</option>
                                             <option value="Other Project">Other Opportunity / Consultation</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="contact-message">Project Vision & Message *</label>
-                                    <textarea id="contact-message" name="message" rows="5" class="form-control" placeholder="Tell me about your project goals, tech stack, and timeline..." required></textarea>
+                                    <label for="contact-message">Your Message *</label>
+                                    <div class="input-with-icon">
+                                        <i class="fa-regular fa-comment-dots input-icon input-icon-textarea"></i>
+                                        <textarea id="contact-message" name="message" rows="4" class="form-control" placeholder="Tell me about your project goals, tech stack, and timeline..." required></textarea>
+                                    </div>
                                     <span class="form-error-msg" id="message-error"></span>
                                 </div>
 
                                 <!-- In-Form Status Alert -->
                                 <div id="contact-status-alert" class="form-status-alert" style="display: none;" role="alert"></div>
 
-                                <button type="submit" id="submit-btn" class="btn btn-primary btn-round btn-full btn-icon-flip">
-                                    <span class="btn-text">Send Message Now</span>
-                                    <span class="icon-wrap">
-                                        <i class="fa-solid fa-paper-plane icon-main"></i>
-                                        <i class="fa-solid fa-paper-plane icon-alt"></i>
-                                    </span>
+                                <button type="submit" id="submit-btn" class="btn btn-primary btn-round btn-full btn-icon-flip btn-contact-submit">
+                                    <span class="btn-text">Send Message</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
                                 </button>
                             </form>
+
+                            <!-- Decorative Neon Origami Paper Plane with Trajectory Loop (Panel 10 Reference Design) -->
+                            <div class="contact-neon-plane-decor" aria-hidden="true">
+                                <svg class="plane-flight-trail" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+                                    <path d="M 20 180 C 60 170 120 190 140 140 C 160 90 110 70 90 100 C 70 130 110 160 160 120 C 180 100 185 60 190 20" stroke="rgba(160, 32, 240, 0.45)" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"></path>
+                                </svg>
+                                <div class="neon-origami-plane">
+                                    <svg viewBox="0 0 48 48" fill="none" width="48" height="48">
+                                        <path d="M6 24 L42 8 L28 42 L22 28 Z" fill="rgba(160, 32, 240, 0.25)" stroke="#00D9FF" stroke-width="2" stroke-linejoin="round"></path>
+                                        <path d="M42 8 L22 28" stroke="#A020F0" stroke-width="2" stroke-linecap="round"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- Redesigned Premium Site Footer -->
+        <!-- Redesigned Premium Site Footer -->
     <footer class="site-footer">
         <div class="footer-bg-decor" aria-hidden="true">
             <div class="footer-glow-1"></div>

@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const typingRoleElement = document.getElementById('hero-typing-role') || document.getElementById('typewriter');
     const roles = [
-        "Full Stack Developer",
+        "Full Stack Web Developer",
         "Django & React Developer",
-        "Backend Developer",
-        "Web Application Developer"
+        "Backend Developer & APIs",
+        "AI Agent & Cloud Specialist"
     ];
     let roleIndex = 0;
     let charIndex = roles[0].length; // Start with full initial text
-    let isDeleting = true;
+    let isDeleting = false;
     let typingSpeed = 85;
     let typingTimeoutId = null;
 
