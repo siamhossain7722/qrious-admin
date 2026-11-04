@@ -9179,35 +9179,54 @@ textarea.form-control {
 
 /* --- 1. FLOATING PILL NAVBAR --- */
 .main-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    padding: 24px 0 0 0 !important;
     background: transparent !important;
+    pointer-events: none !important;
 }
 
 .header-container {
-    width: calc(100% - 60px) !important;
-    max-width: 1360px !important;
-    height: 66px !important;
-    background: rgba(7, 19, 41, 0.78) !important;
+    width: min(calc(100% - 136px), 1510px) !important;
+    max-width: 1510px !important;
+    height: 76px !important;
+    background: rgba(7, 19, 41, 0.82) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(49, 91, 255, 0.35) !important;
+    border: 1.5px solid rgba(49, 91, 255, 0.4) !important;
     border-radius: 9999px !important;
-    box-shadow: 0 10px 30px rgba(3, 8, 23, 0.85), 0 0 20px rgba(129, 37, 255, 0.22) !important;
-    padding: 0 20px !important;
+    box-shadow: 0 10px 30px rgba(3, 8, 23, 0.85), 0 0 24px rgba(129, 37, 255, 0.25) !important;
+    padding: 0 24px !important;
+    margin: 0 auto !important;
     transition: all 0.3s ease !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 
 .main-header.scrolled .header-container {
-    background: rgba(7, 19, 41, 0.92) !important;
-    box-shadow: 0 14px 40px rgba(3, 8, 23, 0.95), 0 0 25px rgba(129, 37, 255, 0.3) !important;
+    background: rgba(7, 19, 41, 0.94) !important;
+    box-shadow: 0 14px 40px rgba(3, 8, 23, 0.95), 0 0 28px rgba(129, 37, 255, 0.35) !important;
+}
+
+.desktop-nav .nav-list {
+    gap: 4px !important;
 }
 
 .desktop-nav .nav-link {
-    font-size: 0.82rem !important;
+    font-size: 0.84rem !important;
     font-weight: 600 !important;
     color: #D0D8EA !important;
     padding: 8px 12px !important;
     border-radius: 9999px !important;
     transition: all 0.25s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
 }
 
 .desktop-nav .nav-link:hover {
@@ -9234,7 +9253,10 @@ textarea.form-control {
     box-shadow: 0 0 22px rgba(0, 217, 255, 0.45), 0 0 30px rgba(208, 0, 255, 0.35) !important;
     border-radius: 9999px !important;
     font-weight: 700 !important;
+    padding: 11px 24px !important;
+    font-size: 0.95rem !important;
     transition: all 0.3s ease !important;
+    white-space: nowrap !important;
 }
 
 .header-cta:hover,
@@ -9248,12 +9270,13 @@ textarea.form-control {
     position: relative;
     overflow: hidden;
     background: #030817;
-    min-height: 94vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 110px;
-    padding-bottom: 70px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
 }
 
 .hero-atmosphere-backdrop {
@@ -9280,11 +9303,11 @@ textarea.form-control {
 }
 
 .glow-portrait-blue {
-    top: 10%;
-    right: 8%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(49, 91, 255, 0.28) 0%, rgba(0, 217, 255, 0.16) 40%, rgba(3, 8, 23, 0) 70%);
+    top: 12%;
+    right: 10%;
+    width: 580px;
+    height: 580px;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.32) 0%, rgba(49, 91, 255, 0.38) 38%, rgba(129, 37, 255, 0.22) 60%, rgba(3, 8, 23, 0) 75%);
 }
 
 .glow-frame-purple {
@@ -9306,10 +9329,10 @@ textarea.form-control {
 .hero-container {
     position: relative;
     z-index: 5;
-    width: 100%;
-    max-width: 1360px;
+    width: min(calc(100% - 136px), 1480px);
+    max-width: 1480px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 10px;
 }
 
 .hero-grid {
@@ -9330,7 +9353,7 @@ textarea.form-control {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .hero-eyebrow-text {
@@ -9353,13 +9376,13 @@ textarea.form-control {
 }
 
 .hero-headline {
-    margin: 0 0 16px 0;
+    margin: 0 0 14px 0;
     font-family: var(--font-heading);
 }
 
 .hero-greeting {
     display: block;
-    font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+    font-size: clamp(2.4rem, 3.8vw, 3.6rem);
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1.1;
@@ -9368,7 +9391,7 @@ textarea.form-control {
 
 .hero-name-gradient {
     display: inline-block;
-    font-size: clamp(3.0rem, 5.0vw, 4.4rem);
+    font-size: clamp(2.8rem, 4.6vw, 4.4rem);
     font-weight: 900;
     background: linear-gradient(110deg, #00D9FF 0%, #315BFF 45%, #D000FF 100%);
     -webkit-background-clip: text;
@@ -9399,12 +9422,12 @@ textarea.form-control {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 7px 18px;
+    padding: 6px 18px;
     border-radius: 9999px;
     background: rgba(7, 19, 41, 0.85);
     border: 1.5px solid rgba(0, 217, 255, 0.4);
     box-shadow: 0 0 16px rgba(0, 217, 255, 0.25), inset 0 0 12px rgba(49, 91, 255, 0.18);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .role-icon-code {
@@ -9425,10 +9448,10 @@ textarea.form-control {
 
 .hero-summary {
     font-size: 1.02rem;
-    line-height: 1.68;
+    line-height: 1.62;
     color: #D0D8EA;
     max-width: 530px;
-    margin-bottom: 26px;
+    margin-bottom: 22px;
 }
 
 .tech-highlight {
@@ -9443,20 +9466,20 @@ textarea.form-control {
     align-items: center;
     flex-wrap: nowrap;
     gap: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .btn-hero-view-projects {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 24px;
+    padding: 11px 22px;
     border-radius: 9999px;
     background: linear-gradient(110deg, #00D9FF 0%, #315BFF 48%, #D000FF 100%);
     border: 1px solid rgba(255, 255, 255, 0.25);
     color: #FFFFFF;
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     font-weight: 700;
     text-decoration: none;
     box-shadow: 0 8px 25px rgba(0, 217, 255, 0.35), 0 0 25px rgba(208, 0, 255, 0.35);
@@ -9473,13 +9496,13 @@ textarea.form-control {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 11px 22px;
+    padding: 10px 20px;
     border-radius: 9999px;
     background: rgba(7, 19, 41, 0.85);
     border: 1.5px solid rgba(49, 91, 255, 0.5);
     color: #FFFFFF;
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -9500,8 +9523,8 @@ textarea.form-control {
 }
 
 .social-circle-btn {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: rgba(7, 19, 41, 0.85);
     border: 1.5px solid rgba(129, 37, 255, 0.45);
@@ -9509,7 +9532,7 @@ textarea.form-control {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -9527,14 +9550,14 @@ textarea.form-control {
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
     width: 100%;
-    max-width: 540px;
+    max-width: 560px;
 }
 
 .hero-stat-card-v2 {
-    background: rgba(7, 19, 41, 0.82);
-    border: 1px solid rgba(0, 217, 255, 0.22);
+    background: rgba(7, 19, 41, 0.85);
+    border: 1px solid rgba(0, 217, 255, 0.25);
     border-radius: 18px;
-    padding: 14px 16px;
+    padding: 12px 14px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -9550,13 +9573,13 @@ textarea.form-control {
 }
 
 .stat-icon-circle {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     flex-shrink: 0;
 }
 
@@ -9583,7 +9606,7 @@ textarea.form-control {
 
 .stat-number-val {
     display: block;
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1;
@@ -9592,7 +9615,7 @@ textarea.form-control {
 
 .stat-label-text {
     display: block;
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     color: #D0D8EA;
     font-weight: 500;
     margin-top: 3px;
@@ -9611,7 +9634,7 @@ textarea.form-control {
 .hero-composition-stage {
     position: relative;
     width: 100%;
-    max-width: 620px;
+    max-width: 650px;
     height: 560px;
     margin: 0 auto;
     display: flex;
@@ -9622,18 +9645,18 @@ textarea.form-control {
 /* Tilted Geometric Glass Frame */
 .hero-tilted-frame {
     position: absolute;
-    width: 370px;
-    height: 485px;
-    border-radius: 40px;
-    top: 25px;
+    width: 390px;
+    height: 500px;
+    border-radius: 42px;
+    top: 15px;
     left: 50%;
-    transform: translateX(-40%) rotate(8deg);
-    background: linear-gradient(145deg, rgba(7, 19, 41, 0.88) 0%, rgba(49, 91, 255, 0.24) 50%, rgba(129, 37, 255, 0.35) 100%);
+    transform: translateX(-48%) rotate(8.5deg);
+    background: radial-gradient(circle at 48% 42%, rgba(0, 217, 255, 0.26) 0%, rgba(49, 91, 255, 0.28) 45%, rgba(7, 19, 41, 0.88) 85%);
     border-top: 2.5px solid #00D9FF;
     border-right: 2.5px solid #00D9FF;
     border-bottom: 2.5px solid #D000FF;
     border-left: 2.5px solid #D000FF;
-    box-shadow: 0 0 35px rgba(0, 217, 255, 0.45), 0 0 50px rgba(208, 0, 255, 0.4), inset 0 0 30px rgba(49, 91, 255, 0.25);
+    box-shadow: 0 0 35px rgba(0, 217, 255, 0.45), 0 0 50px rgba(208, 0, 255, 0.4), inset 0 0 35px rgba(49, 91, 255, 0.3);
     z-index: 1;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -9641,22 +9664,22 @@ textarea.form-control {
 }
 
 @keyframes floatTiltedFrame {
-    0% { transform: translateX(-40%) rotate(8deg) translateY(0); }
-    100% { transform: translateX(-40%) rotate(8deg) translateY(-8px); }
+    0% { transform: translateX(-48%) rotate(8.5deg) translateY(0); }
+    100% { transform: translateX(-48%) rotate(8.5deg) translateY(-8px); }
 }
 
 .hero-polygon-plate {
     position: absolute;
-    width: 330px;
-    height: 440px;
-    border-radius: 34px;
-    top: 45px;
+    width: 350px;
+    height: 460px;
+    border-radius: 36px;
+    top: 35px;
     left: 54%;
-    transform: translateX(-40%) rotate(15deg);
-    border: 1.5px solid rgba(49, 91, 255, 0.35);
+    transform: translateX(-45%) rotate(16deg);
+    border: 1.5px solid rgba(49, 91, 255, 0.4);
     background: rgba(7, 19, 41, 0.55);
     z-index: 0;
-    box-shadow: 0 0 25px rgba(49, 91, 255, 0.2);
+    box-shadow: 0 0 25px rgba(49, 91, 255, 0.25);
 }
 
 /* Portrait Cutout */
@@ -9664,16 +9687,32 @@ textarea.form-control {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    margin-bottom: -5px;
+}
+
+.hero-portrait-wrap::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.48) 0%, rgba(49, 91, 255, 0.42) 38%, rgba(129, 37, 255, 0.25) 62%, transparent 80%);
+    filter: blur(30px);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hero-portrait-photo {
     width: 100%;
     height: auto;
-    max-height: 520px;
+    max-height: 540px;
     display: block;
     object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(0, 217, 255, 0.3));
@@ -9683,7 +9722,7 @@ textarea.form-control {
 /* Curved Orbit Line & 5 Floating Badges */
 .hero-orbit-container {
     position: absolute;
-    left: 5px;
+    left: 10px;
     top: 25px;
     width: 200px;
     height: 500px;
@@ -9809,7 +9848,7 @@ textarea.form-control {
 .hero-code-window {
     position: absolute;
     right: 0;
-    top: 16%;
+    top: 15%;
     width: 175px;
     background: rgba(7, 19, 41, 0.88);
     border: 1.5px solid rgba(208, 0, 255, 0.45);
@@ -9888,7 +9927,7 @@ textarea.form-control {
     bottom: -10px;
     left: 0;
     width: 100%;
-    height: 170px;
+    height: 160px;
     pointer-events: none;
     z-index: 2;
     overflow: hidden;
@@ -9927,15 +9966,50 @@ textarea.form-control {
 }
 
 /* --- 6. RESPONSIVE HERO RULES --- */
+@media (max-width: 1540px) {
+    .header-container {
+        width: calc(100% - 60px) !important;
+    }
+    .desktop-nav .nav-link {
+        font-size: 0.81rem !important;
+        padding: 7px 10px !important;
+    }
+}
+
+@media (max-width: 1400px) {
+    .header-container {
+        width: calc(100% - 40px) !important;
+        height: 70px !important;
+        padding: 0 18px !important;
+    }
+    .desktop-nav .nav-link {
+        font-size: 0.78rem !important;
+        padding: 6px 8px !important;
+    }
+    .hero-container {
+        width: calc(100% - 40px) !important;
+    }
+    .hero-composition-stage {
+        height: 520px;
+    }
+    .hero-portrait-photo {
+        max-height: 500px;
+    }
+    .hero-tilted-frame {
+        width: 350px;
+        height: 460px;
+    }
+}
+
 @media (max-width: 1200px) {
     .hero-grid {
         gap: 15px;
     }
     .hero-composition-stage {
-        height: 500px;
+        height: 480px;
     }
     .hero-portrait-photo {
-        max-height: 460px;
+        max-height: 450px;
     }
     .hero-tilted-frame {
         width: 320px;
@@ -9955,6 +10029,11 @@ textarea.form-control {
 }
 
 @media (max-width: 991px) {
+    .header-container {
+        width: calc(100% - 30px) !important;
+        height: 64px !important;
+        padding: 0 16px !important;
+    }
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 50px;
@@ -9981,7 +10060,7 @@ textarea.form-control {
 
 @media (max-width: 640px) {
     .header-container {
-        width: calc(100% - 24px) !important;
+        width: calc(100% - 20px) !important;
         height: 58px !important;
         padding: 0 14px !important;
     }
@@ -10024,7 +10103,6 @@ textarea.form-control {
         max-height: 360px;
     }
 }
-
 
 /* Ensure natural DOM order for hero elements across all viewports */
 .hero-content > * {
