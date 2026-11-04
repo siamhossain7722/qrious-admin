@@ -152,6 +152,9 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     font-size-adjust: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -8597,18 +8600,67 @@ button {
 
 
 /* ==========================================================================
-   23. Scroll-Triggered Reveal Animations & Accessibility
+   23. Bidirectional High-Performance Scroll Reveal Engine & Accessibility
    ========================================================================== */
-.scroll-reveal-init {
+.js-scroll-reveal .scroll-reveal-init {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(0, 26px, 0);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--stagger, 0) * 75ms);
     will-change: opacity, transform;
 }
 
-.scroll-reveal-visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Directional Motion Variants */
+.js-scroll-reveal .scroll-reveal-init[data-reveal="fade-down"] {
+    transform: translate3d(0, -26px, 0);
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="fade-left"] {
+    transform: translate3d(-32px, 0, 0);
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="fade-right"] {
+    transform: translate3d(32px, 0, 0);
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="zoom-in"] {
+    transform: scale3d(0.92, 0.92, 1);
+}
+
+/* Active State - When Entering Viewport in either scroll direction */
+.js-scroll-reveal .scroll-reveal-init.scroll-reveal-visible {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1) !important;
+    filter: blur(0) !important;
+}
+
+/* Reset State - Graceful exit when scrolling far past or back */
+.js-scroll-reveal .scroll-reveal-init.scroll-reveal-reset {
+    opacity: 0 !important;
+    transform: translate3d(0, 26px, 0) !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.28s !important;
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="fade-down"].scroll-reveal-reset {
+    transform: translate3d(0, -26px, 0) !important;
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="fade-left"].scroll-reveal-reset {
+    transform: translate3d(-32px, 0, 0) !important;
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="fade-right"].scroll-reveal-reset {
+    transform: translate3d(32px, 0, 0) !important;
+}
+.js-scroll-reveal .scroll-reveal-init[data-reveal="zoom-in"].scroll-reveal-reset {
+    transform: scale3d(0.92, 0.92, 1) !important;
+}
+
+/* Above-the-fold content (#home) always stays 100% visible immediately */
+#home,
+#home .stage-portrait-wrapper,
+#home .hero-stat-card,
+#home .scroll-reveal-init,
+#main-header,
+#main-header * {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
 }
 
 @keyframes portraitEntranceMobile {
@@ -8628,6 +8680,7 @@ button {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 
     .stage-portrait-wrapper,
@@ -8641,10 +8694,13 @@ button {
     .hero-buttons > *,
     .hero-stat-card,
     .hero-social-row,
-    .scroll-reveal-init {
+    .scroll-reveal-init,
+    .scroll-reveal-visible,
+    .scroll-reveal-reset {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
+        transition: none !important;
     }
 
     .typing-cursor {

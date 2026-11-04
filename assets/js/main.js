@@ -255,42 +255,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       2. STICKY HEADER & ACTIVE SECTION NAVIGATION
+       2. STICKY HEADER & ACTIVE SECTION NAVIGATION (RAF & IntersectionObserver)
        ========================================================================== */
     const header = document.getElementById('main-header');
     const navLinks = document.querySelectorAll('.desktop-nav .nav-link, .offcanvas-nav .nav-link');
-    const sections = document.querySelectorAll('section[id], header[id]');
+    const navSections = document.querySelectorAll('section[id], header[id]');
 
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-
-        // Sticky Navbar Toggle
-        if (scrollPos > 60) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Active Link Highlighting
-        let currentSectionId = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 120;
-            const sectionHeight = section.offsetHeight;
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-
+    function setActiveNavLink(id) {
+        if (!id) return;
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
+            if (link.getAttribute('href') === `#${id}`) {
                 link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
+    }
 
-        // Update Back To Top Button & Progress Ring
-        updateBackToTop(scrollPos);
-    });
+    // High-performance IntersectionObserver for section highlighting (0 forced reflows)
+    if ('IntersectionObserver' in window) {
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveNavLink(entry.target.getAttribute('id'));
+                }
+            });
+        }, {
+            rootMargin: '-25% 0px -65% 0px',
+            threshold: 0
+        });
+
+        navSections.forEach(section => {
+            navObserver.observe(section);
+        });
+    }
+
+    // RAF-throttled scroll handler for sticky header and back-to-top ring
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+                const scrollPos = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+                // Sticky Navbar Toggle
+                if (scrollPos > 60) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Explicit edge-case handling for very top and very bottom
+                if (scrollPos < 80) {
+                    setActiveNavLink('home');
+                } else if (docHeight > 0 && scrollPos >= docHeight - 60) {
+                    setActiveNavLink('contact');
+                }
+
+                // Update Back To Top Button & Progress Ring
+                updateBackToTop(scrollPos, docHeight);
+
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }, { passive: true });
 
     // Smooth Scroll Navigation with sticky header offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -421,22 +450,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       6. SKILL BARS VIEWPORT ANIMATION (Staggered Fill)
+       6. SKILL BARS VIEWPORT ANIMATION (Staggered Fill, Bidirectional)
        ========================================================================== */
     const skillSection = document.getElementById('skills');
     const progressFills = document.querySelectorAll('.progress-fill');
-    let skillsAnimated = false;
 
-    if (skillSection) {
+    if (skillSection && progressFills.length > 0) {
         const skillObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !skillsAnimated) {
-                skillsAnimated = true;
+            const entry = entries[0];
+            if (entry.isIntersecting) {
                 progressFills.forEach((fill, idx) => {
                     setTimeout(() => {
                         const targetWidth = fill.getAttribute('data-progress');
                         fill.style.width = `${targetWidth}%`;
-                    }, idx * 75);
+                    }, idx * 65);
                 });
+            } else {
+                const rect = entry.boundingClientRect;
+                const vh = window.innerHeight || document.documentElement.clientHeight;
+                if (rect.top > vh + 100 || rect.bottom < -120) {
+                    progressFills.forEach(fill => {
+                        fill.style.width = '0%';
+                    });
+                }
             }
         }, { threshold: 0.15 });
         skillObserver.observe(skillSection);
@@ -697,10 +733,10 @@ document.addEventListener('DOMContentLoaded', () => {
         progressCircle.style.strokeDashoffset = `${circumference}`;
     }
 
-    function updateBackToTop(scrollPos) {
+    function updateBackToTop(scrollPos, docHeight) {
         if (!backToTopBtn) return;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? scrollPos / docHeight : 0;
+        const totalHeight = (typeof docHeight === 'number') ? docHeight : (document.documentElement.scrollHeight - window.innerHeight);
+        const scrollPercent = totalHeight > 0 ? scrollPos / totalHeight : 0;
 
         if (scrollPos > 320) {
             backToTopBtn.classList.add('show');
@@ -1058,28 +1094,105 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       12. SCROLL-TRIGGERED ENTRANCE ANIMATIONS (IntersectionObserver)
+       12. BIDIRECTIONAL HIGH-PERFORMANCE SCROLL REVEAL ENGINE
+       Smooth 60 FPS entrance & exit animations in BOTH scroll directions
        ========================================================================== */
     if ('IntersectionObserver' in window && !prefersReducedMotion) {
-        const revealTargets = document.querySelectorAll(
-            '.scroll-reveal-init, .service-card, .service-card-premium, .portfolio-card, .timeline-item, .blog-card, .achievement-card'
-        );
+        document.documentElement.classList.add('js-scroll-reveal');
 
-        const scrollRevealObserver = new IntersectionObserver((entries, observer) => {
+        // Staggered groups: automatically apply --stagger index to children
+        const staggerGroups = [
+            { parent: '.services-cards-grid', items: '.service-card-item' },
+            { parent: '.skills-stats-row', items: '.skills-stat-card' },
+            { parent: '.skill-categories-grid', items: '.skill-category-card' },
+            { parent: '.exp-timeline-list', items: '.exp-timeline-card' },
+            { parent: '.experience-stats-bar', items: '.exp-stat-item' },
+            { parent: '.projects-cards-grid', items: '.portfolio-project-card' },
+            { parent: '.projects-stats-row', items: '.project-stat-card' },
+            { parent: '.achievements-cards-grid', items: '.achievement-card-box' },
+            { parent: '.achievements-stats-grid', items: '.ach-stat-card' },
+            { parent: '.reviews-cards-carousel', items: '.reviews-card-item' },
+            { parent: '.reviews-stats-row', items: '.reviews-stat-card' },
+            { parent: '.contact-collab-row', items: '.contact-collab-card' },
+            { parent: '.contact-info-cards-list', items: '.contact-info-card' },
+            { parent: '.about-info-grid', items: '.about-info-item' }
+        ];
+
+        staggerGroups.forEach(group => {
+            const parentEl = document.querySelector(group.parent);
+            if (parentEl) {
+                const childItems = parentEl.querySelectorAll(group.items);
+                childItems.forEach((item, idx) => {
+                    item.style.setProperty('--stagger', idx);
+                    item.classList.add('scroll-reveal-init');
+                });
+            }
+        });
+
+        // Standalone section headers, panels, banners, and visuals
+        const standaloneSelectors = [
+            '.about-visual-col',
+            '.about-content-col',
+            '.services-header-text',
+            '.services-header-visual',
+            '.services-cta-banner',
+            '.skills-header-text',
+            '.skills-header-visual',
+            '.skills-proficiency-panel',
+            '.experience-header-row',
+            '.exp-experience-panel',
+            '.exp-education-panel',
+            '.projects-header-row',
+            '.projects-filter-bar',
+            '.achievements-header-row',
+            '.achievements-trophy-box',
+            '.achievements-filter-bar',
+            '.achievements-cta-panel',
+            '.reviews-header-row',
+            '.reviews-cta-banner',
+            '.contact-header-row',
+            '.contact-form-card',
+            '.contact-meeting-card',
+            '.contact-social-row',
+            '.footer-container',
+            '.scroll-reveal-init'
+        ];
+
+        const revealTargets = new Set();
+        standaloneSelectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                // Ensure hero (#home) and navbar elements are NEVER hidden
+                if (!el.closest('#home') && !el.closest('#main-header')) {
+                    el.classList.add('scroll-reveal-init');
+                    revealTargets.add(el);
+                }
+            });
+        });
+
+        const bidirectionalRevealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                const target = entry.target;
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('scroll-reveal-visible');
-                    observer.unobserve(entry.target);
+                    target.classList.remove('scroll-reveal-reset');
+                    target.classList.add('scroll-reveal-visible');
+                } else {
+                    const rect = entry.boundingClientRect;
+                    const vh = window.innerHeight || document.documentElement.clientHeight;
+                    // Reset if scrolled off bottom (scrolling up away) or off top (scrolling down past)
+                    if (rect.top > vh + 60 || rect.bottom < -120) {
+                        target.classList.remove('scroll-reveal-visible');
+                        target.classList.add('scroll-reveal-reset');
+                    }
                 }
             });
         }, {
             root: null,
-            rootMargin: '50px 0px 50px 0px',
-            threshold: 0.05
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.08
         });
 
         revealTargets.forEach(el => {
-            scrollRevealObserver.observe(el);
+            bidirectionalRevealObserver.observe(el);
         });
     } else {
         document.querySelectorAll('.scroll-reveal-init').forEach(el => {

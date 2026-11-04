@@ -21,10 +21,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
     <!-- Devicon Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"></noscript>
     
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
     
     <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico?v=2.1">
@@ -47,7 +49,7 @@
     <aside id="offcanvas-sidebar" class="offcanvas-sidebar">
         <div class="offcanvas-header">
             <a href="#" class="brand-logo">
-                <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img">
+                <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img" width="40" height="40" loading="eager" decoding="async">
                 <span>Siam<span class="logo-dot">.</span>dev</span>
             </a>
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -119,7 +121,7 @@
         <div class="header-container container">
             <!-- Brand Logo -->
             <a href="#" class="brand-logo">
-                <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img">
+                <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img" width="40" height="40" loading="eager" decoding="async">
                 <span class="brand-name">Siam<span class="logo-dot">.dev</span></span>
             </a>
 
@@ -283,7 +285,7 @@
                             <div class="hero-portrait-wrap">
                                 <div class="hero-portrait-ambient-glow" aria-hidden="true"></div>
                                 <div class="hero-portrait-inner">
-                                    <img src="assets/images/Profile-transparent-tight.png" alt="Siam Hossain - Full Stack Developer" class="hero-portrait-photo">
+                                    <img src="assets/images/Profile-transparent-tight.png" alt="Siam Hossain - Full Stack Developer" class="hero-portrait-photo" width="480" height="560" fetchpriority="high" decoding="sync">
                                 </div>
                             </div>
 
@@ -417,7 +419,7 @@
 
                             <!-- Arms-Crossed Portrait with Subtle Floating Motion -->
                             <div class="about-portrait-wrap">
-                                <img src="assets/images/about-profile-transparent.png" alt="Siam Hossain - Full Stack Developer" class="about-portrait-photo">
+                                <img src="assets/images/about-profile-transparent.png" alt="Siam Hossain - Full Stack Developer" class="about-portrait-photo" width="440" height="520" loading="lazy" decoding="async">
                             </div>
 
                             <!-- Floating Technology Badge (Bottom-Left) -->
@@ -691,7 +693,7 @@
                 <!-- 2. Six Service Cards Grid (3 Columns × 2 Rows on Desktop) -->
                 <div class="services-cards-grid">
                     <!-- Card 01 — Full-Stack Web Development -->
-                    <div class="service-card-item" onclick="openServiceModal(1)" role="button" tabindex="0">
+                    <div class="service-card-item" style="--stagger: 0;" onclick="openServiceModal(1)" role="button" tabindex="0">
                         <div class="service-card-icon-box">
                             <i class="fa-solid fa-code"></i>
                         </div>
@@ -2881,7 +2883,7 @@
                 <!-- Column 1: Brand Identity -->
                 <div class="footer-col footer-brand-col">
                     <a href="#home" class="brand-logo footer-logo">
-                        <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img">
+                        <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img" width="40" height="40" loading="eager" decoding="async">
                         <span>Siam<span class="logo-dot">.</span>dev</span>
                     </a>
                     <p class="footer-brand-desc">
