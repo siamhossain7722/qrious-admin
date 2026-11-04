@@ -6,60 +6,72 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================================================
-       1. DYNAMIC HERO ROLE TYPING EFFECT
+       1. PROFESSIONAL DEVELOPER TERMINAL TYPEWRITER COMPONENT
+       Infinitely rotates through 10 designations with smooth typing & deleting
        ========================================================================== */
-    const typingRoleElement = document.getElementById('hero-typing-role') || document.getElementById('typewriter');
-    const roles = [
-        "Full Stack Web Developer",
-        "Backend Developer",
-        "Django Developer",
-        "React Developer",
-        "Python Developer",
-        "Software Engineer",
-        "Web Application Developer",
-        "API Developer",
-        "AI Automation Developer",
-        "Digital Marketing Specialist"
-    ];
-    let roleIndex = 0;
-    let charIndex = roles[0].length; // Start with full initial text
-    let isDeleting = false;
-    let typingSpeed = 85;
-    let typingTimeoutId = null;
+    (function initHeroTypewriter() {
+        const el = document.getElementById('hero-typing-role');
+        if (!el) return;
 
-    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const designations = [
+            "Full Stack Web Developer",
+            "Backend Developer",
+            "Django Developer",
+            "React Developer",
+            "Python Developer",
+            "Software Engineer",
+            "Web Application Developer",
+            "API Developer",
+            "AI Automation Developer",
+            "Digital Marketing Specialist"
+        ];
 
-    function dynamicTypeEffect() {
-        if (!typingRoleElement || prefersReducedMotion) return;
-
-        const currentPhrase = roles[roleIndex];
-
-        if (isDeleting) {
-            charIndex--;
-            typingRoleElement.textContent = currentPhrase.substring(0, charIndex);
-            typingSpeed = 42; // Fast deleting
-        } else {
-            charIndex++;
-            typingRoleElement.textContent = currentPhrase.substring(0, charIndex);
-            typingSpeed = 85; // Natural typing speed
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            el.textContent = designations[0];
+            return;
         }
 
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            typingSpeed = 1800; // Pause at complete phrase
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typingSpeed = 400; // Short pause before typing next phrase
+        let currentIdx = 0;
+        let charIdx = designations[0].length;
+        let isDeleting = true; // Hold initial title, then delete
+        let timerId = null;
+
+        function step() {
+            const fullText = designations[currentIdx];
+
+            if (isDeleting) {
+                charIdx--;
+                el.textContent = fullText.substring(0, charIdx);
+
+                if (charIdx === 0) {
+                    isDeleting = false;
+                    currentIdx = (currentIdx + 1) % designations.length;
+                    timerId = setTimeout(step, 400); // Short pause before typing next designation
+                    return;
+                }
+                timerId = setTimeout(step, 42); // Fast deletion: 35–50ms
+            } else {
+                charIdx++;
+                el.textContent = fullText.substring(0, charIdx);
+
+                if (charIdx === fullText.length) {
+                    isDeleting = true;
+                    timerId = setTimeout(step, 2000); // Hold full designation for 2 seconds
+                    return;
+                }
+                timerId = setTimeout(step, 75); // Natural typing speed: 65–85ms
+            }
         }
 
-        typingTimeoutId = setTimeout(dynamicTypeEffect, typingSpeed);
-    }
+        // Section 5 Timeline: Hold initial title for 2000ms after entrance, then delete and cycle
+        timerId = setTimeout(step, 2000);
 
-    // Give user time to see initial "Full Stack Developer" after entrance animation settles
-    if (typingRoleElement && !prefersReducedMotion) {
-        typingTimeoutId = setTimeout(dynamicTypeEffect, 2000);
-    }
+        // Safe cleanup on page unload to prevent memory leaks
+        window.addEventListener('beforeunload', () => {
+            if (timerId) clearTimeout(timerId);
+        });
+    })();
 
     /* ==========================================================================
        1B. DYNAMIC FLOATING TECHNOLOGY SHOWCASE (Hero Section)
