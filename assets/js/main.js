@@ -1146,28 +1146,70 @@ const certificatesData = {
 
 const servicesData = {
     1: {
-        title: "Backend Development & Django REST APIs",
-        tag: "Backend & Systems",
-        desc: "Designing and building scalable, robust backend architectures using Django and Django REST Framework. Creating clean, secure endpoints with JWT/OAuth authentication, database query optimization, and structured ORM models.",
-        deliverables: ["Custom Django REST Framework APIs", "PostgreSQL & MySQL database design and schema migrations", "Secure token-based user authentication & permissions", "FastAPI microservices and high-throughput endpoints"]
+        title: "Full-Stack Web Development",
+        tag: "End-to-End Solutions",
+        desc: "Modern, scalable and secure web applications with Django, React, Next.js and more.",
+        deliverables: [
+            "Modern Single-Page & Full-Stack Web Applications",
+            "Seamless Frontend & Backend API Integration",
+            "Scalable Database Architecture & Optimization",
+            "Performance, Security Hardening & CI/CD Deployment"
+        ]
     },
     2: {
-        title: "Full-Stack Web & React Applications",
-        tag: "Modern Frontend",
-        desc: "Developing fast, responsive, and reactive web interfaces using React, Next.js, and TypeScript. Connecting seamlessly with backend APIs to deliver seamless user experiences and modern component-driven architectures.",
-        deliverables: ["Single-Page Applications with React & Next.js", "State management with Redux / Context API", "Responsive CSS, Tailwind CSS & mobile-first UI", "Full API integration and asynchronous data flow"]
+        title: "Backend Development",
+        tag: "Backend & Systems",
+        desc: "Robust, secure and high-performance backend systems with Django, REST APIs and database design.",
+        deliverables: [
+            "Custom Django REST Framework & FastAPI Endpoints",
+            "PostgreSQL Database Design & ORM Optimization",
+            "JWT / OAuth2 Authentication & Role-Based Access Control",
+            "High-Throughput Microservices & Scalable System Architecture"
+        ]
     },
     3: {
-        title: "Digital Marketing & Growth Strategy",
-        tag: "Digital Marketing",
-        desc: "Driving qualified traffic, client acquisition, and measurable conversion growth. Experienced in paid acquisition through Meta Ads and Google Ads, content marketing, and data-backed digital campaign management.",
-        deliverables: ["Meta Ads & Google Ads campaign strategy & management", "Conversion tracking & performance analytics", "Technical On-Page & Off-Page SEO audits", "Targeted copywriting and social media content execution"]
+        title: "Frontend Development",
+        tag: "User Interface & Experience",
+        desc: "Responsive and interactive user interfaces with React, Next.js, Tailwind CSS and modern tools.",
+        deliverables: [
+            "Pixel-Perfect Responsive Layouts across all devices",
+            "Component-Driven Architecture with React & Next.js",
+            "Fluid Micro-Interactions & Hardware-Accelerated Animations",
+            "Optimized Core Web Vitals & Cross-Browser Consistency"
+        ]
     },
     4: {
-        title: "WordPress Management & AI Agent Implementation",
-        tag: "CMS & Automation",
-        desc: "Managing high-performance WordPress websites, custom theme integrations, plugin configurations, and exploring intelligent AI agent workflows to automate digital operations and customer interactions.",
-        deliverables: ["Custom WordPress setup, themes, and plugin tuning", "Website speed optimization and security hardening", "AI agent setup for automated workflows and chatbots", "E-commerce & content management systems"]
+        title: "API Development & Integration",
+        tag: "API Services",
+        desc: "Design, build and integrate RESTful APIs, third-party services and payment gateways.",
+        deliverables: [
+            "Standardized RESTful Architecture & Versioning",
+            "Third-Party Service & Webhook Integrations",
+            "Payment Gateway Implementations (Stripe, SSLCommerz)",
+            "Automated API Documentation, Testing & Rate Limiting"
+        ]
+    },
+    5: {
+        title: "AI Agent Solutions",
+        tag: "AI & Automation",
+        desc: "Build and integrate AI agents for automation, data processing and real-world business tasks.",
+        deliverables: [
+            "Autonomous AI Agent Workflows & Pipeline Engineering",
+            "LLM API Integrations (OpenAI, Anthropic, Google Gemini)",
+            "Intelligent Customer Service & Workflow Chatbots",
+            "Structured Data Extraction & Agentic Tool Calling"
+        ]
+    },
+    6: {
+        title: "Digital Marketing",
+        tag: "Growth & Performance",
+        desc: "Data-driven marketing solutions including Google Ads, Meta Ads and conversion optimization.",
+        deliverables: [
+            "High-ROI Meta Ads & Google Ads Paid Campaigns",
+            "Conversion Funnel Tracking & Performance Analytics",
+            "Technical On-Page & Off-Page SEO Optimization",
+            "Targeted Copywriting & Marketing Automation"
+        ]
     }
 };
 

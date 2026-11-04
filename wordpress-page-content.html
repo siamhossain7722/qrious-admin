@@ -1735,532 +1735,733 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   7. Core Capabilities / Services Redesign Section
+   7. Core Capabilities / Services Redesign Section (Master Neon Red/Orange)
    -------------------------------------------------------------------------- */
 .services-area {
-    background: var(--bg-main);
+    background: #050303 !important;
     position: relative;
-    padding: 95px 0 100px 0;
-    scroll-margin-top: 85px;
+    padding: 100px 0 160px 0 !important;
+    scroll-margin-top: 96px !important;
     overflow: hidden;
 }
 
-/* Cyber Atmosphere Background Elements */
+/* Background Cyber Atmosphere & Glow Orbs */
 .services-bg-decor {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+    overflow: hidden;
 }
 
-.services-cyber-arc {
-    position: absolute;
-    top: -120px;
-    left: -120px;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 37, 37, 0.4);
-    box-shadow: 0 0 35px rgba(255, 37, 37, 0.2), inset 0 0 35px rgba(255, 37, 37, 0.12);
-    filter: blur(0.5px);
-}
-
-.services-cyber-grid {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.45;
-    mask-image: radial-gradient(circle at 10% 20%, black 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(circle at 10% 20%, black 30%, transparent 75%);
-}
-
-.services-glow-dot {
+.services-glow-orb {
     position: absolute;
     border-radius: 50%;
-    background: #FF2525;
-    box-shadow: 0 0 10px #FF2525, 0 0 20px #FF2525;
+    filter: blur(120px);
+    opacity: 0.22;
 }
 
-.services-glow-dot.dot-1 {
-    width: 6px;
-    height: 6px;
-    top: 14%;
-    left: 20%;
+.services-glow-orb.glow-top-left {
+    width: 480px;
+    height: 480px;
+    top: -100px;
+    left: -150px;
+    background: radial-gradient(circle, #FF101A 0%, rgba(255, 16, 26, 0) 70%);
 }
 
-.services-glow-dot.dot-2 {
-    width: 5px;
-    height: 5px;
-    top: 28%;
-    right: 12%;
-}
-
-.services-constellation {
-    position: absolute;
-    top: 80px;
-    right: 8%;
-    display: flex;
-    gap: 8px;
-    opacity: 0.4;
-}
-
-.services-constellation span {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #FF2525;
+.services-glow-orb.glow-top-right {
+    width: 580px;
+    height: 580px;
+    top: 50px;
+    right: -100px;
+    background: radial-gradient(circle, #FF6A00 0%, #FF101A 40%, rgba(255, 16, 26, 0) 70%);
+    opacity: 0.18;
 }
 
 .services-container {
-    position: relative;
-    z-index: 1;
     max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
 }
 
-/* Centered Section Header */
-.services-header {
-    margin-bottom: 55px;
+/* 1. Hero Row (2 Columns: Copy on Left, 3D Laptop on Right) */
+.services-hero-row {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 64px;
+}
+
+.services-hero-copy {
+    max-width: 620px;
 }
 
 .services-eyebrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.services-eyebrow .eyebrow-line {
-    width: 24px;
-    height: 2.5px;
-    background: #FF2525;
-    border-radius: 2px;
-    box-shadow: 0 0 8px rgba(255, 37, 37, 0.6);
+    gap: 12px;
+    margin-bottom: 16px;
 }
 
 .services-eyebrow .eyebrow-text {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: #FF2525;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    color: #FF2525;
+}
+
+.services-eyebrow .eyebrow-glow-bar {
+    width: 46px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF101A 0%, #FF6A00 70%, transparent 100%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 16, 26, 0.7);
 }
 
 .services-main-heading {
-    font-family: var(--font-heading);
-    font-size: clamp(2.3rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #F5F5F7;
-    line-height: 1.18;
-    margin-bottom: 16px;
-    letter-spacing: -0.5px;
-}
-
-.services-accent-text {
-    color: #FF2525;
-    text-shadow: 0 0 25px rgba(255, 37, 37, 0.45);
-}
-
-.services-subheading {
-    font-size: 1.08rem;
-    font-weight: 400;
-    color: #A5A9B5;
-    max-width: 660px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-/* Main Services 2-Column Layout: Left ~31%, Right ~69% */
-.services-main-layout {
-    display: grid;
-    grid-template-columns: 31% calc(69% - 46px);
-    gap: 46px;
-    align-items: stretch;
-    margin-bottom: 50px;
-}
-
-/* Left Column: Services Overview */
-.services-overview-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 8px 0;
-}
-
-.overview-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.overview-eyebrow .eyebrow-line {
-    width: 20px;
-    height: 2px;
-    background: #FF2525;
-    border-radius: 2px;
-    box-shadow: 0 0 6px rgba(255, 37, 37, 0.6);
-}
-
-.overview-eyebrow .eyebrow-text {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #FF2525;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.overview-heading {
-    font-family: var(--font-heading);
-    font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
     font-weight: 800;
     color: #FFFFFF;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -0.5px;
+    line-height: 1.18;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
 }
 
-.overview-para {
-    font-size: 0.95rem;
-    line-height: 1.68;
-    color: #A5A9B5;
-    margin-bottom: 28px;
+.services-heading-gradient {
+    background: linear-gradient(135deg, #FF101A 0%, #FF451A 45%, #FF7900 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 24px rgba(255, 16, 26, 0.45));
 }
 
-/* Value Propositions */
-.services-value-list {
+.services-description {
+    font-size: 1.05rem;
+    color: #C5C5C5;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Right Column: 3D Developer Laptop & Orbital Ring Stage */
+.services-hero-visual {
     display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-bottom: 32px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 320px;
 }
 
-.service-value-item {
+.services-laptop-stage {
+    position: relative;
+    width: 380px;
+    height: 290px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 4px 0;
+    justify-content: center;
+    perspective: 1000px;
 }
 
-.value-item-icon {
+/* Glowing Orbital Ring around Laptop */
+.services-orbital-ring {
+    position: absolute;
+    width: 390px;
+    height: 220px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 16, 26, 0.65);
+    box-shadow: 0 0 25px rgba(255, 16, 26, 0.45), inset 0 0 20px rgba(255, 106, 0, 0.3);
+    transform: rotateX(68deg) rotateZ(-12deg);
+    pointer-events: none;
+    z-index: 1;
+    animation: servicesRingPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes servicesRingPulse {
+    0% {
+        border-color: rgba(255, 16, 26, 0.55);
+        box-shadow: 0 0 20px rgba(255, 16, 26, 0.35), inset 0 0 15px rgba(255, 106, 0, 0.2);
+    }
+    100% {
+        border-color: rgba(255, 106, 0, 0.85);
+        box-shadow: 0 0 35px rgba(255, 16, 26, 0.65), inset 0 0 25px rgba(255, 106, 0, 0.45);
+    }
+}
+
+/* Floating Tech Badges */
+.services-orbit-badge {
+    position: absolute;
     width: 44px;
     height: 44px;
-    border-radius: 50%;
-    background: rgba(255, 37, 37, 0.12);
-    border: 1px solid rgba(255, 37, 37, 0.32);
-    color: #FF2525;
+    background: rgba(16, 9, 9, 0.88);
+    border: 1.5px solid rgba(255, 16, 26, 0.45);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 4;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 16, 26, 0.3);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.services-orbit-badge:hover {
+    transform: scale(1.15) !important;
+    border-color: #FF101A;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 16, 26, 0.6);
+}
+
+.badge-react {
+    top: 15px;
+    left: 20px;
+    animation: servicesBadgeFloat1 4.5s ease-in-out infinite;
+}
+
+.badge-python {
+    bottom: 35px;
+    left: 10px;
+    animation: servicesBadgeFloat2 5s ease-in-out infinite 0.5s;
+}
+
+.badge-django {
+    top: 18px;
+    right: 25px;
+    animation: servicesBadgeFloat3 4.2s ease-in-out infinite 1s;
+}
+
+.badge-js {
+    bottom: 30px;
+    right: 15px;
+    animation: servicesBadgeFloat4 4.8s ease-in-out infinite 1.5s;
+}
+
+@keyframes servicesBadgeFloat1 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+@keyframes servicesBadgeFloat2 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-7px) rotate(2deg); }
+}
+
+@keyframes servicesBadgeFloat3 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-9px) rotate(3deg); }
+}
+
+@keyframes servicesBadgeFloat4 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(-2deg); }
+}
+
+.icon-react {
+    color: #61DAFB;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 6px rgba(97, 218, 251, 0.6));
+}
+
+.icon-python {
+    color: #FFD43B;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 6px rgba(255, 212, 59, 0.6));
+}
+
+.badge-text-dj {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
     font-size: 1.05rem;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+    font-weight: 800;
+    color: #2BA977;
+    filter: drop-shadow(0 0 6px rgba(43, 169, 119, 0.6));
 }
 
-.service-value-item:hover .value-item-icon {
-    transform: scale(1.08);
-    background: rgba(255, 37, 37, 0.22);
-    border-color: rgba(255, 37, 37, 0.6);
-    box-shadow: 0 0 16px rgba(255, 37, 37, 0.35);
+.badge-text-js {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #F7DF1E;
+    filter: drop-shadow(0 0 6px rgba(247, 223, 30, 0.6));
 }
 
-.value-item-text {
+/* 3D Developer Laptop */
+.services-laptop-3d {
+    position: relative;
+    width: 250px;
+    height: 190px;
+    z-index: 2;
+    transform: rotateX(16deg) rotateY(-18deg) rotateZ(4deg);
+    transform-style: preserve-3d;
+    animation: servicesLaptopFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes servicesLaptopFloat {
+    0% {
+        transform: rotateX(16deg) rotateY(-18deg) rotateZ(4deg) translateY(0px);
+    }
+    100% {
+        transform: rotateX(14deg) rotateY(-15deg) rotateZ(3deg) translateY(-10px);
+    }
+}
+
+/* Laptop Screen */
+.laptop-screen {
+    width: 236px;
+    height: 146px;
+    background: #0e0707;
+    border-radius: 12px 12px 2px 2px;
+    border: 2px solid rgba(255, 16, 26, 0.65);
+    box-shadow: 0 0 30px rgba(255, 16, 26, 0.35), inset 0 0 20px rgba(0, 0, 0, 0.9);
+    padding: 8px;
+    position: relative;
+    transform-origin: bottom center;
+}
+
+.laptop-screen-bezel {
+    width: 100%;
+    height: 100%;
+    background: #060202;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.laptop-screen-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 16, 26, 0.15) 0%, rgba(6, 2, 2, 0.95) 75%);
+    position: relative;
+}
+
+.laptop-code-symbol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #FF2525;
+    letter-spacing: -1px;
+    text-shadow: 0 0 15px #FF101A, 0 0 30px rgba(255, 16, 26, 0.8), 0 0 45px rgba(255, 106, 0, 0.6);
+    animation: servicesCodeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes servicesCodeGlow {
+    0% {
+        text-shadow: 0 0 12px #FF101A, 0 0 25px rgba(255, 16, 26, 0.7);
+        filter: brightness(1);
+    }
+    100% {
+        text-shadow: 0 0 20px #FF101A, 0 0 40px rgba(255, 16, 26, 0.9), 0 0 60px rgba(255, 106, 0, 0.8);
+        filter: brightness(1.15);
+    }
+}
+
+.laptop-screen-scanline {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Laptop Base & Illuminated Keyboard */
+.laptop-base {
+    width: 254px;
+    height: 100px;
+    background: linear-gradient(180deg, #180909 0%, #0a0303 100%);
+    border-radius: 4px 4px 14px 14px;
+    border: 2px solid rgba(255, 16, 26, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 16, 26, 0.35);
+    margin-left: -9px;
+    margin-top: -4px;
+    transform: rotateX(60deg);
+    transform-origin: top center;
+    padding: 8px 14px;
+    position: relative;
+}
+
+.laptop-keyboard {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    background: rgba(8, 2, 2, 0.85);
+    border: 1px solid rgba(255, 16, 26, 0.3);
+    border-radius: 6px;
+    padding: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 16, 26, 0.35);
 }
 
-.value-title {
-    font-family: var(--font-heading);
-    font-size: 1.02rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.value-desc {
-    font-size: 0.84rem;
-    color: #A5A9B5;
-    margin: 0;
-    line-height: 1.35;
-}
-
-/* CTA Button */
-.btn-services-cta {
-    display: inline-flex;
-    align-items: center;
+.keyboard-row {
+    display: flex;
+    gap: 3px;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 270px;
-    padding: 14px 28px;
-    background: linear-gradient(105deg, #FF1010 0%, #2455FF 35%, #B80016 70%, #FF3B3B 100%);
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 0.95rem;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(255, 16, 16, 0.25), 0 0 25px rgba(255, 16, 16, 0.35);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.btn-services-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(255, 16, 16, 0.55), 0 0 25px rgba(255, 16, 16, 0.40);
-    color: #FFFFFF;
+.keyboard-row .key {
+    height: 9px;
+    flex: 1;
+    background: rgba(255, 16, 26, 0.15);
+    border: 1px solid rgba(255, 16, 26, 0.4);
+    border-radius: 2px;
+    box-shadow: 0 0 4px rgba(255, 16, 26, 0.4);
 }
 
-/* Right Column: 4 Service Cards (2x2 Grid) */
+.keyboard-row .key-sm { flex: 0.8; }
+.keyboard-row .key-tab { flex: 1.4; }
+.keyboard-row .key-ctrl { flex: 1.2; }
+.keyboard-row .key-space { flex: 4.5; }
+
+.laptop-trackpad {
+    width: 68px;
+    height: 20px;
+    margin: 6px auto 0 auto;
+    border: 1px solid rgba(255, 16, 26, 0.3);
+    border-radius: 4px;
+    background: rgba(255, 16, 26, 0.05);
+}
+
+/* 2. Six Service Cards Grid */
 .services-cards-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    margin-bottom: 48px;
 }
 
-.service-card-premium {
-    background: rgba(17, 19, 27, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+.service-card-item {
+    background: rgba(16, 9, 9, 0.72);
+    border: 1.5px solid rgba(255, 25, 25, 0.22);
     border-radius: 20px;
-    padding: 26px 26px 22px 26px;
+    padding: 24px 22px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
-}
-
-.service-card-premium:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 37, 37, 0.45);
-    background: rgba(21, 23, 34, 0.95);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 37, 37, 0.15);
-}
-
-.card-header-row {
-    display: flex;
-    align-items: flex-start;
     gap: 16px;
-    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.35s ease;
 }
 
-.service-icon-wrap {
-    width: 48px;
-    height: 48px;
+.service-card-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 16, 26, 0.6), transparent);
+    opacity: 0.6;
+    transition: opacity 0.35s ease;
+}
+
+.service-card-item:hover {
+    transform: translateY(-6px);
+    background: rgba(22, 11, 11, 0.88);
+    border-color: rgba(255, 16, 26, 0.65);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 16, 26, 0.22);
+}
+
+.service-card-item:hover::before {
+    opacity: 1;
+}
+
+.service-card-icon-box {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
     border-radius: 14px;
-    background: rgba(255, 37, 37, 0.12);
-    border: 1px solid rgba(255, 37, 37, 0.3);
-    color: #FF2525;
+    background: rgba(255, 16, 26, 0.08);
+    border: 1.5px solid rgba(255, 16, 26, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+    font-size: 1.35rem;
+    color: #FF2525;
+    box-shadow: inset 0 0 14px rgba(255, 16, 26, 0.15), 0 0 16px rgba(255, 16, 26, 0.18);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.service-card-premium:hover .service-icon-wrap {
-    transform: scale(1.06);
-    background: rgba(255, 37, 37, 0.22);
-    border-color: rgba(255, 37, 37, 0.6);
-    box-shadow: 0 0 15px rgba(255, 37, 37, 0.3);
+.service-card-item:hover .service-card-icon-box {
+    transform: scale(1.08);
+    background: rgba(255, 16, 26, 0.18);
+    border-color: #FF101A;
+    box-shadow: inset 0 0 18px rgba(255, 16, 26, 0.3), 0 0 25px rgba(255, 16, 26, 0.45);
 }
 
-.service-header-meta {
+.service-card-text {
     flex: 1;
     min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-.service-number {
-    font-family: monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #7A7E8D;
-    letter-spacing: 1px;
 }
 
 .service-card-title {
-    font-family: var(--font-heading);
-    font-size: 1.18rem;
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.05rem;
     font-weight: 700;
     color: #FFFFFF;
-    line-height: 1.25;
-    margin: 0;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
 }
 
-.service-arrow-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #A5A9B5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.service-card-premium:hover .service-arrow-btn {
-    background: #FF2525;
-    border-color: #FF2525;
+.service-card-item:hover .service-card-title {
     color: #FFFFFF;
-    transform: translateX(3px) translateY(-3px);
-    box-shadow: 0 0 12px rgba(255, 37, 37, 0.5);
 }
 
 .service-card-desc {
-    font-size: 0.88rem;
-    line-height: 1.62;
-    color: #A5A9B5;
-    margin: 0 0 18px 0;
-    flex-grow: 1;
-}
-
-.service-badges-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-}
-
-.service-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: #E2E4EB;
-    transition: border-color var(--transition-fast);
-}
-
-.service-card-premium:hover .service-badge {
-    border-color: rgba(255, 37, 37, 0.25);
-}
-
-.service-footer-row {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 14px;
-    margin-top: auto;
-}
-
-.service-learn-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #FF2525;
-    text-decoration: none;
-    cursor: pointer;
-    transition: gap var(--transition-fast), color var(--transition-fast);
-}
-
-.service-card-premium:hover .service-learn-more {
-    gap: 12px;
-    color: #FF1010;
-}
-
-/* Bottom Statistics Bar */
-.services-stats-bar {
-    background: rgba(17, 19, 27, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 20px;
-    padding: 24px 38px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: border-color 0.3s ease;
-}
-
-.services-stats-bar:hover {
-    border-color: rgba(255, 37, 37, 0.3);
-}
-
-.services-stat-item {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    justify-content: center;
-}
-
-.stat-icon-wrap {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 37, 37, 0.14);
-    border: 1px solid rgba(255, 37, 37, 0.35);
-    color: #FF2525;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast);
-}
-
-.services-stat-item:hover .stat-icon-wrap {
-    transform: scale(1.08);
-}
-
-.stat-content-wrap {
-    display: flex;
-    flex-direction: column;
-}
-
-.stat-number-wrap {
-    display: flex;
-    align-items: baseline;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-
-.stat-val {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 800;
-    color: #FFFFFF;
-}
-
-.stat-plus {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #FF2525;
-    margin-left: 2px;
-}
-
-.stat-label {
     font-size: 0.85rem;
-    font-weight: 500;
-    color: #A5A9B5;
+    color: #9E9E9E;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.stats-divider {
+.service-card-action {
+    display: flex;
+    align-items: center;
+}
+
+.service-arrow-circle {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C5C5C5;
+    font-size: 0.82rem;
+    transition: all 0.3s ease;
+}
+
+.service-card-item:hover .service-arrow-circle {
+    background: linear-gradient(135deg, #FF101A, #FF6A00);
+    border-color: transparent;
+    color: #FFFFFF;
+    transform: translateX(4px);
+    box-shadow: 0 0 16px rgba(255, 16, 26, 0.55);
+}
+
+/* 3. Bottom Consultation Banner */
+.services-cta-banner {
+    background: rgba(16, 9, 9, 0.85);
+    border: 1.5px solid rgba(255, 25, 25, 0.28);
+    border-radius: 22px;
+    padding: 24px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 16, 26, 0.12);
+    position: relative;
+    backdrop-filter: blur(14px);
+    margin-bottom: 20px;
+}
+
+.cta-banner-icon-badge {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    border-radius: 14px;
+    background: rgba(255, 16, 26, 0.1);
+    border: 1.5px solid rgba(255, 16, 26, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #FF2525;
+    box-shadow: 0 0 20px rgba(255, 16, 26, 0.25);
+}
+
+.cta-banner-divider {
     width: 1px;
-    height: 46px;
-    background: rgba(255, 255, 255, 0.08);
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cta-banner-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.cta-banner-heading {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.cta-banner-subtext {
+    font-size: 0.9rem;
+    color: #A0A0A0;
+    margin: 0;
+}
+
+.cta-banner-action {
+    display: flex;
+    align-items: center;
+}
+
+.btn-services-consultation {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #FF101A 0%, #FF5A1F 100%);
+    color: #FFFFFF !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 6px 22px rgba(255, 16, 26, 0.45);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-services-consultation:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 16, 26, 0.7);
+    color: #FFFFFF !important;
+}
+
+/* 4. Bottom Animated Digital Wave */
+.services-bottom-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.services-bottom-wave .digital-wave-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .services-hero-row {
+        gap: 32px;
+    }
+    .services-laptop-stage {
+        width: 340px;
+        height: 260px;
+    }
+    .services-orbital-ring {
+        width: 340px;
+        height: 200px;
+    }
+    .services-laptop-3d {
+        width: 220px;
+        height: 170px;
+    }
+    .laptop-screen {
+        width: 210px;
+        height: 130px;
+    }
+    .laptop-base {
+        width: 226px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 991px) {
+    .services-area {
+        padding: 80px 0 140px 0 !important;
+    }
+    .services-hero-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+        margin-bottom: 48px;
+    }
+    .services-hero-copy {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .services-eyebrow {
+        justify-content: center;
+    }
+    .services-description {
+        margin: 0 auto;
+    }
+    .services-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .services-cta-banner {
+        padding: 20px 24px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .services-area {
+        padding: 60px 0 120px 0 !important;
+    }
+    .services-main-heading {
+        font-size: 2rem;
+    }
+    .services-hero-visual {
+        min-height: 260px;
+    }
+    .services-laptop-stage {
+        width: 280px;
+        height: 220px;
+        transform: scale(0.85);
+    }
+    .services-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .service-card-item {
+        padding: 18px 16px;
+    }
+    .services-cta-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+        gap: 18px;
+    }
+    .cta-banner-divider {
+        display: none;
+    }
+    .btn-services-consultation {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-orbital-ring,
+    .services-orbit-badge,
+    .services-laptop-3d,
+    .laptop-code-symbol {
+        animation: none !important;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -7945,83 +8146,69 @@ textarea.form-control {
 
 /* --- 5. Services Section --- */
 [data-theme="light"] .services-area {
-    background: var(--bg-main);
+    background: #F8FAFC !important;
 }
 
-[data-theme="light"] .services-main-heading,
-[data-theme="light"] .overview-heading {
-    color: #100D0D;
+[data-theme="light"] .services-glow-orb {
+    opacity: 0.06;
 }
 
-[data-theme="light"] .services-subheading,
-[data-theme="light"] .overview-para {
+[data-theme="light"] .services-main-heading {
+    color: #0F172A;
+}
+
+[data-theme="light"] .services-description {
     color: #475569;
 }
 
-[data-theme="light"] .service-value-item .value-title,
-[data-theme="light"] .value-title {
-    color: #100D0D;
+[data-theme="light"] .services-orbit-badge {
+    background: #FFFFFF;
+    border-color: rgba(255, 16, 26, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-[data-theme="light"] .service-value-item .value-desc,
-[data-theme="light"] .value-desc {
-    color: #64748B;
-}
-
-[data-theme="light"] .service-card-premium {
+[data-theme="light"] .service-card-item {
     background: #FFFFFF;
     border-color: #E2E8F0;
     box-shadow: 0 10px 30px rgba(16, 13, 13, 0.05);
 }
 
-[data-theme="light"] .service-card-premium:hover {
+[data-theme="light"] .service-card-item:hover {
     background: #FFFFFF;
-    border-color: rgba(255, 37, 37, 0.4);
-    box-shadow: 0 16px 40px rgba(255, 37, 37, 0.10);
+    border-color: rgba(255, 16, 26, 0.45);
+    box-shadow: 0 16px 40px rgba(255, 16, 26, 0.12);
 }
 
 [data-theme="light"] .service-card-title {
-    color: #100D0D;
+    color: #0F172A;
 }
 
 [data-theme="light"] .service-card-desc {
+    color: #64748B;
+}
+
+[data-theme="light"] .service-arrow-circle {
+    background: #F1F5F9;
+    border-color: #E2E8F0;
     color: #475569;
 }
 
-[data-theme="light"] .service-step-num {
-    color: #94A3B8;
-}
-
-[data-theme="light"] .service-badge {
-    background: #F1F4F9;
-    border-color: #E2E8F0;
-    color: #334155;
-}
-
-[data-theme="light"] .service-arrow-btn {
-    background: #F1F4F9;
-    border-color: #E2E8F0;
-    color: #100D0D;
-}
-
-[data-theme="light"] .service-arrow-btn:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #FFFFFF;
-}
-
-[data-theme="light"] .services-stats-bar {
+[data-theme="light"] .services-cta-banner {
     background: #FFFFFF;
     border-color: #E2E8F0;
-    box-shadow: 0 10px 30px rgba(16, 13, 13, 0.05);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06);
 }
 
-[data-theme="light"] .services-stats-bar .stat-val {
-    color: #100D0D;
+[data-theme="light"] .cta-banner-heading {
+    color: #0F172A;
 }
 
-[data-theme="light"] .services-stats-bar .stat-label {
+[data-theme="light"] .cta-banner-subtext {
     color: #64748B;
+}
+
+[data-theme="light"] .cta-banner-divider {
+    background: #E2E8F0;
 }
 
 /* --- 6. Skills Dashboard Section --- */
@@ -11160,132 +11347,251 @@ body,
 
         <!-- Core Capabilities / Services Redesign Section -->
         <section id="services" class="services-area">
-            <!-- Background Cyber Atmosphere -->
+            <!-- Background Cyber Atmosphere & Ambient Glows -->
             <div class="services-bg-decor" aria-hidden="true">
-                <div class="services-cyber-arc"></div>
-                <div class="services-cyber-grid"></div>
-                <div class="services-glow-dot dot-1"></div>
-                <div class="services-glow-dot dot-2"></div>
+                <div class="services-glow-orb glow-top-left"></div>
+                <div class="services-glow-orb glow-top-right"></div>
             </div>
 
             <div class="container services-container">
-                <!-- Section Header (Centered) -->
-                <div class="section-header services-header text-center scroll-reveal-init">
-                    <div class="services-eyebrow">
-                        <span class="eyebrow-line"></span>
-                        <span class="eyebrow-text">SPECIALIZED EXPERTISE</span>
+                <!-- 1. Top Hero Block (2 Columns: Left Copy, Right Developer Illustration) -->
+                <div class="services-hero-row">
+                    <!-- Left Column: Copy & Headings -->
+                    <div class="services-hero-copy">
+                        <div class="services-eyebrow">
+                            <span class="eyebrow-text">MY SERVICES</span>
+                            <span class="eyebrow-glow-bar" aria-hidden="true"></span>
+                        </div>
+                        <h2 class="services-main-heading">
+                            What I Can Do <span class="services-heading-gradient">For You</span>
+                        </h2>
+                        <p class="services-description">
+                            I provide end-to-end web development solutions that help individuals, startups, and businesses build, grow, and scale their digital products.
+                        </p>
                     </div>
-                    <h2 class="services-main-heading">What I Bring To <span class="services-accent-text gradient-text">The Table</span></h2>
-                    <p class="services-subheading">Delivering high-performance solutions from development to growth.</p>
+
+                    <!-- Right Column: Technology Developer Laptop Illustration -->
+                    <div class="services-hero-visual">
+                        <div class="services-laptop-stage">
+                            <!-- 3D Glowing Orbital Ellipse -->
+                            <div class="services-orbital-ring" aria-hidden="true"></div>
+
+                            <!-- Floating Tech Badge 1: React (Top Left) -->
+                            <div class="services-orbit-badge badge-react" title="React">
+                                <i class="fa-brands fa-react icon-react"></i>
+                            </div>
+
+                            <!-- Floating Tech Badge 2: Python (Bottom Left) -->
+                            <div class="services-orbit-badge badge-python" title="Python">
+                                <i class="fa-brands fa-python icon-python"></i>
+                            </div>
+
+                            <!-- Floating Tech Badge 3: Django (Top Right) -->
+                            <div class="services-orbit-badge badge-django" title="Django">
+                                <span class="badge-text-dj">dj</span>
+                            </div>
+
+                            <!-- Floating Tech Badge 4: JavaScript (Bottom Right) -->
+                            <div class="services-orbit-badge badge-js" title="JavaScript">
+                                <span class="badge-text-js">JS</span>
+                            </div>
+
+                            <!-- 3D Developer Laptop -->
+                            <div class="services-laptop-3d">
+                                <!-- Laptop Screen -->
+                                <div class="laptop-screen">
+                                    <div class="laptop-screen-bezel">
+                                        <div class="laptop-screen-display">
+                                            <div class="laptop-code-symbol">&lt;/&gt;</div>
+                                            <div class="laptop-screen-scanline"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Laptop Base & Illuminated Keyboard -->
+                                <div class="laptop-base">
+                                    <div class="laptop-keyboard">
+                                        <div class="keyboard-row">
+                                            <span class="key key-sm"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span>
+                                        </div>
+                                        <div class="keyboard-row">
+                                            <span class="key key-tab"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key key-tab"></span>
+                                        </div>
+                                        <div class="keyboard-row">
+                                            <span class="key key-ctrl"></span><span class="key key-space"></span><span class="key key-ctrl"></span>
+                                        </div>
+                                    </div>
+                                    <div class="laptop-trackpad"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 4 Modular Service Cards in Horizontal Grid (Panel 03 Reference Design) -->
-                <div class="services-grid-4col scroll-reveal-init">
-                    <!-- Service 1: Backend Development -->
-                    <div class="service-card-modular" onclick="openServiceModal(1)">
-                        <div class="service-icon-box icon-purple">
+                <!-- 2. Six Service Cards Grid (3 Columns × 2 Rows on Desktop) -->
+                <div class="services-cards-grid">
+                    <!-- Card 01 — Full-Stack Web Development -->
+                    <div class="service-card-item" onclick="openServiceModal(1)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
                             <i class="fa-solid fa-code"></i>
                         </div>
-                        <h3 class="service-mod-title">Backend Development</h3>
-                        <p class="service-mod-desc">
-                            Scalable &amp; secure backend with Django, REST APIs and clean architecture.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Full-Stack Web Development</h3>
+                            <p class="service-card-desc">Modern, scalable and secure web applications with Django, React, Next.js and more.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Full-Stack Web Development">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Service 2: Full-Stack Web Apps -->
-                    <div class="service-card-modular" onclick="openServiceModal(2)">
-                        <div class="service-icon-box icon-blue">
+                    <!-- Card 02 — Backend Development -->
+                    <div class="service-card-item" onclick="openServiceModal(2)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
                             <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <h3 class="service-mod-title">Full-Stack Web Apps</h3>
-                        <p class="service-mod-desc">
-                            End-to-end web applications with React, Next.js and modern tools.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Backend Development</h3>
+                            <p class="service-card-desc">Robust, secure and high-performance backend systems with Django, REST APIs and database design.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Backend Development">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Service 3: Digital Marketing -->
-                    <div class="service-card-modular" onclick="openServiceModal(3)">
-                        <div class="service-icon-box icon-purple">
-                            <i class="fa-solid fa-paper-plane"></i>
+                    <!-- Card 03 — Frontend Development -->
+                    <div class="service-card-item" onclick="openServiceModal(3)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-desktop"></i>
                         </div>
-                        <h3 class="service-mod-title">Digital Marketing</h3>
-                        <p class="service-mod-desc">
-                            Data-driven campaigns, Google Ads, Meta Ads and conversion optimization.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Frontend Development</h3>
+                            <p class="service-card-desc">Responsive and interactive user interfaces with React, Next.js, Tailwind CSS and modern tools.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Frontend Development">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Service 4: AI Agent Solutions -->
-                    <div class="service-card-modular" onclick="openServiceModal(4)">
-                        <div class="service-icon-box icon-cyan">
-                            <i class="fa-solid fa-brain"></i>
+                    <!-- Card 04 — API Development & Integration -->
+                    <div class="service-card-item" onclick="openServiceModal(4)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-database"></i>
                         </div>
-                        <h3 class="service-mod-title">AI Agent Solutions</h3>
-                        <p class="service-mod-desc">
-                            Build and integrate AI agents for automation and real-world tasks.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">API Development &amp; Integration</h3>
+                            <p class="service-card-desc">Design, build and integrate RESTful APIs, third-party services and payment gateways.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about API Development &amp; Integration">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 05 — AI Agent Solutions -->
+                    <div class="service-card-item" onclick="openServiceModal(5)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">AI Agent Solutions</h3>
+                            <p class="service-card-desc">Build and integrate AI agents for automation, data processing and real-world business tasks.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about AI Agent Solutions">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 06 — Digital Marketing -->
+                    <div class="service-card-item" onclick="openServiceModal(6)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Digital Marketing</h3>
+                            <p class="service-card-desc">Data-driven marketing solutions including Google Ads, Meta Ads and conversion optimization.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Digital Marketing">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bottom Statistics Bar -->
-                <div class="services-stats-bar scroll-reveal-init">
-                    <!-- Stat 1: Completed Projects -->
-                    <div class="services-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="10">10</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Completed Projects</span>
-                        </div>
+                <!-- 3. Bottom Consultation Banner -->
+                <div class="services-cta-banner">
+                    <div class="cta-banner-icon-badge">
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Stat 2: Years Experience -->
-                    <div class="services-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-trophy"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="2">2</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Years of Practical Development</span>
-                        </div>
+                    <div class="cta-banner-divider" aria-hidden="true"></div>
+                    <div class="cta-banner-content">
+                        <h3 class="cta-banner-heading">Have a <span class="services-heading-gradient">Project</span> in Mind?</h3>
+                        <p class="cta-banner-subtext">Let's discuss your idea and turn it into a high-quality, scalable solution.</p>
                     </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Stat 3: Core Tech Stacks -->
-                    <div class="services-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="5">5</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Core Tech Stacks</span>
-                        </div>
+                    <div class="cta-banner-action">
+                        <a href="#contact" class="btn-services-consultation">
+                            <span>Get a Free Consultation</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- 4. Bottom Animated Digital Wave (Particle / Mesh Wave) -->
+            <div class="services-bottom-wave" aria-hidden="true">
+                <svg class="digital-wave-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+                    <defs>
+                        <!-- Wave Gradients -->
+                        <linearGradient id="servicesWaveGradientRed1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.8" />
+                            <stop offset="50%" stop-color="#FF5A1F" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#FF7900" stop-opacity="0.7" />
+                        </linearGradient>
+
+                        <linearGradient id="servicesWaveGradientRed2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF7900" stop-opacity="0.4" />
+                            <stop offset="50%" stop-color="#FF101A" stop-opacity="0.85" />
+                            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0.5" />
+                        </linearGradient>
+
+                        <linearGradient id="servicesWaveFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.08" />
+                            <stop offset="100%" stop-color="#050303" stop-opacity="0" />
+                        </linearGradient>
+
+                        <!-- Glow Filter -->
+                        <filter id="servicesNeonGlowWave" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="glow1" />
+                            <feGaussianBlur stdDeviation="8" result="glow2" />
+                            <feMerge>
+                                <feMergeNode in="glow2" />
+                                <feMergeNode in="glow1" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Background Filled Wave Curve -->
+                    <path d="M0,90 C320,160 480,20 800,100 C1120,180 1280,40 1440,90 L1440,180 L0,180 Z" fill="url(#servicesWaveFill)" />
+
+                    <!-- Primary Luminous Particle Wave Crest Line -->
+                    <path class="wave-crest-1" d="M0,95 C320,165 480,25 800,105 C1120,185 1280,45 1440,95" stroke="url(#servicesWaveGradientRed1)" stroke-width="2.5" filter="url(#servicesNeonGlowWave)" />
+
+                    <!-- Secondary Subtle Wave Crest Line -->
+                    <path class="wave-crest-2" d="M0,120 C280,50 560,160 880,80 C1200,0 1360,130 1440,110" stroke="url(#servicesWaveGradientRed2)" stroke-width="2" filter="url(#servicesNeonGlowWave)" />
+
+                    <!-- Particle Dot Trails following the wave -->
+                    <path class="wave-dots-trail" d="M0,105 C320,175 480,35 800,115 C1120,195 1280,55 1440,105" stroke="url(#servicesWaveGradientRed1)" stroke-width="3" stroke-dasharray="1 12" stroke-linecap="round" filter="url(#servicesNeonGlowWave)" />
+                    <path class="wave-dots-trail-2" d="M0,130 C280,60 560,170 880,90 C1200,10 1360,140 1440,120" stroke="url(#servicesWaveGradientRed2)" stroke-width="2.5" stroke-dasharray="1 16" stroke-linecap="round" filter="url(#servicesNeonGlowWave)" />
+                </svg>
             </div>
         </section>
 
@@ -14370,28 +14676,70 @@ const certificatesData = {
 
 const servicesData = {
     1: {
-        title: "Backend Development & Django REST APIs",
-        tag: "Backend & Systems",
-        desc: "Designing and building scalable, robust backend architectures using Django and Django REST Framework. Creating clean, secure endpoints with JWT/OAuth authentication, database query optimization, and structured ORM models.",
-        deliverables: ["Custom Django REST Framework APIs", "PostgreSQL & MySQL database design and schema migrations", "Secure token-based user authentication & permissions", "FastAPI microservices and high-throughput endpoints"]
+        title: "Full-Stack Web Development",
+        tag: "End-to-End Solutions",
+        desc: "Modern, scalable and secure web applications with Django, React, Next.js and more.",
+        deliverables: [
+            "Modern Single-Page & Full-Stack Web Applications",
+            "Seamless Frontend & Backend API Integration",
+            "Scalable Database Architecture & Optimization",
+            "Performance, Security Hardening & CI/CD Deployment"
+        ]
     },
     2: {
-        title: "Full-Stack Web & React Applications",
-        tag: "Modern Frontend",
-        desc: "Developing fast, responsive, and reactive web interfaces using React, Next.js, and TypeScript. Connecting seamlessly with backend APIs to deliver seamless user experiences and modern component-driven architectures.",
-        deliverables: ["Single-Page Applications with React & Next.js", "State management with Redux / Context API", "Responsive CSS, Tailwind CSS & mobile-first UI", "Full API integration and asynchronous data flow"]
+        title: "Backend Development",
+        tag: "Backend & Systems",
+        desc: "Robust, secure and high-performance backend systems with Django, REST APIs and database design.",
+        deliverables: [
+            "Custom Django REST Framework & FastAPI Endpoints",
+            "PostgreSQL Database Design & ORM Optimization",
+            "JWT / OAuth2 Authentication & Role-Based Access Control",
+            "High-Throughput Microservices & Scalable System Architecture"
+        ]
     },
     3: {
-        title: "Digital Marketing & Growth Strategy",
-        tag: "Digital Marketing",
-        desc: "Driving qualified traffic, client acquisition, and measurable conversion growth. Experienced in paid acquisition through Meta Ads and Google Ads, content marketing, and data-backed digital campaign management.",
-        deliverables: ["Meta Ads & Google Ads campaign strategy & management", "Conversion tracking & performance analytics", "Technical On-Page & Off-Page SEO audits", "Targeted copywriting and social media content execution"]
+        title: "Frontend Development",
+        tag: "User Interface & Experience",
+        desc: "Responsive and interactive user interfaces with React, Next.js, Tailwind CSS and modern tools.",
+        deliverables: [
+            "Pixel-Perfect Responsive Layouts across all devices",
+            "Component-Driven Architecture with React & Next.js",
+            "Fluid Micro-Interactions & Hardware-Accelerated Animations",
+            "Optimized Core Web Vitals & Cross-Browser Consistency"
+        ]
     },
     4: {
-        title: "WordPress Management & AI Agent Implementation",
-        tag: "CMS & Automation",
-        desc: "Managing high-performance WordPress websites, custom theme integrations, plugin configurations, and exploring intelligent AI agent workflows to automate digital operations and customer interactions.",
-        deliverables: ["Custom WordPress setup, themes, and plugin tuning", "Website speed optimization and security hardening", "AI agent setup for automated workflows and chatbots", "E-commerce & content management systems"]
+        title: "API Development & Integration",
+        tag: "API Services",
+        desc: "Design, build and integrate RESTful APIs, third-party services and payment gateways.",
+        deliverables: [
+            "Standardized RESTful Architecture & Versioning",
+            "Third-Party Service & Webhook Integrations",
+            "Payment Gateway Implementations (Stripe, SSLCommerz)",
+            "Automated API Documentation, Testing & Rate Limiting"
+        ]
+    },
+    5: {
+        title: "AI Agent Solutions",
+        tag: "AI & Automation",
+        desc: "Build and integrate AI agents for automation, data processing and real-world business tasks.",
+        deliverables: [
+            "Autonomous AI Agent Workflows & Pipeline Engineering",
+            "LLM API Integrations (OpenAI, Anthropic, Google Gemini)",
+            "Intelligent Customer Service & Workflow Chatbots",
+            "Structured Data Extraction & Agentic Tool Calling"
+        ]
+    },
+    6: {
+        title: "Digital Marketing",
+        tag: "Growth & Performance",
+        desc: "Data-driven marketing solutions including Google Ads, Meta Ads and conversion optimization.",
+        deliverables: [
+            "High-ROI Meta Ads & Google Ads Paid Campaigns",
+            "Conversion Funnel Tracking & Performance Analytics",
+            "Technical On-Page & Off-Page SEO Optimization",
+            "Targeted Copywriting & Marketing Automation"
+        ]
     }
 };
 

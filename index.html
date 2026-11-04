@@ -610,132 +610,251 @@
 
         <!-- Core Capabilities / Services Redesign Section -->
         <section id="services" class="services-area">
-            <!-- Background Cyber Atmosphere -->
+            <!-- Background Cyber Atmosphere & Ambient Glows -->
             <div class="services-bg-decor" aria-hidden="true">
-                <div class="services-cyber-arc"></div>
-                <div class="services-cyber-grid"></div>
-                <div class="services-glow-dot dot-1"></div>
-                <div class="services-glow-dot dot-2"></div>
+                <div class="services-glow-orb glow-top-left"></div>
+                <div class="services-glow-orb glow-top-right"></div>
             </div>
 
             <div class="container services-container">
-                <!-- Section Header (Centered) -->
-                <div class="section-header services-header text-center scroll-reveal-init">
-                    <div class="services-eyebrow">
-                        <span class="eyebrow-line"></span>
-                        <span class="eyebrow-text">SPECIALIZED EXPERTISE</span>
+                <!-- 1. Top Hero Block (2 Columns: Left Copy, Right Developer Illustration) -->
+                <div class="services-hero-row">
+                    <!-- Left Column: Copy & Headings -->
+                    <div class="services-hero-copy">
+                        <div class="services-eyebrow">
+                            <span class="eyebrow-text">MY SERVICES</span>
+                            <span class="eyebrow-glow-bar" aria-hidden="true"></span>
+                        </div>
+                        <h2 class="services-main-heading">
+                            What I Can Do <span class="services-heading-gradient">For You</span>
+                        </h2>
+                        <p class="services-description">
+                            I provide end-to-end web development solutions that help individuals, startups, and businesses build, grow, and scale their digital products.
+                        </p>
                     </div>
-                    <h2 class="services-main-heading">What I Bring To <span class="services-accent-text gradient-text">The Table</span></h2>
-                    <p class="services-subheading">Delivering high-performance solutions from development to growth.</p>
+
+                    <!-- Right Column: Technology Developer Laptop Illustration -->
+                    <div class="services-hero-visual">
+                        <div class="services-laptop-stage">
+                            <!-- 3D Glowing Orbital Ellipse -->
+                            <div class="services-orbital-ring" aria-hidden="true"></div>
+
+                            <!-- Floating Tech Badge 1: React (Top Left) -->
+                            <div class="services-orbit-badge badge-react" title="React">
+                                <i class="fa-brands fa-react icon-react"></i>
+                            </div>
+
+                            <!-- Floating Tech Badge 2: Python (Bottom Left) -->
+                            <div class="services-orbit-badge badge-python" title="Python">
+                                <i class="fa-brands fa-python icon-python"></i>
+                            </div>
+
+                            <!-- Floating Tech Badge 3: Django (Top Right) -->
+                            <div class="services-orbit-badge badge-django" title="Django">
+                                <span class="badge-text-dj">dj</span>
+                            </div>
+
+                            <!-- Floating Tech Badge 4: JavaScript (Bottom Right) -->
+                            <div class="services-orbit-badge badge-js" title="JavaScript">
+                                <span class="badge-text-js">JS</span>
+                            </div>
+
+                            <!-- 3D Developer Laptop -->
+                            <div class="services-laptop-3d">
+                                <!-- Laptop Screen -->
+                                <div class="laptop-screen">
+                                    <div class="laptop-screen-bezel">
+                                        <div class="laptop-screen-display">
+                                            <div class="laptop-code-symbol">&lt;/&gt;</div>
+                                            <div class="laptop-screen-scanline"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Laptop Base & Illuminated Keyboard -->
+                                <div class="laptop-base">
+                                    <div class="laptop-keyboard">
+                                        <div class="keyboard-row">
+                                            <span class="key key-sm"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span>
+                                        </div>
+                                        <div class="keyboard-row">
+                                            <span class="key key-tab"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key key-tab"></span>
+                                        </div>
+                                        <div class="keyboard-row">
+                                            <span class="key key-ctrl"></span><span class="key key-space"></span><span class="key key-ctrl"></span>
+                                        </div>
+                                    </div>
+                                    <div class="laptop-trackpad"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 4 Modular Service Cards in Horizontal Grid (Panel 03 Reference Design) -->
-                <div class="services-grid-4col scroll-reveal-init">
-                    <!-- Service 1: Backend Development -->
-                    <div class="service-card-modular" onclick="openServiceModal(1)">
-                        <div class="service-icon-box icon-purple">
+                <!-- 2. Six Service Cards Grid (3 Columns × 2 Rows on Desktop) -->
+                <div class="services-cards-grid">
+                    <!-- Card 01 — Full-Stack Web Development -->
+                    <div class="service-card-item" onclick="openServiceModal(1)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
                             <i class="fa-solid fa-code"></i>
                         </div>
-                        <h3 class="service-mod-title">Backend Development</h3>
-                        <p class="service-mod-desc">
-                            Scalable &amp; secure backend with Django, REST APIs and clean architecture.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Full-Stack Web Development</h3>
+                            <p class="service-card-desc">Modern, scalable and secure web applications with Django, React, Next.js and more.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Full-Stack Web Development">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Service 2: Full-Stack Web Apps -->
-                    <div class="service-card-modular" onclick="openServiceModal(2)">
-                        <div class="service-icon-box icon-blue">
+                    <!-- Card 02 — Backend Development -->
+                    <div class="service-card-item" onclick="openServiceModal(2)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
                             <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <h3 class="service-mod-title">Full-Stack Web Apps</h3>
-                        <p class="service-mod-desc">
-                            End-to-end web applications with React, Next.js and modern tools.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Backend Development</h3>
+                            <p class="service-card-desc">Robust, secure and high-performance backend systems with Django, REST APIs and database design.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Backend Development">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Service 3: Digital Marketing -->
-                    <div class="service-card-modular" onclick="openServiceModal(3)">
-                        <div class="service-icon-box icon-purple">
-                            <i class="fa-solid fa-paper-plane"></i>
+                    <!-- Card 03 — Frontend Development -->
+                    <div class="service-card-item" onclick="openServiceModal(3)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-desktop"></i>
                         </div>
-                        <h3 class="service-mod-title">Digital Marketing</h3>
-                        <p class="service-mod-desc">
-                            Data-driven campaigns, Google Ads, Meta Ads and conversion optimization.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Frontend Development</h3>
+                            <p class="service-card-desc">Responsive and interactive user interfaces with React, Next.js, Tailwind CSS and modern tools.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Frontend Development">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Service 4: AI Agent Solutions -->
-                    <div class="service-card-modular" onclick="openServiceModal(4)">
-                        <div class="service-icon-box icon-cyan">
-                            <i class="fa-solid fa-brain"></i>
+                    <!-- Card 04 — API Development & Integration -->
+                    <div class="service-card-item" onclick="openServiceModal(4)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-database"></i>
                         </div>
-                        <h3 class="service-mod-title">AI Agent Solutions</h3>
-                        <p class="service-mod-desc">
-                            Build and integrate AI agents for automation and real-world tasks.
-                        </p>
-                        <div class="service-mod-footer">
-                            <span class="service-mod-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">API Development &amp; Integration</h3>
+                            <p class="service-card-desc">Design, build and integrate RESTful APIs, third-party services and payment gateways.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about API Development &amp; Integration">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 05 — AI Agent Solutions -->
+                    <div class="service-card-item" onclick="openServiceModal(5)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">AI Agent Solutions</h3>
+                            <p class="service-card-desc">Build and integrate AI agents for automation, data processing and real-world business tasks.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about AI Agent Solutions">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 06 — Digital Marketing -->
+                    <div class="service-card-item" onclick="openServiceModal(6)" role="button" tabindex="0">
+                        <div class="service-card-icon-box">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="service-card-text">
+                            <h3 class="service-card-title">Digital Marketing</h3>
+                            <p class="service-card-desc">Data-driven marketing solutions including Google Ads, Meta Ads and conversion optimization.</p>
+                        </div>
+                        <div class="service-card-action">
+                            <span class="service-arrow-circle" aria-label="Learn more about Digital Marketing">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bottom Statistics Bar -->
-                <div class="services-stats-bar scroll-reveal-init">
-                    <!-- Stat 1: Completed Projects -->
-                    <div class="services-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="10">10</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Completed Projects</span>
-                        </div>
+                <!-- 3. Bottom Consultation Banner -->
+                <div class="services-cta-banner">
+                    <div class="cta-banner-icon-badge">
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Stat 2: Years Experience -->
-                    <div class="services-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-trophy"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="2">2</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Years of Practical Development</span>
-                        </div>
+                    <div class="cta-banner-divider" aria-hidden="true"></div>
+                    <div class="cta-banner-content">
+                        <h3 class="cta-banner-heading">Have a <span class="services-heading-gradient">Project</span> in Mind?</h3>
+                        <p class="cta-banner-subtext">Let's discuss your idea and turn it into a high-quality, scalable solution.</p>
                     </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Stat 3: Core Tech Stacks -->
-                    <div class="services-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="5">5</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Core Tech Stacks</span>
-                        </div>
+                    <div class="cta-banner-action">
+                        <a href="#contact" class="btn-services-consultation">
+                            <span>Get a Free Consultation</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- 4. Bottom Animated Digital Wave (Particle / Mesh Wave) -->
+            <div class="services-bottom-wave" aria-hidden="true">
+                <svg class="digital-wave-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+                    <defs>
+                        <!-- Wave Gradients -->
+                        <linearGradient id="servicesWaveGradientRed1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.8" />
+                            <stop offset="50%" stop-color="#FF5A1F" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#FF7900" stop-opacity="0.7" />
+                        </linearGradient>
+
+                        <linearGradient id="servicesWaveGradientRed2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF7900" stop-opacity="0.4" />
+                            <stop offset="50%" stop-color="#FF101A" stop-opacity="0.85" />
+                            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0.5" />
+                        </linearGradient>
+
+                        <linearGradient id="servicesWaveFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.08" />
+                            <stop offset="100%" stop-color="#050303" stop-opacity="0" />
+                        </linearGradient>
+
+                        <!-- Glow Filter -->
+                        <filter id="servicesNeonGlowWave" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="glow1" />
+                            <feGaussianBlur stdDeviation="8" result="glow2" />
+                            <feMerge>
+                                <feMergeNode in="glow2" />
+                                <feMergeNode in="glow1" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Background Filled Wave Curve -->
+                    <path d="M0,90 C320,160 480,20 800,100 C1120,180 1280,40 1440,90 L1440,180 L0,180 Z" fill="url(#servicesWaveFill)" />
+
+                    <!-- Primary Luminous Particle Wave Crest Line -->
+                    <path class="wave-crest-1" d="M0,95 C320,165 480,25 800,105 C1120,185 1280,45 1440,95" stroke="url(#servicesWaveGradientRed1)" stroke-width="2.5" filter="url(#servicesNeonGlowWave)" />
+
+                    <!-- Secondary Subtle Wave Crest Line -->
+                    <path class="wave-crest-2" d="M0,120 C280,50 560,160 880,80 C1200,0 1360,130 1440,110" stroke="url(#servicesWaveGradientRed2)" stroke-width="2" filter="url(#servicesNeonGlowWave)" />
+
+                    <!-- Particle Dot Trails following the wave -->
+                    <path class="wave-dots-trail" d="M0,105 C320,175 480,35 800,115 C1120,195 1280,55 1440,105" stroke="url(#servicesWaveGradientRed1)" stroke-width="3" stroke-dasharray="1 12" stroke-linecap="round" filter="url(#servicesNeonGlowWave)" />
+                    <path class="wave-dots-trail-2" d="M0,130 C280,60 560,170 880,90 C1200,10 1360,140 1440,120" stroke="url(#servicesWaveGradientRed2)" stroke-width="2.5" stroke-dasharray="1 16" stroke-linecap="round" filter="url(#servicesNeonGlowWave)" />
+                </svg>
             </div>
         </section>
 
