@@ -720,50 +720,151 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ==========================================================================
-       11. SECURE CONTACT FORM SUBMISSION WITH REAL EMAIL DELIVERY (RESEND API)
+        /* ==========================================================================
+       11. CONTACT SECTION & SECURE FORM SUBMISSION (RESEND API & VALIDATION)
        ========================================================================== */
+    const contactSection = document.getElementById('contact');
     const contactForm = document.getElementById('contact-form');
+
+    // 1. Copy to Clipboard Functionality with Tooltip Confirmation
+    const copyButtons = document.querySelectorAll('.contact-copy-btn');
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const textToCopy = btn.getAttribute('data-copy');
+            if (!textToCopy) return;
+
+            let success = false;
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    success = true;
+                } catch (err) {
+                    console.warn('[Clipboard] API writeText failed, using fallback', err);
+                }
+            }
+
+            // Fallback for non-HTTPS or unsupported browsers
+            if (!success) {
+                try {
+                    const tempInput = document.createElement('textarea');
+                    tempInput.value = textToCopy;
+                    tempInput.style.position = 'fixed';
+                    tempInput.style.left = '-9999px';
+                    tempInput.style.top = '0';
+                    document.body.appendChild(tempInput);
+                    tempInput.focus();
+                    tempInput.select();
+                    success = document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                } catch (fallbackErr) {
+                    console.error('[Clipboard] Fallback execCommand failed', fallbackErr);
+                }
+            }
+
+            const tooltip = btn.querySelector('.copy-tooltip');
+            if (tooltip) {
+                tooltip.classList.add('show');
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 2000);
+            }
+        });
+    });
+
+    // 2. Collaboration Cards Interactive Selection
+    const collabCards = document.querySelectorAll('.contact-collab-card');
+    const subjectSelect = document.getElementById('contact-subject');
+    const messageTextarea = document.getElementById('contact-message');
+
+    collabCards.forEach(card => {
+        const selectCardAction = () => {
+            collabCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            const targetSubject = card.getAttribute('data-subject');
+            if (subjectSelect && targetSubject) {
+                subjectSelect.value = targetSubject;
+                subjectSelect.classList.remove('input-error');
+                const subjErr = document.getElementById('subject-error');
+                if (subjErr) {
+                    subjErr.textContent = '';
+                    subjErr.classList.remove('visible');
+                }
+            }
+            if (messageTextarea) {
+                messageTextarea.focus();
+            }
+        };
+
+        card.addEventListener('click', selectCardAction);
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                selectCardAction();
+            }
+        });
+    });
+
+    // 3. Message Textarea Character Counter
+    const charCountDisplay = document.getElementById('contact-char-count');
+    if (messageTextarea && charCountDisplay) {
+        const maxLen = 1500;
+        messageTextarea.addEventListener('input', () => {
+            const currentLen = messageTextarea.value.length;
+            charCountDisplay.textContent = `${currentLen} / ${maxLen}`;
+            if (currentLen > maxLen * 0.9) {
+                charCountDisplay.style.color = '#FF8500';
+            } else {
+                charCountDisplay.style.color = '#929292';
+            }
+        });
+    }
+
+    // 4. Form Validation & Real Submission Handler
     if (contactForm) {
         const nameInput = document.getElementById('contact-name');
         const emailInput = document.getElementById('contact-email');
-        const phoneInput = document.getElementById('contact-phone');
-        const subjectSelect = document.getElementById('contact-subject');
-        const messageInput = document.getElementById('contact-message');
         const hpInput = document.getElementById('contact-hp');
         const submitBtn = document.getElementById('submit-btn');
         const statusAlert = document.getElementById('contact-status-alert');
 
         const nameError = document.getElementById('name-error');
         const emailError = document.getElementById('email-error');
+        const subjectError = document.getElementById('subject-error');
         const messageError = document.getElementById('message-error');
 
         function clearErrors() {
-            [nameInput, emailInput, messageInput].forEach(inp => {
+            [nameInput, emailInput, subjectSelect, messageTextarea].forEach(inp => {
                 if (inp) inp.classList.remove('input-error');
             });
-            [nameError, emailError, messageError].forEach(err => {
+            [nameError, emailError, subjectError, messageError].forEach(err => {
                 if (err) {
                     err.textContent = '';
                     err.classList.remove('visible');
                 }
             });
+            if (statusAlert) {
+                statusAlert.style.display = 'none';
+                statusAlert.className = 'contact-status-alert';
+                statusAlert.innerHTML = '';
+            }
         }
 
         function showFieldError(inputEl, errorEl, message) {
             if (inputEl) inputEl.classList.add('input-error');
             if (errorEl) {
-                errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
+                errorEl.textContent = message;
                 errorEl.classList.add('visible');
             }
         }
 
-        function validateEmailFormat(val) {
+        function isValidEmailAddress(val) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(val).toLowerCase());
         }
 
-        // Clear error as user types
-        [nameInput, emailInput, messageInput].forEach(inp => {
+        // Clear error as user types or changes input
+        [nameInput, emailInput, messageTextarea].forEach(inp => {
             if (inp) {
                 inp.addEventListener('input', () => {
                     inp.classList.remove('input-error');
@@ -777,41 +878,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        if (subjectSelect) {
+            subjectSelect.addEventListener('change', () => {
+                subjectSelect.classList.remove('input-error');
+                if (subjectError) {
+                    subjectError.textContent = '';
+                    subjectError.classList.remove('visible');
+                }
+            });
+        }
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             clearErrors();
-            if (statusAlert) {
-                statusAlert.style.display = 'none';
-                statusAlert.innerHTML = '';
-            }
 
             const name = (nameInput ? nameInput.value : '').trim();
             const email = (emailInput ? emailInput.value : '').trim();
-            const phone = (phoneInput ? phoneInput.value : '').trim();
-            const subject = subjectSelect ? subjectSelect.value : 'General Inquiry';
-            const message = (messageInput ? messageInput.value : '').trim();
+            const subject = (subjectSelect ? subjectSelect.value : '').trim();
+            const message = (messageTextarea ? messageTextarea.value : '').trim();
             const hp = hpInput ? hpInput.value.trim() : '';
 
             let hasError = false;
 
             if (!name) {
-                showFieldError(nameInput, nameError, 'Please provide your full name.');
+                showFieldError(nameInput, nameError, 'Please enter your name.');
                 hasError = true;
             }
 
             if (!email) {
-                showFieldError(emailInput, emailError, 'Please provide your email address.');
+                showFieldError(emailInput, emailError, 'Please enter your email address.');
                 hasError = true;
-            } else if (!validateEmailFormat(email)) {
-                showFieldError(emailInput, emailError, 'Please enter a valid email address (e.g. name@domain.com).');
+            } else if (!isValidEmailAddress(email)) {
+                showFieldError(emailInput, emailError, 'Please enter a valid email address.');
+                hasError = true;
+            }
+
+            if (!subject) {
+                showFieldError(subjectSelect, subjectError, 'Please select a subject.');
                 hasError = true;
             }
 
             if (!message) {
-                showFieldError(messageInput, messageError, 'Please provide your project vision or message.');
+                showFieldError(messageTextarea, messageError, 'Please enter your message.');
                 hasError = true;
             } else if (message.length < 10) {
-                showFieldError(messageInput, messageError, 'Message must be at least 10 characters long.');
+                showFieldError(messageTextarea, messageError, 'Your message must be at least 10 characters.');
                 hasError = true;
             }
 
@@ -821,29 +932,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Loading state: Disable submit button & show sending animation
+            // Enter Loading State
             const originalBtnHtml = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.classList.add('is-loading');
             submitBtn.innerHTML = `
-                <span class="btn-text">Sending your message...</span>
-                <span class="icon-wrap">
-                    <i class="fa-solid fa-circle-notch fa-spin"></i>
-                </span>
+                <i class="fa-solid fa-circle-notch fa-spin submit-btn-icon"></i>
+                <span class="btn-text">Sending Message...</span>
             `;
 
             try {
                 const payload = JSON.stringify({
                     name,
                     email,
-                    phone,
                     subject,
                     message,
                     _hp_security_check: hp
                 });
 
                 let response = null;
-                // Dual-endpoint resilience: try /api/contact (Node/Vercel) first, fallback to WordPress endpoint
+                // Dual-endpoint resilience: try /api/contact first, fallback to WordPress endpoint
                 try {
                     response = await fetch('/api/contact', {
                         method: 'POST',
@@ -857,54 +965,74 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (!response || response.status === 404) {
-                    response = await fetch('/index.php?siam_action=contact', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: payload
-                    });
+                    try {
+                        response = await fetch('/index.php?siam_action=contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: payload
+                        });
+                    } catch (wpErr) {
+                        console.warn('[Contact] WordPress endpoint network error', wpErr);
+                    }
                 }
 
-                const data = await response.json().catch(() => ({}));
+                const data = response ? await response.json().catch(() => ({})) : {};
 
-                if (response.ok && data.success) {
-                    // Success State: Clear form & show single professional toast
+                if (response && response.ok && data.success) {
+                    // Confirmed Success: Reset form inputs and character count
                     contactForm.reset();
+                    if (charCountDisplay) charCountDisplay.textContent = '0 / 1500';
+                    collabCards.forEach(c => c.classList.remove('active'));
+
+                    const successMessage = "Thank you! Your message has been sent successfully. I'll get back to you soon.";
+                    if (statusAlert) {
+                        statusAlert.className = 'contact-status-alert alert-success';
+                        statusAlert.textContent = successMessage;
+                        statusAlert.style.display = 'block';
+                    }
+
                     showToast(
-                        'Message Sent Successfully!',
-                        "Thank you for reaching out. Your message has been delivered successfully. I'll get back to you as soon as possible.",
+                        'Message Sent!',
+                        successMessage,
                         'success',
                         6000
                     );
                 } else {
-                    // Error State: Log server info quietly, show clean non-technical single error toast
-                    console.error('[Contact Dispatch Error]', data);
-                    if (response.status === 429) {
-                        showToast(
-                            'Please Slow Down',
-                            'You have sent multiple messages recently. Please wait a few moments before trying again.',
-                            'error',
-                            7000
-                        );
-                    } else {
-                        showToast(
-                            'Message Could Not Be Delivered',
-                            'Something went wrong while sending your message. Please try again or contact me directly through email.',
-                            'error',
-                            7000
-                        );
+                    // Error: Preserve user form data!
+                    console.error('[Contact Error]', data);
+                    const errorMessage = "Something went wrong while sending your message. Please try again.";
+                    
+                    if (statusAlert) {
+                        statusAlert.className = 'contact-status-alert alert-error';
+                        statusAlert.textContent = errorMessage;
+                        statusAlert.style.display = 'block';
                     }
+
+                    showToast(
+                        'Submission Error',
+                        errorMessage,
+                        'error',
+                        7000
+                    );
                 }
             } catch (err) {
-                console.error('[Contact Network Error]', err);
+                console.error('[Contact Exception]', err);
+                const errorMessage = "Something went wrong while sending your message. Please try again.";
+                if (statusAlert) {
+                    statusAlert.className = 'contact-status-alert alert-error';
+                    statusAlert.textContent = errorMessage;
+                    statusAlert.style.display = 'block';
+                }
                 showToast(
-                    'Message Could Not Be Delivered',
-                    'Something went wrong while sending your message. Please try again or contact me directly through email.',
+                    'Network Error',
+                    errorMessage,
                     'error',
                     7000
                 );
             } finally {
+                // Restore submit button
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('is-loading');
                 submitBtn.innerHTML = originalBtnHtml;
@@ -912,14 +1040,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = document.getElementById('newsletter-email');
-            if (emailInput.value) {
-                showToast('Subscription Confirmed', 'You are now subscribed to Siam\'s latest technology insights.', 'success');
-                emailInput.value = '';
+    // 5. Quick Meeting CTA button
+    const meetingCtaBtn = document.getElementById('meetingCtaBtn');
+    if (meetingCtaBtn && contactForm) {
+        meetingCtaBtn.addEventListener('click', (e) => {
+            // Smoothly focus subject and pre-select "Other" or launch mailto
+            if (subjectSelect) {
+                subjectSelect.value = 'Other';
+            }
+            if (messageTextarea) {
+                messageTextarea.focus();
+                if (!messageTextarea.value) {
+                    messageTextarea.placeholder = "Let's schedule a call! Please mention your preferred date, time and platform (Google Meet / Zoom)...";
+                }
             }
         });
     }
