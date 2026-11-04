@@ -1562,8 +1562,9 @@
             </div>
         </section>
 
-        <!-- Latest Portfolio / Projects Showcase Section -->
+                <!-- Latest Portfolio / Projects Showcase Section -->
         <section id="portfolio" class="portfolio-section">
+            <div id="projects" style="position: absolute; top: -96px; left: 0; pointer-events: none;" aria-hidden="true"></div>
             <!-- Background Cyber Atmosphere -->
             <div class="portfolio-bg-decor" aria-hidden="true">
                 <div class="port-glow port-glow-1"></div>
@@ -1572,387 +1573,324 @@
             </div>
 
             <div class="container">
-                <!-- Section Header -->
-                <div class="section-header text-center scroll-reveal-init">
-                    <div class="projects-eyebrow">
-                        <span class="eyebrow-dash"></span>
-                        <span class="eyebrow-text">FEATURED CREATIONS</span>
+                <!-- Section Header & Stats Row -->
+                <div class="projects-hero-row scroll-reveal-init">
+                    <div class="projects-hero-left">
+                        <div class="projects-eyebrow">
+                            <span class="eyebrow-text">FEATURED CREATIONS</span>
+                            <span class="eyebrow-line"></span>
+                        </div>
+                        <h2 class="projects-main-title">My Recent <span class="gradient-text">Projects</span></h2>
+                        <p class="projects-subtitle">A showcase of real-world applications I've built, solving practical problems with modern technologies and clean architecture.</p>
                     </div>
-                    <h2 class="projects-main-title">Recent Selected <span class="gradient-text">Projects</span></h2>
-                    <p class="projects-subtitle">Real-world production applications built with clean architecture, scalability, and modern UI design.</p>
+
+                    <div class="projects-stats-grid">
+                        <div class="project-stat-card">
+                            <div class="stat-icon-wrap">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Total Projects</div>
+                        </div>
+
+                        <div class="project-stat-card">
+                            <div class="stat-icon-wrap">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Full-Stack</div>
+                        </div>
+
+                        <div class="project-stat-card">
+                            <div class="stat-icon-wrap">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">AI Projects</div>
+                        </div>
+
+                        <div class="project-stat-card">
+                            <div class="stat-icon-wrap">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Category Filters Strip -->
-                <div class="portfolio-filter-tabs scroll-reveal-init">
-                    <button type="button" class="filter-btn active" data-filter="all">
-                        <i class="fa-solid fa-table-cells-large"></i>
+                <!-- Category Filter Navigation Bar -->
+                <div class="projects-filter-bar scroll-reveal-init">
+                    <button type="button" class="filter-pill-btn active" data-filter="all">
                         <span>All Projects</span>
                     </button>
-                    <button type="button" class="filter-btn" data-filter="django">
-                        <i class="devicon-django-plain"></i>
-                        <span>Django & Backend</span>
+                    <button type="button" class="filter-pill-btn" data-filter="django">
+                        <i class="devicon-django-plain" style="color: #FF3333;"></i>
+                        <span>Django &amp; Backend</span>
                     </button>
-                    <button type="button" class="filter-btn" data-filter="react">
-                        <i class="devicon-react-original"></i>
-                        <span>React & Next.js</span>
+                    <button type="button" class="filter-pill-btn" data-filter="react">
+                        <i class="devicon-react-original" style="color: #00D8FF;"></i>
+                        <span>React &amp; Frontend</span>
                     </button>
-                    <button type="button" class="filter-btn" data-filter="fullstack">
-                        <i class="fa-solid fa-layer-group"></i>
+                    <button type="button" class="filter-pill-btn" data-filter="fullstack">
+                        <i class="fa-solid fa-layer-group" style="color: #FF6A00;"></i>
                         <span>Full-Stack</span>
                     </button>
-                </div>
-
-                <!-- Search and Sorting Toolbar -->
-                <div class="projects-toolbar scroll-reveal-init">
-                    <div class="project-search-box">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="projectSearchInput" class="project-search-input" placeholder="Search projects..." aria-label="Search projects by name, description, or technology">
-                        <button type="button" id="projectSearchClear" class="search-clear-btn" aria-label="Clear search" style="display: none;">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                    <div class="project-sort-box">
-                        <i class="fa-solid fa-arrow-down-wide-short sort-icon"></i>
-                        <select id="projectSortSelect" class="project-sort-select" aria-label="Sort projects">
-                            <option value="latest">Latest First</option>
-                            <option value="oldest">Oldest First</option>
-                            <option value="featured">Featured First</option>
-                            <option value="alpha">Alphabetical</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Project Statistics Strip (4 Horizontal Cards) -->
-                <div class="projects-stats-strip scroll-reveal-init">
-                    <div class="project-stat-card">
-                        <div class="stat-icon-wrap stat-icon-gold">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">12+</span>
-                            <span class="stat-label">Total Projects</span>
-                        </div>
-                    </div>
-                    <div class="project-stat-card">
-                        <div class="stat-icon-wrap stat-icon-purple">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">5K+</span>
-                            <span class="stat-label">Total Users</span>
-                        </div>
-                    </div>
-                    <div class="project-stat-card">
-                        <div class="stat-icon-wrap stat-icon-cyan">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">99.9%</span>
-                            <span class="stat-label">Uptime (Best)</span>
-                        </div>
-                    </div>
-                    <div class="project-stat-card">
-                        <div class="stat-icon-wrap stat-icon-gradient">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <div class="stat-info-wrap">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Open to Collaborate</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projects Grid (3 Columns Desktop) -->
-                <div class="portfolio-grid" id="portfolioProjectsGrid">
-                    <!-- Project 1: SnapBook -->
-                    <div class="portfolio-card scroll-reveal-init" data-category="django react fullstack" data-id="1" data-featured="1" data-date="2026-03" data-name="SnapBook – Social Platform" data-views="12000">
-                        <div class="project-img-box">
-                            <img src="assets/images/projects/snapbook.png" alt="SnapBook - Social Platform" class="project-img" loading="lazy">
-                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
-                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(1)" title="Open project preview" aria-label="Open SnapBook project preview">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <div class="project-img-overlay" onclick="openProjectModal(1)"></div>
-                        </div>
-                        <div class="project-card-body">
-                            <div class="project-header-row">
-                                <div class="project-icon-box" style="background: rgba(33, 150, 243, 0.15); color: #2196F3;">
-                                    <i class="fa-solid fa-book-bookmark"></i>
-                                </div>
-                                <h3 class="project-title-text" onclick="openProjectModal(1)">SnapBook – Social Platform</h3>
-                                <button type="button" class="project-card-arrow" onclick="openProjectModal(1)" aria-label="View SnapBook details">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <p class="project-desc-text">A modern social media platform for sharing photos, stories, and connecting with friends through a clean digital experience.</p>
-                            <div class="project-tech-chips">
-                                <span class="tech-chip"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
-                                <span class="tech-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                                <span class="tech-chip"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
-                                <span class="tech-chip"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
-                            </div>
-                            <div class="project-actions-row">
-                                <div class="project-links-group">
-                                    <a href="https://snap-book-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
-                                        <span>Live Demo</span>
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    <a href="https://github.com/siamhossain7722/SnapBook_Frontend" target="_blank" rel="noopener noreferrer" class="btn-project-code">
-                                        <i class="fa-brands fa-github"></i>
-                                        <span>Code</span>
-                                    </a>
-                                </div>
-                                <div class="project-views-count">
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span>12K+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Review Platform -->
-                    <div class="portfolio-card scroll-reveal-init" data-category="react fullstack" data-id="2" data-featured="1" data-date="2026-02" data-name="Product Review Platform" data-views="8400">
-                        <div class="project-img-box">
-                            <img src="assets/images/projects/review.png" alt="Product Review Platform" class="project-img" loading="lazy">
-                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
-                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(2)" title="Open project preview" aria-label="Open Product Review Platform preview">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <div class="project-img-overlay" onclick="openProjectModal(2)"></div>
-                        </div>
-                        <div class="project-card-body">
-                            <div class="project-header-row">
-                                <div class="project-icon-box" style="background: rgba(168, 85, 247, 0.15); color: #A855F7;">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                </div>
-                                <h3 class="project-title-text" onclick="openProjectModal(2)">Product Review Platform</h3>
-                                <button type="button" class="project-card-arrow" onclick="openProjectModal(2)" aria-label="View Product Review Platform details">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <p class="project-desc-text">A platform for discovering products, comparing ratings, and sharing verified customer experiences with sub-second response times.</p>
-                            <div class="project-tech-chips">
-                                <span class="tech-chip"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                                <span class="tech-chip"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                                <span class="tech-chip"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
-                                <span class="tech-chip"><i class="devicon-supabase-plain colored"></i> Supabase</span>
-                            </div>
-                            <div class="project-actions-row">
-                                <div class="project-links-group">
-                                    <a href="https://review-client-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
-                                        <span>Live Demo</span>
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    <a href="https://github.com/siamhossain7722/Review_Client" target="_blank" rel="noopener noreferrer" class="btn-project-code">
-                                        <i class="fa-brands fa-github"></i>
-                                        <span>Code</span>
-                                    </a>
-                                </div>
-                                <div class="project-views-count">
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span>8.4K+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: Eventify -->
-                    <div class="portfolio-card scroll-reveal-init" data-category="django fullstack" data-id="3" data-featured="1" data-date="2026-01" data-name="Eventify – Event Hub" data-views="6100">
-                        <div class="project-img-box">
-                            <img src="assets/images/projects/eventify.png" alt="Eventify - Event Hub" class="project-img" loading="lazy">
-                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
-                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(3)" title="Open project preview" aria-label="Open Eventify project preview">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <div class="project-img-overlay" onclick="openProjectModal(3)"></div>
-                        </div>
-                        <div class="project-card-body">
-                            <div class="project-header-row">
-                                <div class="project-icon-box" style="background: rgba(0, 184, 255, 0.15); color: #00D4FF;">
-                                    <i class="fa-solid fa-calendar-days"></i>
-                                </div>
-                                <h3 class="project-title-text" onclick="openProjectModal(3)">Eventify – Event Hub</h3>
-                                <button type="button" class="project-card-arrow" onclick="openProjectModal(3)" aria-label="View Eventify details">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <p class="project-desc-text">An event management platform for creating, organizing, and managing events with streamlined attendee experiences.</p>
-                            <div class="project-tech-chips">
-                                <span class="tech-chip"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
-                                <span class="tech-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                                <span class="tech-chip"><i class="fa-brands fa-stripe" style="color: #635BFF;"></i> Stripe</span>
-                                <span class="tech-chip"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
-                            </div>
-                            <div class="project-actions-row">
-                                <div class="project-links-group">
-                                    <a href="https://new-event-managment.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
-                                        <span>Live Demo</span>
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    <a href="https://github.com/siamhossain7722/New" target="_blank" rel="noopener noreferrer" class="btn-project-code">
-                                        <i class="fa-brands fa-github"></i>
-                                        <span>Code</span>
-                                    </a>
-                                </div>
-                                <div class="project-views-count">
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span>6.1K+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: CPL Construction Platform -->
-                    <div class="portfolio-card scroll-reveal-init" data-category="react fullstack" data-id="4" data-featured="1" data-date="2025-11" data-name="CPL Construction Platform" data-views="5200">
-                        <div class="project-img-box">
-                            <img src="assets/images/projects/cpl.png" alt="CPL Construction Platform" class="project-img" loading="lazy">
-                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
-                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(4)" title="Open project preview" aria-label="Open CPL Construction Platform preview">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <div class="project-img-overlay" onclick="openProjectModal(4)"></div>
-                        </div>
-                        <div class="project-card-body">
-                            <div class="project-header-row">
-                                <div class="project-icon-box" style="background: rgba(255, 152, 0, 0.15); color: #FF9800;">
-                                    <i class="fa-solid fa-building"></i>
-                                </div>
-                                <h3 class="project-title-text" onclick="openProjectModal(4)">CPL Construction Platform</h3>
-                                <button type="button" class="project-card-arrow" onclick="openProjectModal(4)" aria-label="View CPL details">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <p class="project-desc-text">A construction service platform providing building services, machinery sales & rentals, and quality materials across Bangladesh.</p>
-                            <div class="project-tech-chips">
-                                <span class="tech-chip"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                                <span class="tech-chip"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                                <span class="tech-chip"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
-                                <span class="tech-chip"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                            </div>
-                            <div class="project-actions-row">
-                                <div class="project-links-group">
-                                    <a href="https://www.constructivepartnerslimited.com/" target="_blank" rel="noopener noreferrer" class="btn-project-live">
-                                        <span>Live Demo</span>
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    <a href="https://github.com/siamhossain7722/Constructions" target="_blank" rel="noopener noreferrer" class="btn-project-code">
-                                        <i class="fa-brands fa-github"></i>
-                                        <span>Code</span>
-                                    </a>
-                                </div>
-                                <div class="project-views-count">
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span>5.2K+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 5: TaskFlow -->
-                    <div class="portfolio-card scroll-reveal-init" data-category="django react fullstack" data-id="5" data-featured="1" data-date="2025-08" data-name="TaskFlow – Task Management" data-views="4700">
-                        <div class="project-img-box">
-                            <img src="assets/images/project-1.jpg" alt="TaskFlow - Task Management" class="project-img" loading="lazy">
-                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
-                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(5)" title="Open project preview" aria-label="Open TaskFlow project preview">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <div class="project-img-overlay" onclick="openProjectModal(5)"></div>
-                        </div>
-                        <div class="project-card-body">
-                            <div class="project-header-row">
-                                <div class="project-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                </div>
-                                <h3 class="project-title-text" onclick="openProjectModal(5)">TaskFlow – Task Management</h3>
-                                <button type="button" class="project-card-arrow" onclick="openProjectModal(5)" aria-label="View TaskFlow details">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <p class="project-desc-text">A productivity platform for managing tasks, teams, and projects with real-time collaboration and analytics.</p>
-                            <div class="project-tech-chips">
-                                <span class="tech-chip"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
-                                <span class="tech-chip"><i class="devicon-react-original colored"></i> React</span>
-                                <span class="tech-chip"><i class="fa-solid fa-network-wired" style="color: #00B4D8;"></i> REST API</span>
-                                <span class="tech-chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                            </div>
-                            <div class="project-actions-row">
-                                <div class="project-links-group">
-                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-live">
-                                        <span>Live Demo</span>
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-code">
-                                        <i class="fa-brands fa-github"></i>
-                                        <span>Code</span>
-                                    </a>
-                                </div>
-                                <div class="project-views-count">
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span>4.7K+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6: Portfolio API -->
-                    <div class="portfolio-card scroll-reveal-init" data-category="django" data-id="6" data-featured="1" data-date="2025-05" data-name="Portfolio API" data-views="3900">
-                        <div class="project-img-box">
-                            <img src="assets/images/project-4.jpg" alt="Portfolio API" class="project-img" loading="lazy">
-                            <div class="card-featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
-                            <button type="button" class="card-lightbox-btn" onclick="openProjectModal(6)" title="Open project preview" aria-label="Open Portfolio API preview">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <div class="project-img-overlay" onclick="openProjectModal(6)"></div>
-                        </div>
-                        <div class="project-card-body">
-                            <div class="project-header-row">
-                                <div class="project-icon-box" style="background: rgba(6, 182, 212, 0.15); color: #06B6D4;">
-                                    <i class="fa-solid fa-cloud"></i>
-                                </div>
-                                <h3 class="project-title-text" onclick="openProjectModal(6)">Portfolio API</h3>
-                                <button type="button" class="project-card-arrow" onclick="openProjectModal(6)" aria-label="View Portfolio API details">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <p class="project-desc-text">A RESTful API for portfolio data with modern authentication, rate limiting, and clean documentation.</p>
-                            <div class="project-tech-chips">
-                                <span class="tech-chip"><i class="devicon-python-plain colored"></i> Python</span>
-                                <span class="tech-chip"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
-                                <span class="tech-chip"><i class="fa-solid fa-code" style="color: #4CAF50;"></i> DRF</span>
-                                <span class="tech-chip"><i class="fa-solid fa-key" style="color: #FFA500;"></i> JWT Auth</span>
-                            </div>
-                            <div class="project-actions-row">
-                                <div class="project-links-group">
-                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-live">
-                                        <span>Live Demo</span>
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-project-code">
-                                        <i class="fa-brands fa-github"></i>
-                                        <span>Code</span>
-                                    </a>
-                                </div>
-                                <div class="project-views-count">
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span>3.9K+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty State Message -->
-                <div id="projectsEmptyState" class="projects-empty-state" style="display: none;">
-                    <div class="empty-state-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <h4 class="empty-state-title">No matching projects found</h4>
-                    <p class="empty-state-desc">We couldn't find any projects matching your search criteria. Try a different keyword or reset filters.</p>
-                    <button type="button" class="btn-project-live" id="btnResetProjectFilters">
-                        <span>Reset Filters</span>
-                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    <button type="button" class="filter-pill-btn" data-filter="ai">
+                        <i class="fa-solid fa-microchip" style="color: #FF2525;"></i>
+                        <span>AI &amp; Automation</span>
+                    </button>
+                    <button type="button" class="filter-pill-btn" data-filter="other">
+                        <i class="fa-solid fa-table-cells-large" style="color: #FFA040;"></i>
+                        <span>Other</span>
                     </button>
                 </div>
+
+                <!-- 3-Column Project Cards Grid -->
+                <div class="projects-cards-grid" id="portfolioProjectsGrid">
+                    <!-- Card 1: SnapBook -->
+                    <div class="portfolio-project-card scroll-reveal-init" data-category="fullstack django react" data-id="1">
+                        <div class="card-img-wrap">
+                            <img src="assets/images/projects/snapbook.png" alt="SnapBook – Social Platform" class="card-preview-img" loading="lazy">
+                            <div class="card-cat-badge">
+                                <i class="fa-solid fa-layer-group" style="color: #FF5A1F;"></i>
+                                <span>Full-Stack</span>
+                            </div>
+                            <button type="button" class="card-modal-btn" onclick="openProjectModal(1)" title="Open project preview" aria-label="Open SnapBook preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                        <div class="card-content-wrap">
+                            <h3 class="card-title" onclick="openProjectModal(1)">SnapBook – Social Platform</h3>
+                            <p class="card-description">A full-featured social media platform with posts, comments, reactions, and real-time interactions.</p>
+                            <div class="card-tech-row">
+                                <span class="card-tech-pill"><i class="devicon-django-plain" style="color: #FF3333;"></i> Django</span>
+                                <span class="card-tech-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                <span class="card-tech-pill"><i class="devicon-react-original" style="color: #00D8FF;"></i> React</span>
+                                <span class="card-tech-pill"><i class="devicon-tailwindcss-plain colored"></i> Tailwind</span>
+                            </div>
+                            <div class="card-actions-row">
+                                <a href="https://snap-book-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-card-live">
+                                    <span>Live Demo</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/siamhossain7722/SnapBook_Frontend" target="_blank" rel="noopener noreferrer" class="btn-card-code">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Product Review Platform -->
+                    <div class="portfolio-project-card scroll-reveal-init" data-category="react other" data-id="2">
+                        <div class="card-img-wrap">
+                            <img src="assets/images/projects/review.png" alt="Product Review Platform" class="card-preview-img" loading="lazy">
+                            <div class="card-cat-badge">
+                                <i class="fa-solid fa-globe" style="color: #00D8FF;"></i>
+                                <span>Web App</span>
+                            </div>
+                            <button type="button" class="card-modal-btn" onclick="openProjectModal(2)" title="Open project preview" aria-label="Open Product Review Platform preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                        <div class="card-content-wrap">
+                            <h3 class="card-title" onclick="openProjectModal(2)">Product Review Platform</h3>
+                            <p class="card-description">A review and rating platform where users can discover, review, and compare products.</p>
+                            <div class="card-tech-row">
+                                <span class="card-tech-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                <span class="card-tech-pill"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+                                <span class="card-tech-pill"><i class="devicon-react-original" style="color: #00D8FF;"></i> React</span>
+                                <span class="card-tech-pill"><i class="fa-solid fa-database" style="color: #FFA040;"></i> Prisma</span>
+                            </div>
+                            <div class="card-actions-row">
+                                <a href="https://review-client-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-card-live">
+                                    <span>Live Demo</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/siamhossain7722/Review_Client" target="_blank" rel="noopener noreferrer" class="btn-card-code">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Eventify – Event Hub -->
+                    <div class="portfolio-project-card scroll-reveal-init" data-category="fullstack django" data-id="3">
+                        <div class="card-img-wrap">
+                            <img src="assets/images/projects/eventify.png" alt="Eventify – Event Hub" class="card-preview-img" loading="lazy">
+                            <div class="card-cat-badge">
+                                <i class="fa-solid fa-calendar-check" style="color: #FF7900;"></i>
+                                <span>Event Platform</span>
+                            </div>
+                            <button type="button" class="card-modal-btn" onclick="openProjectModal(3)" title="Open project preview" aria-label="Open Eventify preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                        <div class="card-content-wrap">
+                            <h3 class="card-title" onclick="openProjectModal(3)">Eventify – Event Hub</h3>
+                            <p class="card-description">A modern event management platform to create, discover, and join events seamlessly.</p>
+                            <div class="card-tech-row">
+                                <span class="card-tech-pill"><i class="devicon-django-plain" style="color: #FF3333;"></i> Django</span>
+                                <span class="card-tech-pill"><i class="fa-brands fa-stripe" style="color: #635BFF;"></i> Stripe</span>
+                                <span class="card-tech-pill"><i class="devicon-react-original" style="color: #00D8FF;"></i> React</span>
+                                <span class="card-tech-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                            </div>
+                            <div class="card-actions-row">
+                                <a href="https://new-event-managment.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-card-live">
+                                    <span>Live Demo</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/siamhossain7722/New" target="_blank" rel="noopener noreferrer" class="btn-card-code">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: AI Assistant -->
+                    <div class="portfolio-project-card scroll-reveal-init" data-category="ai" data-id="4">
+                        <div class="card-img-wrap">
+                            <img src="assets/images/project-2.jpg" alt="AI Assistant" class="card-preview-img" loading="lazy">
+                            <div class="card-cat-badge">
+                                <i class="fa-solid fa-robot" style="color: #FF2525;"></i>
+                                <span>AI Project</span>
+                            </div>
+                            <button type="button" class="card-modal-btn" onclick="openProjectModal(4)" title="Open project preview" aria-label="Open AI Assistant preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                        <div class="card-content-wrap">
+                            <h3 class="card-title" onclick="openProjectModal(4)">AI Assistant</h3>
+                            <p class="card-description">Intelligent conversational AI assistant capable of code generation, reasoning, and context-aware responses.</p>
+                            <div class="card-tech-row">
+                                <span class="card-tech-pill"><i class="devicon-python-plain colored"></i> Python</span>
+                                <span class="card-tech-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                                <span class="card-tech-pill"><i class="fa-solid fa-microchip" style="color: #FF5A1F;"></i> OpenAI</span>
+                                <span class="card-tech-pill"><i class="devicon-react-original" style="color: #00D8FF;"></i> React</span>
+                            </div>
+                            <div class="card-actions-row">
+                                <a href="https://www.constructivepartnerslimited.com/" target="_blank" rel="noopener noreferrer" class="btn-card-live">
+                                    <span>Live Demo</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/siamhossain7722/Constructions" target="_blank" rel="noopener noreferrer" class="btn-card-code">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: E-commerce Platform -->
+                    <div class="portfolio-project-card scroll-reveal-init" data-category="fullstack django react" data-id="5">
+                        <div class="card-img-wrap">
+                            <img src="assets/images/project-1.jpg" alt="E-commerce Platform" class="card-preview-img" loading="lazy">
+                            <div class="card-cat-badge">
+                                <i class="fa-solid fa-cart-shopping" style="color: #FF6A00;"></i>
+                                <span>E-commerce</span>
+                            </div>
+                            <button type="button" class="card-modal-btn" onclick="openProjectModal(5)" title="Open project preview" aria-label="Open E-commerce Platform preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                        <div class="card-content-wrap">
+                            <h3 class="card-title" onclick="openProjectModal(5)">E-commerce Platform</h3>
+                            <p class="card-description">A high-performance modern e-commerce storefront with cart management, secure checkout, and inventory tracking.</p>
+                            <div class="card-tech-row">
+                                <span class="card-tech-pill"><i class="devicon-react-original" style="color: #00D8FF;"></i> React</span>
+                                <span class="card-tech-pill"><i class="devicon-django-plain" style="color: #FF3333;"></i> Django</span>
+                                <span class="card-tech-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                                <span class="card-tech-pill"><i class="devicon-tailwindcss-plain colored"></i> Tailwind</span>
+                            </div>
+                            <div class="card-actions-row">
+                                <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-card-live">
+                                    <span>Live Demo</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-card-code">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Analytics Dashboard -->
+                    <div class="portfolio-project-card scroll-reveal-init" data-category="other react" data-id="6">
+                        <div class="card-img-wrap">
+                            <img src="assets/images/project-3.jpg" alt="Analytics Dashboard" class="card-preview-img" loading="lazy">
+                            <div class="card-cat-badge">
+                                <i class="fa-solid fa-chart-line" style="color: #FFA040;"></i>
+                                <span>Other</span>
+                            </div>
+                            <button type="button" class="card-modal-btn" onclick="openProjectModal(6)" title="Open project preview" aria-label="Open Analytics Dashboard preview">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                        <div class="card-content-wrap">
+                            <h3 class="card-title" onclick="openProjectModal(6)">Analytics Dashboard</h3>
+                            <p class="card-description">Real-time analytics and financial tracking dashboard with interactive visual charts and data export capabilities.</p>
+                            <div class="card-tech-row">
+                                <span class="card-tech-pill"><i class="devicon-react-original" style="color: #00D8FF;"></i> React</span>
+                                <span class="card-tech-pill"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                                <span class="card-tech-pill"><i class="fa-solid fa-chart-pie" style="color: #FF5A1F;"></i> Chart.js</span>
+                                <span class="card-tech-pill"><i class="fa-solid fa-network-wired" style="color: #FFA040;"></i> REST API</span>
+                            </div>
+                            <div class="card-actions-row">
+                                <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-card-live">
+                                    <span>Live Demo</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/siamhossain7722" target="_blank" rel="noopener noreferrer" class="btn-card-code">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Animated Digital Wave -->
+            <div class="portfolio-bottom-wave" aria-hidden="true">
+                <svg class="digital-wave-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="portWaveGradientRed1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.8" />
+                            <stop offset="50%" stop-color="#FF5A1F" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#FF7900" stop-opacity="0.7" />
+                        </linearGradient>
+
+                        <linearGradient id="portWaveGradientRed2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF7900" stop-opacity="0.4" />
+                            <stop offset="50%" stop-color="#FF101A" stop-opacity="0.85" />
+                            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0.5" />
+                        </linearGradient>
+
+                        <linearGradient id="portWaveFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.08" />
+                            <stop offset="100%" stop-color="#050303" stop-opacity="0" />
+                        </linearGradient>
+
+                        <filter id="portNeonGlowWave" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="glow1" />
+                            <feGaussianBlur stdDeviation="8" result="glow2" />
+                            <feMerge>
+                                <feMergeNode in="glow2" />
+                                <feMergeNode in="glow1" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Wave Paths -->
+                    <path d="M0,80 C320,140 500,20 800,90 C1100,160 1280,40 1440,70 L1440,180 L0,180 Z" fill="url(#portWaveFill)" />
+                    <path d="M0,80 C320,140 500,20 800,90 C1100,160 1280,40 1440,70" stroke="url(#portWaveGradientRed1)" stroke-width="2.5" filter="url(#portNeonGlowWave)" fill="none" />
+                    <path d="M0,110 C360,30 580,150 900,60 C1200,0 1320,120 1440,95" stroke="url(#portWaveGradientRed2)" stroke-width="1.8" filter="url(#portNeonGlowWave)" fill="none" opacity="0.85" />
+                </svg>
             </div>
         </section>
 

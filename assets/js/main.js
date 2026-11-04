@@ -468,142 +468,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==========================================================================
-       8. ADVANCED PORTFOLIO FILTERING, REAL-TIME SEARCH & SORTING
+        /* ==========================================================================
+       8. PORTFOLIO FILTERING & CATEGORY NAVIGATION
        ========================================================================== */
-    const filterBtns = document.querySelectorAll('.portfolio-filter-tabs .filter-btn');
-    const portfolioGrid = document.getElementById('portfolioProjectsGrid');
-    const portfolioCards = Array.from(document.querySelectorAll('.portfolio-grid .portfolio-card'));
-    const searchInput = document.getElementById('projectSearchInput');
-    const searchClearBtn = document.getElementById('projectSearchClear');
-    const sortSelect = document.getElementById('projectSortSelect');
-    const emptyState = document.getElementById('projectsEmptyState');
-    const resetFiltersBtn = document.getElementById('btnResetProjectFilters');
+    const filterPillBtns = document.querySelectorAll('.projects-filter-bar .filter-pill-btn');
+    const projectCards = document.querySelectorAll('.portfolio-project-card');
 
-    let currentFilter = 'all';
-    let currentSearch = '';
-    let currentSort = 'latest';
-
-    function updateProjectsDisplay() {
-        if (!portfolioCards.length) return;
-
-        let visibleCount = 0;
-
-        // 1. Filter & Search
-        portfolioCards.forEach(card => {
-            const categories = (card.getAttribute('data-category') || '').toLowerCase();
-            const title = (card.querySelector('.project-title-text')?.innerText || '').toLowerCase();
-            const desc = (card.querySelector('.project-desc-text')?.innerText || '').toLowerCase();
-            const techChips = Array.from(card.querySelectorAll('.tech-chip')).map(c => c.innerText.toLowerCase()).join(' ');
-            const cardSearchBlob = `${title} ${desc} ${techChips} ${categories}`;
-
-            const matchesCategory = (currentFilter === 'all') || categories.includes(currentFilter);
-            const matchesSearch = !currentSearch || cardSearchBlob.includes(currentSearch);
-
-            if (matchesCategory && matchesSearch) {
-                card.style.display = 'flex';
-                requestAnimationFrame(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                });
-                visibleCount++;
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    if (card.style.opacity === '0') {
-                        card.style.display = 'none';
-                    }
-                }, 200);
-            }
-        });
-
-        // 2. Sort cards in DOM
-        if (portfolioGrid) {
-            const sortedCards = [...portfolioCards].sort((a, b) => {
-                if (currentSort === 'latest') {
-                    return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
-                } else if (currentSort === 'oldest') {
-                    return (a.getAttribute('data-date') || '').localeCompare(b.getAttribute('data-date') || '');
-                } else if (currentSort === 'featured') {
-                    const featA = parseInt(a.getAttribute('data-featured') || '0', 10);
-                    const featB = parseInt(b.getAttribute('data-featured') || '0', 10);
-                    return featB - featA;
-                } else if (currentSort === 'alpha') {
-                    const nameA = (a.getAttribute('data-name') || '').toLowerCase();
-                    const nameB = (b.getAttribute('data-name') || '').toLowerCase();
-                    return nameA.localeCompare(nameB);
-                }
-                return 0;
-            });
-
-            sortedCards.forEach(c => portfolioGrid.appendChild(c));
-        }
-
-        // 3. Show/hide empty state
-        if (emptyState) {
-            emptyState.style.display = (visibleCount === 0) ? 'block' : 'none';
-        }
-
-        // 4. Show/hide search clear button
-        if (searchClearBtn) {
-            searchClearBtn.style.display = currentSearch ? 'inline-flex' : 'none';
-        }
-    }
-
-    // Category button click
-    filterBtns.forEach(btn => {
+    filterPillBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterPillBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentFilter = btn.getAttribute('data-filter') || 'all';
-            updateProjectsDisplay();
+
+            const filterValue = btn.getAttribute('data-filter') || 'all';
+
+            projectCards.forEach(card => {
+                const category = (card.getAttribute('data-category') || '').toLowerCase();
+                if (filterValue === 'all' || category.includes(filterValue)) {
+                    card.style.display = 'flex';
+                    requestAnimationFrame(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    });
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        if (card.style.opacity === '0') {
+                            card.style.display = 'none';
+                        }
+                    }, 200);
+                }
+            });
         });
     });
-
-    // Search input live typing
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            currentSearch = e.target.value.trim().toLowerCase();
-            updateProjectsDisplay();
-        });
-    }
-
-    // Search clear button
-    if (searchClearBtn) {
-        searchClearBtn.addEventListener('click', () => {
-            if (searchInput) {
-                searchInput.value = '';
-                searchInput.focus();
-            }
-            currentSearch = '';
-            updateProjectsDisplay();
-        });
-    }
-
-    // Sort dropdown change
-    if (sortSelect) {
-        sortSelect.addEventListener('change', (e) => {
-            currentSort = e.target.value;
-            updateProjectsDisplay();
-        });
-    }
-
-    // Reset filters button
-    if (resetFiltersBtn) {
-        resetFiltersBtn.addEventListener('click', () => {
-            currentFilter = 'all';
-            currentSearch = '';
-            currentSort = 'latest';
-            filterBtns.forEach(b => {
-                if (b.getAttribute('data-filter') === 'all') b.classList.add('active');
-                else b.classList.remove('active');
-            });
-            if (searchInput) searchInput.value = '';
-            if (sortSelect) sortSelect.value = 'latest';
-            updateProjectsDisplay();
-        });
-    }
 
     /* ==========================================================================
        8B. ACHIEVEMENTS & CERTIFICATIONS FILTERING
@@ -1026,70 +923,70 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================================================== */
 const projectsData = {
     1: {
-        title: "SnapBook - Social Media Platform",
-        tag: "Django & React Full-Stack",
+        title: "SnapBook - Social Platform",
+        tag: "Full-Stack • Django & React",
         img: "assets/images/projects/snapbook.png",
-        client: "Full-Stack Project",
+        client: "Full-Stack Web App",
         timeline: "Completed",
-        tech: "Django, React, JavaScript, PostgreSQL, REST API",
+        tech: "Django, PostgreSQL, React, Tailwind CSS",
         liveUrl: "https://snap-book-frontend.vercel.app/",
         githubUrl: "https://github.com/siamhossain7722/SnapBook_Frontend",
-        desc: "SnapBook is a modern full-stack social media platform engineered for sharing photos, stories, and engaging with friends through a clean digital experience. Built with a scalable Django REST backend, token authentication, and a responsive React frontend."
+        desc: "A full-featured social media platform with posts, comments, reactions, and real-time interactions. Built with a scalable Django REST backend, token authentication, and a responsive React frontend."
     },
     2: {
-        title: "Review Platform - Product Discovery & Reviews",
-        tag: "Python & FastAPI Architecture",
+        title: "Product Review Platform",
+        tag: "Web App • Next.js & TypeScript",
         img: "assets/images/projects/review.png",
         client: "Web Application",
         timeline: "Completed",
-        tech: "Python, FastAPI, Next.js, PostgreSQL, Tailwind CSS",
+        tech: "Next.js, TypeScript, React, Prisma",
         liveUrl: "https://review-client-two.vercel.app/",
         githubUrl: "https://github.com/siamhossain7722/Review_Client",
-        desc: "A high-performance product review platform designed for discovering top-rated products, comparing ratings, and sharing customer experiences through an ultra-fast web interface powered by FastAPI and Next.js."
+        desc: "A review and rating platform where users can discover, review, and compare products through an ultra-fast web interface powered by Next.js and modern database systems."
     },
     3: {
-        title: "Eventify - Event Management & Organization",
-        tag: "Django & Database Engineering",
+        title: "Eventify - Event Hub",
+        tag: "Event Platform • Django & PostgreSQL",
         img: "assets/images/projects/eventify.png",
-        client: "Event Management Platform",
+        client: "Event Management Hub",
         timeline: "Completed",
-        tech: "Django, PostgreSQL, JavaScript, Bootstrap",
+        tech: "Django, Stripe, React, PostgreSQL",
         liveUrl: "https://new-event-managment.onrender.com/",
         githubUrl: "https://github.com/siamhossain7722/New",
-        desc: "An intuitive event management platform allowing organizers and attendees to create, coordinate, and manage events with effortless scheduling, real-time database updates, and responsive mobile interfaces."
+        desc: "A modern event management platform allowing organizers and attendees to create, discover, and join events seamlessly with effortless scheduling and Stripe integration."
     },
     4: {
-        title: "CPL Construction Services",
-        tag: "Enterprise Platform & Machinery Rental",
-        img: "assets/images/projects/cpl.png",
-        client: "Constructive Partners Limited",
-        timeline: "Production Deployment",
-        tech: "Next.js, TypeScript, MongoDB, Firebase, Tailwind CSS",
+        title: "AI Assistant",
+        tag: "AI Project • Python & OpenAI",
+        img: "assets/images/project-2.jpg",
+        client: "AI & Automation",
+        timeline: "Production",
+        tech: "Python, FastAPI, OpenAI, React",
         liveUrl: "https://www.constructivepartnerslimited.com/",
         githubUrl: "https://github.com/siamhossain7722/Constructions",
-        desc: "A commercial service platform providing end-to-end building services, heavy equipment sales, machinery rentals, and building materials across Bangladesh. Features dynamic catalogs, responsive layouts, and modern Next.js frontend."
+        desc: "Intelligent conversational AI assistant capable of code generation, reasoning, context-aware responses, and workflow automation."
     },
     5: {
-        title: "TaskFlow - Task & Team Management",
-        tag: "Django & React Full-Stack",
+        title: "E-commerce Platform",
+        tag: "E-commerce • React & Django",
         img: "assets/images/project-1.jpg",
-        client: "Productivity Platform",
+        client: "E-commerce Storefront",
         timeline: "Completed",
-        tech: "Django, React, REST API, PostgreSQL, Tailwind CSS",
+        tech: "React, Django, PostgreSQL, Tailwind",
         liveUrl: "https://github.com/siamhossain7722",
         githubUrl: "https://github.com/siamhossain7722",
-        desc: "A scalable project and task management platform featuring real-time task tracking, board view, team collaboration, progress analytics, and modern RESTful API integrations."
+        desc: "A high-performance modern e-commerce storefront with cart management, secure checkout, inventory tracking, and responsive mobile architecture."
     },
     6: {
-        title: "Portfolio API - High-Performance Backend",
-        tag: "Python & FastAPI Architecture",
-        img: "assets/images/project-4.jpg",
-        client: "Backend Infrastructure",
-        timeline: "Production Deployment",
-        tech: "Python, FastAPI, DRF, PostgreSQL, JWT Auth",
+        title: "Analytics Dashboard",
+        tag: "Dashboard • React & JavaScript",
+        img: "assets/images/project-3.jpg",
+        client: "Analytics Hub",
+        timeline: "Production",
+        tech: "React, JavaScript, Chart.js, REST API",
         liveUrl: "https://github.com/siamhossain7722",
         githubUrl: "https://github.com/siamhossain7722",
-        desc: "A robust, high-performance RESTful API powering personal portfolio applications and client services with rate limiting, token-based authentication, structured caching, and auto-generated OpenAPI documentation."
+        desc: "Real-time analytics and financial tracking dashboard with interactive visual charts, data filtering, and automated report exports."
     }
 };
 
