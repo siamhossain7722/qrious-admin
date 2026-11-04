@@ -402,202 +402,157 @@
 
         <!-- About Me Section -->
         <section id="about" class="about-section">
+            <!-- Background Ambient Glows & Cyber Atmosphere -->
+            <div class="about-atmosphere-backdrop" aria-hidden="true">
+                <div class="about-glow-orb glow-left"></div>
+                <div class="about-glow-orb glow-right"></div>
+            </div>
+
             <div class="container about-container">
                 <div class="about-grid">
-                    <!-- Left Column: Profile Visual (42%) -->
+                    <!-- Left Column: Profile Visual Stage (~45%) -->
                     <div class="about-visual-col scroll-reveal-init">
-                        <div class="about-portrait-card">
-                            <!-- Inner Frame with clipping for portrait & tech background -->
-                            <div class="about-portrait-frame">
-                                <div class="portrait-card-bg" aria-hidden="true">
-                                    <div class="portrait-card-glow"></div>
-                                    <div class="portrait-card-grid"></div>
-                                    <div class="portrait-tech-ring"></div>
-                                    <span class="portrait-tech-dot dot-1"></span>
-                                    <span class="portrait-tech-dot dot-2"></span>
-                                </div>
+                        <div class="about-stage-wrapper">
+                            <!-- Layered Tilted Glowing Frames (Matching Reference Image) -->
+                            <div class="about-tilted-frame frame-back" aria-hidden="true"></div>
+                            <div class="about-tilted-frame frame-front" aria-hidden="true"></div>
 
-                                <!-- Siam Hossain Transparent Portrait Image -->
-                                <div class="about-portrait-img-wrap">
-                                    <img src="assets/images/Profile-transparent.png" alt="Siam Hossain - Full Stack Developer" class="about-portrait-img">
-                                </div>
+                            <!-- Arms-Crossed Portrait with Subtle Floating Motion -->
+                            <div class="about-portrait-wrap">
+                                <img src="assets/images/about-profile-transparent.png" alt="Siam Hossain - Full Stack Developer" class="about-portrait-photo">
                             </div>
 
-                            <!-- Floating Card 1 (Top-Left): 5+ Projects Completed -->
-                            <div class="about-float-card float-card-projects">
-                                <div class="float-card-icon">
-                                    <i class="fa-solid fa-code"></i>
+                            <!-- Floating Technology Badge (Bottom-Left) -->
+                            <div class="about-tech-float-badge">
+                                <div class="badge-code-icon">&lt;/&gt;</div>
+                                <div class="badge-text-group">
+                                    <span class="badge-number">5+</span>
+                                    <span class="badge-label">Technologies</span>
                                 </div>
-                                <div class="float-card-content">
-                                    <span class="float-card-val">5+</span>
-                                    <span class="float-card-lbl">Projects<br>Completed</span>
-                                </div>
-                            </div>
-
-                            <!-- Floating Card 2 (Mid-Right): 2+ Years Experience -->
-                            <div class="about-float-card float-card-experience">
-                                <div class="float-card-icon">
-                                    <i class="fa-solid fa-trophy"></i>
-                                </div>
-                                <div class="float-card-content">
-                                    <span class="float-card-val">2+</span>
-                                    <span class="float-card-lbl">Years<br>Experience</span>
-                                </div>
-                            </div>
-
-                            <!-- Bottom Identity Card: Software Developer -->
-                            <div class="about-identity-card">
-                                <div class="identity-card-icon">
-                                    <i class="fa-regular fa-user"></i>
-                                </div>
-                                <div class="identity-card-info">
-                                    <h5 class="identity-title">Software Developer</h5>
-                                    <p class="identity-subtitle">Building Scalable Web Solutions</p>
-                                </div>
-                                <span class="identity-pulse-dot" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Content & Details (58%) -->
+                    <!-- Right Column: Content & Details (~55%) -->
                     <div class="about-content-col scroll-reveal-init">
-                        <!-- Header Block (Eyebrow + Heading + Subtitle) -->
-                        <div class="about-header-block">
-                            <div class="about-eyebrow">
-                                <span class="eyebrow-line"></span>
-                                <span class="eyebrow-text">GET TO KNOW ME</span>
-                            </div>
-                            <h2 class="about-main-heading">About <span class="about-accent-text gradient-text">Me</span></h2>
+                        <!-- Section Eyebrow Label with Neon Accent Bar -->
+                        <div class="about-section-eyebrow">
+                            <span class="eyebrow-text">GET TO KNOW ME</span>
+                            <span class="eyebrow-glow-bar" aria-hidden="true"></span>
                         </div>
 
-                        <!-- Body Block: Paragraphs, Personal Info, Tech Stack, CTAs -->
-                        <div class="about-body-block">
-                            <div class="about-paragraphs">
-                                <p>
-                                    I'm a passionate Full Stack Developer who loves building impactful web solutions, focusing on clean architecture, great user experience, and real business value.
-                                </p>
+                        <!-- Main Heading: About Me -->
+                        <h2 class="about-main-heading">
+                            About <span class="about-heading-gradient">Me</span>
+                        </h2>
+
+                        <!-- Introduction Paragraph -->
+                        <p class="about-intro-text">
+                            I'm a passionate Full Stack Developer who loves building impactful web solutions, focusing on clean architecture, great user experience, and real business value.
+                        </p>
+
+                        <!-- Three Visual Highlight Pills -->
+                        <div class="about-highlight-pills">
+                            <div class="highlight-pill">
+                                <span class="pill-check-icon"><i class="fa-solid fa-check"></i></span>
+                                <span class="pill-label">Problem Solver</span>
                             </div>
-
-                            <!-- 3 Feature Checkmark Badges (Panel 02 Reference Design) -->
-                            <div class="about-feature-checks">
-                                <div class="about-check-badge">
-                                    <i class="fa-solid fa-check"></i>
-                                    <span>Problem Solver</span>
-                                </div>
-                                <div class="about-check-badge">
-                                    <i class="fa-solid fa-check"></i>
-                                    <span>Tech Enthusiast</span>
-                                </div>
-                                <div class="about-check-badge">
-                                    <i class="fa-solid fa-check"></i>
-                                    <span>Continuous Learner</span>
-                                </div>
+                            <div class="highlight-pill">
+                                <span class="pill-check-icon"><i class="fa-solid fa-check"></i></span>
+                                <span class="pill-label">Tech Enthusiast</span>
                             </div>
-
-                            <!-- Personal Information Card (2-column grid in glassmorphism card) -->
-                            <div class="about-info-card">
-                                <div class="about-info-grid">
-                                    <!-- 1. Name -->
-                                    <div class="about-info-cell">
-                                        <div class="info-cell-icon">
-                                            <i class="fa-regular fa-user"></i>
-                                        </div>
-                                        <div class="info-cell-body">
-                                            <span class="info-cell-label">Name</span>
-                                            <span class="info-cell-val">Siam Hossain</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- 2. Location -->
-                                    <div class="about-info-cell">
-                                        <div class="info-cell-icon">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                        </div>
-                                        <div class="info-cell-body">
-                                            <span class="info-cell-label">Location</span>
-                                            <span class="info-cell-val">Bangladesh (Remote)</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- 3. Education -->
-                                    <div class="about-info-cell">
-                                        <div class="info-cell-icon">
-                                            <i class="fa-solid fa-graduation-cap"></i>
-                                        </div>
-                                        <div class="info-cell-body">
-                                            <span class="info-cell-label">Education</span>
-                                            <span class="info-cell-val">B.Sc. in CSE (UAP)</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- 4. Experience -->
-                                    <div class="about-info-cell">
-                                        <div class="info-cell-icon">
-                                            <i class="fa-solid fa-trophy"></i>
-                                        </div>
-                                        <div class="info-cell-body">
-                                            <span class="info-cell-label">Experience</span>
-                                            <span class="info-cell-val">2+ Years</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- 5. Email -->
-                                    <div class="about-info-cell">
-                                        <div class="info-cell-icon">
-                                            <i class="fa-regular fa-envelope"></i>
-                                        </div>
-                                        <div class="info-cell-body">
-                                            <span class="info-cell-label">Email</span>
-                                            <span class="info-cell-val">
-                                                <a href="mailto:mdsiamh77@gmail.com">mdsiamh77@gmail.com</a>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- 6. Availability -->
-                                    <div class="about-info-cell">
-                                        <div class="info-cell-icon">
-                                            <i class="fa-solid fa-briefcase"></i>
-                                        </div>
-                                        <div class="info-cell-body">
-                                            <span class="info-cell-label">Availability</span>
-                                            <span class="info-cell-val avail-status">
-                                                <span class="avail-status-dot"></span> Open to Work
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="highlight-pill">
+                                <span class="pill-check-icon"><i class="fa-solid fa-check"></i></span>
+                                <span class="pill-label">Continuous Learner</span>
                             </div>
+                        </div>
 
-                            <!-- Technology Stack Row -->
-                            <div class="about-tech-stack-row">
-                                <div class="tech-stack-label">
-                                    <i class="fa-solid fa-code"></i>
-                                    <span>Tech Stack</span>
+                        <!-- Premium Personal Information Card (2-Column Grid) -->
+                        <div class="about-info-card">
+                            <div class="about-info-grid">
+                                <!-- 1. Name -->
+                                <div class="about-info-item">
+                                    <div class="info-icon-box">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div class="info-text-group">
+                                        <span class="info-label">Name</span>
+                                        <span class="info-value">Siam Hossain</span>
+                                    </div>
                                 </div>
-                                <div class="tech-stack-pills">
-                                    <span class="about-tech-pill"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
-                                    <span class="about-tech-pill"><i class="fa-brands fa-react" style="color: #61DAFB;"></i> React</span>
-                                    <span class="about-tech-pill"><i class="fa-brands fa-python" style="color: #F7D046;"></i> Python</span>
-                                    <span class="about-tech-pill"><i class="devicon-postgresql-plain" style="color: #4169E1;"></i> PostgreSQL</span>
-                                    <span class="about-tech-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                                    <span class="about-tech-pill"><i class="devicon-fastapi-plain" style="color: #05998B;"></i> FastAPI</span>
+
+                                <!-- 2. Location -->
+                                <div class="about-info-item">
+                                    <div class="info-icon-box">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div class="info-text-group">
+                                        <span class="info-label">Location</span>
+                                        <span class="info-value">Bangladesh (Remote)</span>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Education -->
+                                <div class="about-info-item">
+                                    <div class="info-icon-box">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="info-text-group">
+                                        <span class="info-label">Education</span>
+                                        <span class="info-value">B.Sc. in CSE (UAP)</span>
+                                    </div>
+                                </div>
+
+                                <!-- 4. Experience -->
+                                <div class="about-info-item">
+                                    <div class="info-icon-box">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </div>
+                                    <div class="info-text-group">
+                                        <span class="info-label">Experience</span>
+                                        <span class="info-value">2+ Years</span>
+                                    </div>
+                                </div>
+
+                                <!-- 5. Email -->
+                                <div class="about-info-item">
+                                    <div class="info-icon-box">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div class="info-text-group">
+                                        <span class="info-label">Email</span>
+                                        <span class="info-value">
+                                            <a href="mailto:mdsiamh77@gmail.com" class="info-link">mdsiamh77@gmail.com</a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- 6. Availability -->
+                                <div class="about-info-item">
+                                    <div class="info-icon-box">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <div class="info-text-group">
+                                        <span class="info-label">Availability</span>
+                                        <span class="info-value avail-status">
+                                            <span class="avail-status-dot"></span> Open to Work
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- CTA Buttons -->
-                            <div class="about-cta-row">
-                                <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="about-btn-primary">
-                                    <i class="fa-solid fa-download"></i>
-                                    <span>Download Full CV</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                                <a href="#contact" class="about-btn-secondary">
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                    <span>Get In Touch</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
+                        <!-- Action Buttons -->
+                        <div class="about-actions-row">
+                            <a href="https://drive.google.com/file/d/1Rg-xNQwb2LJD5uCNRTVrWT2anLt7XZPr/view?usp=sharing" target="_blank" class="btn-about-download-cv">
+                                <i class="fa-solid fa-arrow-down"></i>
+                                <span>Download CV</span>
+                            </a>
+                            <a href="#contact" class="btn-about-contact">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Contact Me</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
