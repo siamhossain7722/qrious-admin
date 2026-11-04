@@ -1280,35 +1280,7 @@ const servicesData = {
     }
 };
 
-const blogsData = {
-    1: {
-        title: "Building Scalable REST APIs with Django & Django REST Framework",
-        tag: "Backend Architecture",
-        date: "October 2026",
-        img: "assets/images/blog-1.jpg",
-        content: `Designing sustainable APIs requires thoughtful serializer design, query prefetching to prevent N+1 queries, and robust authentication layers.
-        <br><br>
-        In this article, we walk through structuring Django REST Framework viewsets, optimizing PostgreSQL queries with select_related and prefetch_related, and implementing JWT token rotation for bulletproof security.`
-    },
-    2: {
-        title: "Bridging Modern React & Next.js with Scalable Backend Systems",
-        tag: "Full-Stack Development",
-        date: "September 2026",
-        img: "assets/images/blog-2.jpg",
-        content: `Connecting modern frontend applications to robust API backends requires predictable state management, resilient caching, and clean type contracts.
-        <br><br>
-        Discover best practices for handling asynchronous API requests, setting up optimistic UI updates, and ensuring type safety from backend database models all the way to React components.`
-    },
-    3: {
-        title: "How Developers Can Leverage AI Agents and Modern Automation",
-        tag: "AI & Innovation",
-        date: "August 2026",
-        img: "assets/images/blog-3.jpg",
-        content: `AI agents are rapidly transforming how developers automate repetitive workflows, customer support, and data aggregation.
-        <br><br>
-        We explore how integrating LLM prompts, structured outputs, and autonomous task pipelines can streamline everyday development and digital business workflows.`
-    }
-};
+const blogsData = {};
 
 function openModalWithHTML(html) {
     const modal = document.getElementById('info-modal');
