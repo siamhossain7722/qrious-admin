@@ -11,9 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingRoleElement = document.getElementById('hero-typing-role') || document.getElementById('typewriter');
     const roles = [
         "Full Stack Web Developer",
-        "Django & React Developer",
-        "Backend Developer & APIs",
-        "AI Agent & Cloud Specialist"
+        "Backend Developer",
+        "Django Developer",
+        "React Developer",
+        "Python Developer",
+        "Software Engineer",
+        "Web Application Developer",
+        "API Developer",
+        "AI Automation Developer",
+        "Digital Marketing Specialist"
     ];
     let roleIndex = 0;
     let charIndex = roles[0].length; // Start with full initial text
