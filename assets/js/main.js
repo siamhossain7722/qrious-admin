@@ -1465,3 +1465,104 @@ window.openTermsModal = function() {
     `;
     openModalWithHTML(html);
 };
+
+
+/* ==========================================================================
+   SKILLS SECTION INTERACTIVITY & MODALS
+   ========================================================================== */
+const skillsCategoryData = {
+    1: {
+        title: "Frontend Development",
+        tag: "UI & Modern Frameworks",
+        desc: "Building intuitive, ultra-responsive, and high-performance user interfaces using cutting-edge frontend libraries and component architectures.",
+        technologies: ["React", "Next.js", "JavaScript (ES6+)", "TypeScript", "Tailwind CSS", "HTML5 & Semantic Markup", "CSS3 / Modern Animations"]
+    },
+    2: {
+        title: "Backend Development",
+        tag: "Server-Side & APIs",
+        desc: "Engineering robust, scalable, and secure backend systems with clean architecture, enterprise authentication, and high-throughput REST APIs.",
+        technologies: ["Django & Django REST Framework", "Python", "RESTful API Engineering", "Microservices & Server Architecture", "JWT & OAuth Authentication"]
+    },
+    3: {
+        title: "Database & Storage",
+        tag: "Data Architecture & Query Optimization",
+        desc: "Designing and managing relational and high-performance databases with strict data integrity, indexing, and migration pipelines.",
+        technologies: ["PostgreSQL", "MySQL", "SQLite", "Database Schema Design", "Query Optimization & Indexing", "ORM Integration"]
+    },
+    4: {
+        title: "DevOps & Deployment",
+        tag: "Cloud & Infrastructure",
+        desc: "Streamlining deployment workflows, containerization, and continuous delivery pipelines for zero-downtime releases.",
+        technologies: ["Docker & Containerization", "Git & GitHub Version Control", "CI/CD Workflows", "Vercel & Render Cloud Hosting", "Linux Server Administration"]
+    },
+    5: {
+        title: "AI & Automation",
+        tag: "Intelligent Systems & Workflows",
+        desc: "Integrating state-of-the-art AI models, autonomous agents, and intelligent automated workflows into real-world business applications.",
+        technologies: ["AI Agents & Autonomous Systems", "OpenAI & Gemini API Integrations", "LangChain & Retrieval Systems", "Automated Task Workflows", "Data Processing Pipelines"]
+    },
+    6: {
+        title: "Tools & Others",
+        tag: "Productivity & Developer Ecosystem",
+        desc: "Leveraging industry-standard development utilities, debugging environments, design handoff tools, and collaborative team platforms.",
+        technologies: ["VS Code & Extensions", "Postman API Testing", "Figma UI/UX Design Inspection", "Notion & Trello Project Tracking", "GitHub Collaboration"]
+    }
+};
+
+function openSkillCategoryModal(id) {
+    const s = skillsCategoryData[id];
+    if (!s) return;
+
+    const techHTML = s.technologies.map(t => `
+        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <i class="fa-solid fa-circle-check" style="color: #FF2525;"></i>
+            <span>${t}</span>
+        </li>
+    `).join('');
+
+    const html = `
+        <span class="modal-tag">${s.tag}</span>
+        <h2 class="modal-title">${s.title}</h2>
+        <p class="modal-desc">${s.desc}</p>
+        
+        <h4 style="font-family: var(--font-heading); color: var(--text-primary); font-size: 1.25rem; margin-bottom: 14px;">Technologies & Tools Included:</h4>
+        <ul style="margin-bottom: 28px; color: var(--text-secondary); list-style: none; padding-left: 0;">
+            ${techHTML}
+        </ul>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#contact" onclick="closeModal()" class="btn btn-primary btn-round">
+                <span>Discuss Your Project</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            </a>
+            <button onclick="closeModal()" class="btn btn-secondary btn-round">
+                <span>Close</span>
+            </button>
+        </div>
+    `;
+    openModalWithHTML(html);
+}
+
+function filterSkillCategory(cat, btn) {
+    // Update active state on filter tabs
+    document.querySelectorAll('.skill-filter-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+    });
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+    }
+
+    const cards = document.querySelectorAll('.skill-category-card');
+    cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (cat === 'all' || itemCat === cat || (cat === 'tools' && (itemCat === 'tools' || itemCat === 'ai'))) {
+            card.classList.remove('skill-card-hidden');
+            card.style.display = 'flex';
+        } else {
+            card.classList.add('skill-card-hidden');
+            card.style.display = 'none';
+        }
+    });
+}

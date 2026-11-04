@@ -2410,582 +2410,877 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   9. Technical Mastery & Skills Dashboard Section
+   9. Technical Mastery & Skills Dashboard Section (Master Neon Red/Orange)
    -------------------------------------------------------------------------- */
 .skills-section {
-    background: var(--bg-main);
+    background: #050303 !important;
     position: relative;
-    padding: 95px 0 100px 0;
-    scroll-margin-top: 85px;
+    padding: 100px 0 160px 0 !important;
+    scroll-margin-top: 96px !important;
     overflow: hidden;
 }
 
-.skills-section .container {
-    max-width: min(1360px, calc(100% - 48px));
-    box-sizing: border-box;
-}
-
-/* Background Cyber Atmosphere */
+/* Background Cyber Atmosphere & Glow Orbs */
 .skills-bg-decor {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+    overflow: hidden;
 }
 
-.skills-cyber-arc {
-    position: absolute;
-    top: -120px;
-    right: -120px;
-    width: 440px;
-    height: 440px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 37, 37, 0.4);
-    box-shadow: 0 0 35px rgba(255, 37, 37, 0.22), inset 0 0 35px rgba(255, 37, 37, 0.12);
-    filter: blur(0.5px);
-}
-
-.skills-cyber-grid {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.45;
-    mask-image: radial-gradient(circle at 85% 15%, black 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(circle at 85% 15%, black 30%, transparent 75%);
-}
-
-.skills-glow-dot {
+.skills-glow-orb {
     position: absolute;
     border-radius: 50%;
-    background: #FF2525;
-    box-shadow: 0 0 10px #FF2525, 0 0 20px #FF2525;
+    filter: blur(120px);
+    opacity: 0.22;
 }
 
-.skills-glow-dot.dot-1 {
-    width: 6px;
-    height: 6px;
-    top: 18%;
-    right: 22%;
+.skills-glow-orb.glow-skills-left {
+    width: 480px;
+    height: 480px;
+    top: -80px;
+    left: -120px;
+    background: radial-gradient(circle, #FF101A 0%, rgba(255, 16, 26, 0) 70%);
 }
 
-.skills-glow-dot.dot-2 {
-    width: 5px;
-    height: 5px;
-    top: 36%;
-    left: 8%;
-}
-
-.skills-constellation {
-    position: absolute;
-    top: 75px;
-    left: 7%;
-    display: flex;
-    gap: 8px;
-    opacity: 0.4;
-}
-
-.skills-constellation span {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #FF2525;
+.skills-glow-orb.glow-skills-right {
+    width: 580px;
+    height: 580px;
+    top: 40px;
+    right: -100px;
+    background: radial-gradient(circle, #FF6A00 0%, #FF101A 40%, rgba(255, 16, 26, 0) 70%);
+    opacity: 0.18;
 }
 
 .skills-container {
-    position: relative;
-    z-index: 1;
     max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
 }
 
-/* Header */
-.skills-header {
-    margin-bottom: 45px;
+/* 1. Hero Row (2 Columns: Copy on Left, 3D Laptop on Right) */
+.skills-hero-row {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 56px;
+}
+
+.skills-hero-copy {
+    max-width: 640px;
 }
 
 .skills-eyebrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.skills-eyebrow .eyebrow-line {
-    width: 24px;
-    height: 2.5px;
-    background: #FF2525;
-    border-radius: 2px;
-    box-shadow: 0 0 8px rgba(255, 37, 37, 0.6);
-}
-
-.skills-eyebrow .eyebrow-text {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #FF2525;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-}
-
-.skills-title-wrap {
-    position: relative;
-    display: inline-block;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
-.skills-main-heading {
-    font-family: var(--font-heading);
-    font-size: clamp(2.3rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #F5F5F7;
-    line-height: 1.18;
-    margin: 0;
-    letter-spacing: -0.5px;
-}
-
-.skills-accent-text {
-    color: #FF2525;
-    text-shadow: 0 0 25px rgba(255, 37, 37, 0.45);
-}
-
-/* Handwritten Annotation */
-.skills-annotation {
-    position: absolute;
-    top: -12px;
-    right: -130px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    pointer-events: none;
-}
-
-.annotation-text {
-    font-family: 'Caveat', cursive;
-    font-size: 1.55rem;
+.skills-eyebrow .eyebrow-text {
+    font-size: 0.85rem;
     font-weight: 700;
-    color: #E2E4EB;
-    transform: rotate(4deg);
-    white-space: nowrap;
-    text-shadow: 0 0 10px rgba(255, 37, 37, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FF2525;
 }
 
-.annotation-arrow {
-    transform: rotate(-15deg);
+.skills-eyebrow .eyebrow-glow-bar {
+    width: 46px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF101A 0%, #FF6A00 70%, transparent 100%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 16, 26, 0.7);
 }
 
-.skills-subheading {
-    font-size: 1.08rem;
-    font-weight: 400;
-    color: #A5A9B5;
-    max-width: 680px;
-    margin: 0 auto;
-    line-height: 1.6;
+.skills-main-heading {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.18;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
 }
 
-/* Top Statistics Dashboard Panel (4 Metrics) */
-.skills-stats-panel {
-    background: rgba(17, 19, 27, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 20px;
-    padding: 22px 36px;
-    margin-bottom: 40px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: border-color 0.3s ease;
+.skills-heading-gradient {
+    background: linear-gradient(135deg, #FF101A 0%, #FF451A 45%, #FF7900 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 24px rgba(255, 16, 26, 0.45));
 }
 
-.skills-stats-panel:hover {
-    border-color: rgba(255, 37, 37, 0.3);
+.skills-description {
+    font-size: 1.05rem;
+    color: #C5C5C5;
+    line-height: 1.7;
+    margin: 0 0 28px 0;
 }
 
-.skills-stat-item {
+/* Three Statistics Cards */
+.skills-stats-row {
     display: flex;
     align-items: center;
     gap: 16px;
-    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.skills-stat-item .stat-icon-wrap {
-    width: 46px;
-    height: 46px;
+.skills-stat-card {
+    background: rgba(16, 9, 9, 0.72);
+    border: 1.5px solid rgba(255, 25, 25, 0.22);
+    border-radius: 16px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.skills-stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 16, 26, 0.65);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 16, 26, 0.25);
+}
+
+.stat-card-icon-box {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     border-radius: 50%;
-    background: rgba(255, 37, 37, 0.14);
-    border: 1px solid rgba(255, 37, 37, 0.35);
+    background: rgba(255, 16, 26, 0.1);
+    border: 1.5px solid rgba(255, 16, 26, 0.4);
     color: #FF2525;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast);
+    font-size: 1.15rem;
+    box-shadow: 0 0 14px rgba(255, 16, 26, 0.25);
+    transition: transform 0.3s ease;
 }
 
-.skills-stat-item:hover .stat-icon-wrap {
-    transform: scale(1.08);
+.skills-stat-card:hover .stat-card-icon-box {
+    transform: scale(1.1);
 }
 
-.skills-stat-item .stat-content-wrap {
+.stat-card-text {
     display: flex;
     flex-direction: column;
 }
 
-.skills-stat-item .stat-number-wrap {
-    display: flex;
-    align-items: baseline;
-    line-height: 1;
-    margin-bottom: 3px;
-}
-
-.skills-stat-item .stat-val {
-    font-family: var(--font-heading);
-    font-size: 1.95rem;
+.stat-card-number {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.45rem;
     font-weight: 800;
     color: #FFFFFF;
+    line-height: 1.1;
 }
 
-.skills-stat-item .stat-plus {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #FF2525;
-    margin-left: 2px;
-}
-
-.skills-stat-item .stat-label {
+.stat-card-label {
     font-size: 0.82rem;
+    color: #9E9E9E;
     font-weight: 500;
-    color: #A5A9B5;
+    white-space: nowrap;
 }
 
-/* Main Dashboard: Two Columns (Left 46.5% / Right 53.5%) */
-.skills-dashboard-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 46.5fr) minmax(0, 53.5fr);
-    gap: 24px;
-    align-items: stretch;
-    margin-bottom: 40px;
-}
-
-.skills-dashboard-panel {
-    background: rgba(21, 23, 34, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 26px 22px;
+/* Right Column: 3D Developer Laptop Stage with Code Card & Gear */
+.skills-hero-visual {
     display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    transition: border-color 0.3s ease;
-}
-
-.skills-dashboard-panel:hover {
-    border-color: rgba(255, 37, 37, 0.3);
-}
-
-/* Panel Header */
-.panel-header-row {
-    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    min-height: 320px;
 }
 
-.panel-title-group {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.panel-icon-wrap {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(255, 37, 37, 0.12);
-    border: 1px solid rgba(255, 37, 37, 0.3);
-    color: #FF2525;
+.skills-laptop-stage {
+    position: relative;
+    width: 380px;
+    height: 290px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
+    perspective: 1000px;
 }
 
-.panel-title {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin: 0 0 2px 0;
-    line-height: 1.2;
-}
-
-.panel-desc {
-    font-size: 0.82rem;
-    color: #A5A9B5;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.skills-status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #10B981;
-}
-
-.skills-status-badge .status-dot {
-    width: 7px;
-    height: 7px;
+/* Glowing Neon Orbital Ellipse Ring */
+.skills-orbital-ring {
+    position: absolute;
+    width: 400px;
+    height: 220px;
     border-radius: 50%;
-    background: #10B981;
-    box-shadow: 0 0 8px #10B981;
+    border: 2px solid rgba(255, 16, 26, 0.65);
+    box-shadow: 0 0 25px rgba(255, 16, 26, 0.45), inset 0 0 20px rgba(255, 106, 0, 0.3);
+    transform: rotateX(68deg) rotateZ(-12deg);
+    pointer-events: none;
+    z-index: 1;
+    animation: skillsRingPulse 4s ease-in-out infinite alternate;
 }
 
-/* Left Panel: Skill Bars */
-.skills-bars-list {
+@keyframes skillsRingPulse {
+    0% {
+        border-color: rgba(255, 16, 26, 0.55);
+        box-shadow: 0 0 20px rgba(255, 16, 26, 0.35), inset 0 0 15px rgba(255, 106, 0, 0.2);
+    }
+    100% {
+        border-color: rgba(255, 106, 0, 0.85);
+        box-shadow: 0 0 35px rgba(255, 16, 26, 0.65), inset 0 0 25px rgba(255, 106, 0, 0.45);
+    }
+}
+
+/* Floating Code Panel Card (Left) */
+.skills-float-card.float-code-panel {
+    position: absolute;
+    top: 25px;
+    left: -10px;
+    width: 82px;
+    background: rgba(16, 9, 9, 0.9);
+    border: 1.5px solid rgba(255, 16, 26, 0.45);
+    border-radius: 10px;
+    padding: 8px 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 16, 26, 0.3);
+    backdrop-filter: blur(8px);
+    z-index: 4;
+    animation: skillsFloatLeft 4.5s ease-in-out infinite;
+}
+
+@keyframes skillsFloatLeft {
+    0%, 100% { transform: translateY(0px) rotate(-3deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+.float-code-header {
     display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.skill-bar-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.skill-row-icon {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.35rem;
-    flex-shrink: 0;
-}
-
-.skill-row-body {
-    flex: 1;
-    min-width: 0;
-}
-
-.skill-row-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 4px;
     margin-bottom: 6px;
 }
 
-.skill-row-name {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #F5F5F7;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.skill-row-percent {
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: #FF2525;
-}
-
-.skill-progress-track {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    position: relative;
-    overflow: visible;
-}
-
-.skill-progress-track .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #FF2525 0%, #FF1010 100%);
-    border-radius: 10px;
-    position: relative;
-    transition: width 1.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.skill-progress-track .progress-fill::after {
-    content: '';
-    position: absolute;
-    right: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 9px;
-    height: 9px;
-    background: #FFFFFF;
-    border: 2px solid #FF2525;
+.code-dot {
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    box-shadow: 0 0 10px #FF2525, 0 0 18px #FF2525;
 }
+.dot-red { background: #FF5F56; }
+.dot-yellow { background: #FFBD2E; }
+.dot-green { background: #27C93F; }
 
-/* Right Panel: Tech Stack Groups */
-.tech-stack-groups-list {
+.float-code-lines {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    justify-content: space-between;
-    flex: 1;
+    gap: 4px;
 }
 
-.tech-group-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
+.code-line {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.25);
 }
+.line-1 { width: 85%; background: rgba(255, 16, 26, 0.7); }
+.line-2 { width: 65%; background: rgba(255, 106, 0, 0.6); }
+.line-3 { width: 45%; background: rgba(255, 255, 255, 0.4); }
 
-.tech-group-label {
-    width: 110px;
-    min-width: 110px;
-    max-width: 110px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #D6D8E1;
-    white-space: nowrap;
-}
-
-.tech-group-label span:not(.group-dot) {
-    white-space: nowrap;
-    letter-spacing: -0.01em;
-}
-
-.group-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #FF2525;
-    box-shadow: 0 0 8px #FF2525;
-    flex-shrink: 0;
-}
-
-.tech-group-badges {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: nowrap;
-    flex: 1;
-    min-width: 0;
-}
-
-.tech-stack-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 9px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 0.77rem;
-    font-weight: 500;
-    color: #E2E4EB;
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-}
-
-.tech-stack-badge:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 37, 37, 0.45);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-}
-
-.tech-stack-badge i {
-    font-size: 0.88rem;
-    flex-shrink: 0;
-}
-
-/* Bottom Value Proposition Cards (3 Cards) */
-.skills-values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-}
-
-.skills-value-card {
-    background: rgba(17, 19, 27, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 22px 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skills-value-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 37, 37, 0.4);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 37, 37, 0.12);
-}
-
-.value-card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 37, 37, 0.12);
-    border: 1px solid rgba(255, 37, 37, 0.32);
-    color: #FF2525;
+/* Floating Gear Badge (Right) */
+.skills-float-badge.float-gear-badge {
+    position: absolute;
+    top: 55px;
+    right: 5px;
+    width: 48px;
+    height: 48px;
+    background: rgba(16, 9, 9, 0.9);
+    border: 1.5px solid rgba(255, 16, 26, 0.5);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    transition: transform var(--transition-fast);
+    font-size: 1.45rem;
+    color: #FF6A00;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 106, 0, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 4;
+    animation: skillsFloatRight 5s ease-in-out infinite;
 }
 
-.skills-value-card:hover .value-card-icon {
-    transform: scale(1.08);
-    background: rgba(255, 37, 37, 0.22);
-    border-color: rgba(255, 37, 37, 0.6);
-    box-shadow: 0 0 15px rgba(255, 37, 37, 0.35);
+.skills-float-badge.float-gear-badge i {
+    animation: skillsGearRotate 16s linear infinite;
 }
 
-.value-card-content {
+@keyframes skillsFloatRight {
+    0%, 100% { transform: translateY(0px) rotate(4deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes skillsGearRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 3D Developer Laptop */
+.skills-laptop-3d {
+    position: relative;
+    width: 250px;
+    height: 190px;
+    z-index: 2;
+    transform: rotateX(16deg) rotateY(-18deg) rotateZ(4deg);
+    transform-style: preserve-3d;
+    animation: skillsLaptopFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes skillsLaptopFloat {
+    0% { transform: rotateX(16deg) rotateY(-18deg) rotateZ(4deg) translateY(0px); }
+    100% { transform: rotateX(14deg) rotateY(-15deg) rotateZ(3deg) translateY(-10px); }
+}
+
+/* Laptop Screen & Bezel */
+.skills-laptop-3d .laptop-screen {
+    width: 236px;
+    height: 146px;
+    background: #0e0707;
+    border-radius: 12px 12px 2px 2px;
+    border: 2px solid rgba(255, 16, 26, 0.65);
+    box-shadow: 0 0 30px rgba(255, 16, 26, 0.35), inset 0 0 20px rgba(0, 0, 0, 0.9);
+    padding: 8px;
+    position: relative;
+    transform-origin: bottom center;
+}
+
+.skills-laptop-3d .laptop-screen-bezel {
+    width: 100%;
+    height: 100%;
+    background: #060202;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-laptop-3d .laptop-screen-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 16, 26, 0.15) 0%, rgba(6, 2, 2, 0.95) 75%);
+    position: relative;
+}
+
+.skills-laptop-3d .laptop-code-symbol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #FF2525;
+    letter-spacing: -1px;
+    text-shadow: 0 0 15px #FF101A, 0 0 30px rgba(255, 16, 26, 0.8), 0 0 45px rgba(255, 106, 0, 0.6);
+    animation: skillsCodeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes skillsCodeGlow {
+    0% {
+        text-shadow: 0 0 12px #FF101A, 0 0 25px rgba(255, 16, 26, 0.7);
+        filter: brightness(1);
+    }
+    100% {
+        text-shadow: 0 0 20px #FF101A, 0 0 40px rgba(255, 16, 26, 0.9), 0 0 60px rgba(255, 106, 0, 0.8);
+        filter: brightness(1.15);
+    }
+}
+
+.skills-laptop-3d .laptop-screen-scanline {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Laptop Base & Illuminated Keyboard */
+.skills-laptop-3d .laptop-base {
+    width: 254px;
+    height: 100px;
+    background: linear-gradient(180deg, #180909 0%, #0a0303 100%);
+    border-radius: 4px 4px 14px 14px;
+    border: 2px solid rgba(255, 16, 26, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 16, 26, 0.35);
+    margin-left: -9px;
+    margin-top: -4px;
+    transform: rotateX(60deg);
+    transform-origin: top center;
+    padding: 8px 14px;
+    position: relative;
+}
+
+.skills-laptop-3d .laptop-keyboard {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
+    background: rgba(8, 2, 2, 0.85);
+    border: 1px solid rgba(255, 16, 26, 0.3);
+    border-radius: 6px;
+    padding: 5px;
+    box-shadow: inset 0 0 12px rgba(255, 16, 26, 0.35);
 }
 
-.value-card-title {
-    font-family: var(--font-heading);
-    font-size: 1rem;
+.skills-laptop-3d .laptop-trackpad {
+    width: 68px;
+    height: 20px;
+    margin: 6px auto 0 auto;
+    border: 1px solid rgba(255, 16, 26, 0.3);
+    border-radius: 4px;
+    background: rgba(255, 16, 26, 0.05);
+}
+
+/* 2. Main Skills Dashboard (Two Columns) */
+.skills-dashboard-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.25fr;
+    gap: 28px;
+    align-items: stretch;
+}
+
+.skills-panel {
+    background: rgba(16, 9, 9, 0.72);
+    border: 1.5px solid rgba(255, 25, 25, 0.22);
+    border-radius: 22px;
+    padding: 28px 26px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 16, 26, 0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.panel-header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.panel-icon {
+    color: #FF2525;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 0 8px rgba(255, 37, 37, 0.6));
+    display: flex;
+    align-items: center;
+}
+
+.panel-header-title h3 {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.35rem;
     font-weight: 700;
     color: #FFFFFF;
     margin: 0;
-    line-height: 1.2;
 }
 
-.value-card-desc {
+/* LEFT COLUMN: Skills Proficiency List */
+.skills-proficiency-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+    justify-content: space-around;
+}
+
+.skill-prof-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.skill-tech-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 125px;
+    min-width: 125px;
+}
+
+.skill-tech-info .tech-icon {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.skill-tech-info .tech-name {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.badge-dj {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #2BA977;
+    filter: drop-shadow(0 0 5px rgba(43, 169, 119, 0.6));
+}
+
+.badge-js {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-weight: 800;
+    font-size: 1rem;
+    color: #F7DF1E;
+    filter: drop-shadow(0 0 5px rgba(247, 223, 30, 0.6));
+}
+
+.badge-next {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #FFFFFF;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.icon-postgres {
+    color: #336791;
+    filter: drop-shadow(0 0 5px rgba(51, 103, 145, 0.6));
+}
+
+.skill-bar-track {
+    flex: 1;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #FF101A 0%, #FF5A1F 60%, #FF7900 100%);
+    box-shadow: 0 0 12px rgba(255, 16, 26, 0.6);
+    transition: width 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.skill-percent-label {
+    width: 48px;
+    text-align: right;
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+/* RIGHT COLUMN: Skills by Category */
+.category-panel-header {
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.skill-filters-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.skill-filter-btn {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 25, 25, 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    color: #C5C5C5;
     font-size: 0.82rem;
-    color: #A5A9B5;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.skill-filter-btn:hover {
+    border-color: rgba(255, 16, 26, 0.65);
+    color: #FFFFFF;
+}
+
+.skill-filter-btn.active {
+    background: linear-gradient(135deg, #FF101A 0%, #FF5A1F 100%);
+    border-color: transparent;
+    color: #FFFFFF;
+    box-shadow: 0 0 14px rgba(255, 16, 26, 0.55);
+}
+
+.skill-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.skill-category-card {
+    background: rgba(16, 9, 9, 0.72);
+    border: 1.5px solid rgba(255, 25, 25, 0.22);
+    border-radius: 16px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.35s ease;
+}
+
+.skill-category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 16, 26, 0.6), transparent);
+    opacity: 0.5;
+    transition: opacity 0.35s ease;
+}
+
+.skill-category-card:hover {
+    transform: translateY(-4px);
+    background: rgba(24, 12, 12, 0.88);
+    border-color: rgba(255, 16, 26, 0.65);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 22px rgba(255, 16, 26, 0.22);
+}
+
+.skill-category-card:hover::before {
+    opacity: 1;
+}
+
+.category-card-icon-box {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    background: rgba(255, 16, 26, 0.08);
+    border: 1.5px solid rgba(255, 16, 26, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #FF2525;
+    box-shadow: inset 0 0 12px rgba(255, 16, 26, 0.15), 0 0 14px rgba(255, 16, 26, 0.18);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-category-card:hover .category-card-icon-box {
+    transform: scale(1.08);
+    background: rgba(255, 16, 26, 0.18);
+    border-color: #FF101A;
+    box-shadow: inset 0 0 16px rgba(255, 16, 26, 0.25), 0 0 20px rgba(255, 16, 26, 0.35);
+}
+
+.category-card-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.category-card-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+
+.category-card-techs {
+    font-size: 0.78rem;
+    color: #9E9E9E;
+    line-height: 1.4;
     margin: 0;
-    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.category-card-action {
+    display: flex;
+    align-items: center;
+}
+
+.category-arrow-circle {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C5C5C5;
+    font-size: 0.78rem;
+    transition: all 0.3s ease;
+}
+
+.skill-category-card:hover .category-arrow-circle {
+    background: linear-gradient(135deg, #FF101A, #FF6A00);
+    border-color: transparent;
+    color: #FFFFFF;
+    transform: translateX(3px);
+    box-shadow: 0 0 14px rgba(255, 16, 26, 0.55);
+}
+
+/* 3. Bottom Animated Digital Wave */
+.skills-bottom-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.skills-bottom-wave .digital-wave-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+    .skills-hero-row {
+        gap: 32px;
+    }
+    .skills-laptop-stage {
+        width: 340px;
+        height: 260px;
+    }
+    .skills-orbital-ring {
+        width: 340px;
+        height: 200px;
+    }
+    .skills-laptop-3d {
+        width: 220px;
+        height: 170px;
+    }
+    .skills-laptop-3d .laptop-screen {
+        width: 210px;
+        height: 130px;
+    }
+    .skills-laptop-3d .laptop-base {
+        width: 226px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 991px) {
+    .skills-section {
+        padding: 80px 0 140px 0 !important;
+    }
+    .skills-hero-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+        margin-bottom: 48px;
+    }
+    .skills-hero-copy {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .skills-eyebrow {
+        justify-content: center;
+    }
+    .skills-description {
+        margin: 0 auto 24px auto;
+    }
+    .skills-stats-row {
+        justify-content: center;
+    }
+    .skills-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 640px) {
+    .skills-section {
+        padding: 60px 0 120px 0 !important;
+    }
+    .skills-main-heading {
+        font-size: 2rem;
+    }
+    .skills-hero-visual {
+        min-height: 260px;
+    }
+    .skills-laptop-stage {
+        width: 280px;
+        height: 220px;
+        transform: scale(0.85);
+    }
+    .skills-stats-row {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    .skills-stat-card {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .skills-panel {
+        padding: 22px 18px;
+    }
+    .skill-categories-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .skill-category-card {
+        padding: 16px 14px;
+    }
+    .category-panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .skill-filters-wrap {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        flex-wrap: nowrap;
+    }
+    .skill-filter-btn {
+        white-space: nowrap;
+    }
+    .skill-prof-row {
+        gap: 10px;
+    }
+    .skill-tech-info {
+        width: 100px;
+        min-width: 100px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skills-orbital-ring,
+    .skills-float-card.float-code-panel,
+    .skills-float-badge.float-gear-badge,
+    .skills-float-badge.float-gear-badge i,
+    .skills-laptop-3d,
+    .skills-laptop-3d .laptop-code-symbol {
+        animation: none !important;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -8158,95 +8453,92 @@ textarea.form-control {
 
 /* --- 6. Skills Dashboard Section --- */
 [data-theme="light"] .skills-section {
-    background: var(--bg-main);
+    background: #F8FAFC !important;
+}
+
+[data-theme="light"] .skills-glow-orb {
+    opacity: 0.06;
 }
 
 [data-theme="light"] .skills-main-heading {
-    color: #100D0D;
+    color: #0F172A;
 }
 
-[data-theme="light"] .skills-subheading {
+[data-theme="light"] .skills-description {
     color: #475569;
 }
 
-[data-theme="light"] .annotation-text {
-    color: #64748B;
-}
-
-[data-theme="light"] .skills-stats-panel {
-    background: #FFFFFF;
-    border-color: #E2E8F0;
-    box-shadow: 0 10px 30px rgba(16, 13, 13, 0.05);
-}
-
-[data-theme="light"] .skills-stat-item .stat-val {
-    color: #100D0D;
-}
-
-[data-theme="light"] .skills-stat-item .stat-label {
-    color: #64748B;
-}
-
-[data-theme="light"] .skills-stat-item .stat-plus {
-    color: var(--accent);
-}
-
-[data-theme="light"] .skills-dashboard-panel {
-    background: #FFFFFF;
-    border-color: #E2E8F0;
-    box-shadow: 0 12px 35px rgba(16, 13, 13, 0.05);
-}
-
-[data-theme="light"] .panel-title {
-    color: #100D0D;
-}
-
-[data-theme="light"] .panel-desc {
-    color: #64748B;
-}
-
-[data-theme="light"] .skill-row-name {
-    color: #100D0D;
-}
-
-[data-theme="light"] .skill-row-percent {
-    color: var(--accent);
-}
-
-[data-theme="light"] .skill-progress-track {
-    background: #EDF2F7;
-}
-
-[data-theme="light"] .tech-group-label {
-    color: #100D0D;
-}
-
-[data-theme="light"] .tech-stack-badge {
-    background: #F8FAFD;
-    border-color: #E2E8F0;
-    color: #1E293B;
-    box-shadow: 0 1px 4px rgba(16, 13, 13, 0.03);
-}
-
-[data-theme="light"] .tech-stack-badge:hover {
-    background: #FFFFFF;
-    border-color: var(--accent);
-    color: #100D0D;
-    box-shadow: 0 4px 12px rgba(255, 37, 37, 0.12);
-}
-
-[data-theme="light"] .skills-value-card {
+[data-theme="light"] .skills-stat-card {
     background: #FFFFFF;
     border-color: #E2E8F0;
     box-shadow: 0 8px 24px rgba(16, 13, 13, 0.05);
 }
 
-[data-theme="light"] .value-card-title {
-    color: #100D0D;
+[data-theme="light"] .stat-card-number {
+    color: #0F172A;
 }
 
-[data-theme="light"] .value-card-desc {
+[data-theme="light"] .stat-card-label {
     color: #64748B;
+}
+
+[data-theme="light"] .skills-panel {
+    background: #FFFFFF;
+    border-color: #E2E8F0;
+    box-shadow: 0 12px 35px rgba(16, 13, 13, 0.05);
+}
+
+[data-theme="light"] .panel-header-title h3 {
+    color: #0F172A;
+}
+
+[data-theme="light"] .skill-tech-info .tech-name {
+    color: #0F172A;
+}
+
+[data-theme="light"] .badge-next {
+    color: #0F172A;
+}
+
+[data-theme="light"] .skill-bar-track {
+    background: #EDF2F7;
+    border-color: #E2E8F0;
+}
+
+[data-theme="light"] .skill-percent-label {
+    color: #0F172A;
+}
+
+[data-theme="light"] .skill-filter-btn {
+    background: #F1F5F9;
+    border-color: #E2E8F0;
+    color: #475569;
+}
+
+[data-theme="light"] .skill-category-card {
+    background: #FFFFFF;
+    border-color: #E2E8F0;
+    box-shadow: 0 8px 24px rgba(16, 13, 13, 0.05);
+}
+
+[data-theme="light"] .skill-category-card:hover {
+    background: #FFFFFF;
+    border-color: rgba(255, 16, 26, 0.45);
+    box-shadow: 0 14px 35px rgba(255, 16, 26, 0.12);
+}
+
+[data-theme="light"] .category-card-title {
+    color: #0F172A;
+}
+
+[data-theme="light"] .category-card-techs {
+    color: #64748B;
+}
+
+[data-theme="light"] .category-arrow-circle {
+    background: #F1F5F9;
+    border-color: #E2E8F0;
+    color: #475569;
 }
 
 /* --- 7. Career & Education Timeline --- */
@@ -11542,390 +11834,367 @@ body,
         </section>
 
         <!-- Technical Mastery & Skills Dashboard Section -->
+        <!-- Technical Mastery & Skills Dashboard Section -->
         <section id="skills" class="skills-section">
-            <!-- Background Cyber Atmosphere -->
+            <!-- Background Cyber Atmosphere & Ambient Glows -->
             <div class="skills-bg-decor" aria-hidden="true">
-                <div class="skills-cyber-arc"></div>
-                <div class="skills-cyber-grid"></div>
-                <div class="skills-glow-dot dot-1"></div>
-                <div class="skills-glow-dot dot-2"></div>
-                <div class="skills-constellation">
-                    <span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
+                <div class="skills-glow-orb glow-skills-left"></div>
+                <div class="skills-glow-orb glow-skills-right"></div>
             </div>
 
             <div class="container skills-container">
-                <!-- Section Header (Centered with Handwritten Annotation) -->
-                <div class="section-header skills-header text-center scroll-reveal-init">
-                    <div class="skills-eyebrow">
-                        <span class="eyebrow-line"></span>
-                        <span class="eyebrow-text">PROFICIENCY & STACK</span>
-                    </div>
-                    <div class="skills-title-wrap">
-                        <h2 class="skills-main-heading">Technologies I <span class="skills-accent-text gradient-text">Work With</span></h2>
-                        <!-- Handwritten Annotation -->
-                        <div class="skills-annotation" aria-hidden="true">
-                            <span class="annotation-text">Always Learning</span>
-                            <svg class="annotation-arrow" viewBox="0 0 35 35" width="28" height="28" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M6,6 C16,4 26,14 24,26"></path>
-                                <path d="M18,22 L24,27 L28,19"></path>
-                            </svg>
+                <!-- 1. Top Hero Area: Left Copy & Stats, Right 3D Developer Laptop Stage -->
+                <div class="skills-hero-row">
+                    <!-- Left Column: Eyebrow, Headings, Description & 3 Stats Cards -->
+                    <div class="skills-hero-copy">
+                        <div class="skills-eyebrow">
+                            <span class="eyebrow-text">MY SKILLS</span>
+                            <span class="eyebrow-glow-bar" aria-hidden="true"></span>
                         </div>
-                    </div>
-                    <p class="skills-subheading">A balanced fusion of backend database architectures, modern frontend frameworks, and digital marketing tools.</p>
-                </div>
+                        <h2 class="skills-main-heading">
+                            Technical Skills &amp; <span class="skills-heading-gradient">Expertise</span>
+                        </h2>
+                        <p class="skills-description">
+                            A comprehensive overview of the technologies, tools and frameworks I use to build modern, scalable and high-performing applications.
+                        </p>
 
-                <!-- Top Statistics Dashboard Panel (4 Metrics) -->
-                <div class="skills-stats-panel scroll-reveal-init">
-                    <!-- Metric 01: Technologies -->
-                    <div class="skills-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="15">15</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Technologies</span>
-                        </div>
-                    </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Metric 02: Years of Experience -->
-                    <div class="skills-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-trophy"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="2">2</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Years of Experience</span>
-                        </div>
-                    </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Metric 03: Core Skill Areas -->
-                    <div class="skills-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="4">4</span>
-                            </div>
-                            <span class="stat-label">Core Skill Areas</span>
-                        </div>
-                    </div>
-
-                    <div class="stats-divider" aria-hidden="true"></div>
-
-                    <!-- Metric 04: Completed Projects -->
-                    <div class="skills-stat-item">
-                        <div class="stat-icon-wrap">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <div class="stat-content-wrap">
-                            <div class="stat-number-wrap">
-                                <span class="counter-val stat-val" data-target="10">10</span>
-                                <span class="stat-plus">+</span>
-                            </div>
-                            <span class="stat-label">Completed Projects</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Main Dashboard (Two-Column Layout: Left 52% / Right 48%) -->
-                <div class="skills-dashboard-grid">
-                    <!-- Left Panel: Core Proficiencies (52%) -->
-                    <div class="skills-dashboard-panel left-panel scroll-reveal-init">
-                        <div class="panel-header-row">
-                            <div class="panel-title-group">
-                                <div class="panel-icon-wrap">
-                                    <i class="fa-solid fa-chart-simple"></i>
+                        <!-- Three Statistics Cards -->
+                        <div class="skills-stats-row">
+                            <!-- Card 1: 10+ Technologies -->
+                            <div class="skills-stat-card">
+                                <div class="stat-card-icon-box">
+                                    <i class="fa-solid fa-code"></i>
                                 </div>
-                                <div>
-                                    <h3 class="panel-title">Core Proficiencies</h3>
-                                    <p class="panel-desc">Deep expertise in modern technologies and frameworks.</p>
-                                </div>
-                            </div>
-                            <span class="skills-status-badge">
-                                <span class="status-dot"></span> Updated
-                            </span>
-                        </div>
-
-                        <div class="skills-bars-list">
-                            <!-- Skill 1 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-django-plain" style="color: #2BA977;"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">Django & Django REST Framework (DRF)</span>
-                                        <span class="skill-row-percent">95%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="95"></div>
-                                    </div>
+                                <div class="stat-card-text">
+                                    <div class="stat-card-number">10+</div>
+                                    <div class="stat-card-label">Technologies</div>
                                 </div>
                             </div>
 
-                            <!-- Skill 2 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-python-plain colored"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">Python & FastAPI</span>
-                                        <span class="skill-row-percent">90%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="90"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 3 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-postgresql-plain colored"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">PostgreSQL, MySQL & SQLite</span>
-                                        <span class="skill-row-percent">92%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="92"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 4 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-react-original colored"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">React & Next.js</span>
-                                        <span class="skill-row-percent">92%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="92"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 5 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-javascript-plain colored"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">JavaScript & TypeScript</span>
-                                        <span class="skill-row-percent">90%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="90"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 6 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-html5-plain colored"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">HTML5 & CSS3 (Tailwind, Bootstrap)</span>
-                                        <span class="skill-row-percent">96%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="96"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 7 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="devicon-nodejs-plain colored"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">Node.js & Express.js</span>
-                                        <span class="skill-row-percent">82%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="82"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 8 -->
-                            <div class="skill-bar-row">
-                                <div class="skill-row-icon">
-                                    <i class="fa-brands fa-wordpress" style="color: #21759B;"></i>
-                                </div>
-                                <div class="skill-row-body">
-                                    <div class="skill-row-meta">
-                                        <span class="skill-row-name">Digital Marketing, SEO & WordPress</span>
-                                        <span class="skill-row-percent">88%</span>
-                                    </div>
-                                    <div class="skill-progress-track">
-                                        <div class="progress-fill" data-progress="88"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Panel: Tech Stack (48%) -->
-                    <div class="skills-dashboard-panel right-panel scroll-reveal-init">
-                        <div class="panel-header-row">
-                            <div class="panel-title-group">
-                                <div class="panel-icon-wrap">
+                            <!-- Card 2: 5+ Domains -->
+                            <div class="skills-stat-card">
+                                <div class="stat-card-icon-box">
                                     <i class="fa-solid fa-layer-group"></i>
                                 </div>
-                                <div>
-                                    <h3 class="panel-title">Tech Stack</h3>
-                                    <p class="panel-desc">Tools & technologies I use to build modern web solutions.</p>
+                                <div class="stat-card-text">
+                                    <div class="stat-card-number">5+</div>
+                                    <div class="stat-card-label">Domains</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: 2+ Years Experience -->
+                            <div class="skills-stat-card">
+                                <div class="stat-card-icon-box">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="stat-card-text">
+                                    <div class="stat-card-number">2+</div>
+                                    <div class="stat-card-label">Years Experience</div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="tech-stack-groups-list">
-                            <!-- Group 01: Backend -->
-                            <div class="tech-group-item">
-                                <div class="tech-group-label">
-                                    <span class="group-dot"></span>
-                                    <span>Backend</span>
+                    <!-- Right Column: 3D Floating Laptop Stage with Code Card & Gear -->
+                    <div class="skills-hero-visual">
+                        <div class="skills-laptop-stage">
+                            <!-- Glowing Neon Orbital Ellipse Ring -->
+                            <div class="skills-orbital-ring" aria-hidden="true"></div>
+
+                            <!-- Floating Code Panel Card (Left) -->
+                            <div class="skills-float-card float-code-panel" title="Code Editor">
+                                <div class="float-code-header">
+                                    <span class="code-dot dot-red"></span>
+                                    <span class="code-dot dot-yellow"></span>
+                                    <span class="code-dot dot-green"></span>
                                 </div>
-                                <div class="tech-group-badges">
-                                    <span class="tech-stack-badge"><i class="devicon-django-plain" style="color: #2BA977;"></i> Django</span>
-                                    <span class="tech-stack-badge"><i class="devicon-fastapi-plain" style="color: #05998B;"></i> FastAPI</span>
-                                    <span class="tech-stack-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                                    <span class="tech-stack-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                                <div class="float-code-lines">
+                                    <span class="code-line line-1"></span>
+                                    <span class="code-line line-2"></span>
+                                    <span class="code-line line-3"></span>
                                 </div>
                             </div>
 
-                            <!-- Group 02: Frontend -->
-                            <div class="tech-group-item">
-                                <div class="tech-group-label">
-                                    <span class="group-dot"></span>
-                                    <span>Frontend</span>
-                                </div>
-                                <div class="tech-group-badges">
-                                    <span class="tech-stack-badge"><i class="devicon-react-original colored"></i> React</span>
-                                    <span class="tech-stack-badge"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                                    <span class="tech-stack-badge"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
-                                    <span class="tech-stack-badge"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
-                                </div>
+                            <!-- Floating Settings/Gear Badge (Right) -->
+                            <div class="skills-float-badge float-gear-badge" title="Configurations & Settings">
+                                <i class="fa-solid fa-gear"></i>
                             </div>
 
-                            <!-- Group 03: Styling -->
-                            <div class="tech-group-item">
-                                <div class="tech-group-label">
-                                    <span class="group-dot"></span>
-                                    <span>Styling</span>
+                            <!-- 3D Developer Laptop -->
+                            <div class="skills-laptop-3d">
+                                <!-- Laptop Screen -->
+                                <div class="laptop-screen">
+                                    <div class="laptop-screen-bezel">
+                                        <div class="laptop-screen-display">
+                                            <div class="laptop-code-symbol">&lt;/&gt;</div>
+                                            <div class="laptop-screen-scanline"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="tech-group-badges">
-                                    <span class="tech-stack-badge"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
-                                    <span class="tech-stack-badge"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
-                                    <span class="tech-stack-badge"><i class="devicon-html5-plain colored"></i> HTML5</span>
-                                    <span class="tech-stack-badge"><i class="devicon-css3-plain colored"></i> CSS3</span>
-                                </div>
-                            </div>
-
-                            <!-- Group 04: Database -->
-                            <div class="tech-group-item">
-                                <div class="tech-group-label">
-                                    <span class="group-dot"></span>
-                                    <span>Database</span>
-                                </div>
-                                <div class="tech-group-badges">
-                                    <span class="tech-stack-badge"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-                                    <span class="tech-stack-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                                    <span class="tech-stack-badge"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
-                                    <span class="tech-stack-badge"><i class="devicon-supabase-plain colored"></i> Supabase</span>
-                                </div>
-                            </div>
-
-                            <!-- Group 05: Tools -->
-                            <div class="tech-group-item">
-                                <div class="tech-group-label">
-                                    <span class="group-dot"></span>
-                                    <span>Tools</span>
-                                </div>
-                                <div class="tech-group-badges">
-                                    <span class="tech-stack-badge"><i class="devicon-git-plain colored"></i> Git</span>
-                                    <span class="tech-stack-badge"><i class="devicon-docker-plain colored"></i> Docker</span>
-                                    <span class="tech-stack-badge"><i class="devicon-vercel-original"></i> Vercel</span>
-                                    <span class="tech-stack-badge"><i class="devicon-linux-plain colored"></i> Linux</span>
-                                </div>
-                            </div>
-
-                            <!-- Group 06: CMS & Marketing -->
-                            <div class="tech-group-item">
-                                <div class="tech-group-label">
-                                    <span class="group-dot"></span>
-                                    <span>CMS & Marketing</span>
-                                </div>
-                                <div class="tech-group-badges">
-                                    <span class="tech-stack-badge"><i class="fa-brands fa-wordpress" style="color: #21759B;"></i> WordPress</span>
-                                    <span class="tech-stack-badge"><i class="fa-brands fa-meta" style="color: #0081FB;"></i> Meta Ads</span>
-                                    <span class="tech-stack-badge"><i class="fa-brands fa-google" style="color: #EA4335;"></i> Google Ads</span>
-                                    <span class="tech-stack-badge"><i class="fa-solid fa-chart-pie" style="color: #FFA500;"></i> Analytics</span>
+                                <!-- Laptop Base & Illuminated Keyboard -->
+                                <div class="laptop-base">
+                                    <div class="laptop-keyboard">
+                                        <div class="keyboard-row">
+                                            <span class="key key-sm"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span>
+                                        </div>
+                                        <div class="keyboard-row">
+                                            <span class="key key-tab"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key key-tab"></span>
+                                        </div>
+                                        <div class="keyboard-row">
+                                            <span class="key key-ctrl"></span><span class="key key-space"></span><span class="key key-ctrl"></span>
+                                        </div>
+                                    </div>
+                                    <div class="laptop-trackpad"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bottom Value Proposition Cards (3 Cards) -->
-                <div class="skills-values-grid scroll-reveal-init">
-                    <!-- Value Card 1 -->
-                    <div class="skills-value-card">
-                        <div class="value-card-icon">
-                            <i class="fa-solid fa-bolt"></i>
+                <!-- 2. Main Skills Dashboard: Two Columns -->
+                <div class="skills-dashboard-grid">
+                    <!-- LEFT COLUMN: Skills Proficiency Panel -->
+                    <div class="skills-panel proficiency-panel">
+                        <div class="panel-header">
+                            <div class="panel-header-title">
+                                <span class="panel-icon"><i class="fa-solid fa-chart-simple"></i></span>
+                                <h3>Skills Proficiency</h3>
+                            </div>
                         </div>
-                        <div class="value-card-content">
-                            <h4 class="value-card-title">Continuous Learning</h4>
-                            <p class="value-card-desc">Always exploring new technologies to stay ahead.</p>
+
+                        <!-- 6 Skill Rows -->
+                        <div class="skills-proficiency-list">
+                            <!-- Skill 01: React — 95% -->
+                            <div class="skill-prof-row">
+                                <div class="skill-tech-info">
+                                    <span class="tech-icon"><i class="fa-brands fa-react icon-react"></i></span>
+                                    <span class="tech-name">React</span>
+                                </div>
+                                <div class="skill-bar-track">
+                                    <div class="skill-bar-fill progress-fill" data-progress="95" style="width: 0%;"></div>
+                                </div>
+                                <div class="skill-percent-label">95%</div>
+                            </div>
+
+                            <!-- Skill 02: Django — 92% -->
+                            <div class="skill-prof-row">
+                                <div class="skill-tech-info">
+                                    <span class="tech-icon badge-dj">dj</span>
+                                    <span class="tech-name">Django</span>
+                                </div>
+                                <div class="skill-bar-track">
+                                    <div class="skill-bar-fill progress-fill" data-progress="92" style="width: 0%;"></div>
+                                </div>
+                                <div class="skill-percent-label">92%</div>
+                            </div>
+
+                            <!-- Skill 03: Python — 90% -->
+                            <div class="skill-prof-row">
+                                <div class="skill-tech-info">
+                                    <span class="tech-icon"><i class="fa-brands fa-python icon-python"></i></span>
+                                    <span class="tech-name">Python</span>
+                                </div>
+                                <div class="skill-bar-track">
+                                    <div class="skill-bar-fill progress-fill" data-progress="90" style="width: 0%;"></div>
+                                </div>
+                                <div class="skill-percent-label">90%</div>
+                            </div>
+
+                            <!-- Skill 04: JavaScript — 93% -->
+                            <div class="skill-prof-row">
+                                <div class="skill-tech-info">
+                                    <span class="tech-icon badge-js">JS</span>
+                                    <span class="tech-name">JavaScript</span>
+                                </div>
+                                <div class="skill-bar-track">
+                                    <div class="skill-bar-fill progress-fill" data-progress="93" style="width: 0%;"></div>
+                                </div>
+                                <div class="skill-percent-label">93%</div>
+                            </div>
+
+                            <!-- Skill 05: Next.js — 88% -->
+                            <div class="skill-prof-row">
+                                <div class="skill-tech-info">
+                                    <span class="tech-icon badge-next">N</span>
+                                    <span class="tech-name">Next.js</span>
+                                </div>
+                                <div class="skill-bar-track">
+                                    <div class="skill-bar-fill progress-fill" data-progress="88" style="width: 0%;"></div>
+                                </div>
+                                <div class="skill-percent-label">88%</div>
+                            </div>
+
+                            <!-- Skill 06: PostgreSQL — 87% -->
+                            <div class="skill-prof-row">
+                                <div class="skill-tech-info">
+                                    <span class="tech-icon icon-postgres"><i class="fa-solid fa-database"></i></span>
+                                    <span class="tech-name">PostgreSQL</span>
+                                </div>
+                                <div class="skill-bar-track">
+                                    <div class="skill-bar-fill progress-fill" data-progress="87" style="width: 0%;"></div>
+                                </div>
+                                <div class="skill-percent-label">87%</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Value Card 2 -->
-                    <div class="skills-value-card">
-                        <div class="value-card-icon">
-                            <i class="fa-solid fa-bullseye"></i>
+                    <!-- RIGHT COLUMN: Skills by Category Panel -->
+                    <div class="skills-panel category-panel">
+                        <div class="panel-header category-panel-header">
+                            <div class="panel-header-title">
+                                <span class="panel-icon"><i class="fa-solid fa-layer-group"></i></span>
+                                <h3>Skills by Category</h3>
+                            </div>
+                            <!-- Filter Tabs -->
+                            <div class="skill-filters-wrap" role="tablist">
+                                <button class="skill-filter-btn active" onclick="filterSkillCategory('all', this)" role="tab" aria-selected="true">All</button>
+                                <button class="skill-filter-btn" onclick="filterSkillCategory('frontend', this)" role="tab" aria-selected="false">Frontend</button>
+                                <button class="skill-filter-btn" onclick="filterSkillCategory('backend', this)" role="tab" aria-selected="false">Backend</button>
+                                <button class="skill-filter-btn" onclick="filterSkillCategory('database', this)" role="tab" aria-selected="false">Database</button>
+                                <button class="skill-filter-btn" onclick="filterSkillCategory('devops', this)" role="tab" aria-selected="false">DevOps</button>
+                                <button class="skill-filter-btn" onclick="filterSkillCategory('tools', this)" role="tab" aria-selected="false">Tools</button>
+                            </div>
                         </div>
-                        <div class="value-card-content">
-                            <h4 class="value-card-title">Problem Solving</h4>
-                            <p class="value-card-desc">Turning complex challenges into effective solutions.</p>
-                        </div>
-                    </div>
 
-                    <!-- Value Card 3 -->
-                    <div class="skills-value-card">
-                        <div class="value-card-icon">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <div class="value-card-content">
-                            <h4 class="value-card-title">Real-World Experience</h4>
-                            <p class="value-card-desc">Building scalable applications with modern best practices.</p>
+                        <!-- 6 Category Cards Grid (2 Columns × 3 Rows) -->
+                        <div class="skill-categories-grid">
+                            <!-- Card 01 — Frontend Development -->
+                            <div class="skill-category-card" data-category="frontend" onclick="openSkillCategoryModal(1)" role="button" tabindex="0">
+                                <div class="category-card-icon-box">
+                                    <i class="fa-solid fa-desktop"></i>
+                                </div>
+                                <div class="category-card-text">
+                                    <h4 class="category-card-title">Frontend Development</h4>
+                                    <p class="category-card-techs">React, Next.js, JavaScript, TypeScript, Tailwind CSS, HTML, CSS</p>
+                                </div>
+                                <div class="category-card-action">
+                                    <span class="category-arrow-circle" aria-label="View details for Frontend Development">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 02 — Backend Development -->
+                            <div class="skill-category-card" data-category="backend" onclick="openSkillCategoryModal(2)" role="button" tabindex="0">
+                                <div class="category-card-icon-box">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <div class="category-card-text">
+                                    <h4 class="category-card-title">Backend Development</h4>
+                                    <p class="category-card-techs">Django, Django REST Framework, Python, API Development</p>
+                                </div>
+                                <div class="category-card-action">
+                                    <span class="category-arrow-circle" aria-label="View details for Backend Development">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 03 — Database & Storage -->
+                            <div class="skill-category-card" data-category="database" onclick="openSkillCategoryModal(3)" role="button" tabindex="0">
+                                <div class="category-card-icon-box">
+                                    <i class="fa-solid fa-database"></i>
+                                </div>
+                                <div class="category-card-text">
+                                    <h4 class="category-card-title">Database &amp; Storage</h4>
+                                    <p class="category-card-techs">PostgreSQL, MySQL, SQLite, Database Design, Optimization</p>
+                                </div>
+                                <div class="category-card-action">
+                                    <span class="category-arrow-circle" aria-label="View details for Database & Storage">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 04 — DevOps & Deployment -->
+                            <div class="skill-category-card" data-category="devops" onclick="openSkillCategoryModal(4)" role="button" tabindex="0">
+                                <div class="category-card-icon-box">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <div class="category-card-text">
+                                    <h4 class="category-card-title">DevOps &amp; Deployment</h4>
+                                    <p class="category-card-techs">Docker, Git, GitHub, CI/CD, Vercel, Render, Linux</p>
+                                </div>
+                                <div class="category-card-action">
+                                    <span class="category-arrow-circle" aria-label="View details for DevOps & Deployment">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 05 — AI & Automation -->
+                            <div class="skill-category-card" data-category="tools" onclick="openSkillCategoryModal(5)" role="button" tabindex="0">
+                                <div class="category-card-icon-box">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <div class="category-card-text">
+                                    <h4 class="category-card-title">AI &amp; Automation</h4>
+                                    <p class="category-card-techs">AI Agent, OpenAI, LangChain, Automation, Data Processing</p>
+                                </div>
+                                <div class="category-card-action">
+                                    <span class="category-arrow-circle" aria-label="View details for AI & Automation">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 06 — Tools & Others -->
+                            <div class="skill-category-card" data-category="tools" onclick="openSkillCategoryModal(6)" role="button" tabindex="0">
+                                <div class="category-card-icon-box">
+                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                </div>
+                                <div class="category-card-text">
+                                    <h4 class="category-card-title">Tools &amp; Others</h4>
+                                    <p class="category-card-techs">VS Code, Postman, Figma, Notion, Trello, GitHub</p>
+                                </div>
+                                <div class="category-card-action">
+                                    <span class="category-arrow-circle" aria-label="View details for Tools & Others">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- 3. Bottom Animated Digital Wave -->
+            <div class="skills-bottom-wave" aria-hidden="true">
+                <svg class="digital-wave-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="skillsWaveGradientRed1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.8" />
+                            <stop offset="50%" stop-color="#FF5A1F" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#FF7900" stop-opacity="0.7" />
+                        </linearGradient>
+
+                        <linearGradient id="skillsWaveGradientRed2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF7900" stop-opacity="0.4" />
+                            <stop offset="50%" stop-color="#FF101A" stop-opacity="0.85" />
+                            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0.5" />
+                        </linearGradient>
+
+                        <linearGradient id="skillsWaveFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FF101A" stop-opacity="0.08" />
+                            <stop offset="100%" stop-color="#050303" stop-opacity="0" />
+                        </linearGradient>
+
+                        <filter id="skillsNeonGlowWave" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="glow1" />
+                            <feGaussianBlur stdDeviation="8" result="glow2" />
+                            <feMerge>
+                                <feMergeNode in="glow2" />
+                                <feMergeNode in="glow1" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Wave Paths -->
+                    <path d="M0,80 C320,140 500,20 800,90 C1100,160 1280,40 1440,70 L1440,180 L0,180 Z" fill="url(#skillsWaveFill)" />
+                    <path d="M0,80 C320,140 500,20 800,90 C1100,160 1280,40 1440,70" stroke="url(#skillsWaveGradientRed1)" stroke-width="2.5" filter="url(#skillsNeonGlowWave)" fill="none" />
+                    <path d="M0,110 C360,30 580,150 900,60 C1200,0 1320,120 1440,95" stroke="url(#skillsWaveGradientRed2)" stroke-width="1.8" filter="url(#skillsNeonGlowWave)" fill="none" opacity="0.85" />
+                </svg>
             </div>
         </section>
 
@@ -14940,6 +15209,107 @@ window.openTermsModal = function() {
     `;
     openModalWithHTML(html);
 };
+
+
+/* ==========================================================================
+   SKILLS SECTION INTERACTIVITY & MODALS
+   ========================================================================== */
+const skillsCategoryData = {
+    1: {
+        title: "Frontend Development",
+        tag: "UI & Modern Frameworks",
+        desc: "Building intuitive, ultra-responsive, and high-performance user interfaces using cutting-edge frontend libraries and component architectures.",
+        technologies: ["React", "Next.js", "JavaScript (ES6+)", "TypeScript", "Tailwind CSS", "HTML5 & Semantic Markup", "CSS3 / Modern Animations"]
+    },
+    2: {
+        title: "Backend Development",
+        tag: "Server-Side & APIs",
+        desc: "Engineering robust, scalable, and secure backend systems with clean architecture, enterprise authentication, and high-throughput REST APIs.",
+        technologies: ["Django & Django REST Framework", "Python", "RESTful API Engineering", "Microservices & Server Architecture", "JWT & OAuth Authentication"]
+    },
+    3: {
+        title: "Database & Storage",
+        tag: "Data Architecture & Query Optimization",
+        desc: "Designing and managing relational and high-performance databases with strict data integrity, indexing, and migration pipelines.",
+        technologies: ["PostgreSQL", "MySQL", "SQLite", "Database Schema Design", "Query Optimization & Indexing", "ORM Integration"]
+    },
+    4: {
+        title: "DevOps & Deployment",
+        tag: "Cloud & Infrastructure",
+        desc: "Streamlining deployment workflows, containerization, and continuous delivery pipelines for zero-downtime releases.",
+        technologies: ["Docker & Containerization", "Git & GitHub Version Control", "CI/CD Workflows", "Vercel & Render Cloud Hosting", "Linux Server Administration"]
+    },
+    5: {
+        title: "AI & Automation",
+        tag: "Intelligent Systems & Workflows",
+        desc: "Integrating state-of-the-art AI models, autonomous agents, and intelligent automated workflows into real-world business applications.",
+        technologies: ["AI Agents & Autonomous Systems", "OpenAI & Gemini API Integrations", "LangChain & Retrieval Systems", "Automated Task Workflows", "Data Processing Pipelines"]
+    },
+    6: {
+        title: "Tools & Others",
+        tag: "Productivity & Developer Ecosystem",
+        desc: "Leveraging industry-standard development utilities, debugging environments, design handoff tools, and collaborative team platforms.",
+        technologies: ["VS Code & Extensions", "Postman API Testing", "Figma UI/UX Design Inspection", "Notion & Trello Project Tracking", "GitHub Collaboration"]
+    }
+};
+
+function openSkillCategoryModal(id) {
+    const s = skillsCategoryData[id];
+    if (!s) return;
+
+    const techHTML = s.technologies.map(t => `
+        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <i class="fa-solid fa-circle-check" style="color: #FF2525;"></i>
+            <span>${t}</span>
+        </li>
+    `).join('');
+
+    const html = `
+        <span class="modal-tag">${s.tag}</span>
+        <h2 class="modal-title">${s.title}</h2>
+        <p class="modal-desc">${s.desc}</p>
+        
+        <h4 style="font-family: var(--font-heading); color: var(--text-primary); font-size: 1.25rem; margin-bottom: 14px;">Technologies & Tools Included:</h4>
+        <ul style="margin-bottom: 28px; color: var(--text-secondary); list-style: none; padding-left: 0;">
+            ${techHTML}
+        </ul>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#contact" onclick="closeModal()" class="btn btn-primary btn-round">
+                <span>Discuss Your Project</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            </a>
+            <button onclick="closeModal()" class="btn btn-secondary btn-round">
+                <span>Close</span>
+            </button>
+        </div>
+    `;
+    openModalWithHTML(html);
+}
+
+function filterSkillCategory(cat, btn) {
+    // Update active state on filter tabs
+    document.querySelectorAll('.skill-filter-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+    });
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+    }
+
+    const cards = document.querySelectorAll('.skill-category-card');
+    cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (cat === 'all' || itemCat === cat || (cat === 'tools' && (itemCat === 'tools' || itemCat === 'ai'))) {
+            card.classList.remove('skill-card-hidden');
+            card.style.display = 'flex';
+        } else {
+            card.classList.add('skill-card-hidden');
+            card.style.display = 'none';
+        }
+    });
+}
 
 </script>
 </body>
