@@ -6889,222 +6889,135 @@ button {
         padding: 0 16px;
     }
 
-    .hero-grid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0;
-        width: 100%;
-        max-width: 520px;
-        margin: 0 auto;
+        .hero-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 28px !important;
+        width: 100% !important;
+        max-width: 520px !important;
+        margin: 0 auto !important;
     }
 
     .hero-content {
-        display: contents;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
     }
 
-    /* 1. Availability Badge */
-    .hero-status-pill {
-        order: 1;
-        font-size: 0.68rem;
-        padding: 6px 14px;
-        letter-spacing: 0.8px;
-        white-space: normal;
-        text-align: center;
-        max-width: 96%;
-        margin: 0 auto 16px auto;
+    .hero-avail-badge {
+        font-size: 0.72rem !important;
+        padding: 6px 14px !important;
+        letter-spacing: 0.08em !important;
+        margin-bottom: 12px !important;
     }
 
-    /* 2. Main Heading */
     .hero-headline {
-        order: 2;
-        font-size: clamp(2rem, 7.8vw, 2.75rem);
-        font-weight: 800;
-        line-height: 1.15;
-        letter-spacing: -0.025em;
-        margin: 0 auto 16px auto;
-        text-align: center;
-        width: 100%;
+        margin: 0 auto 10px auto !important;
+        text-align: center !important;
+        width: 100% !important;
     }
 
-    .hero-subline {
-        display: inline-block;
-        white-space: normal;
+    .hero-greeting {
+        font-size: clamp(1.4rem, 5vw, 1.8rem) !important;
+        font-weight: 700 !important;
     }
 
-    /* 3. Description */
+    .hero-name-gradient {
+        font-size: clamp(2.2rem, 8vw, 3rem) !important;
+        font-weight: 900 !important;
+    }
+
+    .hero-role-pill {
+        padding: 6px 14px !important;
+        font-size: 0.82rem !important;
+        margin: 0 auto 14px auto !important;
+    }
+
     .hero-summary {
-        order: 3;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: var(--text-secondary);
-        max-width: 440px;
-        margin: 0 auto 22px auto;
-        text-align: center;
+        font-size: 0.92rem !important;
+        line-height: 1.55 !important;
+        color: var(--text-secondary) !important;
+        max-width: 440px !important;
+        margin: 0 auto 20px auto !important;
+        text-align: center !important;
     }
 
-    /* 4. Technology Badges: 2 Rows of 3 */
-    .hero-tech-strip {
-        order: 4;
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        justify-content: center;
-        gap: 8px 10px;
-        max-width: 100%;
-        width: 100%;
-        margin: 0 auto 24px auto;
-        overflow: visible;
+    .hero-actions-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 360px !important;
+        margin: 0 auto 18px auto !important;
     }
 
-    .tech-pill {
-        padding: 6px 12px;
-        font-size: 0.78rem;
-        gap: 6px;
-        white-space: nowrap;
+    .btn-hero-view-projects,
+    .btn-hero-download-cv {
+        width: 100% !important;
+        min-height: 48px !important;
+        justify-content: center !important;
+        font-size: 0.95rem !important;
+        border-radius: 9999px !important;
     }
 
-    /* 5. Mobile CTA Buttons: View Projects full-width, CV & Contact side-by-side */
-    .hero-buttons {
-        order: 5;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        width: 100%;
-        max-width: 420px;
-        margin: 0 auto 26px auto;
+    .hero-social-circles {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        margin-top: 4px !important;
     }
 
-    .btn-hero-primary {
-        grid-column: 1 / -1;
-        width: 100%;
-        justify-content: center;
-        padding: 13px 20px;
-        font-size: 0.95rem;
+    .social-circle-btn {
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 1.05rem !important;
     }
 
-    .btn-hero-secondary {
-        width: 100%;
-        justify-content: center;
-        padding: 11px 8px;
-        font-size: 0.82rem;
-        gap: 6px;
-        white-space: nowrap;
+    .hero-stats-cards-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto 14px auto !important;
     }
 
-    /* 6. Mobile Portrait Section — Centered below CTA buttons */
+    .hero-stat-card-v2 {
+        padding: 10px 6px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 4px !important;
+        border-radius: 14px !important;
+    }
+
+    .hero-stat-card-v2 .stat-icon-circle {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .hero-stat-card-v2 .stat-number-val {
+        font-size: 1.25rem !important;
+        font-weight: 800 !important;
+    }
+
+    .hero-stat-card-v2 .stat-label-text {
+        font-size: 0.68rem !important;
+        line-height: 1.15 !important;
+    }
+
     .hero-visual {
-        order: 6;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        width: 100%;
-        margin: 0 auto 16px auto;
-    }
-
-    .hero-portrait-stage {
-        height: 440px;
-        max-width: 390px;
-        margin: 0 auto;
-    }
-
-    .stage-ambient-glow {
-        width: 330px;
-        height: 330px;
-    }
-
-    .stage-bg-typography {
-        top: 25px;
-        width: 100%;
-        max-width: 390px;
-    }
-
-    .bg-text-fullstack,
-    .bg-text-developer {
-        font-size: clamp(3rem, 12vw, 3.9rem);
-        line-height: 0.86;
-        letter-spacing: -0.01em;
-    }
-
-    .stage-portrait-wrapper {
-        max-width: 340px;
-        margin-bottom: 0px;
-    }
-
-    .stage-portrait-img {
-        max-height: 440px;
-    }
-
-    /* Annotations on Mobile */
-    .portrait-annotation {
-        font-size: 1.25rem;
-    }
-
-    .annotation-pos-1,
-    .annotation-django {
-        top: 36%;
-        left: 2%;
-    }
-
-    .annotation-pos-3,
-    .annotation-react {
-        top: 60%;
-        left: 0%;
-    }
-
-    .annotation-pos-2,
-    .annotation-js {
-        top: 34%;
-        right: 2%;
-    }
-
-    .annotation-arrow {
-        transform: scale(0.85);
-        transform-origin: top left;
-    }
-
-    /* 7. Statistics Cards — Placed at the bottom of the portrait section */
-    .hero-stats-row {
-        order: 7;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        width: 100%;
-        max-width: 440px;
-        margin: 0 auto 14px auto;
-    }
-
-    .hero-stat-card {
-        padding: 10px 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        border-radius: 12px;
-    }
-
-    .stat-icon-wrap {
-        width: 32px;
-        height: 32px;
-        font-size: 0.82rem;
-    }
-
-    .stat-value {
-        font-size: 1.05rem;
-    }
-
-    .stat-label {
-        font-size: 0.62rem;
-        line-height: 1.15;
-    }
-
-    /* 8. Social Links Row */
-    .hero-social-row {
-        order: 8;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        margin-top: 6px;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 10px auto 0 auto !important;
     }
 
     .counter-wrapper {
@@ -11957,6 +11870,928 @@ body.modal-open {
 .hero-floating-parallax {
     will-change: transform;
     transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+/* ==========================================================================
+   28. COMPLETE MOBILE UI/UX & RESPONSIVE ENGINE (320px – 768px)
+   - Mobile-First Architecture specifically engineered for smartphones
+   - Natural semantic hierarchy: Hero, About, Services, Skills, Experience,
+     Projects, Achievements, Reviews, Contact, Footer
+   - Multi-device optimization: 320px, 360px, 375px, 390px, 414px, 430px
+   - Preserves 100% desktop & tablet design systems without regression
+   ========================================================================== */
+
+/* --- GLOBAL MOBILE CONTAINER & VIEWPORT NORMALIZATION --- */
+@media (max-width: 768px) {
+    :root {
+        --mobile-pad: clamp(14px, 4.2vw, 20px);
+        --mobile-gap: clamp(12px, 3.5vw, 18px);
+    }
+
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    .container,
+    .hero-container,
+    .about-container,
+    .services-container,
+    .skills-container,
+    .experience-section .container,
+    .portfolio-section .container,
+    .achievements-section .container,
+    .reviews-section .container,
+    .contact-container,
+    .footer-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: var(--mobile-pad) !important;
+        padding-right: var(--mobile-pad) !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --- 1. MOBILE NAVBAR & HEADER --- */
+    .main-header {
+        padding: 8px 12px !important;
+        height: auto !important;
+    }
+
+    .header-container {
+        height: 56px !important;
+        padding: 0 12px !important;
+        width: calc(100% - 16px) !important;
+        border-radius: 9999px !important;
+    }
+
+    .brand-logo-img {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    .brand-name {
+        font-size: 1.15rem !important;
+    }
+
+    .btn-hire-me {
+        padding: 7px 14px !important;
+        font-size: 0.8rem !important;
+        gap: 6px !important;
+    }
+
+    .theme-toggle-btn {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .hamburger-btn {
+        width: 40px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 10px !important;
+    }
+
+    /* Offcanvas Navigation Drawer */
+    .offcanvas-sidebar {
+        width: min(84vw, 320px) !important;
+        padding: 20px 18px !important;
+    }
+
+    .offcanvas-nav .nav-link {
+        padding: 12px 14px !important;
+        font-size: 0.96rem !important;
+        border-radius: 12px !important;
+        min-height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+
+    /* --- 2. HERO SECTION MOBILE REFINEMENT --- */
+    .hero-section {
+        padding-top: 92px !important;
+        padding-bottom: 50px !important;
+        overflow: hidden !important;
+    }
+
+    .hero-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 24px !important;
+        width: 100% !important;
+        max-width: 520px !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        order: 1 !important;
+    }
+
+    .hero-avail-badge {
+        font-size: 0.72rem !important;
+        padding: 6px 14px !important;
+        letter-spacing: 0.08em !important;
+        margin-bottom: 12px !important;
+        width: auto !important;
+        max-width: 92% !important;
+    }
+
+    .hero-headline {
+        margin: 0 auto 10px auto !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    .hero-greeting {
+        font-size: clamp(1.4rem, 5vw, 1.85rem) !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+    }
+
+    .hero-name-gradient {
+        font-size: clamp(2.2rem, 8.2vw, 3.1rem) !important;
+        font-weight: 900 !important;
+        text-align: center !important;
+    }
+
+    .hero-role-pill {
+        padding: 6px 14px !important;
+        font-size: 0.82rem !important;
+        margin: 0 auto 14px auto !important;
+        width: auto !important;
+        max-width: 92% !important;
+    }
+
+    .hero-summary {
+        font-size: 0.92rem !important;
+        line-height: 1.55 !important;
+        color: var(--text-secondary) !important;
+        max-width: 440px !important;
+        margin: 0 auto 18px auto !important;
+        text-align: center !important;
+    }
+
+    .hero-actions-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 360px !important;
+        margin: 0 auto 18px auto !important;
+    }
+
+    .btn-hero-view-projects,
+    .btn-hero-download-cv {
+        width: 100% !important;
+        min-height: 48px !important;
+        justify-content: center !important;
+        font-size: 0.95rem !important;
+        border-radius: 9999px !important;
+    }
+
+    .hero-social-circles {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        margin-top: 4px !important;
+    }
+
+    .social-circle-btn {
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 1.05rem !important;
+    }
+
+    .hero-stats-cards-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto 10px auto !important;
+    }
+
+    .hero-stat-card-v2 {
+        padding: 10px 6px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 4px !important;
+        border-radius: 14px !important;
+    }
+
+    .hero-stat-card-v2 .stat-icon-circle {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .hero-stat-card-v2 .stat-number-val {
+        font-size: 1.22rem !important;
+        font-weight: 800 !important;
+    }
+
+    .hero-stat-card-v2 .stat-label-text {
+        font-size: 0.68rem !important;
+        line-height: 1.15 !important;
+    }
+
+    /* Hero Portrait Stage on Mobile */
+    .hero-visual {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 8px auto 0 auto !important;
+        order: 2 !important;
+    }
+
+    .hero-composition-stage {
+        width: 100% !important;
+        max-width: 330px !important;
+        height: 380px !important;
+        position: relative !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-portrait-photo {
+        max-height: 340px !important;
+        width: auto !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-tilted-frame {
+        width: 260px !important;
+        height: 340px !important;
+        border-radius: 28px !important;
+        top: 15px !important;
+    }
+
+    .hero-frame-layer-2 {
+        width: 250px !important;
+        height: 330px !important;
+        border-radius: 26px !important;
+    }
+
+    .hero-frame-layer-3 {
+        width: 240px !important;
+        height: 320px !important;
+        border-radius: 24px !important;
+    }
+
+    .hero-orbit-container {
+        display: none !important;
+    }
+
+    .hero-code-window {
+        display: none !important;
+    }
+
+    /* --- 3. ABOUT SECTION MOBILE REFINEMENT --- */
+    .about-section {
+        padding: 55px 0 85px 0 !important;
+    }
+
+    .about-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 28px !important;
+        width: 100% !important;
+    }
+
+    .about-visual-col {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .about-stage-wrapper {
+        width: 100% !important;
+        max-width: 310px !important;
+        height: 360px !important;
+        position: relative !important;
+        margin: 0 auto !important;
+    }
+
+    .about-portrait-photo {
+        max-height: 330px !important;
+        object-fit: contain !important;
+    }
+
+    .about-tilted-frame.frame-back {
+        width: 250px !important;
+        height: 320px !important;
+        border-radius: 26px !important;
+    }
+
+    .about-tilted-frame.frame-front {
+        width: 260px !important;
+        height: 330px !important;
+        border-radius: 28px !important;
+    }
+
+    .about-tech-float-badge {
+        padding: 8px 14px !important;
+        font-size: 0.78rem !important;
+        bottom: 12px !important;
+        left: 8px !important;
+    }
+
+    .about-content-col {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .about-section-eyebrow {
+        justify-content: center !important;
+    }
+
+    .about-main-heading {
+        font-size: clamp(2rem, 7vw, 2.5rem) !important;
+        text-align: center !important;
+    }
+
+    .about-role-strip {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+
+    .about-info-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin-top: 16px !important;
+    }
+
+    .about-info-item {
+        padding: 12px 14px !important;
+        border-radius: 14px !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+        text-align: left !important;
+    }
+
+    .about-info-item .info-label {
+        font-size: 0.72rem !important;
+    }
+
+    .about-info-item .info-val {
+        font-size: 0.86rem !important;
+        font-weight: 600 !important;
+    }
+
+    .about-actions-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 360px !important;
+        margin: 20px auto 0 auto !important;
+    }
+
+    .about-actions-row .btn-round {
+        flex: 1 !important;
+        min-height: 46px !important;
+        justify-content: center !important;
+        font-size: 0.88rem !important;
+    }
+
+    /* --- 4. SERVICES SECTION MOBILE REFINEMENT --- */
+    .services-area {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .services-header-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+
+    .services-main-heading {
+        font-size: clamp(1.9rem, 6.8vw, 2.3rem) !important;
+        text-align: center !important;
+    }
+
+    .services-laptop-stage {
+        width: 250px !important;
+        height: 180px !important;
+        transform: scale(0.85) !important;
+        margin: 0 auto !important;
+    }
+
+    .services-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        width: 100% !important;
+    }
+
+    .service-card-item {
+        padding: 22px 20px !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .services-cta-banner {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 22px 18px !important;
+        border-radius: 20px !important;
+        gap: 14px !important;
+    }
+
+    .services-cta-banner .btn-primary {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* --- 5. SKILLS & EXPERTISE SECTION MOBILE REFINEMENT --- */
+    .skills-section {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .skills-header-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+
+    .skills-stats-row {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+    }
+
+    .skills-stat-card {
+        padding: 10px 6px !important;
+        text-align: center !important;
+    }
+
+    .skills-proficiency-panel {
+        padding: 22px 18px !important;
+        border-radius: 20px !important;
+    }
+
+    .skills-dashboard-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 24px !important;
+    }
+
+    .skills-panel {
+        min-width: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 22px 18px !important;
+        border-radius: 20px !important;
+    }
+
+    /* Horizontally Scrollable Category Filter */
+    .skill-filters-wrap,
+    .skill-categories-filter,
+    .skills-filter-bar {
+        display: flex !important;
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        padding-bottom: 8px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        justify-content: flex-start !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .skill-filters-wrap::-webkit-scrollbar,
+    .skill-categories-filter::-webkit-scrollbar,
+    .skills-filter-bar::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .skill-categories-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        width: 100% !important;
+    }
+
+    .skill-category-card {
+        padding: 20px 18px !important;
+        border-radius: 18px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --- 6. EXPERIENCE & EDUCATION SECTION MOBILE REFINEMENT --- */
+    .experience-section {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .experience-columns-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        width: 100% !important;
+    }
+
+    .exp-panel {
+        padding: 20px 16px !important;
+        border-radius: 22px !important;
+    }
+
+    .exp-timeline-card {
+        padding: 16px 14px !important;
+        border-radius: 16px !important;
+    }
+
+    .experience-stats-bar {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 14px !important;
+        padding: 20px 16px !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .exp-stat-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+
+    .exp-stat-divider {
+        display: none !important;
+    }
+
+    /* --- 7. PROJECTS SECTION MOBILE REFINEMENT --- */
+    .portfolio-section {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .projects-header-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+
+    .projects-stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .projects-filter-bar {
+        display: flex !important;
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        padding-bottom: 8px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        justify-content: flex-start !important;
+    }
+
+    .projects-filter-bar::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .filter-pill-btn {
+        white-space: nowrap !important;
+        padding: 8px 16px !important;
+        font-size: 0.84rem !important;
+    }
+
+    .projects-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .portfolio-project-card {
+        padding: 20px 16px !important;
+        border-radius: 22px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .project-img-wrapper {
+        aspect-ratio: 16 / 9 !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+    }
+
+    .project-thumbnail {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .project-actions-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .project-btn-demo,
+    .project-btn-code {
+        min-height: 44px !important;
+        padding: 10px 14px !important;
+        justify-content: center !important;
+        font-size: 0.88rem !important;
+    }
+
+    /* --- 8. ACHIEVEMENTS & CERTIFICATIONS MOBILE REFINEMENT --- */
+    .achievements-section {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .achievements-stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .achievements-filter-bar {
+        display: flex !important;
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        padding-bottom: 8px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        justify-content: flex-start !important;
+    }
+
+    .achievements-filter-bar::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .achievements-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        width: 100% !important;
+    }
+
+    .achievement-card-box {
+        padding: 18px 16px !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .achievements-cta-panel {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 22px 18px !important;
+        border-radius: 20px !important;
+        gap: 14px !important;
+    }
+
+    .achievements-cta-panel .btn-primary {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* --- 9. REVIEWS & TESTIMONIALS MOBILE REFINEMENT --- */
+    .testimonials-section {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .reviews-stats-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .reviews-card-item {
+        padding: 24px 18px !important;
+        border-radius: 22px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .reviews-nav-controls {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 16px !important;
+        margin-top: 18px !important;
+    }
+
+    .reviews-arrow-btn {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+    }
+
+    .reviews-cta-banner {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 22px 18px !important;
+        border-radius: 20px !important;
+        gap: 14px !important;
+    }
+
+    .reviews-cta-banner .btn-hire-me {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* --- 10. CONTACT SECTION & FORMS MOBILE REFINEMENT --- */
+    .contact-section {
+        padding: 55px 0 90px 0 !important;
+    }
+
+    .contact-grid-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        width: 100% !important;
+    }
+
+    .contact-collab-row {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .contact-collab-card {
+        padding: 12px 6px !important;
+        font-size: 0.72rem !important;
+        text-align: center !important;
+    }
+
+    .contact-info-cards-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .contact-info-card {
+        padding: 14px 16px !important;
+        border-radius: 16px !important;
+    }
+
+    .contact-form-card {
+        padding: 22px 18px !important;
+        border-radius: 22px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .contact-form-row {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .contact-field-wrap input,
+    .contact-field-wrap select,
+    .contact-field-wrap textarea {
+        min-height: 48px !important;
+        font-size: 0.95rem !important;
+        padding: 12px 16px !important;
+        border-radius: 12px !important;
+    }
+
+    .contact-submit-btn {
+        width: 100% !important;
+        min-height: 50px !important;
+        justify-content: center !important;
+        font-size: 1rem !important;
+        border-radius: 9999px !important;
+    }
+
+    .contact-meeting-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 20px 16px !important;
+        gap: 14px !important;
+    }
+
+    .btn-schedule-meeting {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* --- 11. FOOTER MOBILE RESTRUCTURING --- */
+    .footer-section {
+        padding: 55px 0 25px 0 !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+        text-align: left !important;
+    }
+
+    .footer-brand-col {
+        max-width: 100% !important;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column !important;
+        gap: 12px !important;
+        text-align: center !important;
+    }
+
+    /* --- 12. DECORATIVE WAVES & VISUAL ACCENTS ON MOBILE --- */
+    .services-wave-svg,
+    .skills-wave-svg,
+    .exp-wave-svg,
+    .port-wave-svg,
+    .ach-wave-svg,
+    .testi-wave-svg,
+    .contact-wave-svg,
+    .about-ambient-wave {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow: hidden !important;
+        height: 60px !important;
+    }
+}
+
+/* --- SMALL SMARTPHONES TUNING (<= 480px) --- */
+@media (max-width: 480px) {
+    .about-info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .about-actions-row {
+        flex-direction: column !important;
+    }
+
+    .about-actions-row .btn-round {
+        width: 100% !important;
+    }
+
+    .projects-stats-grid,
+    .achievements-stats-grid,
+    .reviews-stats-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* --- COMPACT SMARTPHONES TUNING (<= 360px) --- */
+@media (max-width: 360px) {
+    :root {
+        --mobile-pad: 12px;
+    }
+
+    .hero-greeting {
+        font-size: 1.35rem !important;
+    }
+
+    .hero-name-gradient {
+        font-size: 2.1rem !important;
+    }
+
+    .hero-stats-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+
+    .experience-stats-bar {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .contact-collab-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .projects-stats-grid,
+    .achievements-stats-grid,
+    .reviews-stats-row {
+        grid-template-columns: 1fr !important;
+    }
 }
 
 </style>
