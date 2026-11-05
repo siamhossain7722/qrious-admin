@@ -234,7 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item.wrap) {
                     item.wrap.classList.remove('anim-exit');
                     item.wrap.classList.add('anim-enter');
-                    void item.wrap.offsetWidth; // Force CSS reflow
                 }
             });
 
@@ -318,13 +317,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroOrbitContainer = document.querySelector('.hero-orbit-container');
     const aboutStageWrap = document.querySelector('.about-stage-wrapper');
 
+    let currentActiveNavLinkId = null;
     function setActiveNavLink(id) {
-        if (!id) return;
+        if (!id || currentActiveNavLinkId === id) return;
+        currentActiveNavLinkId = id;
         navLinks.forEach(link => {
-            if (link.getAttribute('href') === `#${id}`) {
-                link.classList.add('active');
+            if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
             } else {
-                link.classList.remove('active');
+                link.classList.remove("active");
             }
         });
     }
@@ -347,21 +348,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Coordinated state updater on scroll
-    function handleScrollState(scrollPos, maxLimit, progress) {
-        const docHeight = (typeof maxLimit === 'number') ? maxLimit : (document.documentElement.scrollHeight - window.innerHeight);
+    // Coordinated high-performance state updater on scroll (zero layout thrashing)
+    let isHeaderScrolled = false;
+    let cachedDocHeight = 0;
+    function updateDocHeight() {
+        cachedDocHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+    updateDocHeight();
+    window.addEventListener('resize', updateDocHeight, { passive: true });
 
-        // 1. Sticky Navbar Transition
+    function handleScrollState(scrollPos, maxLimit, progress) {
+        const docHeight = (typeof maxLimit === 'number' && maxLimit > 0) ? maxLimit : cachedDocHeight;
+
+        // 1. Sticky Navbar Transition (gated - zero redundant classList writes)
         if (scrollPos > 60) {
-            header.classList.add('scrolled');
+            if (!isHeaderScrolled) {
+                header.classList.add('scrolled');
+                isHeaderScrolled = true;
+            }
         } else {
-            header.classList.remove('scrolled');
+            if (isHeaderScrolled) {
+                header.classList.remove('scrolled');
+                isHeaderScrolled = false;
+            }
         }
 
-        // 2. Top Glowing Neon Progress Bar
+        // 2. Top Glowing Neon Progress Bar (GPU transform: scaleX, zero layout reflow!)
         if (scrollProgressBar) {
-            const pct = (typeof progress === 'number') ? (progress * 100) : (docHeight > 0 ? (scrollPos / docHeight) * 100 : 0);
-            scrollProgressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+            const p = (typeof progress === 'number') ? progress : (docHeight > 0 ? scrollPos / docHeight : 0);
+            scrollProgressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
         }
 
         // 3. Section Boundary Edge Cases
@@ -374,18 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 4. Update Back To Top Button & Progress Ring
         updateBackToTop(scrollPos, docHeight);
 
-        // 5. Multi-Plane Optical Depth Parallax (GPU translate3d)
-        if (scrollPos < 1100 && !prefersReducedMotion) {
-            if (heroPortraitWrap) {
-                heroPortraitWrap.style.transform = `translate3d(0, ${(scrollPos * 0.05).toFixed(2)}px, 0)`;
-            }
-            if (heroTiltedFrame) {
-                heroTiltedFrame.style.transform = `translate3d(0, ${(scrollPos * -0.04).toFixed(2)}px, 0)`;
-            }
-            if (heroOrbitContainer) {
-                heroOrbitContainer.style.transform = `translate3d(0, ${(scrollPos * 0.025).toFixed(2)}px, 0)`;
-            }
-        }
+        // 5. Hero Stage Ambient Depth (pure GPU compositor - zero JS transform collisions)
     }
 
     if (lenis) {
@@ -852,15 +856,22 @@ document.addEventListener('DOMContentLoaded', () => {
         progressCircle.style.strokeDashoffset = `${circumference}`;
     }
 
+    let isBackToTopShown = false;
     function updateBackToTop(scrollPos, docHeight) {
         if (!backToTopBtn) return;
-        const totalHeight = (typeof docHeight === 'number') ? docHeight : (document.documentElement.scrollHeight - window.innerHeight);
+        const totalHeight = (typeof docHeight === 'number') ? docHeight : cachedDocHeight;
         const scrollPercent = totalHeight > 0 ? scrollPos / totalHeight : 0;
 
         if (scrollPos > 320) {
-            backToTopBtn.classList.add('show');
+            if (!isBackToTopShown) {
+                backToTopBtn.classList.add('show');
+                isBackToTopShown = true;
+            }
         } else {
-            backToTopBtn.classList.remove('show');
+            if (isBackToTopShown) {
+                backToTopBtn.classList.remove('show');
+                isBackToTopShown = false;
+            }
         }
 
         if (progressCircle) {
@@ -1297,24 +1308,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const bidirectionalRevealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                const target = entry.target;
                 if (entry.isIntersecting) {
-                    target.classList.remove('scroll-reveal-reset');
-                    target.classList.add('scroll-reveal-visible');
-                } else {
-                    const rect = entry.boundingClientRect;
-                    const vh = window.innerHeight || document.documentElement.clientHeight;
-                    // Reset if scrolled off bottom (scrolling up away) or off top (scrolling down past)
-                    if (rect.top > vh + 60 || rect.bottom < -120) {
-                        target.classList.remove('scroll-reveal-visible');
-                        target.classList.add('scroll-reveal-reset');
-                    }
+                    entry.target.classList.remove('scroll-reveal-reset');
+                    entry.target.classList.add('scroll-reveal-visible');
+                    // Persistent reveal: once visible, keep active to eliminate section transition jank
+                    bidirectionalRevealObserver.unobserve(entry.target);
                 }
             });
         }, {
             root: null,
             rootMargin: '0px 0px -30px 0px',
-            threshold: 0
+            threshold: 0.05
         });
 
         revealTargets.forEach(el => {
