@@ -3953,60 +3953,175 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   12. Brands Marquee Infinite Loop
+   12. Brands & Technologies Marquee Infinite Loop
+   - High-performance GPU-composited continuous horizontal motion
+   - Mathematically seamless loop: padding-right matches gap exactly
+   - Multi-device responsive scaling: desktop, tablet, and mobile (320px–430px)
+   - Zero layout thrashing, zero JS overhead, hover-pause on pointer devices
    -------------------------------------------------------------------------- */
+:root {
+    --marquee-gap: clamp(38px, 4.2vw, 64px);
+    --marquee-speed: 28s;
+    --marquee-font-size: clamp(1.15rem, 1.35vw, 1.45rem);
+    --marquee-icon-size: clamp(1.35rem, 1.6vw, 1.7rem);
+    --marquee-pad-y: clamp(36px, 4.5vh, 52px);
+}
+
 .partners-marquee-section {
-    padding: 50px 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-    overflow: hidden;
+    position: relative;
+    padding: var(--marquee-pad-y) 0;
+    border-top: 1px solid rgba(255, 45, 130, 0.12) !important;
+    border-bottom: 1px solid rgba(255, 45, 130, 0.12) !important;
+    background: #050303 !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    contain: paint;
+    box-sizing: border-box;
+}
+
+.partners-marquee-section,
+.partners-marquee-section * {
+    animation-play-state: running !important;
+}
+
+.marquee-header {
+    width: 100%;
+    text-align: center;
 }
 
 .marquee-title {
     text-align: center;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 2.5px;
-    color: var(--text-muted);
-    margin-bottom: 30px;
+    font-size: clamp(0.75rem, 0.9vw, 0.88rem);
+    letter-spacing: clamp(2px, 0.3vw, 3px);
+    color: #8c8c99;
+    text-transform: uppercase;
+    margin-bottom: clamp(20px, 2.5vh, 30px);
 }
 
 .marquee-track {
     display: flex;
-    width: 100%;
-    overflow: hidden;
+    width: max-content;
+    overflow: visible;
     user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .marquee-track:hover .marquee-content {
+        animation-play-state: paused !important;
+    }
 }
 
 .marquee-content {
     display: flex;
     align-items: center;
-    gap: 60px;
-    animation: marqueeScroll 25s linear infinite;
+    gap: var(--marquee-gap);
+    padding-right: var(--marquee-gap);
     flex-shrink: 0;
+    will-change: transform;
+    animation: marqueeScrollSmooth var(--marquee-speed) linear infinite !important;
+    animation-play-state: running !important;
 }
 
 .marquee-item {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: var(--marquee-font-size);
     letter-spacing: 1.5px;
-    color: var(--text-muted);
+    color: #9da1b4;
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    transition: color var(--transition-fast);
+    white-space: nowrap;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .marquee-item:hover {
-    color: var(--accent);
+    color: #ff3344;
+    transform: translateY(-2px);
 }
 
-@keyframes marqueeScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+.marquee-item i {
+    font-size: var(--marquee-icon-size);
+    display: inline-block;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.marquee-item:hover i {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 10px rgba(255, 51, 68, 0.4));
+}
+
+@keyframes marqueeScrollSmooth {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+/* Tablet Optimization (768px – 991px) */
+@media (max-width: 991.98px) {
+    :root {
+        --marquee-gap: 36px;
+        --marquee-speed: 24s;
+        --marquee-font-size: 1.15rem;
+        --marquee-icon-size: 1.35rem;
+        --marquee-pad-y: 34px;
+    }
+}
+
+/* Mobile Screen Optimization (320px – 767px) */
+@media (max-width: 767.98px) {
+    :root {
+        --marquee-gap: 24px;
+        --marquee-speed: 20s;
+        --marquee-font-size: 0.92rem;
+        --marquee-icon-size: 1.15rem;
+        --marquee-pad-y: 26px;
+    }
+    .marquee-title {
+        font-size: 0.72rem !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 16px !important;
+    }
+    .marquee-item {
+        gap: 8px !important;
+        letter-spacing: 1px !important;
+    }
+}
+
+/* Compact Mobile (<= 375px) */
+@media (max-width: 375px) {
+    :root {
+        --marquee-gap: 18px;
+        --marquee-speed: 18s;
+        --marquee-font-size: 0.85rem;
+        --marquee-icon-size: 1.05rem;
+        --marquee-pad-y: 22px;
+    }
+}
+
+/* Accessible Reduced Motion Presentation */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        overflow-x: auto !important;
+        max-width: 100vw !important;
+        scrollbar-width: thin;
+        padding-bottom: 8px;
+    }
+    .marquee-content {
+        animation: none !important;
+        transform: none !important;
+    }
+    .marquee-content:not(:first-child) {
+        display: none !important;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -14298,11 +14413,12 @@ body.modal-open {
         </section>
 
         <!-- Brands & Technology Partners Marquee -->
-        <section class="partners-marquee-section">
-            <div class="container">
+        <section class="partners-marquee-section" id="partners-marquee-section">
+            <div class="container marquee-header">
                 <p class="marquee-title">CORE TECHNOLOGIES & TOOLS I WORK WITH</p>
             </div>
-            <div class="marquee-track">
+            <div class="marquee-track" aria-label="Core Technologies & Tools">
+                <!-- Primary Track -->
                 <div class="marquee-content">
                     <span class="marquee-item"><i class="devicon-python-plain colored"></i> PYTHON</span>
                     <span class="marquee-item"><i class="devicon-django-plain colored"></i> DJANGO</span>
@@ -14315,7 +14431,33 @@ body.modal-open {
                     <span class="marquee-item"><i class="devicon-docker-plain colored"></i> DOCKER</span>
                     <span class="marquee-item"><i class="fa-brands fa-wordpress"></i> WORDPRESS</span>
                 </div>
-                <!-- Duplicate for seamless infinite loop -->
+                <!-- Duplicate 1 for Seamless Loop -->
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="marquee-item"><i class="devicon-python-plain colored"></i> PYTHON</span>
+                    <span class="marquee-item"><i class="devicon-django-plain colored"></i> DJANGO</span>
+                    <span class="marquee-item"><i class="devicon-react-original colored"></i> REACT</span>
+                    <span class="marquee-item"><i class="devicon-nextjs-plain"></i> NEXT.JS</span>
+                    <span class="marquee-item"><i class="devicon-fastapi-plain colored"></i> FASTAPI</span>
+                    <span class="marquee-item"><i class="devicon-postgresql-plain colored"></i> POSTGRESQL</span>
+                    <span class="marquee-item"><i class="devicon-javascript-plain colored"></i> JAVASCRIPT</span>
+                    <span class="marquee-item"><i class="devicon-typescript-plain colored"></i> TYPESCRIPT</span>
+                    <span class="marquee-item"><i class="devicon-docker-plain colored"></i> DOCKER</span>
+                    <span class="marquee-item"><i class="fa-brands fa-wordpress"></i> WORDPRESS</span>
+                </div>
+                <!-- Duplicate 2 for High-Resolution Screens -->
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="marquee-item"><i class="devicon-python-plain colored"></i> PYTHON</span>
+                    <span class="marquee-item"><i class="devicon-django-plain colored"></i> DJANGO</span>
+                    <span class="marquee-item"><i class="devicon-react-original colored"></i> REACT</span>
+                    <span class="marquee-item"><i class="devicon-nextjs-plain"></i> NEXT.JS</span>
+                    <span class="marquee-item"><i class="devicon-fastapi-plain colored"></i> FASTAPI</span>
+                    <span class="marquee-item"><i class="devicon-postgresql-plain colored"></i> POSTGRESQL</span>
+                    <span class="marquee-item"><i class="devicon-javascript-plain colored"></i> JAVASCRIPT</span>
+                    <span class="marquee-item"><i class="devicon-typescript-plain colored"></i> TYPESCRIPT</span>
+                    <span class="marquee-item"><i class="devicon-docker-plain colored"></i> DOCKER</span>
+                    <span class="marquee-item"><i class="fa-brands fa-wordpress"></i> WORDPRESS</span>
+                </div>
+                <!-- Duplicate 3 for Ultra-Wide Full Coverage -->
                 <div class="marquee-content" aria-hidden="true">
                     <span class="marquee-item"><i class="devicon-python-plain colored"></i> PYTHON</span>
                     <span class="marquee-item"><i class="devicon-django-plain colored"></i> DJANGO</span>
