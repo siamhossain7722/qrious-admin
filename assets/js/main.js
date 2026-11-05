@@ -1357,13 +1357,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       ABOUT SECTION CLEAN NATIVE LOCAL VIDEO CONTROLLER
-       - Clean HTML5 <video> player with 0 surrounding UI clutter
-       - Scroll-driven automatic playback via IntersectionObserver
+       ABOUT SECTION CLEAN NATIVE LOCAL VIDEO CONTROLLER (SOUND & AUTOPLAY)
+       - High-fidelity HTML5 <video> playback with original audio track preserved
+       - Volume initialized to 1.0 (100% audible volume)
+       - Policy-compliant browser autoplay handling with automatic sound enablement
+       - Genuine user-activation listeners (click, pointerdown, touchstart, keydown)
+       - Scroll-driven visibility observation via IntersectionObserver
        - Autoplays from beginning (0s) when About section enters viewport (>= 25%)
        - Automatically pauses when leaving About section (< 15%)
-       - Always restarts from beginning (0s) upon returning to About section
-       - Browser-safe audio initialization with seamless one-time interaction unlock
+       - Preserves sound state and restarts from beginning (0s) upon returning to About
        - Document visibility synchronization (pauses on background tabs)
        ========================================================================== */
     function initAboutNativeVideoController() {
@@ -1372,46 +1374,112 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!aboutSection || !aboutVideo) return;
 
         let isAboutVisible = false;
-        let audioUnlocked = false;
+        let isAudiblePlaybackPermitted = false;
+        let isActivelyPlaying = false;
 
-        function attemptPlay() {
-            aboutVideo.currentTime = 0;
-            const playPromise = aboutVideo.play();
-            if (playPromise !== undefined) {
-                playPromise.catch((error) => {
-                    // Modern browsers restrict unmuted autoplay without prior interaction
-                    // Gracefully fallback to muted autoplay then unlock on first interaction
-                    console.log('[About Video] Autoplay with sound restricted, starting muted...');
-                    aboutVideo.muted = true;
-                    aboutVideo.play().catch((err) => {
-                        console.warn('[About Video] Muted autoplay failed:', err);
-                    });
+        // Ensure volume is always 100%
+        aboutVideo.volume = 1.0;
+
+        // Unmute and ensure audible playback
+        function enableAudio() {
+            if (isAudiblePlaybackPermitted && !aboutVideo.muted) return;
+            isAudiblePlaybackPermitted = true;
+            aboutVideo.muted = false;
+            aboutVideo.volume = 1.0;
+
+            // If video was playing muted in viewport, unmuting allows continuous sound
+            if (isAboutVisible && aboutVideo.paused) {
+                aboutVideo.play().catch((err) => {
+                    console.warn('[About Video] Playback after audio unlock:', err);
                 });
             }
+            cleanupInteractionListeners();
         }
 
-        function unlockAudio() {
-            if (audioUnlocked) return;
-            audioUnlocked = true;
-            if (isAboutVisible && aboutVideo) {
+        // Genuine user activation handler (scroll is NOT an activation gesture per W3C policy)
+        function onUserInteraction(e) {
+            enableAudio();
+        }
+
+        function setupInteractionListeners() {
+            window.addEventListener('click', onUserInteraction, { passive: true });
+            window.addEventListener('pointerdown', onUserInteraction, { passive: true });
+            window.addEventListener('touchstart', onUserInteraction, { passive: true });
+            window.addEventListener('keydown', onUserInteraction, { passive: true });
+        }
+
+        function cleanupInteractionListeners() {
+            window.removeEventListener('click', onUserInteraction);
+            window.removeEventListener('pointerdown', onUserInteraction);
+            window.removeEventListener('touchstart', onUserInteraction);
+            window.removeEventListener('keydown', onUserInteraction);
+        }
+
+        // Setup interaction listeners initially so any interaction anywhere unlocks sound
+        setupInteractionListeners();
+
+        // Also allow clicking directly on the video wrapper to immediately enable sound
+        const videoWrapper = aboutVideo.closest('.about-clean-video-wrapper');
+        if (videoWrapper) {
+            videoWrapper.addEventListener('click', () => {
+                enableAudio();
+            });
+        }
+
+        // Intelligent Play Function
+        function playAboutVideo() {
+            aboutVideo.volume = 1.0;
+            aboutVideo.currentTime = 0;
+
+            if (isAudiblePlaybackPermitted) {
+                // Audio has already been unlocked by user interaction or browser policy
                 aboutVideo.muted = false;
+                const p = aboutVideo.play();
+                if (p !== undefined) {
+                    p.then(() => {
+                        isActivelyPlaying = true;
+                    }).catch((err) => {
+                        console.warn('[About Video] Audible play failed despite unlock:', err);
+                        // Fallback to muted only if browser strictly revoked gesture
+                        aboutVideo.muted = true;
+                        aboutVideo.play().catch(() => {});
+                    });
+                }
+            } else {
+                // First attempt: try playing unmuted (with sound)
+                aboutVideo.muted = false;
+                const playPromise = aboutVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Browser permitted unmuted autoplay!
+                        isAudiblePlaybackPermitted = true;
+                        isActivelyPlaying = true;
+                        cleanupInteractionListeners();
+                    }).catch((error) => {
+                        // Browser blocked unmuted autoplay (NotAllowedError)
+                        console.log('[About Video] Browser blocked autoplay with sound; playing muted until user interaction.');
+                        aboutVideo.muted = true;
+                        const mutedPromise = aboutVideo.play();
+                        if (mutedPromise !== undefined) {
+                            mutedPromise.then(() => {
+                                isActivelyPlaying = true;
+                            }).catch((err) => {
+                                console.warn('[About Video] Muted autoplay failed:', err);
+                            });
+                        }
+                    });
+                }
             }
-            cleanupUnlockListeners();
         }
 
-        function cleanupUnlockListeners() {
-            window.removeEventListener('click', unlockAudio);
-            window.removeEventListener('touchstart', unlockAudio);
-            window.removeEventListener('scroll', unlockAudio, { passive: true });
-            window.removeEventListener('keydown', unlockAudio);
+        function pauseAboutVideo() {
+            if (!aboutVideo.paused) {
+                aboutVideo.pause();
+            }
+            isActivelyPlaying = false;
         }
 
-        window.addEventListener('click', unlockAudio, { once: true });
-        window.addEventListener('touchstart', unlockAudio, { once: true });
-        window.addEventListener('scroll', unlockAudio, { once: true, passive: true });
-        window.addEventListener('keydown', unlockAudio, { once: true });
-
-        // Loop playback smoothly when user remains in About
+        // Replay from beginning if user remains in About section
         aboutVideo.addEventListener('ended', () => {
             if (isAboutVisible) {
                 aboutVideo.currentTime = 0;
@@ -1419,29 +1487,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Pause when switching browser tabs, resume if About is in view
+        // Tab visibility management
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                if (!aboutVideo.paused) {
-                    aboutVideo.pause();
-                }
+                pauseAboutVideo();
             } else if (isAboutVisible) {
+                if (isAudiblePlaybackPermitted) {
+                    aboutVideo.muted = false;
+                }
                 aboutVideo.play().catch(() => {});
             }
         });
 
-        // IntersectionObserver for intelligent scroll-triggered playback
+        // IntersectionObserver: triggered when About enters/leaves viewport
         if ('IntersectionObserver' in window) {
             const aboutVideoObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
                         isAboutVisible = true;
-                        attemptPlay();
+                        playAboutVideo();
                     } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
                         isAboutVisible = false;
-                        if (!aboutVideo.paused) {
-                            aboutVideo.pause();
-                        }
+                        pauseAboutVideo();
                     }
                 });
             }, {
