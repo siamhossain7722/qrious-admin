@@ -2053,7 +2053,7 @@
                     </div>
                 </div>
 
-                <!-- Category Filters Strip (5 Pill Buttons) -->
+                <!-- Category Filters Strip -->
                 <div class="achievements-filter-bar scroll-reveal-init">
                     <button type="button" class="filter-pill-btn active" data-filter="all">
                         <i class="fa-solid fa-table-cells-large"></i>
@@ -2061,18 +2061,18 @@
                     </button>
                     <button type="button" class="filter-pill-btn" data-filter="awards">
                         <i class="fa-solid fa-award" style="color: #FFB323;"></i>
-                        <span>Awards</span>
+                        <span>Academic Awards</span>
                     </button>
-                    <button type="button" class="filter-pill-btn" data-filter="certifications">
-                        <i class="fa-solid fa-certificate" style="color: #FF5A1F;"></i>
-                        <span>Certifications</span>
+                    <button type="button" class="filter-pill-btn" data-filter="professional">
+                        <i class="fa-solid fa-certificate" style="color: #FF1018;"></i>
+                        <span>Professional Certifications</span>
                     </button>
-                    <button type="button" class="filter-pill-btn" data-filter="recognitions">
-                        <i class="fa-solid fa-star" style="color: #FFA040;"></i>
-                        <span>Recognitions</span>
+                    <button type="button" class="filter-pill-btn" data-filter="technical">
+                        <i class="fa-solid fa-code" style="color: #FF7900;"></i>
+                        <span>Technical Certifications</span>
                     </button>
                     <button type="button" class="filter-pill-btn" data-filter="competitions">
-                        <i class="fa-solid fa-trophy" style="color: #FF2525;"></i>
+                        <i class="fa-solid fa-trophy" style="color: #FFB323;"></i>
                         <span>Competitions</span>
                     </button>
                 </div>
@@ -2080,7 +2080,7 @@
                 <!-- 3-Column Achievement Cards Grid -->
                 <div class="achievements-cards-grid" id="achievementsGrid">
                     <!-- Card 1: Digital Marketing -->
-                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications" data-id="1">
+                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications professional" data-id="1">
                         <div class="ach-preview-box" onclick="openCertificateModal(1)">
                             <img src="assets/images/certificates/UA.jpg" alt="Digital Marketing Certificate" class="ach-cert-thumb" loading="lazy">
                             <div class="gold-ribbon-badge" aria-hidden="true">
@@ -2088,12 +2088,12 @@
                             </div>
                         </div>
                         <div class="ach-card-info">
-                            <div class="ach-cat-badge">
+                            <div class="ach-cat-badge ach-cat-prof">
                                 <i class="fa-solid fa-certificate"></i>
-                                <span>CERTIFICATION</span>
+                                <span>PROFESSIONAL CERTIFICATION</span>
                             </div>
                             <h4 class="ach-title" onclick="openCertificateModal(1)">Digital Marketing</h4>
-                            <div class="ach-org">Google</div>
+                            <div class="ach-org">Google &amp; Urban Academy</div>
                             <div class="ach-date">
                                 <i class="fa-regular fa-calendar"></i>
                                 <span>Aug 28, 2025</span>
@@ -2105,7 +2105,7 @@
                     </div>
 
                     <!-- Card 2: Dean's Award (5x) -->
-                    <div class="achievement-card-box scroll-reveal-init" data-category="awards" data-id="2">
+                    <div class="achievement-card-box scroll-reveal-init" data-category="awards academic" data-id="2">
                         <div class="ach-preview-box" onclick="openCertificateModal(2)">
                             <img src="assets/images/certificates/UAP.jpg" alt="Dean's Award (5x) Certificate" class="ach-cert-thumb" loading="lazy">
                             <div class="gold-ribbon-badge" aria-hidden="true">
@@ -2121,7 +2121,7 @@
                             <div class="ach-org">University of Asia Pacific</div>
                             <div class="ach-date">
                                 <i class="fa-regular fa-calendar"></i>
-                                <span>2023 – Present</span>
+                                <span>2019 – 2024</span>
                             </div>
                         </div>
                         <button type="button" class="ach-modal-btn" onclick="openCertificateModal(2)" title="Preview certificate" aria-label="Preview Dean's Award certificate">
@@ -2130,7 +2130,7 @@
                     </div>
 
                     <!-- Card 3: CSE Fundamentals -->
-                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications" data-id="3">
+                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications technical" data-id="3">
                         <div class="ach-preview-box" onclick="openCertificateModal(3)">
                             <img src="assets/images/certificates/Certificate_Phitron.jpg" alt="CSE Fundamentals Certificate" class="ach-cert-thumb" loading="lazy">
                             <div class="gold-ribbon-badge" aria-hidden="true">
@@ -2140,10 +2140,10 @@
                         <div class="ach-card-info">
                             <div class="ach-cat-badge">
                                 <i class="fa-solid fa-certificate"></i>
-                                <span>CERTIFICATION</span>
+                                <span>TECHNICAL CERTIFICATION</span>
                             </div>
                             <h4 class="ach-title" onclick="openCertificateModal(3)">CSE Fundamentals</h4>
-                            <div class="ach-org">Python.io</div>
+                            <div class="ach-org">Python.io &amp; Phitron.io (CGPA 3.67)</div>
                             <div class="ach-date">
                                 <i class="fa-regular fa-calendar"></i>
                                 <span>2019 – 2023</span>
@@ -2163,12 +2163,12 @@
                                 <i class="fa-solid fa-award laurel-icon-right"></i>
                             </div>
                             <div class="hackathon-medal-badge" aria-hidden="true">
-                                <span>1st</span>
+                                <span>1st Runner Up</span>
                             </div>
                         </div>
                         <div class="ach-card-info">
                             <div class="ach-cat-badge ach-cat-comp">
-                                <i class="fa-solid fa-code"></i>
+                                <i class="fa-solid fa-trophy"></i>
                                 <span>COMPETITION</span>
                             </div>
                             <h4 class="ach-title" onclick="openCertificateModal(4)">Intra University Hackathon</h4>
@@ -2183,10 +2183,10 @@
                         </button>
                     </div>
 
-                    <!-- Card 5: Python for Everybody -->
-                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications" data-id="5">
+                    <!-- Card 5: Python for Everybody & Claude 101 AI -->
+                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications technical" data-id="5">
                         <div class="ach-preview-box" onclick="openCertificateModal(5)">
-                            <img src="assets/images/certificates/Certificate_Claude.jpg" alt="Python for Everybody Certificate" class="ach-cert-thumb" loading="lazy">
+                            <img src="assets/images/certificates/Certificate_Claude.jpg" alt="Python for Everybody &amp; Claude 101 AI Certificate" class="ach-cert-thumb" loading="lazy">
                             <div class="gold-ribbon-badge" aria-hidden="true">
                                 <i class="fa-solid fa-award"></i>
                             </div>
@@ -2194,13 +2194,13 @@
                         <div class="ach-card-info">
                             <div class="ach-cat-badge">
                                 <i class="fa-solid fa-certificate"></i>
-                                <span>CERTIFICATION</span>
+                                <span>TECHNICAL CERTIFICATION</span>
                             </div>
-                            <h4 class="ach-title" onclick="openCertificateModal(5)">Python for Everybody</h4>
-                            <div class="ach-org">University of Michigan (Coursera)</div>
+                            <h4 class="ach-title" onclick="openCertificateModal(5)">Python &amp; Claude 101 AI</h4>
+                            <div class="ach-org">Univ. of Michigan &amp; Anthropic</div>
                             <div class="ach-date">
                                 <i class="fa-regular fa-calendar"></i>
-                                <span>Jun 10, 2021</span>
+                                <span>Jun 10, 2021 – 2026</span>
                             </div>
                         </div>
                         <button type="button" class="ach-modal-btn" onclick="openCertificateModal(5)" title="Preview certificate" aria-label="Preview Python for Everybody certificate">
@@ -2208,27 +2208,46 @@
                         </button>
                     </div>
 
-                    <!-- Card 6: Inter University Coding Contest -->
-                    <div class="achievement-card-box scroll-reveal-init" data-category="recognitions" data-id="6">
-                        <div class="ach-preview-box ach-badge-dark-contest" onclick="openCertificateModal(6)">
-                            <div class="contest-badge-inner">
-                                <span class="contest-badge-title">Inter<br>University<br>Coding Contest</span>
-                                <div class="contest-code-icon">&lt;/&gt;</div>
+                    <!-- Card 6: AI and Advanced Digital Marketing Mastery -->
+                    <div class="achievement-card-box scroll-reveal-init" data-category="certifications professional" data-id="6">
+                        <div class="ach-preview-box ach-badge-open-cpd" onclick="openCertificateModal(6)" title="View certificate details">
+                            <img src="assets/images/certificates/open_cpd_ai_mastery.png" alt="AI and Advanced Digital Marketing Mastery Certificate Badge" class="ach-cert-thumb ach-thumb-contain" loading="lazy">
+                            <div class="gold-ribbon-badge" aria-hidden="true" title="CPD-Accredited 100 Points">
+                                <i class="fa-solid fa-shield-halved"></i>
                             </div>
                         </div>
                         <div class="ach-card-info">
-                            <div class="ach-cat-badge ach-cat-rec">
-                                <i class="fa-solid fa-star"></i>
-                                <span>RECOGNITION</span>
+                            <div class="ach-cat-badge ach-cat-prof">
+                                <i class="fa-solid fa-award"></i>
+                                <span>PROFESSIONAL CERTIFICATION</span>
+                                <span class="ach-cpd-badge">100 CPD</span>
                             </div>
-                            <h4 class="ach-title" onclick="openCertificateModal(6)">Inter University Coding Contest</h4>
-                            <div class="ach-org">Honorable Mention</div>
-                            <div class="ach-date">
-                                <i class="fa-regular fa-calendar"></i>
-                                <span>May 20, 2021</span>
+                            <h4 class="ach-title" onclick="openCertificateModal(6)" title="AI and Advanced Digital Marketing Mastery Course">AI &amp; Advanced Digital Marketing</h4>
+                            <div class="ach-org-row">
+                                <span class="ach-org"><i class="fa-solid fa-building-columns"></i> Urban Academy BD</span>
+                            </div>
+                            <div class="ach-meta-row">
+                                <div class="ach-date">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>Nov 4, 2026</span>
+                                </div>
+                                <div class="ach-id-tag" title="Official Certificate ID: 282741YYOXZR">
+                                    <i class="fa-solid fa-fingerprint"></i>
+                                    <span>ID: 282741YYOXZR</span>
+                                </div>
+                            </div>
+                            <div class="ach-actions-row">
+                                <a href="https://nft.open-cpd.com/ipfs/QmT2qz9hmeD3AzL6HtdLa5nKprE7DGJ5qVfjT5h8PkrGnZ" target="_blank" rel="noopener noreferrer" class="ach-btn-link ach-btn-view" title="Open official certificate record">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>View</span>
+                                </a>
+                                <a href="https://nft.open-cpd.com/ipfs/QmT2qz9hmeD3AzL6HtdLa5nKprE7DGJ5qVfjT5h8PkrGnZ" target="_blank" rel="noopener noreferrer" class="ach-btn-link ach-btn-verify" title="Verify Certificate Record on Open CPD">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Verify</span>
+                                </a>
                             </div>
                         </div>
-                        <button type="button" class="ach-modal-btn" onclick="openCertificateModal(6)" title="Preview achievement" aria-label="Preview Inter University Coding Contest details">
+                        <button type="button" class="ach-modal-btn" onclick="openCertificateModal(6)" title="Preview certificate details" aria-label="Preview AI and Advanced Digital Marketing Mastery details">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </button>
                     </div>

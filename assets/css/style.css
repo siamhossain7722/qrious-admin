@@ -11632,3 +11632,142 @@ body,
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* ==========================================================================
+   25. VERIFIED CERTIFICATION BADGES & ACTION PILLS
+   ========================================================================== */
+.ach-badge-open-cpd {
+    background: #0B0404 !important;
+    border: 1.2px solid rgba(255, 121, 0, 0.4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px !important;
+}
+
+.ach-thumb-contain {
+    object-fit: contain !important;
+    width: 90% !important;
+    height: 90% !important;
+    filter: drop-shadow(0 4px 10px rgba(255, 121, 0, 0.35));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.achievement-card-box:hover .ach-thumb-contain {
+    transform: scale(1.08) !important;
+}
+
+.ach-cat-prof {
+    color: #FF8500 !important;
+}
+
+.ach-cpd-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 121, 0, 0.16);
+    color: #FF8500;
+    border: 1px solid rgba(255, 121, 0, 0.35);
+    border-radius: 6px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    margin-left: 6px;
+    letter-spacing: 0.3px;
+}
+
+.ach-org-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #A09898;
+}
+
+.ach-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.ach-id-tag {
+    font-size: 0.7rem;
+    color: #FFB323;
+    background: rgba(255, 179, 35, 0.08);
+    border: 1px solid rgba(255, 179, 35, 0.25);
+    border-radius: 4px;
+    padding: 1px 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: monospace;
+}
+
+.ach-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.ach-btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.ach-btn-view {
+    background: rgba(255, 16, 24, 0.12);
+    color: #FF3030;
+    border: 1px solid rgba(255, 16, 24, 0.35);
+}
+
+.ach-btn-view:hover {
+    background: #FF1018;
+    color: #FFFFFF;
+    border-color: #FF1018;
+    box-shadow: 0 0 10px rgba(255, 16, 24, 0.5);
+    transform: translateY(-1px);
+}
+
+.ach-btn-verify {
+    background: rgba(255, 121, 0, 0.12);
+    color: #FF8500;
+    border: 1px solid rgba(255, 121, 0, 0.35);
+}
+
+.ach-btn-verify:hover {
+    background: #FF8500;
+    color: #050303;
+    border-color: #FF8500;
+    box-shadow: 0 0 10px rgba(255, 121, 0, 0.5);
+    transform: translateY(-1px);
+}
+
+.cert-skill-pill {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 23, 23, 0.22);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.82rem;
+    color: #E2E8F0;
+    transition: all 0.25s ease;
+}
+
+.cert-skill-pill:hover {
+    background: rgba(255, 16, 24, 0.15);
+    border-color: rgba(255, 16, 24, 0.5);
+    color: #FFFFFF;
+}

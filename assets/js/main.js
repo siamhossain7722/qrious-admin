@@ -1315,12 +1315,33 @@ const certificatesData = {
         desc: "Certified in Python programming specialization (University of Michigan / Coursera) and Anthropic Claude 101 AI Agent development, prompt engineering, and LLM orchestration."
     },
     6: {
-        title: "Inter University Coding Contest – Honorable Mention",
-        org: "Competitive Programming Committee",
-        period: "May 20, 2021",
-        category: "Competitive Programming",
-        img: "assets/images/certificates/food_safty.jpg",
-        desc: "Received Honorable Mention in the Inter University Coding Contest for algorithmic problem-solving in data structures, graph theory, and dynamic programming."
+        title: "AI and Advanced Digital Marketing Mastery Course",
+        badgeTitle: "AI Mastery course",
+        org: "Urban Academy BD",
+        platform: "Open CPD",
+        period: "4 November 2026",
+        expiry: "4 November 2030",
+        cpdPoints: "100 Points",
+        certId: "282741YYOXZR",
+        assessment: "Assessed",
+        delivery: "Online",
+        accreditation: "CPD-accredited programme, as stated in the certificate.",
+        category: "Professional Certification",
+        img: "assets/images/certificates/open_cpd_ai_mastery.png",
+        verifyUrl: "https://nft.open-cpd.com/ipfs/QmT2qz9hmeD3AzL6HtdLa5nKprE7DGJ5qVfjT5h8PkrGnZ",
+        desc: "Successfully completed the AI and Advanced Digital Marketing Mastery Course offered by Urban Academy BD, developing practical skills in artificial intelligence, advanced digital marketing, automation, AI-powered content creation, chatbot development, and professional workflow systems.",
+        skills: [
+            "Prompt Engineering with ChatGPT and Claude",
+            "AI Chatbot Creation",
+            "Generative AI for Content, Image and Video",
+            "AI Agent Workflow Design",
+            "Website and Portfolio Building with AI Tools",
+            "AI-powered Sales Systems",
+            "Ethical AI and AI Safety",
+            "Real Client Project Execution",
+            "Freelancing and Remote Work Readiness",
+            "Productivity and Workflow Automation"
+        ]
     }
 };
 
@@ -1459,20 +1480,86 @@ function openCertificateModal(id) {
     const c = certificatesData[id];
     if (!c) return;
 
+    const isVerifiedRecord = Boolean(c.verifyUrl);
+    const skillsHTML = c.skills ? `
+        <div style="margin-top: 20px; margin-bottom: 24px;">
+            <h4 style="color: #FFFFFF; font-size: 1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-microchip" style="color: #FF1018;"></i> Key Skills Covered
+            </h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                ${c.skills.map(s => `<span class="cert-skill-pill">${s}</span>`).join('')}
+            </div>
+        </div>
+    ` : '';
+
+    const metaGridHTML = c.certId ? `
+        <div class="modal-meta-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; padding: 16px; background: rgba(255, 23, 23, 0.05); border: 1px solid rgba(255, 23, 23, 0.2); border-radius: 12px;">
+            <div>
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #887E7E; display: block;">Certificate ID</span>
+                <strong style="color: #FF8500; font-family: monospace; font-size: 0.95rem;">${c.certId}</strong>
+            </div>
+            <div>
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #887E7E; display: block;">CPD Points</span>
+                <strong style="color: #FFB323; font-size: 0.95rem;">${c.cpdPoints}</strong>
+            </div>
+            <div>
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #887E7E; display: block;">Issue Date</span>
+                <strong style="color: #FFFFFF; font-size: 0.9rem;">${c.period}</strong>
+            </div>
+            <div>
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #887E7E; display: block;">Expiry Date</span>
+                <strong style="color: #FFFFFF; font-size: 0.9rem;">${c.expiry || 'N/A'}</strong>
+            </div>
+            <div>
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #887E7E; display: block;">Delivery / Assessment</span>
+                <strong style="color: #FFFFFF; font-size: 0.9rem;">${c.delivery || 'Online'} &bull; ${c.assessment || 'Assessed'}</strong>
+            </div>
+            <div>
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: #887E7E; display: block;">Status</span>
+                <strong style="color: #00E599; font-size: 0.88rem; display: flex; align-items: center; gap: 4px;">
+                    <i class="fa-solid fa-circle-check"></i> Record Available
+                </strong>
+            </div>
+        </div>
+    ` : '';
+
     const html = `
-        <img src="${c.img}" alt="${c.title}" class="modal-cert-img">
-        <span class="modal-tag">${c.category} &bull; ${c.period}</span>
-        <h2 class="modal-title">${c.title}</h2>
-        <p style="font-weight: 600; color: var(--accent-light); margin-bottom: 12px; font-size: 1.05rem;">
-            <i class="fa-solid fa-building-columns"></i> ${c.org}
-        </p>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="${c.img}" alt="${c.title}" class="modal-cert-img" style="${c.certId ? 'max-height: 220px; width: auto; object-fit: contain; margin: 0 auto 16px; border: 1.5px solid rgba(255, 121, 0, 0.4); border-radius: 14px; padding: 8px; background: #0A0404; box-shadow: 0 8px 25px rgba(255, 121, 0, 0.25);' : ''}">
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+            <span class="modal-tag">${c.category} &bull; ${c.period}</span>
+            ${c.accreditation ? `<span class="modal-tag" style="background: rgba(255, 121, 0, 0.15); color: #FF8500; border: 1px solid rgba(255, 121, 0, 0.35);"><i class="fa-solid fa-shield-halved"></i> CPD-Accredited</span>` : ''}
+            ${isVerifiedRecord ? `<span class="modal-tag" style="background: rgba(0, 229, 153, 0.12); color: #00E599; border: 1px solid rgba(0, 229, 153, 0.3);"><i class="fa-solid fa-circle-check"></i> Certificate Record Available</span>` : ''}
+        </div>
+        <h2 class="modal-title" style="margin-bottom: 10px;">${c.title}</h2>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 1rem; color: #C7C7C7;">
+            <span><strong style="color: #FFFFFF;"><i class="fa-solid fa-building-columns" style="color: #FF1018;"></i> Course Provider:</strong> ${c.org}</span>
+            ${c.platform ? `<span><strong style="color: #FFFFFF;"><i class="fa-solid fa-shield-halved" style="color: #FF8500;"></i> Credential Platform:</strong> ${c.platform}</span>` : ''}
+        </div>
+        
+        ${metaGridHTML}
+
         <p class="modal-desc">${c.desc}</p>
         
-        <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 20px;">
-            <a href="${c.img}" target="_blank" class="btn btn-primary btn-round">
-                <span>View Full Size Credential</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+        ${skillsHTML}
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+            ${isVerifiedRecord ? `
+                <a href="${c.verifyUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-round" style="background: linear-gradient(105deg, #FF1018, #FF8500); border: none; box-shadow: 0 4px 15px rgba(255, 16, 24, 0.4);">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>View Official Certificate</span>
+                </a>
+                <a href="${c.verifyUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-round" style="border: 1px solid rgba(255, 133, 0, 0.5); color: #FFB323;">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Verify on Open CPD</span>
+                </a>
+            ` : `
+                <a href="${c.img}" target="_blank" class="btn btn-primary btn-round">
+                    <span>View Full Size Credential</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            `}
             <button onclick="closeModal()" class="btn btn-secondary btn-round">
                 <span>Close Window</span>
             </button>
