@@ -11817,3 +11817,68 @@ footer:not(.in-viewport) * {
     contain: strict;
     transform: translate3d(0, 0, 0);
 }
+
+
+/* ==========================================================================
+   27. LENIS HIGH-PERFORMANCE SMOOTH SCROLL ENGINE
+   - Integrates official darkroomengineering/lenis library styles
+   - Resolves conflicts between native scroll-behavior and Lenis RAF engine
+   - Provides glowing cyber progress bar and subtle parallax micro-motion
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+html.lenis {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent],
+.lenis.lenis-smooth [data-lenis-prevent-wheel],
+.lenis.lenis-smooth [data-lenis-prevent-touch] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: clip !important;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* Neon Glowing Top Scroll Progress Bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #FF1717 0%, #FF5A1F 50%, #FF7900 100%);
+    box-shadow: 0 0 10px rgba(255, 23, 23, 0.8), 0 0 20px rgba(255, 121, 0, 0.5);
+    z-index: 100000;
+    pointer-events: none;
+    transform-origin: left center;
+    will-change: width;
+    transition: width 0.04s linear;
+}
+
+/* Modal and Sidebar Viewport Lock */
+html.modal-open,
+body.modal-open {
+    overflow: hidden !important;
+}
+
+/* Subtle Organic Parallax Micro-Motion */
+.hero-portrait-wrap,
+.hero-tilted-frame,
+.hero-orbit-container,
+.hero-floating-parallax {
+    will-change: transform;
+    transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1);
+}

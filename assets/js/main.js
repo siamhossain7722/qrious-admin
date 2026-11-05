@@ -9,6 +9,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ==========================================================================
+       0. LENIS SMOOTH SCROLL ENGINE (High-Performance Creative Experience)
+       ========================================================================== */
+    let lenis = null;
+    if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion) {
+        if (window.lenisInstance) {
+            try { window.lenisInstance.destroy(); } catch (e) {}
+        }
+
+        lenis = new window.Lenis({
+            duration: 1.15,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 0.95,
+            touchMultiplier: 1.0,
+            syncTouch: false,
+            autoResize: true,
+            prevent: (node) => {
+                return (
+                    node.hasAttribute('data-lenis-prevent') ||
+                    Boolean(node.closest('[data-lenis-prevent]')) ||
+                    Boolean(node.closest('.custom-modal')) ||
+                    Boolean(node.closest('.offcanvas-sidebar'))
+                );
+            }
+        });
+        window.lenisInstance = lenis;
+
+        function lenisRaf(time) {
+            if (window.lenisInstance) {
+                window.lenisInstance.raf(time);
+            }
+            requestAnimationFrame(lenisRaf);
+        }
+        requestAnimationFrame(lenisRaf);
+    }
+
+
+    /* ==========================================================================
        1. PROFESSIONAL DEVELOPER TERMINAL TYPEWRITER COMPONENT
        Infinitely rotates through 10 designations with smooth typing & deleting
        ========================================================================== */
@@ -267,11 +307,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       2. STICKY HEADER & ACTIVE SECTION NAVIGATION (RAF & IntersectionObserver)
+       2. STICKY HEADER, LENIS SYNCHRONIZATION & SCROLL NAVIGATION
        ========================================================================== */
     const header = document.getElementById('main-header');
     const navLinks = document.querySelectorAll('.desktop-nav .nav-link, .offcanvas-nav .nav-link');
     const navSections = document.querySelectorAll('section[id], header[id]');
+    const scrollProgressBar = document.getElementById('scroll-progress-bar');
+    const heroPortraitWrap = document.querySelector('.hero-portrait-wrap');
+    const heroTiltedFrame = document.querySelector('.hero-tilted-frame');
+    const heroOrbitContainer = document.querySelector('.hero-orbit-container');
+    const aboutStageWrap = document.querySelector('.about-stage-wrapper');
 
     function setActiveNavLink(id) {
         if (!id) return;
@@ -302,38 +347,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // RAF-throttled scroll handler for sticky header and back-to-top ring
-    let scrollTicking = false;
-    window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-            window.requestAnimationFrame(() => {
-                const scrollPos = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    // Coordinated state updater on scroll
+    function handleScrollState(scrollPos, maxLimit, progress) {
+        const docHeight = (typeof maxLimit === 'number') ? maxLimit : (document.documentElement.scrollHeight - window.innerHeight);
 
-                // Sticky Navbar Toggle
-                if (scrollPos > 60) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-
-                // Explicit edge-case handling for very top and very bottom
-                if (scrollPos < 80) {
-                    setActiveNavLink('home');
-                } else if (docHeight > 0 && scrollPos >= docHeight - 60) {
-                    setActiveNavLink('contact');
-                }
-
-                // Update Back To Top Button & Progress Ring
-                updateBackToTop(scrollPos, docHeight);
-
-                scrollTicking = false;
-            });
-            scrollTicking = true;
+        // 1. Sticky Navbar Transition
+        if (scrollPos > 60) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
-    }, { passive: true });
 
-    // Smooth Scroll Navigation with native hardware-accelerated scrollIntoView & scroll-padding
+        // 2. Top Glowing Neon Progress Bar
+        if (scrollProgressBar) {
+            const pct = (typeof progress === 'number') ? (progress * 100) : (docHeight > 0 ? (scrollPos / docHeight) * 100 : 0);
+            scrollProgressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
+
+        // 3. Section Boundary Edge Cases
+        if (scrollPos < 80) {
+            setActiveNavLink('home');
+        } else if (docHeight > 0 && scrollPos >= docHeight - 60) {
+            setActiveNavLink('contact');
+        }
+
+        // 4. Update Back To Top Button & Progress Ring
+        updateBackToTop(scrollPos, docHeight);
+
+        // 5. Multi-Plane Optical Depth Parallax (GPU translate3d)
+        if (scrollPos < 1100 && !prefersReducedMotion) {
+            if (heroPortraitWrap) {
+                heroPortraitWrap.style.transform = `translate3d(0, ${(scrollPos * 0.05).toFixed(2)}px, 0)`;
+            }
+            if (heroTiltedFrame) {
+                heroTiltedFrame.style.transform = `translate3d(0, ${(scrollPos * -0.04).toFixed(2)}px, 0)`;
+            }
+            if (heroOrbitContainer) {
+                heroOrbitContainer.style.transform = `translate3d(0, ${(scrollPos * 0.025).toFixed(2)}px, 0)`;
+            }
+        }
+    }
+
+    if (lenis) {
+        lenis.on('scroll', (e) => {
+            handleScrollState(e.scroll, e.limit, e.progress);
+        });
+    } else {
+        let scrollTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPos = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = docHeight > 0 ? scrollPos / docHeight : 0;
+                    handleScrollState(scrollPos, docHeight, progress);
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }, { passive: true });
+    }
+
+    // Smooth Scroll Navigation with Lenis & Accessible Fallback
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -341,10 +416,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = document.querySelector(targetId);
                 if (target) {
                     e.preventDefault();
-                    if (targetId === '#home') {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    const headerHeight = header ? header.offsetHeight : 70;
+                    const offset = targetId === '#home' ? 0 : -(headerHeight + 12);
+
+                    if (window.lenisInstance) {
+                        window.lenisInstance.scrollTo(targetId === '#home' ? 0 : target, {
+                            offset: offset,
+                            duration: 1.15,
+                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                        });
                     } else {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        if (targetId === '#home') {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
                     }
                     if (history.pushState) {
                         history.pushState(null, null, targetId);
@@ -353,6 +439,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Handle initial hash navigation smoothly on load
+    if (window.location.hash && window.location.hash !== '#') {
+        setTimeout(() => {
+            const initialTarget = document.querySelector(window.location.hash);
+            if (initialTarget) {
+                const headerHeight = header ? header.offsetHeight : 70;
+                const offset = window.location.hash === '#home' ? 0 : -(headerHeight + 12);
+                if (window.lenisInstance) {
+                    window.lenisInstance.scrollTo(initialTarget, {
+                        offset: offset,
+                        immediate: true
+                    });
+                }
+            }
+        }, 100);
+    }
 
     /* ==========================================================================
        3. OFFCANVAS SIDEBAR LOGIC
@@ -366,13 +469,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function openOffcanvas() {
         offcanvasSidebar.classList.add('active');
         offcanvasOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('modal-open');
+        if (window.lenisInstance) window.lenisInstance.stop();
     }
 
     function closeOffcanvas() {
         offcanvasSidebar.classList.remove('active');
         offcanvasOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        document.documentElement.classList.remove('modal-open');
+        if (window.lenisInstance) window.lenisInstance.start();
     }
 
     if (hamburgerBtn) hamburgerBtn.addEventListener('click', openOffcanvas);
@@ -766,7 +871,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.lenisInstance) {
+                window.lenisInstance.scrollTo(0, {
+                    duration: 1.15,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
     }
 
@@ -1464,15 +1576,23 @@ function openModalWithHTML(html) {
 
     modalBody.innerHTML = html;
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('modal-open');
+    if (window.lenisInstance) window.lenisInstance.stop();
 }
 
 function closeModal() {
     const modal = document.getElementById('info-modal');
     if (!modal) return;
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    document.documentElement.classList.remove('modal-open');
+    if (window.lenisInstance) window.lenisInstance.start();
 }
+
+window.openProjectModal = openProjectModal;
+window.openCertificateModal = openCertificateModal;
+window.openServiceModal = openServiceModal;
+window.closeModal = closeModal;
+window.openModalWithHTML = openModalWithHTML;
 
 function openProjectModal(id) {
     const p = projectsData[id];

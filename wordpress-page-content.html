@@ -226,14 +226,12 @@ html.theme-transitioning *::after {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: clamp(75px, 8vh, 95px);
     font-size: 16px;
     font-size-adjust: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-html {
     overflow-x: hidden;
     width: 100%;
 }
@@ -11848,15 +11846,131 @@ body,
     color: #FFFFFF;
 }
 
+
+/* ==========================================================================
+   26. ULTRA-SMOOTH SCROLLING & ZERO-COST ANIMATION LIFECYCLE
+   - Pauses 50+ background CSS keyframes when sections are outside viewport
+   - Eliminates background GPU rasterization and battery drain
+   - Hardware-isolates SVG wave filters into dedicated compositor layers
+   ========================================================================== */
+section:not(.in-viewport) *,
+footer:not(.in-viewport) * {
+    animation-play-state: paused !important;
+}
+
+#home,
+#main-header,
+#home * {
+    animation-play-state: running !important;
+}
+
+/* GPU Hardware Layer Promotion for SVG Waves & Decor */
+.services-wave-svg,
+.skills-wave-svg,
+.exp-wave-svg,
+.port-wave-svg,
+.ach-wave-svg,
+.testi-wave-svg,
+.contact-wave-svg,
+.about-ambient-wave {
+    contain: layout paint;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Optimize background particle and glow containers */
+.cyber-glow-sphere,
+.hero-glow-layer,
+.services-bg-decor,
+.skills-bg-decor,
+.exp-bg-decor,
+.projects-bg-decor,
+.achievements-bg-decor,
+.reviews-bg-decor,
+.contact-bg-decor {
+    pointer-events: none;
+    contain: strict;
+    transform: translate3d(0, 0, 0);
+}
+
+
+/* ==========================================================================
+   27. LENIS HIGH-PERFORMANCE SMOOTH SCROLL ENGINE
+   - Integrates official darkroomengineering/lenis library styles
+   - Resolves conflicts between native scroll-behavior and Lenis RAF engine
+   - Provides glowing cyber progress bar and subtle parallax micro-motion
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+html.lenis {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent],
+.lenis.lenis-smooth [data-lenis-prevent-wheel],
+.lenis.lenis-smooth [data-lenis-prevent-touch] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: clip !important;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* Neon Glowing Top Scroll Progress Bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #FF1717 0%, #FF5A1F 50%, #FF7900 100%);
+    box-shadow: 0 0 10px rgba(255, 23, 23, 0.8), 0 0 20px rgba(255, 121, 0, 0.5);
+    z-index: 100000;
+    pointer-events: none;
+    transform-origin: left center;
+    will-change: width;
+    transition: width 0.04s linear;
+}
+
+/* Modal and Sidebar Viewport Lock */
+html.modal-open,
+body.modal-open {
+    overflow: hidden !important;
+}
+
+/* Subtle Organic Parallax Micro-Motion */
+.hero-portrait-wrap,
+.hero-tilted-frame,
+.hero-orbit-container,
+.hero-floating-parallax {
+    will-change: transform;
+    transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 </style>
 
 <div id="siam-portfolio-wp-canvas" class="siam-portfolio-body" data-theme="dark">
-<!-- Toast Notification Container -->
+<!-- Glowing Top Scroll Progress Indicator -->
+    <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- Toast Notification Container -->
     <div id="toast-container" class="toast-container"></div>
 
     <!-- Offcanvas Navigation Sidebar -->
     <div id="offcanvas-overlay" class="offcanvas-overlay"></div>
-    <aside id="offcanvas-sidebar" class="offcanvas-sidebar">
+    <aside id="offcanvas-sidebar" class="offcanvas-sidebar" data-lenis-prevent="true">
         <div class="offcanvas-header">
             <a href="#" class="brand-logo">
                 <img src="data:image/webp;base64,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" alt="Siam Logo" class="brand-logo-img" width="40" height="40" loading="eager" decoding="async">
@@ -14815,7 +14929,7 @@ body,
         <div class="modal-backdrop" onclick="closeModal()"></div>
         <div class="modal-dialog glass-panel">
             <button class="modal-close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            <div id="modal-body-content" class="modal-content-area">
+            <div id="modal-body-content" class="modal-content-area" data-lenis-prevent="true">
                 <!-- Dynamically populated via JS -->
             </div>
         </div>
@@ -14823,9 +14937,13 @@ body,
 
     <!-- JavaScript -->
     
+    
 </div>
 
 <script>
+(function(){var e=`1.3.27`;function t(e,t,n){return Math.max(e,Math.min(t,n))}function n(e,t,n){return(1-n)*e+n*t}function r(e,t,r,i){return n(e,t,1-Math.exp(-r*i))}function i(e,t){return(e%t+t)%t}var a=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(e){if(!this.isRunning)return;let n=!1;if(this.duration&&this.easing){this.currentTime+=e;let r=t(0,this.currentTime/this.duration,1);n=r>=1;let i=n?1:this.easing(r);this.value=this.from+(this.to-this.from)*i}else this.lerp?(this.value=r(this.value,this.to,this.lerp*60,e),Math.round(this.value)===Math.round(this.to)&&(this.value=this.to,n=!0)):(this.value=this.to,n=!0);n&&this.stop(),this.onUpdate?.(this.value,n)}stop(){this.isRunning=!1}fromTo(e,t,{lerp:n,duration:r,easing:i,onStart:a,onUpdate:o}){this.from=this.value=e,this.to=t,this.lerp=n,this.duration=r,this.easing=i,this.currentTime=0,this.isRunning=!0,a?.(),this.onUpdate=o}};function o(e,t){let n;return function(...r){clearTimeout(n),n=setTimeout(()=>{n=void 0,e.apply(this,r)},t)}}var s=class{width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;constructor(e,t,{autoResize:n=!0,debounce:r=250}={}){this.wrapper=e,this.content=t,n&&(this.debouncedResize=o(this.resize,r),this.wrapper instanceof Window?window.addEventListener(`resize`,this.debouncedResize):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener(`resize`,this.debouncedResize)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}},c=class{events={};emit(e,...t){let n=this.events[e]||[];for(let e=0,r=n.length;e<r;e++)n[e]?.(...t)}on(e,t){return this.events[e]?this.events[e].push(t):this.events[e]=[t],()=>{this.events[e]=this.events[e]?.filter(e=>t!==e)}}off(e,t){this.events[e]=this.events[e]?.filter(e=>t!==e)}destroy(){this.events={}}};let l={passive:!1};function u(e,t){return e===1?16.666666666666668:e===2?t:1}var d=class{touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new c;constructor(e,t={wheelMultiplier:1,touchMultiplier:1}){this.element=e,this.options=t,window.addEventListener(`resize`,this.onWindowResize),this.onWindowResize(),this.element.addEventListener(`wheel`,this.onWheel,l),this.element.addEventListener(`touchstart`,this.onTouchStart,l),this.element.addEventListener(`touchmove`,this.onTouchMove,l),this.element.addEventListener(`touchend`,this.onTouchEnd,l)}on(e,t){return this.emitter.on(e,t)}destroy(){this.emitter.destroy(),window.removeEventListener(`resize`,this.onWindowResize),this.element.removeEventListener(`wheel`,this.onWheel,l),this.element.removeEventListener(`touchstart`,this.onTouchStart,l),this.element.removeEventListener(`touchmove`,this.onTouchMove,l),this.element.removeEventListener(`touchend`,this.onTouchEnd,l)}onTouchStart=e=>{let{clientX:t,clientY:n}=e.targetTouches?e.targetTouches[0]:e;this.touchStart.x=t,this.touchStart.y=n,this.lastDelta={x:0,y:0},this.emitter.emit(`scroll`,{deltaX:0,deltaY:0,event:e})};onTouchMove=e=>{let{clientX:t,clientY:n}=e.targetTouches?e.targetTouches[0]:e,r=-(t-this.touchStart.x)*this.options.touchMultiplier,i=-(n-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=t,this.touchStart.y=n,this.lastDelta={x:r,y:i},this.emitter.emit(`scroll`,{deltaX:r,deltaY:i,event:e})};onTouchEnd=e=>{this.emitter.emit(`scroll`,{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:e})};onWheel=e=>{let{deltaX:t,deltaY:n,deltaMode:r}=e,i=u(r,this.window.width),a=u(r,this.window.height);t*=i,n*=a,t*=this.options.wheelMultiplier,n*=this.options.wheelMultiplier,this.emitter.emit(`scroll`,{deltaX:t,deltaY:n,event:e})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}};let f=e=>Math.min(1,1.001-2**(-10*e));var p=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;_rafId=null;_isDraggingSelection=!1;reducedMotionMediaQuery=window.matchMedia(`(prefers-reduced-motion: reduce)`);isTouching;isIos;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new a;emitter=new c;dimensions;virtualScroll;constructor({wrapper:t=window,content:n=document.documentElement,eventsTarget:r=t,smoothWheel:i=!0,syncTouch:a=!1,syncTouchLerp:o=.075,touchInertiaExponent:c=1.7,duration:l,easing:u,lerp:p=.1,infinite:m=!1,orientation:h=`vertical`,gestureOrientation:g=h===`horizontal`?`both`:`vertical`,touchMultiplier:_=1,wheelMultiplier:v=1,autoResize:y=!0,prevent:b,virtualScroll:x,overscroll:S=!0,autoRaf:C=!1,anchors:w=!1,autoToggle:T=!1,allowNestedScroll:E=!1,__experimental__naiveDimensions:D=!1,naiveDimensions:O=D,stopInertiaOnNavigate:k=!1,respectReducedMotion:A=!0}={}){window.lenisVersion=e,window.lenis||(window.lenis={}),window.lenis.version=e,h===`horizontal`&&(window.lenis.horizontal=!0),a===!0&&(window.lenis.touch=!0),this.isIos=/(iPad|iPhone|iPod)/g.test(navigator.userAgent),(!t||t===document.documentElement)&&(t=window),typeof l==`number`&&typeof u!=`function`?u=f:typeof u==`function`&&typeof l!=`number`&&(l=1),this.options={wrapper:t,content:n,eventsTarget:r,smoothWheel:i,syncTouch:a,syncTouchLerp:o,touchInertiaExponent:c,duration:l,easing:u,lerp:p,infinite:m,gestureOrientation:g,orientation:h,touchMultiplier:_,wheelMultiplier:v,autoResize:y,prevent:b,virtualScroll:x,overscroll:S,autoRaf:C,anchors:w,autoToggle:T,allowNestedScroll:E,naiveDimensions:O,stopInertiaOnNavigate:k,respectReducedMotion:A},this.dimensions=new s(t,n,{autoResize:y}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener(`scroll`,this.onNativeScroll),this.options.wrapper.addEventListener(`scrollend`,this.onScrollEnd,{capture:!0}),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.addEventListener(`click`,this.onClick),this.options.wrapper.addEventListener(`pointerdown`,this.onPointerDown),this.virtualScroll=new d(r,{touchMultiplier:_,wheelMultiplier:v}),this.virtualScroll.on(`scroll`,this.onVirtualScroll),this.options.autoToggle&&(this.checkOverflow(),this.rootElement.addEventListener(`transitionend`,this.onTransitionEnd)),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this._resetVelocityTimeout!==null&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this.options.wrapper.removeEventListener(`scroll`,this.onNativeScroll),this.options.wrapper.removeEventListener(`scrollend`,this.onScrollEnd,{capture:!0}),this.options.wrapper.removeEventListener(`pointerdown`,this.onPointerDown),(this.options.anchors||this.options.stopInertiaOnNavigate)&&this.options.wrapper.removeEventListener(`click`,this.onClick),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this._rafId&&cancelAnimationFrame(this._rafId)}on(e,t){return this.emitter.on(e,t)}off(e,t){return this.emitter.off(e,t)}onScrollEnd=e=>{e instanceof CustomEvent||(this.isScrolling===`smooth`||this.isScrolling===!1)&&e.stopPropagation()};dispatchScrollendEvent=()=>{this.options.wrapper.dispatchEvent(new CustomEvent(`scrollend`,{bubbles:this.options.wrapper===window,detail:{lenisScrollEnd:!0}}))};get overflow(){let e=this.isHorizontal?`overflow-x`:`overflow-y`;return getComputedStyle(this.rootElement)[e]}checkOverflow(){[`hidden`,`clip`].includes(this.overflow)?this.internalStop():this.internalStart()}onTransitionEnd=e=>{e.propertyName?.includes(`overflow`)&&e.target===this.rootElement&&this.checkOverflow()};setScroll(e){this.isHorizontal?this.options.wrapper.scrollTo({left:e,behavior:`instant`}):this.options.wrapper.scrollTo({top:e,behavior:`instant`})}onClick=e=>{let t=e.composedPath().filter(e=>e instanceof HTMLAnchorElement&&e.href).map(e=>new URL(e.href)),n=new URL(window.location.href);if(this.options.anchors){let e=t.find(e=>n.host===e.host&&n.pathname===e.pathname&&e.hash);if(e){let t=typeof this.options.anchors==`object`&&this.options.anchors?this.options.anchors:void 0,n=decodeURIComponent(e.hash);this.scrollTo(n,t);return}}if(this.options.stopInertiaOnNavigate&&t.some(e=>n.host===e.host&&n.pathname!==e.pathname)){this.reset();return}};onPointerDown=e=>{e.button===1&&this.reset()};isTouchOnSelectionHandle(e){let t=window.getSelection();if(!t||t.isCollapsed||t.rangeCount===0)return!1;let n=e.targetTouches[0]??e.changedTouches[0];if(!n)return!1;let r=t.getRangeAt(0).getClientRects();if(r.length===0)return!1;let i=r[0],a=r[r.length-1],o=Math.hypot(n.clientX-i.left,n.clientY-i.top)<=40,s=Math.hypot(n.clientX-a.right,n.clientY-a.bottom)<=40;return o||s}onVirtualScroll=e=>{if(typeof this.options.virtualScroll==`function`&&this.options.virtualScroll(e)===!1)return;let{deltaX:t,deltaY:n,event:r}=e;if(this.emitter.emit(`virtual-scroll`,{deltaX:t,deltaY:n,event:r}),r.ctrlKey||r.lenisStopPropagation)return;let i=r.type.includes(`touch`),a=r.type.includes(`wheel`);if(i&&this.isIos&&(r.type===`touchstart`&&(this._isDraggingSelection=this.isTouchOnSelectionHandle(r)),this._isDraggingSelection)){r.type===`touchend`&&(this._isDraggingSelection=!1);return}this.isTouching=r.type===`touchstart`||r.type===`touchmove`;let o=t===0&&n===0;if(this.options.syncTouch&&i&&r.type===`touchstart`&&o&&!this.isStopped&&!this.isLocked){this.reset();return}let s=this.options.gestureOrientation===`vertical`&&n===0||this.options.gestureOrientation===`horizontal`&&t===0;if(o||s)return;let c=r.composedPath();c=c.slice(0,c.indexOf(this.rootElement));let l=this.options.prevent,u=Math.abs(t)>=Math.abs(n)?`horizontal`:`vertical`;if(c.find(e=>e instanceof HTMLElement&&(typeof l==`function`&&l?.(e)||e.hasAttribute?.(`data-lenis-prevent`)||u===`vertical`&&e.hasAttribute?.(`data-lenis-prevent-vertical`)||u===`horizontal`&&e.hasAttribute?.(`data-lenis-prevent-horizontal`)||i&&e.hasAttribute?.(`data-lenis-prevent-touch`)||a&&e.hasAttribute?.(`data-lenis-prevent-wheel`)||this.options.allowNestedScroll&&this.hasNestedScroll(e,{deltaX:t,deltaY:n}))))return;if(this.isStopped||this.isLocked){r.cancelable&&r.preventDefault();return}if(!(this.options.syncTouch&&i||this.options.smoothWheel&&a)){this.isScrolling=`native`,this.animate.stop(),r.lenisStopPropagation=!0;return}let d=n;this.options.gestureOrientation===`both`?d=Math.abs(n)>Math.abs(t)?n:t:this.options.gestureOrientation===`horizontal`&&(d=t),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&this.limit>0&&(this.animatedScroll>0&&this.animatedScroll<this.limit||this.animatedScroll===0&&n>0||this.animatedScroll===this.limit&&n<0))&&(r.lenisStopPropagation=!0),r.cancelable&&r.preventDefault();let f=i&&this.options.syncTouch,p=i&&r.type===`touchend`;p&&(d=Math.sign(d)*Math.abs(this.velocity)**this.options.touchInertiaExponent),this.scrollTo(this.targetScroll+d,{programmatic:!1,...f?{lerp:p?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit(`scroll`,this)}onNativeScroll=()=>{if(this._resetVelocityTimeout!==null&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent){this._preventNextNativeScrollEvent=!1;return}if(this.isScrolling===!1||this.isScrolling===`native`){let e=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-e,this.direction=Math.sign(this.animatedScroll-e),this.isStopped||(this.isScrolling=`native`),this.emit(),this.velocity!==0&&(this._resetVelocityTimeout=setTimeout(()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()},400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){if(this.isStopped){if(this.options.autoToggle){this.rootElement.style.removeProperty(`overflow`);return}this.internalStart()}}internalStart(){this.isStopped&&(this.reset(),this.isStopped=!1,this.emit())}stop(){if(!this.isStopped){if(this.options.autoToggle){this.rootElement.style.setProperty(`overflow`,`clip`);return}this.internalStop()}}internalStop(){this.isStopped||(this.reset(),this.isStopped=!0,this.emit())}raf=e=>{let t=e-(this.time||e);this.time=e,this.animate.advance(t*.001),this.options.autoRaf&&(this._rafId=requestAnimationFrame(this.raf))};scrollTo(e,{offset:n=0,immediate:r=!1,lock:i=!1,programmatic:a=!0,lerp:o=a?this.options.lerp:void 0,duration:s=a?this.options.duration:void 0,easing:c=a?this.options.easing:void 0,onStart:l,onComplete:u,force:d=!1,userData:p}={}){if(this.prefersReducedMotion&&(a?r=!0:(o=1,s=void 0,c=void 0)),(this.isStopped||this.isLocked)&&!d)return;let m=e,h=n;if(typeof m==`string`&&[`top`,`left`,`start`,`#`].includes(m))m=0;else if(typeof m==`string`&&[`bottom`,`right`,`end`].includes(m))m=this.limit;else{let e=null;if(typeof m==`string`?(e=m.startsWith(`#`)?document.getElementById(m.slice(1)):document.querySelector(m),e||(m===`#top`?m=0:console.warn(`Lenis: Target not found`,m))):m instanceof Element&&(e=m),e){if(this.options.wrapper!==window){let e=this.rootElement.getBoundingClientRect();h-=this.isHorizontal?e.left:e.top}let t=e.getBoundingClientRect(),n=getComputedStyle(e),r=this.isHorizontal?Number.parseFloat(n.scrollMarginLeft):Number.parseFloat(n.scrollMarginTop),i=getComputedStyle(this.rootElement),a=this.isHorizontal?Number.parseFloat(i.scrollPaddingLeft):Number.parseFloat(i.scrollPaddingTop);m=(this.isHorizontal?t.left:t.top)+this.animatedScroll-(Number.isNaN(r)?0:r)-(Number.isNaN(a)?0:a)}}if(typeof m==`number`){if(m+=h,this.options.infinite){if(a){this.targetScroll=this.animatedScroll=this.scroll;let e=m-this.animatedScroll;e>this.limit/2?m-=this.limit:e<-this.limit/2&&(m+=this.limit)}}else m=t(0,m,this.limit);if(m===this.targetScroll){l?.(this),u?.(this);return}if(this.userData=p??{},r){this.animatedScroll=this.targetScroll=m,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),u?.(this),this.userData={},requestAnimationFrame(()=>{this.dispatchScrollendEvent()});return}a||(this.targetScroll=m),typeof s==`number`&&typeof c!=`function`?c=f:typeof c==`function`&&typeof s!=`number`&&(s=1),this.animate.fromTo(this.animatedScroll,m,{duration:s,easing:c,lerp:o,onStart:()=>{i&&(this.isLocked=!0),this.isScrolling=`smooth`,l?.(this)},onUpdate:(e,t)=>{this.isScrolling=`smooth`,this.lastVelocity=this.velocity,this.velocity=e-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=e,this.setScroll(this.scroll),a&&(this.targetScroll=e),t||this.emit(),t&&(this.reset(),this.emit(),u?.(this),this.userData={},requestAnimationFrame(()=>{this.dispatchScrollendEvent()}),this.preventNextNativeScrollEvent())}})}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame(()=>{this._preventNextNativeScrollEvent=!1})}hasNestedScroll(e,{deltaX:t,deltaY:n}){let r=Date.now();e._lenis||={};let i=e._lenis,a,o,s,c,l,u,d,f,p,m;if(r-(i.time??0)>2e3){i.time=Date.now();let t=window.getComputedStyle(e);if(i.computedStyle=t,a=[`auto`,`overlay`,`scroll`].includes(t.overflowX),o=[`auto`,`overlay`,`scroll`].includes(t.overflowY),l=[`auto`].includes(t.overscrollBehaviorX),u=[`auto`].includes(t.overscrollBehaviorY),i.hasOverflowX=a,i.hasOverflowY=o,!(a||o))return!1;d=e.scrollWidth,f=e.scrollHeight,p=e.clientWidth,m=e.clientHeight,s=d>p,c=f>m,i.isScrollableX=s,i.isScrollableY=c,i.scrollWidth=d,i.scrollHeight=f,i.clientWidth=p,i.clientHeight=m,i.hasOverscrollBehaviorX=l,i.hasOverscrollBehaviorY=u}else s=i.isScrollableX,c=i.isScrollableY,a=i.hasOverflowX,o=i.hasOverflowY,d=i.scrollWidth,f=i.scrollHeight,p=i.clientWidth,m=i.clientHeight,l=i.hasOverscrollBehaviorX,u=i.hasOverscrollBehaviorY;if(!(a&&s||o&&c))return!1;let h=Math.abs(t)>=Math.abs(n)?`horizontal`:`vertical`,g,_,v,y,b,x;if(h===`horizontal`)g=Math.round(e.scrollLeft),_=d-p,v=t,y=a,b=s,x=l;else if(h===`vertical`)g=Math.round(e.scrollTop),_=f-m,v=n,y=o,b=c,x=u;else return!1;return!x&&(g>=_||g<=0)?!0:(v>0?g<_:g>0)&&y&&b}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?`x`:`y`]}get isHorizontal(){return this.options.orientation===`horizontal`}get actualScroll(){let e=this.options.wrapper;return this.isHorizontal?e.scrollX??e.scrollLeft:e.scrollY??e.scrollTop}get scroll(){return this.options.infinite?i(this.animatedScroll,this.limit):this.animatedScroll}get progress(){return this.limit===0?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(e){this._isScrolling!==e&&(this._isScrolling=e,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(e){this._isStopped!==e&&(this._isStopped=e,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(e){this._isLocked!==e&&(this._isLocked=e,this.updateClassName())}get isSmooth(){return this.isScrolling===`smooth`}get prefersReducedMotion(){return this.options.respectReducedMotion&&this.reducedMotionMediaQuery.matches}get className(){let e=`lenis`;return this.options.autoToggle&&(e+=` lenis-autoToggle`),this.isStopped&&(e+=` lenis-stopped`),this.isLocked&&(e+=` lenis-locked`),this.isScrolling&&(e+=` lenis-scrolling`),this.isScrolling===`smooth`&&(e+=` lenis-smooth`),e}updateClassName(){this.cleanUpClassName(),this.className.split(` `).forEach(e=>{this.rootElement.classList.add(e)})}cleanUpClassName(){for(let e of Array.from(this.rootElement.classList))(e===`lenis`||e.startsWith(`lenis-`))&&this.rootElement.classList.remove(e)}};globalThis.Lenis=p,globalThis.Lenis.prototype=p.prototype})();
+//# sourceMappingURL=lenis.min.js.map
+;
 /**
  * SIAM HOSSAIN - FULL STACK DEVELOPER PORTFOLIO
  * High-performance vanilla JavaScript logic, modals, filtering & interactive animations
@@ -14835,6 +14953,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Global user accessibility preference
     const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ==========================================================================
+       0. LENIS SMOOTH SCROLL ENGINE (High-Performance Creative Experience)
+       ========================================================================== */
+    let lenis = null;
+    if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion) {
+        if (window.lenisInstance) {
+            try { window.lenisInstance.destroy(); } catch (e) {}
+        }
+
+        lenis = new window.Lenis({
+            duration: 1.15,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 0.95,
+            touchMultiplier: 1.0,
+            syncTouch: false,
+            autoResize: true,
+            prevent: (node) => {
+                return (
+                    node.hasAttribute('data-lenis-prevent') ||
+                    Boolean(node.closest('[data-lenis-prevent]')) ||
+                    Boolean(node.closest('.custom-modal')) ||
+                    Boolean(node.closest('.offcanvas-sidebar'))
+                );
+            }
+        });
+        window.lenisInstance = lenis;
+
+        function lenisRaf(time) {
+            if (window.lenisInstance) {
+                window.lenisInstance.raf(time);
+            }
+            requestAnimationFrame(lenisRaf);
+        }
+        requestAnimationFrame(lenisRaf);
+    }
+
 
     /* ==========================================================================
        1. PROFESSIONAL DEVELOPER TERMINAL TYPEWRITER COMPONENT
@@ -15051,43 +15209,60 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rotators[0].wrap && rotators[1].wrap && rotators[2].wrap) {
         heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
 
-        // Pause when tab is inactive to optimize memory & performance
+        function startHeroTechRotation() {
+            if (!heroTechInterval && !document.hidden && window.scrollY < 600) {
+                heroTechInterval = setInterval(rotateHeroTechShowcase, 3200);
+            }
+        }
+        function stopHeroTechRotation() {
+            if (heroTechInterval) {
+                clearInterval(heroTechInterval);
+                heroTechInterval = null;
+            }
+        }
+
+        // Pause when tab is inactive or user scrolls away from hero to eliminate background reflows
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                if (heroTechInterval) {
-                    clearInterval(heroTechInterval);
-                    heroTechInterval = null;
-                }
+                stopHeroTechRotation();
             } else {
-                if (!heroTechInterval) {
-                    heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
-                }
+                startHeroTechRotation();
             }
         });
 
-        // Pause on portrait hover so user can read / inspect
         const heroStageWrap = document.querySelector('.stage-portrait-wrapper') || document.querySelector('.hero-visual');
         if (heroStageWrap) {
-            heroStageWrap.addEventListener('mouseenter', () => {
-                if (heroTechInterval) {
-                    clearInterval(heroTechInterval);
-                    heroTechInterval = null;
-                }
-            });
+            heroStageWrap.addEventListener('mouseenter', stopHeroTechRotation);
             heroStageWrap.addEventListener('mouseleave', () => {
-                if (!heroTechInterval && !document.hidden) {
-                    heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
-                }
+                if (!document.hidden) startHeroTechRotation();
             });
+        }
+
+        // Pause hero rotation completely when scrolled past hero section
+        const heroSectionEl = document.getElementById('home');
+        if (heroSectionEl && 'IntersectionObserver' in window) {
+            const heroInViewObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    startHeroTechRotation();
+                } else {
+                    stopHeroTechRotation();
+                }
+            }, { rootMargin: '100px 0px 100px 0px', threshold: 0 });
+            heroInViewObserver.observe(heroSectionEl);
         }
     }
 
     /* ==========================================================================
-       2. STICKY HEADER & ACTIVE SECTION NAVIGATION (RAF & IntersectionObserver)
+       2. STICKY HEADER, LENIS SYNCHRONIZATION & SCROLL NAVIGATION
        ========================================================================== */
     const header = document.getElementById('main-header');
     const navLinks = document.querySelectorAll('.desktop-nav .nav-link, .offcanvas-nav .nav-link');
     const navSections = document.querySelectorAll('section[id], header[id]');
+    const scrollProgressBar = document.getElementById('scroll-progress-bar');
+    const heroPortraitWrap = document.querySelector('.hero-portrait-wrap');
+    const heroTiltedFrame = document.querySelector('.hero-tilted-frame');
+    const heroOrbitContainer = document.querySelector('.hero-orbit-container');
+    const aboutStageWrap = document.querySelector('.about-stage-wrapper');
 
     function setActiveNavLink(id) {
         if (!id) return;
@@ -15118,38 +15293,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // RAF-throttled scroll handler for sticky header and back-to-top ring
-    let scrollTicking = false;
-    window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-            window.requestAnimationFrame(() => {
-                const scrollPos = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    // Coordinated state updater on scroll
+    function handleScrollState(scrollPos, maxLimit, progress) {
+        const docHeight = (typeof maxLimit === 'number') ? maxLimit : (document.documentElement.scrollHeight - window.innerHeight);
 
-                // Sticky Navbar Toggle
-                if (scrollPos > 60) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-
-                // Explicit edge-case handling for very top and very bottom
-                if (scrollPos < 80) {
-                    setActiveNavLink('home');
-                } else if (docHeight > 0 && scrollPos >= docHeight - 60) {
-                    setActiveNavLink('contact');
-                }
-
-                // Update Back To Top Button & Progress Ring
-                updateBackToTop(scrollPos, docHeight);
-
-                scrollTicking = false;
-            });
-            scrollTicking = true;
+        // 1. Sticky Navbar Transition
+        if (scrollPos > 60) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
-    }, { passive: true });
 
-    // Smooth Scroll Navigation with sticky header offset
+        // 2. Top Glowing Neon Progress Bar
+        if (scrollProgressBar) {
+            const pct = (typeof progress === 'number') ? (progress * 100) : (docHeight > 0 ? (scrollPos / docHeight) * 100 : 0);
+            scrollProgressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
+
+        // 3. Section Boundary Edge Cases
+        if (scrollPos < 80) {
+            setActiveNavLink('home');
+        } else if (docHeight > 0 && scrollPos >= docHeight - 60) {
+            setActiveNavLink('contact');
+        }
+
+        // 4. Update Back To Top Button & Progress Ring
+        updateBackToTop(scrollPos, docHeight);
+
+        // 5. Multi-Plane Optical Depth Parallax (GPU translate3d)
+        if (scrollPos < 1100 && !prefersReducedMotion) {
+            if (heroPortraitWrap) {
+                heroPortraitWrap.style.transform = `translate3d(0, ${(scrollPos * 0.05).toFixed(2)}px, 0)`;
+            }
+            if (heroTiltedFrame) {
+                heroTiltedFrame.style.transform = `translate3d(0, ${(scrollPos * -0.04).toFixed(2)}px, 0)`;
+            }
+            if (heroOrbitContainer) {
+                heroOrbitContainer.style.transform = `translate3d(0, ${(scrollPos * 0.025).toFixed(2)}px, 0)`;
+            }
+        }
+    }
+
+    if (lenis) {
+        lenis.on('scroll', (e) => {
+            handleScrollState(e.scroll, e.limit, e.progress);
+        });
+    } else {
+        let scrollTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPos = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = docHeight > 0 ? scrollPos / docHeight : 0;
+                    handleScrollState(scrollPos, docHeight, progress);
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }, { passive: true });
+    }
+
+    // Smooth Scroll Navigation with Lenis & Accessible Fallback
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -15157,16 +15362,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = document.querySelector(targetId);
                 if (target) {
                     e.preventDefault();
-                    const headerHeight = document.querySelector('.main-header')?.offsetHeight || 80;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 15;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    const headerHeight = header ? header.offsetHeight : 70;
+                    const offset = targetId === '#home' ? 0 : -(headerHeight + 12);
+
+                    if (window.lenisInstance) {
+                        window.lenisInstance.scrollTo(targetId === '#home' ? 0 : target, {
+                            offset: offset,
+                            duration: 1.15,
+                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                        });
+                    } else {
+                        if (targetId === '#home') {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    }
                 }
             }
         });
     });
+
+    // Handle initial hash navigation smoothly on load
+    if (window.location.hash && window.location.hash !== '#') {
+        setTimeout(() => {
+            const initialTarget = document.querySelector(window.location.hash);
+            if (initialTarget) {
+                const headerHeight = header ? header.offsetHeight : 70;
+                const offset = window.location.hash === '#home' ? 0 : -(headerHeight + 12);
+                if (window.lenisInstance) {
+                    window.lenisInstance.scrollTo(initialTarget, {
+                        offset: offset,
+                        immediate: true
+                    });
+                }
+            }
+        }, 100);
+    }
 
     /* ==========================================================================
        3. OFFCANVAS SIDEBAR LOGIC
@@ -15180,13 +15415,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function openOffcanvas() {
         offcanvasSidebar.classList.add('active');
         offcanvasOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('modal-open');
+        if (window.lenisInstance) window.lenisInstance.stop();
     }
 
     function closeOffcanvas() {
         offcanvasSidebar.classList.remove('active');
         offcanvasOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        document.documentElement.classList.remove('modal-open');
+        if (window.lenisInstance) window.lenisInstance.start();
     }
 
     if (hamburgerBtn) hamburgerBtn.addEventListener('click', openOffcanvas);
@@ -15580,7 +15817,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.lenisInstance) {
+                window.lenisInstance.scrollTo(0, {
+                    duration: 1.15,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
     }
 
@@ -16015,8 +16259,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, {
             root: null,
-            rootMargin: '0px 0px -40px 0px',
-            threshold: 0.08
+            rootMargin: '0px 0px -30px 0px',
+            threshold: 0
         });
 
         revealTargets.forEach(el => {
@@ -16027,6 +16271,33 @@ document.addEventListener('DOMContentLoaded', () => {
             el.classList.add('scroll-reveal-visible');
         });
     }
+
+    /* ==========================================================================
+       VIEWPORT SECTION ACTIVATOR (Performance Engine)
+       Pauses 50+ background CSS animations when sections are off-screen
+       ========================================================================== */
+    const allPageSections = document.querySelectorAll('section[id], footer');
+    if ('IntersectionObserver' in window) {
+        const sectionViewportObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-viewport');
+                } else {
+                    entry.target.classList.remove('in-viewport');
+                }
+            });
+        }, {
+            rootMargin: '200px 0px 200px 0px',
+            threshold: 0
+        });
+
+        allPageSections.forEach(sec => {
+            sectionViewportObserver.observe(sec);
+        });
+    } else {
+        allPageSections.forEach(sec => sec.classList.add('in-viewport'));
+    }
+
 });
 
 /* ==========================================================================
@@ -16251,15 +16522,23 @@ function openModalWithHTML(html) {
 
     modalBody.innerHTML = html;
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('modal-open');
+    if (window.lenisInstance) window.lenisInstance.stop();
 }
 
 function closeModal() {
     const modal = document.getElementById('info-modal');
     if (!modal) return;
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    document.documentElement.classList.remove('modal-open');
+    if (window.lenisInstance) window.lenisInstance.start();
 }
+
+window.openProjectModal = openProjectModal;
+window.openCertificateModal = openCertificateModal;
+window.openServiceModal = openServiceModal;
+window.closeModal = closeModal;
+window.openModalWithHTML = openModalWithHTML;
 
 function openProjectModal(id) {
     const p = projectsData[id];

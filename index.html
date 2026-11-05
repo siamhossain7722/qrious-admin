@@ -37,16 +37,19 @@
     <link rel="shortcut icon" href="favicon.ico?v=2.1">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=6.2">
+    <link rel="stylesheet" href="assets/css/style.css?v=6.3">
 </head>
 <body>
+
+    <!-- Glowing Top Scroll Progress Indicator -->
+    <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
 
     <!-- Toast Notification Container -->
     <div id="toast-container" class="toast-container"></div>
 
     <!-- Offcanvas Navigation Sidebar -->
     <div id="offcanvas-overlay" class="offcanvas-overlay"></div>
-    <aside id="offcanvas-sidebar" class="offcanvas-sidebar">
+    <aside id="offcanvas-sidebar" class="offcanvas-sidebar" data-lenis-prevent="true">
         <div class="offcanvas-header">
             <a href="#" class="brand-logo">
                 <img src="assets/images/logo.png" alt="Siam Logo" class="brand-logo-img" width="40" height="40" loading="eager" decoding="async">
@@ -3005,13 +3008,14 @@
         <div class="modal-backdrop" onclick="closeModal()"></div>
         <div class="modal-dialog glass-panel">
             <button class="modal-close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            <div id="modal-body-content" class="modal-content-area">
+            <div id="modal-body-content" class="modal-content-area" data-lenis-prevent="true">
                 <!-- Dynamically populated via JS -->
             </div>
         </div>
     </div>
 
     <!-- JavaScript -->
-    <script src="assets/js/main.js?v=6.2"></script>
+    <script src="assets/js/lenis.min.js"></script>
+    <script src="assets/js/main.js?v=6.3"></script>
 </body>
 </html>

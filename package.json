@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "[![Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-crimson.svg)](https://github.com/siamhossain7722/Admin-portfolio) [![WordPress](https://img.shields.io/badge/WordPress-Ready%20Plugin%20%26%20Gutenberg-blue.svg)](https://admin.qrioustechbd.com/) [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siamhossain7722/qrious-admin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/siamhossain7722/qrious-admin/issues"
+  },
+  "homepage": "https://github.com/siamhossain7722/qrious-admin#readme",
+  "dependencies": {
+    "lenis": "^1.3.27"
+  }
+}

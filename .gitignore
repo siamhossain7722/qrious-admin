@@ -18,6 +18,10 @@ ehthumbs_vista.db
 scratch/
 test-results/
 
+# Node & npm dependencies
+node_modules/
+package-lock.json
+
 # Environment Variables & Secrets
 .env
 .env.local
