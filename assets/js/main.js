@@ -1357,224 +1357,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       ABOUT SECTION DYNAMIC YOUTUBE IFRAME PLAYER CONTROLLER
-       - Video ID: IOcNLu3rxZg
-       - Resilient State Machine (NOT_INITIALIZED, LOADING, READY, PLAYING, PAUSED, ERROR)
-       - Visibility-Based Intelligent Autoplay & Pause via IntersectionObserver
-       - Always restarts from beginning (0s) upon re-entering About section
-       - Muted autoplay adhering strictly to modern browser autoplay policies
-       - Audio unmute memory for active visitor sessions
-       - Adaptive 1080p / best quality preference
-       - Zero layout shift with fallback poster & manual play button
+       ABOUT SECTION CLEAN NATIVE LOCAL VIDEO CONTROLLER
+       - Clean HTML5 <video> player with 0 surrounding UI clutter
+       - Scroll-driven automatic playback via IntersectionObserver
+       - Autoplays from beginning (0s) when About section enters viewport (>= 25%)
+       - Automatically pauses when leaving About section (< 15%)
+       - Always restarts from beginning (0s) upon returning to About section
+       - Browser-safe audio initialization with seamless one-time interaction unlock
+       - Document visibility synchronization (pauses on background tabs)
        ========================================================================== */
-    const YOUTUBE_VIDEO_ID = 'IOcNLu3rxZg';
-    const YOUTUBE_PLAYER_STATES = {
-        NOT_INITIALIZED: 'NOT_INITIALIZED',
-        LOADING: 'LOADING',
-        READY: 'READY',
-        PLAYING: 'PLAYING',
-        PAUSED: 'PAUSED',
-        ERROR: 'ERROR'
-    };
-
-    let ytPlayerInstance = null;
-    let ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.NOT_INITIALIZED;
-    let isAboutVisible = false;
-    let hasUserUnmuted = false;
-    let pendingAutoplayOnReady = false;
-
-    function playAboutVideoFromBeginning() {
-        if (!ytPlayerInstance || typeof ytPlayerInstance.playVideo !== 'function') return;
-        try {
-            ytPlayerInstance.seekTo(0, true);
-            if (!hasUserUnmuted) {
-                ytPlayerInstance.mute();
-            } else {
-                ytPlayerInstance.unMute();
-                ytPlayerInstance.setVolume(100);
-            }
-            if (typeof ytPlayerInstance.setPlaybackQuality === 'function') {
-                ytPlayerInstance.setPlaybackQuality('hd1080');
-            }
-            ytPlayerInstance.playVideo();
-            ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PLAYING;
-        } catch (err) {
-            console.warn('[About YouTube Controller] Play error:', err);
-            const manualBtn = document.getElementById('about-manual-play-btn');
-            if (manualBtn) manualBtn.style.display = 'flex';
-        }
-    }
-
-    function pauseAboutVideo() {
-        if (!ytPlayerInstance || typeof ytPlayerInstance.pauseVideo !== 'function') return;
-        try {
-            ytPlayerInstance.pauseVideo();
-            ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PAUSED;
-        } catch (err) {
-            console.warn('[About YouTube Controller] Pause error:', err);
-        }
-    }
-
-    function setupSoundToggle() {
-        const soundBtn = document.getElementById('about-sound-toggle');
-        const soundIcon = document.getElementById('about-sound-icon');
-        const soundText = document.getElementById('about-sound-text');
-        if (!soundBtn || !soundIcon || !soundText) return;
-
-        soundBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!ytPlayerInstance) return;
-            try {
-                if (ytPlayerInstance.isMuted()) {
-                    ytPlayerInstance.unMute();
-                    ytPlayerInstance.setVolume(100);
-                    hasUserUnmuted = true;
-                    soundIcon.className = 'fa-solid fa-volume-high';
-                    soundText.textContent = 'SOUND ON';
-                    soundBtn.classList.add('unmuted');
-                } else {
-                    ytPlayerInstance.mute();
-                    hasUserUnmuted = false;
-                    soundIcon.className = 'fa-solid fa-volume-xmark';
-                    soundText.textContent = 'MUTED';
-                    soundBtn.classList.remove('unmuted');
-                }
-            } catch (err) {
-                console.warn('[About YouTube Controller] Sound toggle error:', err);
-            }
-        });
-    }
-
-    function setupManualPlayFallback() {
-        const manualBtn = document.getElementById('about-manual-play-btn');
-        if (!manualBtn) return;
-        
-        manualBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!ytPlayerInstance) {
-                initYouTubePlayer();
-                pendingAutoplayOnReady = true;
-            } else {
-                playAboutVideoFromBeginning();
-                manualBtn.style.display = 'none';
-            }
-        });
-    }
-
-    function createYouTubePlayer() {
-        if (typeof YT === 'undefined' || !YT.Player) return;
-        ytPlayerInstance = new YT.Player('about-youtube-player', {
-            videoId: YOUTUBE_VIDEO_ID,
-            playerVars: {
-                autoplay: 0,
-                controls: 1,
-                rel: 0,
-                modestbranding: 1,
-                playsinline: 1,
-                enablejsapi: 1,
-                origin: window.location.origin
-            },
-            events: {
-                onReady: function(event) {
-                    ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.READY;
-                    setupSoundToggle();
-                    setupManualPlayFallback();
-                    if (pendingAutoplayOnReady && isAboutVisible) {
-                        pendingAutoplayOnReady = false;
-                        playAboutVideoFromBeginning();
-                    }
-                },
-                onStateChange: function(event) {
-                    if (event.data === YT.PlayerState.PLAYING) {
-                        ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PLAYING;
-                        const poster = document.getElementById('about-video-poster');
-                        if (poster) poster.classList.add('is-hidden');
-                        const manualBtn = document.getElementById('about-manual-play-btn');
-                        if (manualBtn) manualBtn.style.display = 'none';
-                        if (typeof event.target.setPlaybackQuality === 'function') {
-                            event.target.setPlaybackQuality('hd1080');
-                        }
-                    } else if (event.data === YT.PlayerState.PAUSED) {
-                        ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PAUSED;
-                    } else if (event.data === YT.PlayerState.ENDED) {
-                        if (isAboutVisible) {
-                            playAboutVideoFromBeginning();
-                        }
-                    }
-                },
-                onError: function(event) {
-                    console.warn('[About YouTube Controller] Player error event:', event.data);
-                    ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.ERROR;
-                    const manualBtn = document.getElementById('about-manual-play-btn');
-                    if (manualBtn) manualBtn.style.display = 'flex';
-                }
-            }
-        });
-    }
-
-    function initYouTubePlayer() {
-        if (ytPlayerCurrentState !== YOUTUBE_PLAYER_STATES.NOT_INITIALIZED) return;
-        ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.LOADING;
-
-        if (window.YT && window.YT.Player) {
-            createYouTubePlayer();
-        } else {
-            const existingCallback = window.onYouTubeIframeAPIReady;
-            window.onYouTubeIframeAPIReady = function() {
-                if (typeof existingCallback === 'function') {
-                    try { existingCallback(); } catch(e) {}
-                }
-                createYouTubePlayer();
-            };
-
-            if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-                const tag = document.createElement('script');
-                tag.src = 'https://www.youtube.com/iframe_api';
-                const firstScript = document.getElementsByTagName('script')[0];
-                if (firstScript && firstScript.parentNode) {
-                    firstScript.parentNode.insertBefore(tag, firstScript);
-                } else {
-                    document.head.appendChild(tag);
-                }
-            }
-        }
-    }
-
-    function initAboutYouTubeObserver() {
+    function initAboutNativeVideoController() {
         const aboutSection = document.getElementById('about');
-        if (!aboutSection) return;
+        const aboutVideo = document.getElementById('about-video-player');
+        if (!aboutSection || !aboutVideo) return;
 
-        if (!('IntersectionObserver' in window)) {
-            initYouTubePlayer();
-            return;
+        let isAboutVisible = false;
+        let audioUnlocked = false;
+
+        function attemptPlay() {
+            aboutVideo.currentTime = 0;
+            const playPromise = aboutVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    // Modern browsers restrict unmuted autoplay without prior interaction
+                    // Gracefully fallback to muted autoplay then unlock on first interaction
+                    console.log('[About Video] Autoplay with sound restricted, starting muted...');
+                    aboutVideo.muted = true;
+                    aboutVideo.play().catch((err) => {
+                        console.warn('[About Video] Muted autoplay failed:', err);
+                    });
+                });
+            }
         }
 
-        const aboutVideoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
-                    isAboutVisible = true;
-                    if (ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.READY || ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.PAUSED) {
-                        playAboutVideoFromBeginning();
-                    } else if (ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.NOT_INITIALIZED) {
-                        pendingAutoplayOnReady = true;
-                        initYouTubePlayer();
-                    }
-                } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
-                    isAboutVisible = false;
-                    if (ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.PLAYING) {
-                        pauseAboutVideo();
-                    }
-                }
-            });
-        }, {
-            threshold: [0, 0.15, 0.25, 0.5],
-            rootMargin: '0px 0px -5% 0px'
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            audioUnlocked = true;
+            if (isAboutVisible && aboutVideo) {
+                aboutVideo.muted = false;
+            }
+            cleanupUnlockListeners();
+        }
+
+        function cleanupUnlockListeners() {
+            window.removeEventListener('click', unlockAudio);
+            window.removeEventListener('touchstart', unlockAudio);
+            window.removeEventListener('scroll', unlockAudio, { passive: true });
+            window.removeEventListener('keydown', unlockAudio);
+        }
+
+        window.addEventListener('click', unlockAudio, { once: true });
+        window.addEventListener('touchstart', unlockAudio, { once: true });
+        window.addEventListener('scroll', unlockAudio, { once: true, passive: true });
+        window.addEventListener('keydown', unlockAudio, { once: true });
+
+        // Loop playback smoothly when user remains in About
+        aboutVideo.addEventListener('ended', () => {
+            if (isAboutVisible) {
+                aboutVideo.currentTime = 0;
+                aboutVideo.play().catch(() => {});
+            }
         });
 
-        aboutVideoObserver.observe(aboutSection);
+        // Pause when switching browser tabs, resume if About is in view
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (!aboutVideo.paused) {
+                    aboutVideo.pause();
+                }
+            } else if (isAboutVisible) {
+                aboutVideo.play().catch(() => {});
+            }
+        });
+
+        // IntersectionObserver for intelligent scroll-triggered playback
+        if ('IntersectionObserver' in window) {
+            const aboutVideoObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+                        isAboutVisible = true;
+                        attemptPlay();
+                    } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
+                        isAboutVisible = false;
+                        if (!aboutVideo.paused) {
+                            aboutVideo.pause();
+                        }
+                    }
+                });
+            }, {
+                threshold: [0, 0.15, 0.25, 0.5],
+                rootMargin: '0px 0px -5% 0px'
+            });
+
+            aboutVideoObserver.observe(aboutSection);
+        }
     }
 
-    initAboutYouTubeObserver();
+    initAboutNativeVideoController();
 
 });
 

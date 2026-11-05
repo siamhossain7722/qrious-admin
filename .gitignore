@@ -27,6 +27,6 @@ package-lock.json
 .env.local
 .env.*.local
 
-# Large Media Files
-assets/videos/
-*.mp4
+# Large Media Files (Exclude original 4K 102MB file to comply with GitHub 100MB limit, track web-optimized 16.7MB version)
+assets/videos/1106.mp4
+!assets/videos/1106-web.mp4

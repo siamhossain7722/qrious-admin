@@ -52,6 +52,9 @@ const MIME_TYPES = {
     '.svg': 'image/svg+xml',
     '.ico': 'image/x-icon',
     '.webp': 'image/webp',
+    '.mp4': 'video/mp4',
+    '.webm': 'video/webm',
+    '.ogv': 'video/ogg',
     '.woff2': 'font/woff2',
     '.woff': 'font/woff',
     '.ttf': 'font/ttf',
@@ -354,10 +357,42 @@ const server = http.createServer((req, res) => {
 
         const ext = path.extname(filePath).toLowerCase();
         const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+        const fileSize = stats.size;
 
-        res.writeHead(200, { 'Content-Type': contentType });
-        const stream = fs.createReadStream(filePath);
-        stream.pipe(res);
+        // Support HTTP Range requests for video seeking & progressive streaming
+        const range = req.headers.range;
+        if (range && (contentType.startsWith('video/') || contentType.startsWith('audio/'))) {
+            const parts = range.replace(/bytes=/, '').split('-');
+            const start = parseInt(parts[0], 10);
+            const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+            if (start >= fileSize || end >= fileSize) {
+                res.writeHead(416, {
+                    'Content-Range': `bytes */${fileSize}`,
+                    'Content-Type': contentType
+                });
+                return res.end();
+            }
+
+            const chunksize = (end - start) + 1;
+            res.writeHead(206, {
+                'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+                'Accept-Ranges': 'bytes',
+                'Content-Length': chunksize,
+                'Content-Type': contentType
+            });
+
+            const stream = fs.createReadStream(filePath, { start, end });
+            stream.pipe(res);
+        } else {
+            res.writeHead(200, {
+                'Content-Length': fileSize,
+                'Content-Type': contentType,
+                'Accept-Ranges': 'bytes'
+            });
+            const stream = fs.createReadStream(filePath);
+            stream.pipe(res);
+        }
     });
 });
 

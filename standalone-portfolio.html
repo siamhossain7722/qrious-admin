@@ -7376,299 +7376,46 @@ button {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   LEFT COLUMN: INTERACTIVE YOUTUBE VIDEO STAGE & NEON FRAMEWORK
+   LEFT COLUMN: CLEAN NATIVE VIDEO PLAYER SHOWCASE
+   - Single elegant video frame, no tilted background clutter, no badges
+   - 16:9 responsive aspect ratio
+   - Subtle glowing border matching Siam.dev neon aesthetic
    ═══════════════════════════════════════════════════════════════════════════ */
-.about-stage-wrapper {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 530px !important;
-    min-height: 320px !important;
-    height: auto !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    animation: aboutStageReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes aboutStageReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Layered Tilted Neon Frames (Proportioned to Frame the 16:9 Video) */
-.about-tilted-frame {
-    position: absolute !important;
-    border-radius: 28px !important;
-    pointer-events: none !important;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease !important;
-}
-
-/* Frame Back (Subtle Right-Tilt with Soft Ambient Neon Glow) */
-.about-tilted-frame.frame-back {
-    width: 96% !important;
-    height: 106% !important;
-    background: rgba(18, 7, 7, 0.65) !important;
-    border: 1.5px solid rgba(255, 25, 25, 0.35) !important;
-    box-shadow: 0 0 35px rgba(255, 16, 26, 0.2), inset 0 0 20px rgba(255, 16, 26, 0.08) !important;
-    transform: rotate(3.5deg) !important;
-    z-index: 1 !important;
-}
-
-/* Frame Front (Left-Tilt with Bright Neon Red-to-Orange Glowing Border) */
-.about-tilted-frame.frame-front {
-    width: 95% !important;
-    height: 104% !important;
-    background: rgba(12, 5, 5, 0.45) !important;
-    border: 1.5px solid transparent !important;
-    background-image: linear-gradient(rgba(14, 6, 6, 0.5), rgba(14, 6, 6, 0.5)),
-                      linear-gradient(135deg, #FF101A 0%, #FF5500 50%, #FF7900 100%) !important;
-    background-origin: border-box !important;
-    background-clip: padding-box, border-box !important;
-    box-shadow: 0 0 45px rgba(255, 16, 26, 0.35),
-                0 0 20px rgba(255, 106, 0, 0.2),
-                inset 0 0 25px rgba(255, 16, 26, 0.12) !important;
-    transform: rotate(-3deg) !important;
-    z-index: 2 !important;
-}
-
-.about-stage-wrapper:hover .about-tilted-frame.frame-back {
-    transform: rotate(5deg) scale(1.02) !important;
-    box-shadow: 0 0 45px rgba(255, 16, 26, 0.35) !important;
-}
-
-.about-stage-wrapper:hover .about-tilted-frame.frame-front {
-    transform: rotate(-4.5deg) scale(1.02) !important;
-    box-shadow: 0 0 65px rgba(255, 16, 26, 0.5), 0 0 35px rgba(255, 106, 0, 0.3) !important;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   16:9 DYNAMIC YOUTUBE VIDEO CONTAINER & INTERACTIVE CONTROLS
-   ═══════════════════════════════════════════════════════════════════════════ */
-.about-video-container {
+.about-clean-video-wrapper {
     position: relative !important;
     width: 100% !important;
     max-width: 520px !important;
     aspect-ratio: 16 / 9 !important;
     border-radius: 20px !important;
     overflow: hidden !important;
-    background: #000 !important;
+    background: #000000 !important;
     border: 1.5px solid rgba(255, 45, 130, 0.35) !important;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 23, 23, 0.25) !important;
-    z-index: 3 !important;
     contain: paint;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+    margin: 0 auto !important;
+    z-index: 2 !important;
 }
 
-.about-video-container:hover {
+.about-clean-video-wrapper:hover {
     border-color: rgba(255, 45, 130, 0.6) !important;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(255, 23, 23, 0.4) !important;
 }
 
-.about-video-container iframe,
-.about-video-container #about-youtube-player {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+.about-clean-video {
     width: 100% !important;
     height: 100% !important;
-    border: none !important;
+    object-fit: cover !important;
     display: block !important;
-}
-
-/* High-Resolution Placeholder Poster (Guarantees 0 Cumulative Layout Shift) */
-.about-video-poster {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-size: cover !important;
-    background-position: center !important;
-    z-index: 4 !important;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    pointer-events: none !important;
-}
-
-.about-video-poster.is-hidden {
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-.about-poster-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(5, 3, 3, 0.35) 0%, rgba(5, 3, 3, 0.75) 100%);
-}
-
-.about-video-badge {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    background: rgba(11, 4, 4, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 45, 130, 0.35);
-    border-radius: 20px;
-    color: #ff5a1f;
-    font-family: var(--font-heading);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-}
-
-.about-video-badge .badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ff1717;
-    box-shadow: 0 0 8px #ff1717;
-    animation: statusPulse 2s infinite ease-in-out;
-}
-
-/* Minimal Sound Toggle Button (Muted by default to satisfy browser autoplay policy) */
-.about-sound-toggle {
-    position: absolute !important;
-    bottom: 14px !important;
-    right: 14px !important;
-    z-index: 10 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 7px !important;
-    padding: 7px 14px !important;
-    background: rgba(11, 4, 4, 0.88) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 45, 130, 0.45) !important;
-    border-radius: 30px !important;
-    color: #fff !important;
-    font-family: var(--font-heading) !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 1px !important;
-    cursor: pointer !important;
-    transition: all 0.25s ease !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
-}
-
-.about-sound-toggle:hover {
-    background: rgba(255, 23, 23, 0.25) !important;
-    border-color: #ff3344 !important;
-    transform: scale(1.05) !important;
-}
-
-.about-sound-toggle.unmuted {
-    background: rgba(255, 23, 23, 0.2) !important;
-    border-color: #ff5a1f !important;
-    color: #ff7900 !important;
-}
-
-/* Manual Play Fallback Button */
-.about-manual-play-btn {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 9 !important;
-    width: 64px !important;
-    height: 64px !important;
-    border-radius: 50% !important;
-    background: linear-gradient(135deg, #ff1717 0%, #ff5a1f 100%) !important;
     border: none !important;
-    color: #fff !important;
-    font-size: 1.4rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    box-shadow: 0 0 25px rgba(255, 23, 23, 0.7) !important;
-    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
-}
-
-.about-manual-play-btn:hover {
-    transform: translate(-50%, -50%) scale(1.1) !important;
-    box-shadow: 0 0 35px rgba(255, 23, 23, 0.9) !important;
-}
-
-/* Floating Technology Badge (Bottom Left) */
-.about-tech-float-badge {
-    position: absolute !important;
-    bottom: 40px !important;
-    left: -15px !important;
-    z-index: 5 !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 14px !important;
-    padding: 12px 20px !important;
-    background: rgba(18, 8, 8, 0.88) !important;
-    border: 1.5px solid rgba(255, 35, 35, 0.5) !important;
     border-radius: 20px !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 16, 26, 0.3) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    animation: aboutBadgeFloat 4.2s ease-in-out infinite alternate !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    background-color: #000000 !important;
 }
 
-.about-tech-float-badge:hover {
-    transform: translateY(-4px) scale(1.03) !important;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 16, 26, 0.45) !important;
-    border-color: #FF101A !important;
-}
-
-@keyframes aboutBadgeFloat {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-8px); }
-}
-
-.badge-code-icon {
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 12px !important;
-    background: rgba(255, 20, 20, 0.15) !important;
-    border: 1.5px solid rgba(255, 35, 35, 0.45) !important;
-    color: #FF101A !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 1.05rem !important;
-    font-weight: 800 !important;
-    font-family: monospace, sans-serif !important;
-    box-shadow: 0 0 12px rgba(255, 16, 26, 0.3), inset 0 0 8px rgba(255, 16, 26, 0.15) !important;
-    flex-shrink: 0 !important;
-}
-
-.badge-text-group {
-    display: flex !important;
-    flex-direction: column !important;
-    line-height: 1.1 !important;
-}
-
-.badge-number {
-    font-family: var(--font-heading) !important;
-    font-size: 1.35rem !important;
-    font-weight: 800 !important;
-    color: #FFFFFF !important;
-    letter-spacing: -0.5px !important;
-}
-
-.badge-label {
-    font-size: 0.78rem !important;
-    font-weight: 500 !important;
-    color: #C0C0C8 !important;
-    margin-top: 2px !important;
+/* Light Theme Adaptation */
+body.light-theme .about-clean-video-wrapper {
+    border: 1.5px solid rgba(255, 45, 130, 0.45) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 0 30px rgba(255, 45, 130, 0.2) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -8003,21 +7750,8 @@ button {
     .about-container {
         width: calc(100% - 40px) !important;
     }
-    .about-stage-wrapper {
-        max-width: 480px !important;
-        height: auto !important;
-        min-height: 290px !important;
-    }
-    .about-tilted-frame.frame-back {
-        width: 340px !important;
-        height: 450px !important;
-    }
-    .about-tilted-frame.frame-front {
-        width: 330px !important;
-        height: 440px !important;
-    }
-    .about-portrait-photo {
-        max-height: 480px !important;
+    .about-clean-video-wrapper {
+        max-width: 500px !important;
     }
 }
 
@@ -8025,21 +7759,8 @@ button {
     .about-grid {
         gap: 40px !important;
     }
-    .about-stage-wrapper {
-        max-width: 440px !important;
-        height: auto !important;
-        min-height: 270px !important;
-    }
-    .about-tilted-frame.frame-back {
-        width: 310px !important;
-        height: 410px !important;
-    }
-    .about-tilted-frame.frame-front {
-        width: 300px !important;
-        height: 400px !important;
-    }
-    .about-portrait-photo {
-        max-height: 440px !important;
+    .about-clean-video-wrapper {
+        max-width: 460px !important;
     }
     .about-info-grid {
         gap: 18px 24px !important;
@@ -8057,10 +7778,8 @@ button {
     .about-visual-col {
         justify-content: center !important;
     }
-    .about-stage-wrapper {
-        max-width: 460px !important;
-        height: auto !important;
-        min-height: 280px !important;
+    .about-clean-video-wrapper {
+        max-width: 480px !important;
     }
     .about-content-col {
         align-items: center !important;
@@ -8087,41 +7806,13 @@ button {
     .about-section {
         padding: 55px 0 85px 0 !important;
     }
-    .about-stage-wrapper {
+    .about-clean-video-wrapper {
         max-width: 100% !important;
-        height: auto !important;
-        min-height: auto !important;
+        border-radius: 16px !important;
         margin: 0 auto 24px auto !important;
     }
-    .about-tilted-frame.frame-back {
-        width: 250px !important;
-        height: 330px !important;
-        border-radius: 28px !important;
-    }
-    .about-tilted-frame.frame-front {
-        width: 240px !important;
-        height: 320px !important;
-        border-radius: 28px !important;
-    }
-    .about-portrait-photo {
-        max-height: 350px !important;
-    }
-    .about-tech-float-badge {
-        bottom: 20px !important;
-        left: -5px !important;
-        padding: 8px 14px !important;
-        gap: 10px !important;
-    }
-    .badge-code-icon {
-        width: 34px !important;
-        height: 34px !important;
-        font-size: 0.88rem !important;
-    }
-    .badge-number {
-        font-size: 1.15rem !important;
-    }
-    .badge-label {
-        font-size: 0.72rem !important;
+    .about-clean-video {
+        border-radius: 16px !important;
     }
     .about-info-card {
         padding: 20px 18px !important;
@@ -9198,30 +8889,9 @@ button {
     color: #475569 !important;
 }
 
-[data-theme="light"] .about-tilted-frame.frame-back {
-    background: rgba(255, 255, 255, 0.8) !important;
-    border-color: rgba(255, 25, 25, 0.25) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
-}
-
-[data-theme="light"] .about-tilted-frame.frame-front {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-                      linear-gradient(135deg, #FF101A 0%, #FF5500 50%, #FF7900 100%) !important;
-    box-shadow: 0 15px 35px rgba(255, 16, 26, 0.15) !important;
-}
-
-[data-theme="light"] .about-tech-float-badge {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-color: rgba(255, 35, 35, 0.35) !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
-}
-
-[data-theme="light"] .badge-number {
-    color: #100D0D !important;
-}
-
-[data-theme="light"] .badge-label {
-    color: #64748B !important;
+[data-theme="light"] .about-clean-video-wrapper {
+    border: 1.5px solid rgba(255, 45, 130, 0.45) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 0 30px rgba(255, 45, 130, 0.2) !important;
 }
 
 [data-theme="light"] .highlight-pill {
@@ -12434,37 +12104,15 @@ body.modal-open {
         justify-content: center !important;
     }
 
-    .about-stage-wrapper {
+    .about-clean-video-wrapper {
         width: 100% !important;
         max-width: 100% !important;
-        height: auto !important;
-        min-height: auto !important;
-        position: relative !important;
-        margin: 0 auto 24px auto !important;
+        border-radius: 16px !important;
+        margin: 0 auto 20px auto !important;
     }
 
-    .about-portrait-photo {
-        max-height: 330px !important;
-        object-fit: contain !important;
-    }
-
-    .about-tilted-frame.frame-back {
-        width: 250px !important;
-        height: 320px !important;
-        border-radius: 26px !important;
-    }
-
-    .about-tilted-frame.frame-front {
-        width: 260px !important;
-        height: 330px !important;
-        border-radius: 28px !important;
-    }
-
-    .about-tech-float-badge {
-        padding: 8px 14px !important;
-        font-size: 0.78rem !important;
-        bottom: 12px !important;
-        left: 8px !important;
+    .about-clean-video {
+        border-radius: 16px !important;
     }
 
     .about-content-col {
@@ -13426,47 +13074,21 @@ body.modal-open {
 
             <div class="container about-container">
                 <div class="about-grid">
-                    <!-- Left Column: Interactive YouTube Showcase (~45%) -->
+                    <!-- Left Column: Clean Video Showcase (~45%) -->
                     <div class="about-visual-col">
-                        <div class="about-stage-wrapper about-video-stage-wrapper">
-                            <!-- Layered Tilted Glowing Frames (Adapted to 16:9 Video Canvas) -->
-                            <div class="about-tilted-frame frame-back" aria-hidden="true"></div>
-                            <div class="about-tilted-frame frame-front" aria-hidden="true"></div>
-
-                            <!-- 16:9 Responsive YouTube Video Container -->
-                            <div class="about-video-container" id="about-video-container">
-                                <!-- High-Resolution Video Poster Placeholder (0 Layout Shift) -->
-                                <div class="about-video-poster" id="about-video-poster" style="background-image: url('https://i.ytimg.com/vi/IOcNLu3rxZg/maxresdefault.jpg');" aria-hidden="true">
-                                    <div class="about-poster-overlay"></div>
-                                    <div class="about-video-badge">
-                                        <span class="badge-dot"></span>
-                                        <span class="badge-text">FEATURED INTRO</span>
-                                    </div>
-                                </div>
-
-                                <!-- YouTube IFrame API Target Element -->
-                                <div id="about-youtube-player"></div>
-
-                                <!-- Minimal Sound Control Overlay (Muted by default to satisfy browser autoplay policy) -->
-                                <button type="button" class="about-sound-toggle" id="about-sound-toggle" aria-label="Toggle Sound" title="Toggle Sound">
-                                    <i class="fa-solid fa-volume-xmark" id="about-sound-icon"></i>
-                                    <span class="sound-text" id="about-sound-text">MUTED</span>
-                                </button>
-
-                                <!-- Manual Play Overlay Fallback Button (Shown if autoplay blocked) -->
-                                <button type="button" class="about-manual-play-btn" id="about-manual-play-btn" aria-label="Play Video" style="display: none;">
-                                    <i class="fa-solid fa-play"></i>
-                                </button>
-                            </div>
-
-                            <!-- Floating Technology Badge (Preserved to maintain visual identity) -->
-                            <div class="about-tech-float-badge">
-                                <div class="badge-code-icon">&lt;/&gt;</div>
-                                <div class="badge-text-group">
-                                    <span class="badge-number">5+</span>
-                                    <span class="badge-label">Technologies</span>
-                                </div>
-                            </div>
+                        <div class="about-clean-video-wrapper">
+                            <video 
+                                id="about-video-player"
+                                class="about-clean-video"
+                                playsinline
+                                webkit-playsinline
+                                preload="metadata"
+                                poster="https://i.ytimg.com/vi/IOcNLu3rxZg/maxresdefault.jpg"
+                                aria-label="Siam Hossain Introduction Video">
+                                <source src="assets/videos/1106-web.mp4" type="video/mp4">
+                                <source src="assets/videos/1106.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
 
@@ -17442,224 +17064,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       ABOUT SECTION DYNAMIC YOUTUBE IFRAME PLAYER CONTROLLER
-       - Video ID: IOcNLu3rxZg
-       - Resilient State Machine (NOT_INITIALIZED, LOADING, READY, PLAYING, PAUSED, ERROR)
-       - Visibility-Based Intelligent Autoplay & Pause via IntersectionObserver
-       - Always restarts from beginning (0s) upon re-entering About section
-       - Muted autoplay adhering strictly to modern browser autoplay policies
-       - Audio unmute memory for active visitor sessions
-       - Adaptive 1080p / best quality preference
-       - Zero layout shift with fallback poster & manual play button
+       ABOUT SECTION CLEAN NATIVE LOCAL VIDEO CONTROLLER
+       - Clean HTML5 <video> player with 0 surrounding UI clutter
+       - Scroll-driven automatic playback via IntersectionObserver
+       - Autoplays from beginning (0s) when About section enters viewport (>= 25%)
+       - Automatically pauses when leaving About section (< 15%)
+       - Always restarts from beginning (0s) upon returning to About section
+       - Browser-safe audio initialization with seamless one-time interaction unlock
+       - Document visibility synchronization (pauses on background tabs)
        ========================================================================== */
-    const YOUTUBE_VIDEO_ID = 'IOcNLu3rxZg';
-    const YOUTUBE_PLAYER_STATES = {
-        NOT_INITIALIZED: 'NOT_INITIALIZED',
-        LOADING: 'LOADING',
-        READY: 'READY',
-        PLAYING: 'PLAYING',
-        PAUSED: 'PAUSED',
-        ERROR: 'ERROR'
-    };
-
-    let ytPlayerInstance = null;
-    let ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.NOT_INITIALIZED;
-    let isAboutVisible = false;
-    let hasUserUnmuted = false;
-    let pendingAutoplayOnReady = false;
-
-    function playAboutVideoFromBeginning() {
-        if (!ytPlayerInstance || typeof ytPlayerInstance.playVideo !== 'function') return;
-        try {
-            ytPlayerInstance.seekTo(0, true);
-            if (!hasUserUnmuted) {
-                ytPlayerInstance.mute();
-            } else {
-                ytPlayerInstance.unMute();
-                ytPlayerInstance.setVolume(100);
-            }
-            if (typeof ytPlayerInstance.setPlaybackQuality === 'function') {
-                ytPlayerInstance.setPlaybackQuality('hd1080');
-            }
-            ytPlayerInstance.playVideo();
-            ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PLAYING;
-        } catch (err) {
-            console.warn('[About YouTube Controller] Play error:', err);
-            const manualBtn = document.getElementById('about-manual-play-btn');
-            if (manualBtn) manualBtn.style.display = 'flex';
-        }
-    }
-
-    function pauseAboutVideo() {
-        if (!ytPlayerInstance || typeof ytPlayerInstance.pauseVideo !== 'function') return;
-        try {
-            ytPlayerInstance.pauseVideo();
-            ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PAUSED;
-        } catch (err) {
-            console.warn('[About YouTube Controller] Pause error:', err);
-        }
-    }
-
-    function setupSoundToggle() {
-        const soundBtn = document.getElementById('about-sound-toggle');
-        const soundIcon = document.getElementById('about-sound-icon');
-        const soundText = document.getElementById('about-sound-text');
-        if (!soundBtn || !soundIcon || !soundText) return;
-
-        soundBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!ytPlayerInstance) return;
-            try {
-                if (ytPlayerInstance.isMuted()) {
-                    ytPlayerInstance.unMute();
-                    ytPlayerInstance.setVolume(100);
-                    hasUserUnmuted = true;
-                    soundIcon.className = 'fa-solid fa-volume-high';
-                    soundText.textContent = 'SOUND ON';
-                    soundBtn.classList.add('unmuted');
-                } else {
-                    ytPlayerInstance.mute();
-                    hasUserUnmuted = false;
-                    soundIcon.className = 'fa-solid fa-volume-xmark';
-                    soundText.textContent = 'MUTED';
-                    soundBtn.classList.remove('unmuted');
-                }
-            } catch (err) {
-                console.warn('[About YouTube Controller] Sound toggle error:', err);
-            }
-        });
-    }
-
-    function setupManualPlayFallback() {
-        const manualBtn = document.getElementById('about-manual-play-btn');
-        if (!manualBtn) return;
-        
-        manualBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!ytPlayerInstance) {
-                initYouTubePlayer();
-                pendingAutoplayOnReady = true;
-            } else {
-                playAboutVideoFromBeginning();
-                manualBtn.style.display = 'none';
-            }
-        });
-    }
-
-    function createYouTubePlayer() {
-        if (typeof YT === 'undefined' || !YT.Player) return;
-        ytPlayerInstance = new YT.Player('about-youtube-player', {
-            videoId: YOUTUBE_VIDEO_ID,
-            playerVars: {
-                autoplay: 0,
-                controls: 1,
-                rel: 0,
-                modestbranding: 1,
-                playsinline: 1,
-                enablejsapi: 1,
-                origin: window.location.origin
-            },
-            events: {
-                onReady: function(event) {
-                    ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.READY;
-                    setupSoundToggle();
-                    setupManualPlayFallback();
-                    if (pendingAutoplayOnReady && isAboutVisible) {
-                        pendingAutoplayOnReady = false;
-                        playAboutVideoFromBeginning();
-                    }
-                },
-                onStateChange: function(event) {
-                    if (event.data === YT.PlayerState.PLAYING) {
-                        ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PLAYING;
-                        const poster = document.getElementById('about-video-poster');
-                        if (poster) poster.classList.add('is-hidden');
-                        const manualBtn = document.getElementById('about-manual-play-btn');
-                        if (manualBtn) manualBtn.style.display = 'none';
-                        if (typeof event.target.setPlaybackQuality === 'function') {
-                            event.target.setPlaybackQuality('hd1080');
-                        }
-                    } else if (event.data === YT.PlayerState.PAUSED) {
-                        ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.PAUSED;
-                    } else if (event.data === YT.PlayerState.ENDED) {
-                        if (isAboutVisible) {
-                            playAboutVideoFromBeginning();
-                        }
-                    }
-                },
-                onError: function(event) {
-                    console.warn('[About YouTube Controller] Player error event:', event.data);
-                    ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.ERROR;
-                    const manualBtn = document.getElementById('about-manual-play-btn');
-                    if (manualBtn) manualBtn.style.display = 'flex';
-                }
-            }
-        });
-    }
-
-    function initYouTubePlayer() {
-        if (ytPlayerCurrentState !== YOUTUBE_PLAYER_STATES.NOT_INITIALIZED) return;
-        ytPlayerCurrentState = YOUTUBE_PLAYER_STATES.LOADING;
-
-        if (window.YT && window.YT.Player) {
-            createYouTubePlayer();
-        } else {
-            const existingCallback = window.onYouTubeIframeAPIReady;
-            window.onYouTubeIframeAPIReady = function() {
-                if (typeof existingCallback === 'function') {
-                    try { existingCallback(); } catch(e) {}
-                }
-                createYouTubePlayer();
-            };
-
-            if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-                const tag = document.createElement('script');
-                tag.src = 'https://www.youtube.com/iframe_api';
-                const firstScript = document.getElementsByTagName('script')[0];
-                if (firstScript && firstScript.parentNode) {
-                    firstScript.parentNode.insertBefore(tag, firstScript);
-                } else {
-                    document.head.appendChild(tag);
-                }
-            }
-        }
-    }
-
-    function initAboutYouTubeObserver() {
+    function initAboutNativeVideoController() {
         const aboutSection = document.getElementById('about');
-        if (!aboutSection) return;
+        const aboutVideo = document.getElementById('about-video-player');
+        if (!aboutSection || !aboutVideo) return;
 
-        if (!('IntersectionObserver' in window)) {
-            initYouTubePlayer();
-            return;
+        let isAboutVisible = false;
+        let audioUnlocked = false;
+
+        function attemptPlay() {
+            aboutVideo.currentTime = 0;
+            const playPromise = aboutVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    // Modern browsers restrict unmuted autoplay without prior interaction
+                    // Gracefully fallback to muted autoplay then unlock on first interaction
+                    console.log('[About Video] Autoplay with sound restricted, starting muted...');
+                    aboutVideo.muted = true;
+                    aboutVideo.play().catch((err) => {
+                        console.warn('[About Video] Muted autoplay failed:', err);
+                    });
+                });
+            }
         }
 
-        const aboutVideoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
-                    isAboutVisible = true;
-                    if (ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.READY || ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.PAUSED) {
-                        playAboutVideoFromBeginning();
-                    } else if (ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.NOT_INITIALIZED) {
-                        pendingAutoplayOnReady = true;
-                        initYouTubePlayer();
-                    }
-                } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
-                    isAboutVisible = false;
-                    if (ytPlayerCurrentState === YOUTUBE_PLAYER_STATES.PLAYING) {
-                        pauseAboutVideo();
-                    }
-                }
-            });
-        }, {
-            threshold: [0, 0.15, 0.25, 0.5],
-            rootMargin: '0px 0px -5% 0px'
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            audioUnlocked = true;
+            if (isAboutVisible && aboutVideo) {
+                aboutVideo.muted = false;
+            }
+            cleanupUnlockListeners();
+        }
+
+        function cleanupUnlockListeners() {
+            window.removeEventListener('click', unlockAudio);
+            window.removeEventListener('touchstart', unlockAudio);
+            window.removeEventListener('scroll', unlockAudio, { passive: true });
+            window.removeEventListener('keydown', unlockAudio);
+        }
+
+        window.addEventListener('click', unlockAudio, { once: true });
+        window.addEventListener('touchstart', unlockAudio, { once: true });
+        window.addEventListener('scroll', unlockAudio, { once: true, passive: true });
+        window.addEventListener('keydown', unlockAudio, { once: true });
+
+        // Loop playback smoothly when user remains in About
+        aboutVideo.addEventListener('ended', () => {
+            if (isAboutVisible) {
+                aboutVideo.currentTime = 0;
+                aboutVideo.play().catch(() => {});
+            }
         });
 
-        aboutVideoObserver.observe(aboutSection);
+        // Pause when switching browser tabs, resume if About is in view
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (!aboutVideo.paused) {
+                    aboutVideo.pause();
+                }
+            } else if (isAboutVisible) {
+                aboutVideo.play().catch(() => {});
+            }
+        });
+
+        // IntersectionObserver for intelligent scroll-triggered playback
+        if ('IntersectionObserver' in window) {
+            const aboutVideoObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+                        isAboutVisible = true;
+                        attemptPlay();
+                    } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
+                        isAboutVisible = false;
+                        if (!aboutVideo.paused) {
+                            aboutVideo.pause();
+                        }
+                    }
+                });
+            }, {
+                threshold: [0, 0.15, 0.25, 0.5],
+                rootMargin: '0px 0px -5% 0px'
+            });
+
+            aboutVideoObserver.observe(aboutSection);
+        }
     }
 
-    initAboutYouTubeObserver();
+    initAboutNativeVideoController();
 
 });
 

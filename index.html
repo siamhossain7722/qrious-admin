@@ -413,47 +413,21 @@
 
             <div class="container about-container">
                 <div class="about-grid">
-                    <!-- Left Column: Interactive YouTube Showcase (~45%) -->
+                    <!-- Left Column: Clean Video Showcase (~45%) -->
                     <div class="about-visual-col">
-                        <div class="about-stage-wrapper about-video-stage-wrapper">
-                            <!-- Layered Tilted Glowing Frames (Adapted to 16:9 Video Canvas) -->
-                            <div class="about-tilted-frame frame-back" aria-hidden="true"></div>
-                            <div class="about-tilted-frame frame-front" aria-hidden="true"></div>
-
-                            <!-- 16:9 Responsive YouTube Video Container -->
-                            <div class="about-video-container" id="about-video-container">
-                                <!-- High-Resolution Video Poster Placeholder (0 Layout Shift) -->
-                                <div class="about-video-poster" id="about-video-poster" style="background-image: url('https://i.ytimg.com/vi/IOcNLu3rxZg/maxresdefault.jpg');" aria-hidden="true">
-                                    <div class="about-poster-overlay"></div>
-                                    <div class="about-video-badge">
-                                        <span class="badge-dot"></span>
-                                        <span class="badge-text">FEATURED INTRO</span>
-                                    </div>
-                                </div>
-
-                                <!-- YouTube IFrame API Target Element -->
-                                <div id="about-youtube-player"></div>
-
-                                <!-- Minimal Sound Control Overlay (Muted by default to satisfy browser autoplay policy) -->
-                                <button type="button" class="about-sound-toggle" id="about-sound-toggle" aria-label="Toggle Sound" title="Toggle Sound">
-                                    <i class="fa-solid fa-volume-xmark" id="about-sound-icon"></i>
-                                    <span class="sound-text" id="about-sound-text">MUTED</span>
-                                </button>
-
-                                <!-- Manual Play Overlay Fallback Button (Shown if autoplay blocked) -->
-                                <button type="button" class="about-manual-play-btn" id="about-manual-play-btn" aria-label="Play Video" style="display: none;">
-                                    <i class="fa-solid fa-play"></i>
-                                </button>
-                            </div>
-
-                            <!-- Floating Technology Badge (Preserved to maintain visual identity) -->
-                            <div class="about-tech-float-badge">
-                                <div class="badge-code-icon">&lt;/&gt;</div>
-                                <div class="badge-text-group">
-                                    <span class="badge-number">5+</span>
-                                    <span class="badge-label">Technologies</span>
-                                </div>
-                            </div>
+                        <div class="about-clean-video-wrapper">
+                            <video 
+                                id="about-video-player"
+                                class="about-clean-video"
+                                playsinline
+                                webkit-playsinline
+                                preload="metadata"
+                                poster="https://i.ytimg.com/vi/IOcNLu3rxZg/maxresdefault.jpg"
+                                aria-label="Siam Hossain Introduction Video">
+                                <source src="assets/videos/1106-web.mp4" type="video/mp4">
+                                <source src="assets/videos/1106.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
 
