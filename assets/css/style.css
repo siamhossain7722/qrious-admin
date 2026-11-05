@@ -7354,11 +7354,15 @@ button {
     opacity: 1 !important;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   LEFT COLUMN: INTERACTIVE YOUTUBE VIDEO STAGE & NEON FRAMEWORK
+   ═══════════════════════════════════════════════════════════════════════════ */
 .about-stage-wrapper {
     position: relative !important;
     width: 100% !important;
-    max-width: 480px !important;
-    height: 560px !important;
+    max-width: 530px !important;
+    min-height: 320px !important;
+    height: auto !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -7370,7 +7374,7 @@ button {
 @keyframes aboutStageReveal {
     0% {
         opacity: 0;
-        transform: translateY(40px) scale(0.96);
+        transform: translateY(30px) scale(0.96);
     }
     100% {
         opacity: 1;
@@ -7378,81 +7382,203 @@ button {
     }
 }
 
-/* Layered Tilted Neon Frames (Matching Reference) */
+/* Layered Tilted Neon Frames (Proportioned to Frame the 16:9 Video) */
 .about-tilted-frame {
     position: absolute !important;
-    border-radius: 36px !important;
+    border-radius: 28px !important;
     pointer-events: none !important;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease !important;
 }
 
-/* Frame Back (Tilted Right ~7deg with Soft Ambient Red Glow) */
+/* Frame Back (Subtle Right-Tilt with Soft Ambient Neon Glow) */
 .about-tilted-frame.frame-back {
-    width: 370px !important;
-    height: 480px !important;
+    width: 96% !important;
+    height: 106% !important;
     background: rgba(18, 7, 7, 0.65) !important;
-    border: 1.5px solid rgba(255, 25, 25, 0.45) !important;
-    box-shadow: 0 0 35px rgba(255, 16, 26, 0.25), inset 0 0 20px rgba(255, 16, 26, 0.12) !important;
-    transform: rotate(7deg) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1.5px solid rgba(255, 25, 25, 0.35) !important;
+    box-shadow: 0 0 35px rgba(255, 16, 26, 0.2), inset 0 0 20px rgba(255, 16, 26, 0.08) !important;
+    transform: rotate(3.5deg) !important;
     z-index: 1 !important;
 }
 
-/* Frame Front (Tilted Left ~-6deg with Bright Neon Red-to-Orange Glowing Border) */
+/* Frame Front (Left-Tilt with Bright Neon Red-to-Orange Glowing Border) */
 .about-tilted-frame.frame-front {
-    width: 360px !important;
-    height: 470px !important;
+    width: 95% !important;
+    height: 104% !important;
     background: rgba(12, 5, 5, 0.45) !important;
-    border: 2px solid transparent !important;
+    border: 1.5px solid transparent !important;
     background-image: linear-gradient(rgba(14, 6, 6, 0.5), rgba(14, 6, 6, 0.5)),
                       linear-gradient(135deg, #FF101A 0%, #FF5500 50%, #FF7900 100%) !important;
     background-origin: border-box !important;
     background-clip: padding-box, border-box !important;
-    box-shadow: 0 0 50px rgba(255, 16, 26, 0.4),
-                0 0 25px rgba(255, 106, 0, 0.25),
-                inset 0 0 30px rgba(255, 16, 26, 0.18) !important;
-    transform: rotate(-6deg) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 0 45px rgba(255, 16, 26, 0.35),
+                0 0 20px rgba(255, 106, 0, 0.2),
+                inset 0 0 25px rgba(255, 16, 26, 0.12) !important;
+    transform: rotate(-3deg) !important;
     z-index: 2 !important;
 }
 
 .about-stage-wrapper:hover .about-tilted-frame.frame-back {
-    transform: rotate(9deg) scale(1.02) !important;
+    transform: rotate(5deg) scale(1.02) !important;
     box-shadow: 0 0 45px rgba(255, 16, 26, 0.35) !important;
 }
 
 .about-stage-wrapper:hover .about-tilted-frame.frame-front {
-    transform: rotate(-8deg) scale(1.02) !important;
-    box-shadow: 0 0 65px rgba(255, 16, 26, 0.55), 0 0 35px rgba(255, 106, 0, 0.35) !important;
+    transform: rotate(-4.5deg) scale(1.02) !important;
+    box-shadow: 0 0 65px rgba(255, 16, 26, 0.5), 0 0 35px rgba(255, 106, 0, 0.3) !important;
 }
 
-/* Arms-Crossed Portrait with Subtle Floating Motion */
-.about-portrait-wrap {
+/* ═══════════════════════════════════════════════════════════════════════════
+   16:9 DYNAMIC YOUTUBE VIDEO CONTAINER & INTERACTIVE CONTROLS
+   ═══════════════════════════════════════════════════════════════════════════ */
+.about-video-container {
     position: relative !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: #000 !important;
+    border: 1.5px solid rgba(255, 45, 130, 0.35) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 23, 23, 0.25) !important;
     z-index: 3 !important;
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: center !important;
+    contain: paint;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-video-container:hover {
+    border-color: rgba(255, 45, 130, 0.6) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(255, 23, 23, 0.4) !important;
+}
+
+.about-video-container iframe,
+.about-video-container #about-youtube-player {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    animation: aboutPortraitFloat 5s ease-in-out infinite alternate !important;
+    border: none !important;
+    display: block !important;
 }
 
-.about-portrait-photo {
-    width: auto !important;
-    height: 96% !important;
-    max-height: 520px !important;
-    object-fit: contain !important;
-    object-position: center bottom !important;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 30px rgba(255, 16, 26, 0.25)) !important;
+/* High-Resolution Placeholder Poster (Guarantees 0 Cumulative Layout Shift) */
+.about-video-poster {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    z-index: 4 !important;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
     pointer-events: none !important;
 }
 
-@keyframes aboutPortraitFloat {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
+.about-video-poster.is-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.about-poster-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 3, 3, 0.35) 0%, rgba(5, 3, 3, 0.75) 100%);
+}
+
+.about-video-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(11, 4, 4, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 45, 130, 0.35);
+    border-radius: 20px;
+    color: #ff5a1f;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.about-video-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff1717;
+    box-shadow: 0 0 8px #ff1717;
+    animation: statusPulse 2s infinite ease-in-out;
+}
+
+/* Minimal Sound Toggle Button (Muted by default to satisfy browser autoplay policy) */
+.about-sound-toggle {
+    position: absolute !important;
+    bottom: 14px !important;
+    right: 14px !important;
+    z-index: 10 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    padding: 7px 14px !important;
+    background: rgba(11, 4, 4, 0.88) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 45, 130, 0.45) !important;
+    border-radius: 30px !important;
+    color: #fff !important;
+    font-family: var(--font-heading) !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+.about-sound-toggle:hover {
+    background: rgba(255, 23, 23, 0.25) !important;
+    border-color: #ff3344 !important;
+    transform: scale(1.05) !important;
+}
+
+.about-sound-toggle.unmuted {
+    background: rgba(255, 23, 23, 0.2) !important;
+    border-color: #ff5a1f !important;
+    color: #ff7900 !important;
+}
+
+/* Manual Play Fallback Button */
+.about-manual-play-btn {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9 !important;
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #ff1717 0%, #ff5a1f 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 1.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 0 25px rgba(255, 23, 23, 0.7) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.about-manual-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1) !important;
+    box-shadow: 0 0 35px rgba(255, 23, 23, 0.9) !important;
 }
 
 /* Floating Technology Badge (Bottom Left) */
@@ -7857,8 +7983,9 @@ button {
         width: calc(100% - 40px) !important;
     }
     .about-stage-wrapper {
-        max-width: 440px !important;
-        height: 520px !important;
+        max-width: 480px !important;
+        height: auto !important;
+        min-height: 290px !important;
     }
     .about-tilted-frame.frame-back {
         width: 340px !important;
@@ -7878,8 +8005,9 @@ button {
         gap: 40px !important;
     }
     .about-stage-wrapper {
-        max-width: 400px !important;
-        height: 480px !important;
+        max-width: 440px !important;
+        height: auto !important;
+        min-height: 270px !important;
     }
     .about-tilted-frame.frame-back {
         width: 310px !important;
@@ -7909,8 +8037,9 @@ button {
         justify-content: center !important;
     }
     .about-stage-wrapper {
-        max-width: 440px !important;
-        height: 500px !important;
+        max-width: 460px !important;
+        height: auto !important;
+        min-height: 280px !important;
     }
     .about-content-col {
         align-items: center !important;
@@ -7938,8 +8067,10 @@ button {
         padding: 55px 0 85px 0 !important;
     }
     .about-stage-wrapper {
-        max-width: 310px !important;
-        height: 380px !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 auto 24px auto !important;
     }
     .about-tilted-frame.frame-back {
         width: 250px !important;
@@ -12284,10 +12415,11 @@ body.modal-open {
 
     .about-stage-wrapper {
         width: 100% !important;
-        max-width: 310px !important;
-        height: 360px !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
         position: relative !important;
-        margin: 0 auto !important;
+        margin: 0 auto 24px auto !important;
     }
 
     .about-portrait-photo {
