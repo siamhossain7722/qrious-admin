@@ -223,34 +223,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rotators[0].wrap && rotators[1].wrap && rotators[2].wrap) {
         heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
 
-        // Pause when tab is inactive to optimize memory & performance
+        function startHeroTechRotation() {
+            if (!heroTechInterval && !document.hidden && window.scrollY < 600) {
+                heroTechInterval = setInterval(rotateHeroTechShowcase, 3200);
+            }
+        }
+        function stopHeroTechRotation() {
+            if (heroTechInterval) {
+                clearInterval(heroTechInterval);
+                heroTechInterval = null;
+            }
+        }
+
+        // Pause when tab is inactive or user scrolls away from hero to eliminate background reflows
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                if (heroTechInterval) {
-                    clearInterval(heroTechInterval);
-                    heroTechInterval = null;
-                }
+                stopHeroTechRotation();
             } else {
-                if (!heroTechInterval) {
-                    heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
-                }
+                startHeroTechRotation();
             }
         });
 
-        // Pause on portrait hover so user can read / inspect
         const heroStageWrap = document.querySelector('.stage-portrait-wrapper') || document.querySelector('.hero-visual');
         if (heroStageWrap) {
-            heroStageWrap.addEventListener('mouseenter', () => {
-                if (heroTechInterval) {
-                    clearInterval(heroTechInterval);
-                    heroTechInterval = null;
-                }
-            });
+            heroStageWrap.addEventListener('mouseenter', stopHeroTechRotation);
             heroStageWrap.addEventListener('mouseleave', () => {
-                if (!heroTechInterval && !document.hidden) {
-                    heroTechInterval = setInterval(rotateHeroTechShowcase, 3000);
-                }
+                if (!document.hidden) startHeroTechRotation();
             });
+        }
+
+        // Pause hero rotation completely when scrolled past hero section
+        const heroSectionEl = document.getElementById('home');
+        if (heroSectionEl && 'IntersectionObserver' in window) {
+            const heroInViewObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    startHeroTechRotation();
+                } else {
+                    stopHeroTechRotation();
+                }
+            }, { rootMargin: '100px 0px 100px 0px', threshold: 0 });
+            heroInViewObserver.observe(heroSectionEl);
         }
     }
 
@@ -321,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // Smooth Scroll Navigation with sticky header offset
+    // Smooth Scroll Navigation with native hardware-accelerated scrollIntoView & scroll-padding
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -329,12 +341,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = document.querySelector(targetId);
                 if (target) {
                     e.preventDefault();
-                    const headerHeight = document.querySelector('.main-header')?.offsetHeight || 80;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 15;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    if (targetId === '#home') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    }
                 }
             }
         });
@@ -1187,8 +1201,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, {
             root: null,
-            rootMargin: '0px 0px -40px 0px',
-            threshold: 0.08
+            rootMargin: '0px 0px -30px 0px',
+            threshold: 0
         });
 
         revealTargets.forEach(el => {
@@ -1199,6 +1213,33 @@ document.addEventListener('DOMContentLoaded', () => {
             el.classList.add('scroll-reveal-visible');
         });
     }
+
+    /* ==========================================================================
+       VIEWPORT SECTION ACTIVATOR (Performance Engine)
+       Pauses 50+ background CSS animations when sections are off-screen
+       ========================================================================== */
+    const allPageSections = document.querySelectorAll('section[id], footer');
+    if ('IntersectionObserver' in window) {
+        const sectionViewportObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-viewport');
+                } else {
+                    entry.target.classList.remove('in-viewport');
+                }
+            });
+        }, {
+            rootMargin: '200px 0px 200px 0px',
+            threshold: 0
+        });
+
+        allPageSections.forEach(sec => {
+            sectionViewportObserver.observe(sec);
+        });
+    } else {
+        allPageSections.forEach(sec => sec.classList.add('in-viewport'));
+    }
+
 });
 
 /* ==========================================================================

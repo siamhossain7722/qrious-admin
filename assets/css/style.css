@@ -150,14 +150,12 @@ html.theme-transitioning *::after {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: clamp(75px, 8vh, 95px);
     font-size: 16px;
     font-size-adjust: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-html {
     overflow-x: hidden;
     width: 100%;
 }
@@ -11770,4 +11768,52 @@ body,
     background: rgba(255, 16, 24, 0.15);
     border-color: rgba(255, 16, 24, 0.5);
     color: #FFFFFF;
+}
+
+
+/* ==========================================================================
+   26. ULTRA-SMOOTH SCROLLING & ZERO-COST ANIMATION LIFECYCLE
+   - Pauses 50+ background CSS keyframes when sections are outside viewport
+   - Eliminates background GPU rasterization and battery drain
+   - Hardware-isolates SVG wave filters into dedicated compositor layers
+   ========================================================================== */
+section:not(.in-viewport) *,
+footer:not(.in-viewport) * {
+    animation-play-state: paused !important;
+}
+
+#home,
+#main-header,
+#home * {
+    animation-play-state: running !important;
+}
+
+/* GPU Hardware Layer Promotion for SVG Waves & Decor */
+.services-wave-svg,
+.skills-wave-svg,
+.exp-wave-svg,
+.port-wave-svg,
+.ach-wave-svg,
+.testi-wave-svg,
+.contact-wave-svg,
+.about-ambient-wave {
+    contain: layout paint;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Optimize background particle and glow containers */
+.cyber-glow-sphere,
+.hero-glow-layer,
+.services-bg-decor,
+.skills-bg-decor,
+.exp-bg-decor,
+.projects-bg-decor,
+.achievements-bg-decor,
+.reviews-bg-decor,
+.contact-bg-decor {
+    pointer-events: none;
+    contain: strict;
+    transform: translate3d(0, 0, 0);
 }
