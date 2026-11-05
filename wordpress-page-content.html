@@ -1,6 +1,12 @@
 <!-- wp:html -->
 <script>
 (function() {
+    if (!document.querySelector('meta[name="viewport"]')) {
+        var m = document.createElement('meta');
+        m.name = 'viewport';
+        m.content = 'width=device-width, initial-scale=1.0';
+        document.head.appendChild(m);
+    }
     var theme = localStorage.getItem('siam_portfolio_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', theme);
     if (document.body) document.body.setAttribute('data-theme', theme);
@@ -11883,7 +11889,7 @@ body.modal-open {
    ========================================================================== */
 
 /* --- GLOBAL MOBILE CONTAINER & VIEWPORT NORMALIZATION --- */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
     :root {
         --mobile-pad: clamp(14px, 4.2vw, 20px);
         --mobile-gap: clamp(12px, 3.5vw, 18px);
@@ -11934,10 +11940,10 @@ body.modal-open {
         font-size: 1.15rem !important;
     }
 
-    .btn-hire-me {
-        padding: 7px 14px !important;
-        font-size: 0.8rem !important;
-        gap: 6px !important;
+    /* Hide Hire Me button ONLY on mobile */
+    .main-header .header-cta,
+    .main-header .btn-hire-me {
+        display: none !important;
     }
 
     .theme-toggle-btn {
@@ -11953,6 +11959,12 @@ body.modal-open {
         align-items: center !important;
         justify-content: center !important;
         border-radius: 10px !important;
+    }
+
+    .header-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
     }
 
     /* Offcanvas Navigation Drawer */
@@ -11973,8 +11985,8 @@ body.modal-open {
 
     /* --- 2. HERO SECTION MOBILE REFINEMENT --- */
     .hero-section {
-        padding-top: 92px !important;
-        padding-bottom: 50px !important;
+        padding-top: clamp(72px, 18vw, 84px) !important;
+        padding-bottom: 40px !important;
         overflow: hidden !important;
     }
 
@@ -11983,70 +11995,136 @@ body.modal-open {
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        gap: 24px !important;
+        gap: 0 !important;
         width: 100% !important;
         max-width: 520px !important;
         margin: 0 auto !important;
     }
 
+    /* Flatten hero-content to control child ordering alongside hero-visual */
     .hero-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        width: 100% !important;
-        order: 1 !important;
+        display: contents !important;
     }
 
+    /* Remove Availability Badge completely on mobile with no residual spacing */
     .hero-avail-badge {
-        font-size: 0.72rem !important;
-        padding: 6px 14px !important;
-        letter-spacing: 0.08em !important;
-        margin-bottom: 12px !important;
-        width: auto !important;
-        max-width: 92% !important;
+        display: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
+    /* Element 1: Introduction Heading ("Hello, I'm Siam Hossain") */
     .hero-headline {
+        order: 1 !important;
         margin: 0 auto 10px auto !important;
         text-align: center !important;
         width: 100% !important;
     }
 
     .hero-greeting {
-        font-size: clamp(1.4rem, 5vw, 1.85rem) !important;
+        font-size: clamp(1.35rem, 4.8vw, 1.75rem) !important;
         font-weight: 700 !important;
         text-align: center !important;
+        display: block !important;
     }
 
     .hero-name-gradient {
-        font-size: clamp(2.2rem, 8.2vw, 3.1rem) !important;
+        font-size: clamp(2.1rem, 7.8vw, 2.9rem) !important;
         font-weight: 900 !important;
         text-align: center !important;
+        display: block !important;
+        line-height: 1.15 !important;
+        margin-top: 2px !important;
     }
 
+    /* Element 2: Animated Professional Designation */
     .hero-role-pill {
-        padding: 6px 14px !important;
-        font-size: 0.82rem !important;
+        order: 2 !important;
+        padding: 7px 16px !important;
+        font-size: 0.84rem !important;
         margin: 0 auto 14px auto !important;
         width: auto !important;
         max-width: 92% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
+    /* Element 3: Professional Introduction Paragraph */
     .hero-summary {
+        order: 3 !important;
         font-size: 0.92rem !important;
-        line-height: 1.55 !important;
+        line-height: 1.6 !important;
         color: var(--text-secondary) !important;
-        max-width: 440px !important;
-        margin: 0 auto 18px auto !important;
+        max-width: min(92vw, 440px) !important;
+        margin: 0 auto 16px auto !important;
         text-align: center !important;
     }
 
+    /* Element 4: Profile Image Stage (Positioned immediately after intro paragraph, before CTA buttons) */
+    .hero-visual {
+        order: 4 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 4px auto 20px auto !important;
+        overflow: visible !important;
+    }
+
+    .hero-composition-stage {
+        width: min(82vw, 300px) !important;
+        height: 330px !important;
+        position: relative !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-end !important;
+    }
+
+    .hero-portrait-photo {
+        max-height: 310px !important;
+        width: auto !important;
+        object-fit: contain !important;
+        object-position: bottom center !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    .hero-tilted-frame {
+        width: min(72vw, 240px) !important;
+        height: 295px !important;
+        border-radius: 26px !important;
+        top: 15px !important;
+    }
+
+    .hero-frame-layer-2 {
+        width: min(70vw, 230px) !important;
+        height: 285px !important;
+        border-radius: 24px !important;
+    }
+
+    .hero-frame-layer-3 {
+        width: min(68vw, 220px) !important;
+        height: 275px !important;
+        border-radius: 22px !important;
+    }
+
+    .hero-orbit-container {
+        display: none !important;
+    }
+
+    .hero-code-window {
+        display: none !important;
+    }
+
+    /* Element 5: CTA Buttons (Immediately after profile image) */
     .hero-actions-row {
+        order: 5 !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 10px !important;
+        gap: 12px !important;
         width: 100% !important;
         max-width: 360px !important;
         margin: 0 auto 18px auto !important;
@@ -12059,28 +12137,41 @@ body.modal-open {
         justify-content: center !important;
         font-size: 0.95rem !important;
         border-radius: 9999px !important;
+        display: flex !important;
+        align-items: center !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
     }
 
+    /* Element 6: Social Media Links (Below CTA buttons) */
     .hero-social-circles {
         display: flex !important;
         justify-content: center !important;
-        gap: 12px !important;
-        margin-top: 4px !important;
+        align-items: center !important;
+        gap: 14px !important;
+        margin-top: 6px !important;
+        width: 100% !important;
     }
 
     .social-circle-btn {
-        width: 42px !important;
-        height: 42px !important;
+        width: 44px !important;
+        height: 44px !important;
         font-size: 1.05rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
     }
 
+    /* Element 7: Achievement Statistics (Below social media links) */
     .hero-stats-cards-grid {
+        order: 6 !important;
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 8px !important;
         width: 100% !important;
         max-width: 400px !important;
-        margin: 0 auto 10px auto !important;
+        margin: 0 auto 12px auto !important;
     }
 
     .hero-stat-card-v2 {
@@ -12108,57 +12199,6 @@ body.modal-open {
         line-height: 1.15 !important;
     }
 
-    /* Hero Portrait Stage on Mobile */
-    .hero-visual {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-        margin: 8px auto 0 auto !important;
-        order: 2 !important;
-    }
-
-    .hero-composition-stage {
-        width: 100% !important;
-        max-width: 330px !important;
-        height: 380px !important;
-        position: relative !important;
-        margin: 0 auto !important;
-    }
-
-    .hero-portrait-photo {
-        max-height: 340px !important;
-        width: auto !important;
-        object-fit: contain !important;
-        margin: 0 auto !important;
-    }
-
-    .hero-tilted-frame {
-        width: 260px !important;
-        height: 340px !important;
-        border-radius: 28px !important;
-        top: 15px !important;
-    }
-
-    .hero-frame-layer-2 {
-        width: 250px !important;
-        height: 330px !important;
-        border-radius: 26px !important;
-    }
-
-    .hero-frame-layer-3 {
-        width: 240px !important;
-        height: 320px !important;
-        border-radius: 24px !important;
-    }
-
-    .hero-orbit-container {
-        display: none !important;
-    }
-
-    .hero-code-window {
-        display: none !important;
-    }
 
     /* --- 3. ABOUT SECTION MOBILE REFINEMENT --- */
     .about-section {
